@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prueba</title>
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="codemirror/themes/ayu-dark.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body id="cuerpo" class="cuerpo">
+    <div class="container-fluid" id="editores">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Alto Nivel</h4>
+                <button type="button" class="btn btn-primary" onclick="TraducurAlto()">Traducir</button>
+                <textarea id="myTextarea" name="myTextarea"></textarea>
+            </div>
+            <div class="col-sm-6">
+                <h4>Bajo Nivel</h4>
+                <button type="button" class="btn btn-primary" onclick="ejecutar3D()">Ejecutar</button>
+                <button type="button" class="btn btn-warning">Debug</button>
+                <button type="button" class="btn btn-info">Siguiente</button>
+                <textarea id="myTextarea3D" name="myTextarea3D"></textarea>
+            </div>
+        </div>
+        <div class="container-fluid">
+
+            <h3>Consola</h3>
+            <textarea class="form-control" id="consola" rows="8"></textarea>
+        </div>
+
+    </div>
+    
+    <button type="button" class="btn btn-secondary">Secondary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+    <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-light">Light</button>
+    <button type="button" class="btn btn-dark">Dark</button>
+
+    <button type="button" class="btn btn-link">Link</button>
+
+    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="codemirror/mode/pascal.js"></script>
+    <script src="js/Jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        var editor = CodeMirror.fromTextArea(myTextarea, {
+            lineNumbers: true,
+            mode: "pascal",
+            theme: "ayu-dark"
+        });
+
+        var editor3D = CodeMirror.fromTextArea(myTextarea3D, {
+            lineNumbers: true,
+            mode: "pascal",
+            theme: "ayu-dark"
+        });
+    </script>
+    <script>
+        var exports = {};
+    </script>
+    <script src="analizador3D/Ejecutar3D.js"></script>
+    <script src="analizador3D/Gramatica/gramatica3d.js"></script>
+    <script src="analizador3D/Tabla/Simbolo.js"></script>
+    <script src="analizador3D/Tabla/Tabla.js"></script>
+    <script src="analizador3D/Arbol/AccesoEstructura.js"></script>
+    <script src="analizador3D/Arbol/Asignacion.js"></script>
+    <script src="analizador3D/Arbol/AsignacionEstructura.js"></script>
+    <script src="analizador3D/Arbol/Ast.js"></script>
+    <script src="analizador3D/Arbol/DeclararEstructura.js"></script>
+    <script src="analizador3D/Arbol/DeclararTemporales.js"></script>
+    <script src="analizador3D/Arbol/Etiqueta.js"></script>
+    <script src="analizador3D/Arbol/FinMetodo.js"></script>
+    <script src="analizador3D/Arbol/Goto.js"></script>
+    <script src="analizador3D/Arbol/Identificador.js"></script>
+    <script src="analizador3D/Arbol/InicioMetodo.js"></script>
+    <script src="analizador3D/Arbol/LLamada.js"></script>
+    <script src="analizador3D/Arbol/MenosUnario.js"></script>
+    <script src="analizador3D/Arbol/Metodo.js"></script>
+    <script src="analizador3D/Arbol/Operacion.js"></script>
+    <script src="analizador3D/Arbol/Primitivo.js"></script>
+    <script src="analizador3D/Arbol/Print.js"></script>
+    <script src="analizador3D/Arbol/SaltoCondicional.js"></script>
+    <script src="analizador3D/Arbol/SaltoCondicionalFalso.js"></script>
+
+    <script src="analizadorAlto/ArbolAlto/CambioFlujo/BreakAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/CambioFlujo/ContinueAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/CambioFlujo/ReturnAlto.js"></script>
+
+    <script src="analizadorAlto/ArbolAlto/Ciclos/WhileAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/Ciclos/DoWhileAlto.js"></script>
+
+    <script src="analizadorAlto/ArbolAlto/ControlFlujo/SiAlto.js"></script>
+
+    <script src="analizadorAlto/ArbolAlto/Entorno/AsignacionAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/Entorno/AsignacionArregloAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/Entorno/AsignacionEstructuraAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/Entorno/DeclaracionAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/Entorno/DeclaracionSinTipoAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/Entorno/DeclararArregloAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/Entorno/DefinirEstructura.js"></script>
+    <script src="analizadorAlto/ArbolAlto/Entorno/FuncionAlto.js"></script>
+
+
+    <script src="analizadorAlto/ArbolAlto/Primitivas/ImprimirAlto.js"></script>
+
+    <script src="analizadorAlto/ArbolAlto/ValorImplicito/AccesoArregloAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/ValorImplicito/AccesoEstructuraAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/ValorImplicito/ArregloConTipoAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/ValorImplicito/ArregloSinTipoAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/ValorImplicito/CrearEstructuraAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/ValorImplicito/IdentificadorAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/ValorImplicito/LLamadaAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/ValorImplicito/OperacionAlto.js"></script>
+    <script src="analizadorAlto/ArbolAlto/ValorImplicito/PrimitivoAlto.js"></script>
+
+    <script src="analizadorAlto/ArbolAlto/AstAlto.js"></script>
+    <script src="analizadorAlto/Error/ErrorAlto.js"></script>
+    <script src="analizadorAlto/GramaticaAlto/GramaticaAlto.js"></script>
+
+    <script src="analizadorAlto/TablaAlto/SimboloAlto.js"></script>
+    <script src="analizadorAlto/TablaAlto/SimboloFuncion.js"></script>
+    <script src="analizadorAlto/TablaAlto/TablaAlto.js"></script>
+    <script src="analizadorAlto/TablaAlto/Entorno.js"></script>
+    <script src="analizadorAlto/TablaAlto/Atributo.js"></script>
+    <script src="analizadorAlto/TablaAlto/Estructura.js"></script>
+
+    <script src="analizadorAlto/TraducirAlto.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+class AsignacionAlto {
+    constructor(nombre, valor, fila, columna) {
+        this.nombre = nombre;
+        this.valor = valor;
+        this.fila = fila;
+        this.columna = columna;
+    }
+    analizar(tabla) {
+        if (!tabla.existe(this.nombre)) {
+            let err = new ErrorAlto("Semantico", "La variable " + this.nombre + " no existe", this.fila, this.columna);
+            tabla.agregarError(err);
+            return err;
+        }
+        let val = this.valor.analizar(tabla);
+        if (val instanceof ErrorAlto) {
+            return err;
+        }
+        let sim = tabla.getSimbolo(this.nombre);
+        if (sim.constante) {
+            let erro = new ErrorAlto("Semantico", "La variable: " + this.nombre + " es constante, por lo tanto no se puede modificar su valor", this.fila, this.columna);
+            tabla.agregarError(erro);
+            return erro;
+        }
+        if (sim.tipo[0] != val[0]) {
+            if (!((sim.tipo[0] == "int" && val[0] == "char") || (sim.tipo[0] == "double" && val[0] == "int") || (sim.tipo[0] == "double" && val[0] == "char") || (tabla.existeEstructura(sim.tipo[0]) && val[0] == "null"))) {
+                let erro = new ErrorAlto("Semantico", "El tipo declarado no es igual al valor a asignar", this.fila, this.columna);
+                tabla.agregarError(erro);
+                return erro;
+            }
+        }
+    }
+    get3D(tabla) {
+        let codigo = "# Inicio Asignacion fila " + this.fila + " columna " + this.columna + "\n";
+        let sim = tabla.getSimbolo(this.nombre);
+        codigo += this.valor.get3D(tabla);
+        let tempV = tabla.getTemporalActual();
+        tabla.quitarNoUsados(tempV);
+        if (sim.entorno == "local") {
+            let temp = tabla.getTemporal();
+            codigo += temp + " = p + " + sim.apuntador + ";\n";
+            codigo += "Stack[" + temp + "] = " + tempV + ";\n";
+        } else {
+            let temp = tabla.getTemporal();
+            codigo += temp + " = " + sim.apuntador + ";\n";
+            codigo += "Heap[" + temp + "] = " + tempV + ";\n";
+        }
+        codigo += "# Fin Asignacion\n";
+        return codigo;
+    }
+}
