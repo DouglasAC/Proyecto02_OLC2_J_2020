@@ -13,7 +13,7 @@ class BreakAlto {
     get3D(tabla) {
         let codigo = "# Inicio traduccion Break fila: " + this.fila + " columna: " + this.columna + "\n";
         let et = tabla.displayBreak[tabla.displayBreak.length - 1];
-        codigo += "goto " + et + "\n";
+        codigo += "goto " + et + ";\n";
         codigo += "# Fin Break\n"
         return codigo;
     }

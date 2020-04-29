@@ -11,14 +11,15 @@ class WhileAlto {
         if (con instanceof ErrorAlto) {
             return con;
         }
-        tabla.displayBreak.push(1);
-        tabla.displayContinue.push(1);
+
         if (con[0] != 'boolean') {
             let err = new ErrorAlto("Semantico", "La condicion en While debe ser de tipo boolean", this.fila, this.columna);
             tabla.agregarError(err);
             return err;
         }
-        let local= new Entorno(tabla.locales);
+        tabla.displayBreak.push(1);
+        tabla.displayContinue.push(1);
+        let local = new Entorno(tabla.locales);
         for (let x = 0; x < this.sentencias.length; x++) {
             let res = this.sentencias[x].analizar(tabla);
             if (res instanceof ErrorAlto) {
@@ -50,7 +51,11 @@ class WhileAlto {
         codigo += etqV + ":\n";
         tabla.locales = this.local;
         this.sentencias.map(m => {
-            codigo += m.get3D(tabla);
+            let cod = m.get3D(tabla);
+            if (cod instanceof ErrorAlto) {
+                return cod;
+            }
+            codigo += cod;
         });
         tabla.locales = this.local.anterior;
         codigo += "goto " + etqCon + ";\n";

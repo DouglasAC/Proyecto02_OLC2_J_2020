@@ -54,7 +54,7 @@
 "break"                 return 'BREAK'
 "continue"              return 'CONTINUE'
 "print"                 return 'PRINT'
-
+"for"                   return 'FOR'
 "int"                   return 'INT'
 "double"                return 'DOUBLE'
 "boolean"               return 'BOOLEAN'
@@ -142,6 +142,7 @@ SENTECIA:
     | DECLARAR_ARREGLO  PTCOMA      { $$ = $1; }
     | DEFINIR_ESTRUCTURA  PTCOMA    { $$ = $1; }
     | ASIGNAR_ESTRUCURA PTCOMA      { $$ = $1; }
+    | SENTECIA_FOR                  { $$ = $1; }
 ;
 
 SENTECIA_IMPRIMIR:
@@ -244,6 +245,27 @@ ATRIBUTO:
 
 ASIGNAR_ESTRUCURA:
     ID '.' ID '=' EXPRESION         { $$ = new AsignacionEstructuraAlto($1, $3, $5, @1.first_line, @1.first_column); }
+;
+
+SENTECIA_FOR:
+    FOR '(' INICIO_FOR PTCOMA EXPRESION PTCOMA FIN_FOR ')' '{' SENTENCIAS '}'   { $$ =  new ForAlto($3, $5, $7, $10, @1.first_line, @1.first_column); }
+    | FOR '(' PTCOMA EXPRESION PTCOMA FIN_FOR ')' '{' SENTENCIAS '}'            { $$ =  new ForAlto(null, $4, $6, $9, @1.first_line, @1.first_column); }
+    | FOR '(' PTCOMA PTCOMA FIN_FOR ')' '{' SENTENCIAS '}'                      { $$ =  new ForAlto(null, null, $5, $8, @1.first_line, @1.first_column); }
+    | FOR '(' PTCOMA PTCOMA ')' '{' SENTENCIAS '}'                              { $$ =  new ForAlto(null, null, null, $7, @1.first_line, @1.first_column); }
+    | FOR '(' INICIO_FOR PTCOMA PTCOMA FIN_FOR ')' '{' SENTENCIAS '}'           { $$ =  new ForAlto($3, null, $6, $9, @1.first_line, @1.first_column); }
+    | FOR '(' INICIO_FOR PTCOMA PTCOMA ')' '{' SENTENCIAS '}'                   { $$ =  new ForAlto($3, null, null, $8, @1.first_line, @1.first_column); }
+    | FOR '(' INICIO_FOR PTCOMA EXPRESION PTCOMA ')' '{' SENTENCIAS '}'         { $$ =  new ForAlto($3, $5, null, $9, @1.first_line, @1.first_column); }
+    | FOR '(' PTCOMA EXPRESION PTCOMA ')' '{' SENTENCIAS '}'                    { $$ =  new ForAlto(null, $4, null, $8, @1.first_line, @1.first_column); }
+;
+
+INICIO_FOR:
+    SENTECIA_DECLARACION            { $$ = $1; }
+    | SENTECIA_ASIGNACION           { $$ = $1; }
+;
+
+FIN_FOR:
+    SENTECIA_ASIGNACION             { $$ = $1; }
+    | EXPRESION                     { $$ = $1; }
 ;
 
 EXPRESION:

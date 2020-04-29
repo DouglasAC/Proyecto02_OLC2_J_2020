@@ -11,13 +11,14 @@ class DoWhileAlto {
         if (con instanceof ErrorAlto) {
             return con;
         }
-        tabla.displayBreak.push(1);
-        tabla.displayContinue.push(1);
+
         if (con != 'boolean') {
             let err = new ErrorAlto("Semantico", "La condicion en Do While debe ser de tipo boolean", this.fila, this.columna);
             tabla.agregarError(err);
             return err;
         }
+        tabla.displayBreak.push(1);
+        tabla.displayContinue.push(1);
         let local = new Entorno(tabla.locales);
         tabla.locales = local;
         for (let x = 0; x < this.sentencias.length; x++) {
@@ -40,7 +41,7 @@ class DoWhileAlto {
         let etqV = tabla.getEtiqueta();
         tabla.displayContinue.push(etqCon);
         tabla.displayBreak.push(etqBre);
-        
+
         codigo += etqV + ":\n";
         tabla.locales = this.local;
         this.sentencias.map(m => {

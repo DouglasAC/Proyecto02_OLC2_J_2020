@@ -13,7 +13,7 @@ class ContinueAlto {
     get3D(tabla) {
         let codigo = "# Inicio traduccion Continue fila: " + this.fila + " columna: " + this.columna + "\n";
         let et = tabla.displayContinue[tabla.displayContinue.length - 1];
-        codigo += "goto " + et + "\n";
+        codigo += "goto " + et + ";\n";
         codigo += "# Fin Continue\n"
         return codigo;
     }
