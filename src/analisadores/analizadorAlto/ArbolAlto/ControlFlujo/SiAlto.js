@@ -41,7 +41,7 @@ class SiAlto {
             }
         }
 
-        this.localElse = localElse; 
+        this.localElse = localElse;
         tabla.locales = localElse.anterior;
 
     }
@@ -57,7 +57,11 @@ class SiAlto {
             codigo += "# Traducion Else:\n";
             tabla.locales = this.localElse;
             this.sentenciasElse.map(m => {
-                codigo += m.get3D(tabla);
+                let cod = m.get3D(tabla);
+                if (cod instanceof ErrorAlto) {
+                    return cod;
+                }
+                codigo += cod;
             });
             tabla.locales = this.localElse.anterior;
             codigo += "# Fin Traducion Else\n";
@@ -66,7 +70,11 @@ class SiAlto {
         codigo += etqV + ":\n";
         tabla.locales = this.local;
         this.sentencias.map(m => {
-            codigo += m.get3D(tabla);
+            let cod = m.get3D(tabla);
+            if (cod instanceof ErrorAlto) {
+                return cod;
+            }
+            codigo += cod;
         });
         tabla.locales = this.local.anterior;
         codigo += etqF + ":\n";

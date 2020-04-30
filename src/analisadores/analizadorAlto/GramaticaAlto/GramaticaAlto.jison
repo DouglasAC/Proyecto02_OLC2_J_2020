@@ -67,6 +67,9 @@
 "strc"                  return 'STRC'
 "define"                return 'DEFINE'
 "as"                    return 'AS'
+"switch"                return 'SWITCH'
+"case"                  return 'CASE'
+"default"               return 'DEFAULT'
 [a-zA-Z_][_a-zA-Z0-9ñÑ]*  return 'ID'
 
 <<EOF>>               return 'EOF'
@@ -143,6 +146,7 @@ SENTECIA:
     | DEFINIR_ESTRUCTURA  PTCOMA    { $$ = $1; }
     | ASIGNAR_ESTRUCURA PTCOMA      { $$ = $1; }
     | SENTECIA_FOR                  { $$ = $1; }
+    | SENTECIA_SWITCH               { $$ = $1; }
 ;
 
 SENTECIA_IMPRIMIR:
@@ -256,6 +260,24 @@ SENTECIA_FOR:
     | FOR '(' INICIO_FOR PTCOMA PTCOMA ')' '{' SENTENCIAS '}'                   { $$ =  new ForAlto($3, null, null, $8, @1.first_line, @1.first_column); }
     | FOR '(' INICIO_FOR PTCOMA EXPRESION PTCOMA ')' '{' SENTENCIAS '}'         { $$ =  new ForAlto($3, $5, null, $9, @1.first_line, @1.first_column); }
     | FOR '(' PTCOMA EXPRESION PTCOMA ')' '{' SENTENCIAS '}'                    { $$ =  new ForAlto(null, $4, null, $8, @1.first_line, @1.first_column); }
+;
+
+SENTECIA_SWITCH:
+    SWITCH '(' EXPRESION ')' '{' LISTA_CASOS DEFECTO '}'    { $$ = new SeleccionarAlto($3, $6, $7, @1.first_line, @1.first_column); }
+    | SWITCH '(' EXPRESION ')' '{' LISTA_CASOS '}'          { $$ = new SeleccionarAlto($3, $6, null, @1.first_line, @1.first_column); }
+;
+
+LISTA_CASOS:
+    LISTA_CASOS CASO        { $$ = $1; $$.push($2); }
+    | CASO                  { $$ = [$1]; }
+;
+
+CASO:
+    CASE EXPRESION ':' SENTENCIAS       { $$ = new CasoAlto($2, $4, @1.first_line, @1.first_column); }
+;
+
+DEFECTO:
+    DEFAULT ':' SENTENCIAS              { $$ = new CasoAlto(null, $3, @1.first_line, @1.first_column); }
 ;
 
 INICIO_FOR:
