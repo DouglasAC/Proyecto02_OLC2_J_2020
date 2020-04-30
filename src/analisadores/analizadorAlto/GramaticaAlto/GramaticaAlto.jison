@@ -70,6 +70,16 @@
 "switch"                return 'SWITCH'
 "case"                  return 'CASE'
 "default"               return 'DEFAULT'
+"try"                   return 'TRY'
+"catch"                 return 'CATCH'
+"throw"                 return 'THROW'
+"arithmeticException"   return 'ARITHMETICEXCEPTION'
+"indexoutofboundException" return 'INDEXOUTOFBOUNDEXCEPTION'
+"uncaughtException"     return 'UNCAUGHTEXCEPTION'
+"nullpointerException"  return 'NULLPOINTEREXCEPTION'
+"invalidCastingException" return 'INVALIDCASTINGEXCEPTION'
+"heapoverflowError"     return 'HEAPOVERFLOWERROR'
+"stackoverflowError"    return 'STACKOVERFLOWERROR'
 [a-zA-Z_][_a-zA-Z0-9ñÑ]*  return 'ID'
 
 <<EOF>>               return 'EOF'
@@ -147,6 +157,8 @@ SENTECIA:
     | ASIGNAR_ESTRUCURA PTCOMA      { $$ = $1; }
     | SENTECIA_FOR                  { $$ = $1; }
     | SENTECIA_SWITCH               { $$ = $1; }
+    | SENTENCIA_TRY                 { $$ = $1; }
+    | SENTENCIA_THROW   PTCOMA      { $$ = $1; }}
 ;
 
 SENTECIA_IMPRIMIR:
@@ -288,6 +300,24 @@ INICIO_FOR:
 FIN_FOR:
     SENTECIA_ASIGNACION             { $$ = $1; }
     | EXPRESION                     { $$ = $1; }
+;
+
+SENTENCIA_TRY:
+    TRY '{' SENTENCIAS '}' CATCH '(' TIPO_EXCEPCION ID ')' '{' SENTENCIAS '}'   { $$ = new TryCatchAlto($3, $7, $8, $11, @1.first_line, @1.first_column); }
+;
+
+TIPO_EXCEPCION:
+    ARITHMETICEXCEPTION              { $$ = "arit"; }
+    | INDEXOUTOFBOUNDEXCEPTION      { $$ = "index"; }
+    | UNCAUGHTEXCEPTION             { $$ = "unc"; }
+    | NULLPOINTEREXCEPTION          { $$ = "null"; }
+    | INVALIDCASTINGEXCEPTION       { $$ = "inval"; }
+    | HEAPOVERFLOWERROR             { $$ = "heap"; }
+    | STACKOVERFLOWERROR            { $$ = "stack"; }
+;
+
+SENTENCIA_THROW:
+    THROW STRC TIPO_EXCEPCION '('')'        { $$ = new ThrowAlto($3, @1.first_line, @1.first_column); }
 ;
 
 EXPRESION:

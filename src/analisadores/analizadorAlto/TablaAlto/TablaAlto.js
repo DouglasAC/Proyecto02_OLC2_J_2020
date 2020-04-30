@@ -20,6 +20,7 @@ class TablaAlto {
         this.tipos = ["int", "double", "char", "boolean", "string"];
         this.estructuras = [];
         this.codigoEstructuras = [];
+        this.displayTry = [];
     }
     agregarNoUsados(temp) {
         if (this.temporalesNoUsados.indexOf(temp) == -1) {
