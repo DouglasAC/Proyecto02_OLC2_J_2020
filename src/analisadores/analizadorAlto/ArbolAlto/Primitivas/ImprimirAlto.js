@@ -45,14 +45,20 @@ class ImprimirAlto {
             let tempLetra = tabla.getTemporal();
             let etqV = tabla.getEtiqueta();
             let etqF = tabla.getEtiqueta();
+            let tempTam = tabla.getTemporal();
+            let etqV2 = tabla.getEtiqueta();
+            codigo += "if (" + temp + " == -1) goto " + etqV2 + ";\n";
+            codigo += tempTam + " = Heap[" + temp + "];\n"
+            codigo += temp + " = " + temp + " + 1;\n"
             codigo += etqF + ":\n"
+            codigo += "if (" + tempTam + " <= 0) goto " + etqV + ";\n";
             codigo += tempLetra + " = Heap[" + temp + "];\n";
-            codigo += "if (" + tempLetra + " == -1) goto " + etqV + ";\n";
             codigo += "print(\"%c\", " + tempLetra + ");\n";
             codigo += temp + " = " + temp + " + 1;\n"
+            codigo += tempTam + " = " + tempTam + " - 1;\n";
             codigo += "goto " + etqF + ";\n";
             codigo += etqV + ":\n";
-
+            codigo += etqV2 + ":\n";
         }
         tabla.quitarNoUsados(temp);
         codigo += "print(\"%c\", 13);\n";

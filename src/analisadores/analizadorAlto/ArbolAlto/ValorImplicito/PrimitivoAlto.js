@@ -34,14 +34,11 @@ class PrimitivoAlto {
         } else if (this.tipo == "string") {
             let tempInicio = tabla.getTemporal();
             codigo += tempInicio + " = h;\n";
-            for (let i = 0; i <= this.valor.length; i++) {
-                if (i == this.valor.length) {
-                    codigo += "Heap[h] = -1;\n";
-                    codigo += "h = h + 1;\n";
-                } else {
-                    codigo += "Heap[h] = " + this.valor[i].charCodeAt(0) + ";\n";
-                    codigo += "h = h + 1;\n";
-                }
+            codigo += "Heap[h] = " + this.valor.length + ";\n";
+            codigo += "h = h + 1;\n";
+            for (let i = 0; i < this.valor.length; i++) {
+                codigo += "Heap[h] = " + this.valor[i].charCodeAt(0) + ";\n";
+                codigo += "h = h + 1;\n";
             }
             let temp = tabla.getTemporal();
             codigo += temp + " = " + tempInicio + ";\n";
