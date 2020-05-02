@@ -16,8 +16,8 @@ function TraducurAlto() {
     if (this.tablaAlto.errores.length == 0) {
         let codigo = "";
 
-        
-        
+
+
         for (indexInstruccion = 0; indexInstruccion < result.instrucciones.length; indexInstruccion++) {
             let trad = result.instrucciones[indexInstruccion].get3D(this.tablaAlto);
             if (!(trad instanceof ErrorAlto)) {
@@ -25,6 +25,14 @@ function TraducurAlto() {
             }
 
         }
+
+        let funcionesPrimitivas = "";
+
+        funcionesPrimitivas += generarToCharArray(tablaAlto);
+        funcionesPrimitivas += generarLength(tablaAlto);
+        funcionesPrimitivas += generarToUpperCase(tablaAlto);
+        funcionesPrimitivas += generarToLowerrCase(tablaAlto);
+        funcionesPrimitivas += generarCharAt(tablaAlto);
 
         let enc = "# Declaracion de temporales, punteros p & h y estructuras heap & stack\n";
         enc += "var ";
@@ -50,8 +58,16 @@ function TraducurAlto() {
             enc += tablaAlto.codigoEstructuras[x];
         }
         enc += "# Fin Estructuras\n"
+
+        enc += "# Inicio Funciones Primitivas\n"
+
+        enc += funcionesPrimitivas;
+
+        enc += "# Fin Funciones Primitivas\n"
+
+
         codigo = enc + codigo;
-        
+
         editor3D.setValue(editor3D.getValue() + codigo);
 
         if (this.tablaAlto.errores.length != 0) {
