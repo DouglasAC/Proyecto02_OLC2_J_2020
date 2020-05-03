@@ -119,10 +119,12 @@ CUERPO:
 ;
 
 DECLARAR_FUNCION:
-    TIPO ID '(' ')' '{' SENTENCIAS '}'                  { $$ = new FuncionAlto([$1], $2, [], $6, @1.first_line, @1.first_column); }
-    | TIPO ID '(' PARAMETROS ')' '{' SENTENCIAS '}'     { $$ = new FuncionAlto([$1], $2, $4, $7, @1.first_line, @1.first_column); }
-    | VOID ID '(' ')' '{' SENTENCIAS '}'                { $$ = new FuncionAlto(["void"], $2, [], $6, @1.first_line, @1.first_column); }
-    | VOID ID '(' PARAMETROS ')' '{' SENTENCIAS '}'     { $$ = new FuncionAlto(["void"], $2, $4, $7, @1.first_line, @1.first_column); }
+    TIPO ID '(' ')' '{' SENTENCIAS '}'                      { $$ = new FuncionAlto([$1], $2, [], $6, @1.first_line, @1.first_column); }
+    | TIPO ID '(' PARAMETROS ')' '{' SENTENCIAS '}'         { $$ = new FuncionAlto([$1], $2, $4, $7, @1.first_line, @1.first_column); }
+    | TIPO '[]' ID '(' ')' '{' SENTENCIAS '}'               { $$ = new FuncionAlto(["Tarry", $1], $3, [], $7, @1.first_line, @1.first_column); }
+    | TIPO '[]' ID '(' PARAMETROS ')' '{' SENTENCIAS '}'    { $$ = new FuncionAlto(["Tarry", $1], $3, $5, $8, @1.first_line, @1.first_column); }
+    | VOID ID '(' ')' '{' SENTENCIAS '}'                    { $$ = new FuncionAlto(["void"], $2, [], $6, @1.first_line, @1.first_column); }
+    | VOID ID '(' PARAMETROS ')' '{' SENTENCIAS '}'         { $$ = new FuncionAlto(["void"], $2, $4, $7, @1.first_line, @1.first_column); }
 ;
 
 PARAMETROS:
@@ -132,6 +134,7 @@ PARAMETROS:
 
 PARAMETRO:
     TIPO ID         { $$ = [[$1], $2] }
+    | TIPO '[]' ID  { $$ = [["Tarry",$1], $3] }
 ;
 
 

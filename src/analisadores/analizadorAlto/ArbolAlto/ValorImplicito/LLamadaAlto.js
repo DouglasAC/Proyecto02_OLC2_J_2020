@@ -13,7 +13,12 @@ class LLamadaAlto {
             if (tipo instanceof ErrorAlto) {
                 return tipo;
             }
-            nombre += "_" + tipo[0];
+            if (tipo[0] == "Tarry") {
+                nombre += "_arreglo_" + tipo[1];
+            } else {
+                nombre += "_" + tipo[0];
+            }
+
         }
         if (!tabla.existeFuncion(nombre)) {
             let err = new ErrorAlto("Semantico", "La funcion " + this.identificador + " no existe o el tipo de parametros no existe", this.fila, this.columna);
@@ -51,7 +56,7 @@ class LLamadaAlto {
         // pasar parametros
         let temp3 = tabla.getTemporal();
         codigo += temp3 + " = p + 0;\n"
-            codigo += "Stack[" + temp3 + "] = 0;\n"
+        codigo += "Stack[" + temp3 + "] = 0;\n"
         for (let x = 0; x < this.parametros.length; x++) {
             codigo += temp3 + " = p + " + (x + 1) + ";\n"
             codigo += "Stack[" + temp3 + "] = " + val_parametros[x] + ";\n"
@@ -71,11 +76,11 @@ class LLamadaAlto {
             codigo += tabla.temporalesNoUsados[x] + " = Stack[" + tempRec + "];\n";
         }
         codigo += "p = p - " + tabla.stack + ";\n";
-        
+
 
         let tempValorReturn = tabla.getTemporal();
 
-        codigo += tempValorReturn + " = " + tempR2+";\n";
+        codigo += tempValorReturn + " = " + tempR2 + ";\n";
         tabla.agregarNoUsados(tempValorReturn);
         codigo += "# Fin llamada\n"
         return codigo;

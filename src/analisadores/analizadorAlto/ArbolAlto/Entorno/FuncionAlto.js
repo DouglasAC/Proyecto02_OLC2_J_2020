@@ -12,7 +12,13 @@ class FuncionAlto {
         let nombreFun = this.nombre;
         let nombres_par = [];
         for (let x = 0; x < this.parametros.length; x++) {
-            nombreFun += "_" + this.parametros[x][0];
+            if(this.parametros[x][0][0]=="Tarry")
+            {
+                nombreFun += "_arreglo_" + this.parametros[x][0][1];
+            }else{
+                nombreFun += "_" + this.parametros[x][0];
+            }
+            
             let nom = this.parametros[x][1].toLocaleLowerCase();
             for (let y = 0; y < nombres_par.length; y++) {
                 if (nom == nombres_par[y].toLocaleLowerCase()) {

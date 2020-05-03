@@ -18,11 +18,18 @@ class ReturnAlto {
             }
             if (tabla.tipoFuncion[0] == tipoVal[0]) {
                 // otras comparacione como arreglo y struct
+                if (tabla.tipoFuncion[0] == "Tarry" && tipoVal[0] == "Tarry") {
+                    if (tabla.tipoFuncion[1] != tipoVal[1]) {
+                        let err = new ErrorAlto("Semantico", "El la funcion es de tipo arreglo de " + tabla.tipoFuncion[1] + " el retorno es de tipo areglo de " + tipoVal[1], this.fila, this.columna);
+                        tabla.errores.push(err);
+                        return err;
+                    }
+                }
             }
             else {
                 //falta arreglos struct
-                if (!((tabla.tipoFuncion[0] == "int" && val[0] == "char") || (tabla.tipoFuncion[0] == "double" && val[0] == "int") || (tabla.tipoFuncion[0] == "double" && val[0] == "char"))) {
-                    let err = new ErrorAlto("Semantico", "El la funcion es de tipo " + tabla.tipoFuncion + " el retorno es de tipo " + val, this.fila, this.columna);
+                if (!((tabla.tipoFuncion[0] == "int" && tipoVal[0] == "char") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "int") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "char") || (tabla.existeEstructura(tabla.tipoFuncion[0]) && tipoVal[0] == "null") || (tabla.tipoFuncion[0] == "Tarry" && tipoVal[0] == "null"))) {
+                    let err = new ErrorAlto("Semantico", "El la funcion es de tipo " + tabla.tipoFuncion + " el retorno es de tipo " + tipoVal, this.fila, this.columna);
                     tabla.errores.push(err);
                     return err;
                 }
@@ -30,7 +37,7 @@ class ReturnAlto {
         }
     }
     get3D(tabla) {
-        let codigo = "# Inicion Return fila " + this.fila + " columna " + this.columna+"\n";
+        let codigo = "# Inicion Return fila " + this.fila + " columna " + this.columna + "\n";
 
         if (this.valor != null) {
             codigo += this.valor.get3D(tabla);
