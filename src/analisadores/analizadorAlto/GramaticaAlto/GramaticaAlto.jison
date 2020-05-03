@@ -337,8 +337,8 @@ EXPRESION_ARREGLO:
     | '{' LISTA_EXPRESION '}'       { $$ = new ArregloSinTipoAlto($2, @1.first_line, @1.first_column); }
 ;
 
-EXPRESION_ACCESO_ESTRUCTURA:
-    ID '.' ID                       { $$ = new AccesoEstructuraAlto($1, $3, @1.first_line, @1.first_column); }
+EXPRESION_ESTRUCTURA:
+    STRC TIPO '('')'                { $$ = new CrearEstructuraAlto($2, @1.first_line, @1.first_column); }
 ;
 
 EXPRESION_ACCESO:

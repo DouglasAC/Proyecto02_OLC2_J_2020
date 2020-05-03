@@ -108,7 +108,7 @@ class AccesoAlto {
                         return err;
                     }
                     tipo = ["int"];
-                } else if (acceso.nombre == "getReference") {
+                } else if (acceso.nombre == "getreference") {
                     if (!tabla.existeEstructura(tipo[0])) {
                         let err = new ErrorAlto("Semantico", "La variable no es una estructura, es de tipo " + tipo[0], acceso.fila, this.columna);
                         tabla.errores.push(err);
@@ -122,7 +122,7 @@ class AccesoAlto {
                         return err;
                     }
                     if (!tabla.existeEstructura(acceso.parametros[0].nombre)) {
-                        let err = new ErrorAlto("Semantico", "La variable no es una estructura, es de tipo " + acceso.parametros[0], acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La estructura, no existe " + acceso.parametros[0].nombre, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -223,9 +223,6 @@ class AccesoAlto {
                     codigo += "goto " + etq2 + ";\n";
                     codigo += etq + ":\n"
                     codigo += "e = 4;\n"
-                    codigo += "goto " + etq2 + ";\n";
-                    codigo += etq1 + ":\n"
-                    codigo += "e = 2;\n"
                     codigo += etq2 + ":\n"
                     codigo += "# Fin traduccion Acceso Estructura\n"
                 }
@@ -392,7 +389,7 @@ class AccesoAlto {
                     tabla.agregarNoUsados(temp);
                     codigo += "p = p - " + tabla.stack + ";\n";
 
-                } else if (acceso.nombre == "getReference") {
+                } else if (acceso.nombre == "getreference") {
                     if (!tabla.existeEstructura(tipo[0])) {
                         let err = new ErrorAlto("Semantico", "La variable no es una estructura, es de tipo " + tipo[0], acceso.fila, acceso.columna);
                         tabla.errores.push(err);
@@ -406,8 +403,8 @@ class AccesoAlto {
                         tabla.errores.push(err);
                         return err;
                     }
-                    if (!tabla.existeEstructura(acceso.parametros[0])) {
-                        let err = new ErrorAlto("Semantico", "La variable no es una estructura, es de tipo " + acceso.parametros[0], acceso.fila, acceso.columna);
+                    if (!tabla.existeEstructura(acceso.parametros[0].nombre)) {
+                        let err = new ErrorAlto("Semantico", "La estructura, no existe " + acceso.parametros[0].nombre, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -416,7 +413,7 @@ class AccesoAlto {
                     if (tipo[0] == acceso.parametros[0].nombre) {
                         codigo += tempIgual + " = 1;\n"
                     } else {
-                        codigo += tempIgual + " = 1;\n"
+                        codigo += tempIgual + " = 0;\n"
                     }
                     temp = tempIgual;
                     tipo = ["boolean"];
