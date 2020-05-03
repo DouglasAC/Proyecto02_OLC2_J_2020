@@ -17,7 +17,8 @@ function TraducurAlto() {
         let codigo = "";
 
 
-
+        let etq = tablaAlto.getEtiqueta();
+        codigo += etq + ":\n";
         for (indexInstruccion = 0; indexInstruccion < result.instrucciones.length; indexInstruccion++) {
             let trad = result.instrucciones[indexInstruccion].get3D(this.tablaAlto);
             if (!(trad instanceof ErrorAlto)) {
@@ -52,7 +53,7 @@ function TraducurAlto() {
             enc += "Heap[" + x + "] = 0;\n";
         }
         enc += "h = " + tablaAlto.heap + ";\n";
-
+        enc += "goto " + etq + ";\n";
         enc += "# Inicio Estructuras\n"
         for (let x = 0; x < tablaAlto.codigoEstructuras.length; x++) {
             enc += tablaAlto.codigoEstructuras[x];
@@ -65,7 +66,7 @@ function TraducurAlto() {
 
         enc += "# Fin Funciones Primitivas\n"
 
-
+        
         codigo = enc + codigo;
 
         editor3D.setValue(editor3D.getValue() + codigo);

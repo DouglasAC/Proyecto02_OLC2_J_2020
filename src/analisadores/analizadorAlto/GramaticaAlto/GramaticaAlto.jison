@@ -328,9 +328,8 @@ EXPRESION:
     | '(' EXPRESION ')'             { $$ = $2; }
     | SENTECIA_LLAMADA              { $$ = $1; }
     | EXPRESION_ARREGLO             { $$ = $1; }
-    | ACCESO_ARREGLO                { $$ = $1; }
     | EXPRESION_ESTRUCTURA          { $$ = $1; }
-    | EXPRESION_ACCESO_ESTRUCTURA   { $$ = $1; }
+    | EXPRESION_ACCESO
 ;
 
 EXPRESION_ARREGLO:
@@ -338,16 +337,24 @@ EXPRESION_ARREGLO:
     | '{' LISTA_EXPRESION '}'       { $$ = new ArregloSinTipoAlto($2, @1.first_line, @1.first_column); }
 ;
 
-EXPRESION_ESTRUCTURA:
-    STRC TIPO '('')'                { $$ = new CrearEstructuraAlto($2, @1.first_line, @1.first_column); }
-;
-
-ACCESO_ARREGLO:
-    ID '[' EXPRESION ']'            { $$ = new AccesoArregloAlto($1, $3, @1.first_line, @1.first_column); }
-;
-
 EXPRESION_ACCESO_ESTRUCTURA:
     ID '.' ID                       { $$ = new AccesoEstructuraAlto($1, $3, @1.first_line, @1.first_column); }
+;
+
+EXPRESION_ACCESO:
+    ID LISTA_ACCESOS            { $$ = new AccesoAlto($1, $2, @1.first_line, @1.first_column); }
+;
+
+LISTA_ACCESOS:
+    LISTA_ACCESOS ACCESO        { $$ = $1; $$.push($2); }
+    | ACCESO                    { $$ = [$1]; }
+;
+
+ACCESO:
+    '[' EXPRESION ']'                   {  $$ = new Acceso("arreglo", "", $2, [], @1.first_line, @1.first_column);  }
+    | '.' ID                            {  $$ = new Acceso("atributo", $2, null, [], @1.first_line, @1.first_column);  }
+    | '.' ID '(' ')'                        {  $$ = new Acceso("funcion", $2, null, [], @1.first_line, @1.first_column);  }
+    | '.' ID '(' LISTA_EXPRESION ')'        {  $$ = new Acceso("funcion", $2, null, $4, @1.first_line, @1.first_column);  }
 ;
 
 EXPRESION_ARITMETICA:

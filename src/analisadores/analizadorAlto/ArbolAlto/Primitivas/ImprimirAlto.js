@@ -41,6 +41,9 @@ class ImprimirAlto {
             codigo += "print(\"%c\", 117);\n";
             codigo += "print(\"%c\", 108);\n";
             codigo += "print(\"%c\", 108);\n";
+        }
+        else if (tipo[0] == "char") {
+            codigo += "print(\"%c\", " + temp + ");\n";
         } else if (tipo[0] = "string") {
             let tempLetra = tabla.getTemporal();
             let etqV = tabla.getEtiqueta();

@@ -23,7 +23,7 @@ function generarToCharArray(tabla) {// tambien funciona para linealize de arregl
     let etqF = tabla.getEtiqueta();
     codigo += temp4 + " = 0;\n";
     codigo += etqF + ":\n";
-    codigo += "if (" + temp4 + " == " + temp3 + ") goto " + etqV + ";\n";
+    codigo += "if (" + temp4 + " > " + temp3 + ") goto " + etqV + ";\n";
     codigo += temp5 + " = " + temp2 + " + " + temp4 + ";\n";
     let temp6 = tabla.getTemporal();
     codigo += temp6 + " = Heap[" + temp5 + "];\n";
@@ -94,7 +94,7 @@ function generarToUpperCase(tabla) {
     let etqV4 = tabla.getEtiqueta();
     let etqV5 = tabla.getEtiqueta();
     let etqV6 = tabla.getEtiqueta();
-
+    let etqV7 = tabla.getEtiqueta();
 
     codigo += temp + " = p + 1;\n";
     codigo += temp2 + " = Stack[" + temp + "];\n";
@@ -116,35 +116,35 @@ function generarToUpperCase(tabla) {
     codigo += temp6 + " = " + temp6 + " - 32;\n";
     codigo += "goto " + etqAsig + ";\n"
 
-    //ñ = 164; Ñ = 165
+    //ñ = 241; Ñ = 209
     codigo += etqV2 + ":\n";
-    codigo += "if (" + temp6 + " <> 164) goto " + etqV3 + ";\n";
-    codigo += temp6 + " = 165;\n";
+    codigo += "if (" + temp6 + " <> 241) goto " + etqV3 + ";\n";
+    codigo += temp6 + " = 209;\n";
     codigo += "goto " + etqAsig + ";\n"
-    //á = 160; Á = 181
+    //á = 225; Á = 193
     codigo += etqV3 + ":\n";
-    codigo += "if (" + temp6 + " <> 160) goto " + etqV4 + ";\n";
-    codigo += temp6 + " = 181;\n";
+    codigo += "if (" + temp6 + " <> 225) goto " + etqV4 + ";\n";
+    codigo += temp6 + " = 193;\n";
     codigo += "goto " + etqAsig + ";\n"
-    //é = 130; É = 144
+    //é = 233; É = 201
     codigo += etqV4 + ":\n";
-    codigo += "if (" + temp6 + " <> 130) goto " + etqV5 + ";\n";
-    codigo += temp6 + " = 144;\n";
+    codigo += "if (" + temp6 + " <> 233) goto " + etqV5 + ";\n";
+    codigo += temp6 + " = 201;\n";
     codigo += "goto " + etqAsig + ";\n"
-    //í = 161; Í = 214
+    //í = 237; Í = 205
     codigo += etqV5 + ":\n";
-    codigo += "if (" + temp6 + " <> 161) goto " + etqV6 + ";\n";
-    codigo += temp6 + " = 214;\n";
+    codigo += "if (" + temp6 + " <> 237) goto " + etqV6 + ";\n";
+    codigo += temp6 + " = 205;\n";
     codigo += "goto " + etqAsig + ";\n"
-    //ó = 162; Ó = 224
-    codigo += etqV5 + ":\n";
-    codigo += "if (" + temp6 + " <> 162) goto " + etqV6 + ";\n";
-    codigo += temp6 + " = 224;\n";
-    codigo += "goto " + etqAsig + ";\n"
-    //ú = 163; Ú = 233
+    //ó = 243; Ó = 211
     codigo += etqV6 + ":\n";
-    codigo += "if (" + temp6 + " <> 163) goto " + etqAsig + ";\n";
-    codigo += temp6 + " = 233;\n";
+    codigo += "if (" + temp6 + " <> 243) goto " + etqV7 + ";\n";
+    codigo += temp6 + " = 211;\n";
+    codigo += "goto " + etqAsig + ";\n"
+    //ú = 250; Ú = 218
+    codigo += etqV7 + ":\n";
+    codigo += "if (" + temp6 + " <> 250) goto " + etqAsig + ";\n";
+    codigo += temp6 + " = 218;\n";
     codigo += "goto " + etqAsig + ";\n"
 
 
@@ -190,7 +190,7 @@ function generarToLowerrCase(tabla) {
     let etqV4 = tabla.getEtiqueta();
     let etqV5 = tabla.getEtiqueta();
     let etqV6 = tabla.getEtiqueta();
-
+    let etqV7 = tabla.getEtiqueta();
 
     codigo += temp + " = p + 1;\n";
     codigo += temp2 + " = Stack[" + temp + "];\n";
@@ -212,35 +212,35 @@ function generarToLowerrCase(tabla) {
     codigo += temp6 + " = " + temp6 + " + 32;\n";
     codigo += "goto " + etqAsig + ";\n"
 
-    //ñ = 164; Ñ = 165
+    //ñ = 241; Ñ = 209
     codigo += etqV2 + ":\n";
-    codigo += "if (" + temp6 + " <> 165) goto " + etqV3 + ";\n";
-    codigo += temp6 + " = 164;\n";
+    codigo += "if (" + temp6 + " <> 209) goto " + etqV3 + ";\n";
+    codigo += temp6 + " = 241;\n";
     codigo += "goto " + etqAsig + ";\n"
-    //á = 160; Á = 181
+    //á = 225; Á = 193
     codigo += etqV3 + ":\n";
-    codigo += "if (" + temp6 + " <> 181) goto " + etqV4 + ";\n";
-    codigo += temp6 + " = 160;\n";
+    codigo += "if (" + temp6 + " <> 193) goto " + etqV4 + ";\n";
+    codigo += temp6 + " = 225;\n";
     codigo += "goto " + etqAsig + ";\n"
-    //é = 130; É = 144
+    //é = 233; É = 201
     codigo += etqV4 + ":\n";
-    codigo += "if (" + temp6 + " <> 144) goto " + etqV5 + ";\n";
-    codigo += temp6 + " = 130;\n";
+    codigo += "if (" + temp6 + " <> 201) goto " + etqV5 + ";\n";
+    codigo += temp6 + " = 233;\n";
     codigo += "goto " + etqAsig + ";\n"
-    //í = 161; Í = 214
+    //í = 237; Í = 205
     codigo += etqV5 + ":\n";
-    codigo += "if (" + temp6 + " <> 314) goto " + etqV6 + ";\n";
-    codigo += temp6 + " = 161;\n";
+    codigo += "if (" + temp6 + " <> 205) goto " + etqV6 + ";\n";
+    codigo += temp6 + " = 237;\n";
     codigo += "goto " + etqAsig + ";\n"
-    //ó = 162; Ó = 224
-    codigo += etqV5 + ":\n";
-    codigo += "if (" + temp6 + " <> 224) goto " + etqV6 + ";\n";
-    codigo += temp6 + " = 162;\n";
-    codigo += "goto " + etqAsig + ";\n"
-    //ú = 163; Ú = 233
+     //ó = 243; Ó = 211
     codigo += etqV6 + ":\n";
-    codigo += "if (" + temp6 + " <> 233) goto " + etqAsig + ";\n";
-    codigo += temp6 + " = 163;\n";
+    codigo += "if (" + temp6 + " <> 211) goto " + etqV7 + ";\n";
+    codigo += temp6 + " = 243;\n";
+    codigo += "goto " + etqAsig + ";\n"
+    //ú = 250; Ú = 218
+    codigo += etqV7 + ":\n";
+    codigo += "if (" + temp6 + " <> 218) goto " + etqAsig + ";\n";
+    codigo += temp6 + " = 250;\n";
     codigo += "goto " + etqAsig + ";\n"
 
 
@@ -265,7 +265,7 @@ function generarToLowerrCase(tabla) {
 function generarCharAt(tabla) {
     let codigo = "# Inicio Funcion CharAt\n"
     // 0 retorno 1 posicion en heap string 2 posicion  
-    codigo += "proc charAt begin\n"
+    codigo += "proc charAt_15 begin\n"
     codigo += "Stack[p] = -1;\n"
 
     let temp = tabla.getTemporal();
