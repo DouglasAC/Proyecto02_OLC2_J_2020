@@ -198,6 +198,7 @@ class OperacionAlto {
             || (tipo1 == 'char' && tipo2 == 'double')
             || (tipo1 == 'boolean' && tipo2 == 'boolean')
             || (tipo1 == 'string' && tipo2 == 'string')
+            || (tipo1 == "null" || tipo2 == "null")
         ) {
             return 'boolean';
         } else {
