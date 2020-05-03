@@ -332,7 +332,8 @@ EXPRESION:
     | SENTECIA_LLAMADA              { $$ = $1; }
     | EXPRESION_ARREGLO             { $$ = $1; }
     | EXPRESION_ESTRUCTURA          { $$ = $1; }
-    | EXPRESION_ACCESO
+    | EXPRESION_ACCESO              { $$ = $1; }
+    | EXPRESION_LLAMADA_ACCESO      { $$ = $1; }
 ;
 
 EXPRESION_ARREGLO:
@@ -358,6 +359,10 @@ ACCESO:
     | '.' ID                            {  $$ = new Acceso("atributo", $2, null, [], @1.first_line, @1.first_column);  }
     | '.' ID '(' ')'                        {  $$ = new Acceso("funcion", $2, null, [], @1.first_line, @1.first_column);  }
     | '.' ID '(' LISTA_EXPRESION ')'        {  $$ = new Acceso("funcion", $2, null, $4, @1.first_line, @1.first_column);  }
+;
+
+EXPRESION_LLAMADA_ACCESO:
+    SENTECIA_LLAMADA LISTA_ACCESOS      { $$ = new LlamadaAccesoAlto($1, $2, @1.first_line, @1.first_column); }
 ;
 
 EXPRESION_ARITMETICA:

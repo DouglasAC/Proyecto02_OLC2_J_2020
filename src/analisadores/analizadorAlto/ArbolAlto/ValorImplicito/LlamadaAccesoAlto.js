@@ -1,13 +1,12 @@
-class AccesoAlto {
-    constructor(nombre, accessos, fila, columna) {
-        this.nombre = nombre.toLocaleLowerCase();
-        this.accessos = accessos;
+class LlamadaAccesoAlto {
+    constructor(llamada, accesos, fila, columna) {
+        this.llamada = llamada;
+        this.accessos = accesos;
         this.fila = fila;
         this.columna = columna;
     }
     analizar(tabla) {
-        let ide = new IdentificadorAlto(this.nombre, this.fila, this.columna);
-        let tipo = ide.analizar(tabla);
+        let tipo = this.llamada.analizar(tabla);
         console.log(tipo);
         if (tipo instanceof ErrorAlto) {
             return tipo;
@@ -136,10 +135,10 @@ class AccesoAlto {
         return tipo;
     }
     get3D(tabla) {
-        let codigo = "# Inicio Traduccion Acceso fila: " + this.fila + " columna: " + this.columna + "\n";
-        let ide = new IdentificadorAlto(this.nombre, this.fila, this.columna);
-        let tipo = ide.analizar(tabla);
-        codigo += ide.get3D(tabla);
+        let codigo = "# Inicio Traduccion Llamada Acceso fila: " + this.fila + " columna: " + this.columna + "\n";
+
+        let tipo = this.llamada.analizar(tabla);
+        codigo += this.llamada.get3D(tabla);
         let temp = tabla.getTemporalActual();
 
         for (let x = 0; x < this.accessos.length; x++) {
@@ -436,8 +435,7 @@ class AccesoAlto {
         codigo += tempFinal + " = " + temp + ";\n";
         tabla.quitarNoUsados(temp);
         tabla.agregarNoUsados(tempFinal);
-        codigo += "# Fin Traduccion Acceso\n";
+        codigo += "# Fin Traduccion Llamada Acceso\n";
         return codigo;
     }
 }
-exports.AccesoAlto = AccesoAlto;
