@@ -141,6 +141,7 @@ class AccesoAlto {
         let tipo = ide.analizar(tabla);
         codigo += ide.get3D(tabla);
         let temp = tabla.getTemporalActual();
+        tabla.agregarNoUsados(temp);
 
         for (let x = 0; x < this.accessos.length; x++) {
             let acceso = this.accessos[x];
@@ -426,7 +427,9 @@ class AccesoAlto {
                     } else {
                         codigo += tempIgual + " = 0;\n"
                     }
+                    tabla.quitarNoUsados(temp);
                     temp = tempIgual;
+                    tabla.agregarNoUsados(temp);
                     tipo = ["boolean"];
                     codigo += "# Fin Traduccion llamada a instanceof\n";
                 }

@@ -1,7 +1,8 @@
-class LlamadaAccesoAlto {
-    constructor(llamada, accesos, fila, columna) {
+class AsignacionLlamadaAccesos {
+    constructor(llamada, accesos, expresion, fila, columna) {
         this.llamada = llamada;
         this.accessos = accesos;
+        this.expresion = expresion;
         this.fila = fila;
         this.columna = columna;
     }
@@ -132,17 +133,37 @@ class LlamadaAccesoAlto {
                 }
             }
         }
-        return tipo;
+
+
+        let val = this.expresion.analizar(tabla);
+        if (val instanceof ErrorAlto) {
+            return val;
+        }
+
+        if (tipo[0] != val[0]) {
+            if (!((tipo[0] == "int" && val[0] == "char") || (tipo[0] == "double" && val[0] == "int") || (tipo[0] == "double" && val[0] == "char") || (tabla.existeEstructura(tipo[0]) && val[0] == "null") || (tipo[0] == "Tarry" && val[0] == "null"))) {
+                let erro = new ErrorAlto("Semantico", "El tipo es " + tipo[0] + " no es igual al valor a asignar de tipo" + val[0], this.fila, this.columna);
+                tabla.agregarError(erro);
+                return erro;
+            }
+        } else {
+            if (tipo[0] == "Tarry" && val[0] == "Tarry") {
+                if (tipo[1] != val[0]) {
+                    let erro = new ErrorAlto("Semantico", "Se intenta asignar un arreglo de tipo " + val[1] + " en un arreglo de tipo " + tipo[1], this.fila, this.columna);
+                    tabla.agregarError(erro);
+                    return erro;
+                }
+            }
+        }
     }
     get3D(tabla) {
-        let codigo = "# Inicio Traduccion Llamada Acceso fila: " + this.fila + " columna: " + this.columna + "\n";
-
+        let codigo = "# Inicio Traduccion Asignacion Llamada con Accesos fila: " + this.fila + " columna: " + this.columna + "\n";
         let tipo = this.llamada.analizar(tabla);
         codigo += this.llamada.get3D(tabla);
         let temp = tabla.getTemporalActual();
         tabla.agregarNoUsados(temp);
 
-        for (let x = 0; x < this.accessos.length; x++) {
+        for (let x = 0; x < this.accessos.length - 1; x++) {
             let acceso = this.accessos[x];
             if (acceso.tipo == "arreglo") {
                 if (tipo[0] == "Tarry") {
@@ -434,11 +455,84 @@ class LlamadaAccesoAlto {
                 }
             }
         }
-        let tempFinal = tabla.getTemporal();
-        codigo += tempFinal + " = " + temp + ";\n";
+
+        let val_cod = this.expresion.get3D(tabla);
+        if (val_cod instanceof ErrorAlto) {
+            return val_cod;
+        }
+        else {
+            codigo += val_cod;
+        }
+
+        let tempVal = tabla.getTemporalActual();
+        tabla.agregarNoUsados(tempVal);
+
+        let ultimo = this.accessos[this.accessos.length - 1];
+        if (ultimo.tipo == "arreglo") {
+            codigo += "# Inicio Traduccion Asignacion arreglo fila: " + ultimo.fila + " columna: " + ultimo.columna + "\n";
+            tipo = [tipo[1]];
+            let tempTam = tabla.getTemporal();
+            let tempPosReal = tabla.getTemporal();
+            let etq = tabla.getEtiqueta();// exepcion error null pointer 
+            let etq1 = tabla.getEtiqueta();// exepcion error index out of bound
+            let etq2 = tabla.getEtiqueta();// no exepcion 
+            codigo += ultimo.posicion.get3D(tabla);
+            let tempPos = tabla.getTemporalActual();
+            codigo += "if (" + temp + " == -1) goto " + etq + ";\n";/// null pointe exception verificar antes de acceder
+            codigo += tempTam + " = Heap[" + temp + "];\n";
+            codigo += "if (" + tempPos + " < 0) goto " + etq1 + ";\n";
+            codigo += "if (" + tempPos + " >= " + tempTam + ") goto " + etq1 + ";\n";
+            codigo += tempPos + " = " + tempPos + " + 1;\n";
+            codigo += tempPosReal + " = " + temp + " + " + tempPos + ";\n";
+            codigo += "Heap[" + tempPosReal + "] = " + tempVal + ";\n";
+
+            codigo += "goto " + etq2 + ";\n";
+            codigo += etq + ":\n";
+            codigo += "e = 4;\n";
+            codigo += "goto " + etq1 + ";\n";
+            codigo += etq1 + ":\n";
+            codigo += "e = 2;\n";
+            codigo += etq2 + ":\n";
+            codigo += "# Fin Asignacion Arreglo\n";
+        } else if (ultimo.tipo == "atributo") {
+            if (!tabla.existeEstructura(tipo[0])) {
+                let err = new ErrorAlto("Semantico", "La variable no es una estructura, es de tipo " + tipo[0], ultimo.fila, ultimo.columna);
+                tabla.errores.push(err);
+                return err;
+            }
+            let estru = tabla.getEstructura(tipo[0]);
+            if (!estru.entorno.existe(ultimo.nombre)) {
+                let err = new ErrorAlto("Semantico", "El atributo " + ultimo.nombre + " no existe en la estructura " + tipo[0], ultimo.fila, ultimo.columna);
+                tabla.errores.push(err);
+                return err;
+            }
+            let at = estru.entorno.getSimbolo(ultimo.nombre);
+            tipo = at.tipo;
+
+            let tempPosReal = tabla.getTemporal();
+
+            let etq = tabla.getEtiqueta();// exepcion error null pointer 
+            let etq2 = tabla.getEtiqueta();// no exepcion 
+            codigo += "# Inicio Traduccion Asignacion Estructura fila: " + ultimo.fila + " columna: " + ultimo.columna + "\n";
+
+            /// null pointe exception verificar antes de acceder
+            codigo += "if (" + temp + " == -1) goto " + etq + ";\n";
+            codigo += tempPosReal + " = " + temp + " + " + at.apuntador + ";\n";
+            codigo += "Heap[" + tempPosReal + "] = " + tempVal + ";\n";
+
+            codigo += "goto " + etq2 + ";\n";
+            codigo += etq + ":\n";
+            codigo += "e = 4;\n";
+            codigo += etq2 + ":\n";
+            codigo += "# Fin Traduccion Asignacion Estructura\n";
+        }
+
         tabla.quitarNoUsados(temp);
-        tabla.agregarNoUsados(tempFinal);
-        codigo += "# Fin Traduccion Llamada Acceso\n";
+        tabla.quitarNoUsados(tempVal);
+
+        codigo += "# Fin Traduccion Asignacion Llamada con acceso Acceso\n";
         return codigo;
     }
+
 }
+exports.AsignacionLlamadaAccesos = AsignacionLlamadaAccesos;

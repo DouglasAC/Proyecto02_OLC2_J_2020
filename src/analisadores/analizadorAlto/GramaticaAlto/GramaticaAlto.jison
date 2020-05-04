@@ -154,14 +154,14 @@ SENTECIA:
     | SENTECIA_CONTINUE PTCOMA      { $$ = $1; }
     | SENTECIA_RETURN   PTCOMA      { $$ = $1; }
     | SENTECIA_LLAMADA  PTCOMA      { $$ = $1; }
-    | ASIGNAR_ARREGLO   PTCOMA      { $$ = $1; }
     | DECLARAR_ARREGLO  PTCOMA      { $$ = $1; }
     | DEFINIR_ESTRUCTURA  PTCOMA    { $$ = $1; }
-    | ASIGNAR_ESTRUCURA PTCOMA      { $$ = $1; }
     | SENTECIA_FOR                  { $$ = $1; }
     | SENTECIA_SWITCH               { $$ = $1; }
     | SENTENCIA_TRY                 { $$ = $1; }
-    | SENTENCIA_THROW   PTCOMA      { $$ = $1; }}
+    | SENTENCIA_THROW   PTCOMA      { $$ = $1; }
+    | ASIGNACION_ACCESOS  PTCOMA    { $$ = $1; }
+    | ASIGNACION_LLAMADA  PTCOMA    { $$ = $1; }
 ;
 
 SENTECIA_IMPRIMIR:
@@ -242,9 +242,6 @@ DECLARAR_ARREGLO:
     TIPO '[]' ID '=' EXPRESION       { $$ = new DeclararArregloAlto([$1], $3, $5, @1.first_line, @1.first_column); }
 ;
 
-ASIGNAR_ARREGLO:
-    ID '[' EXPRESION ']' '=' EXPRESION      { $$ = new AsignacionArregloAlto($1, $3, $6, @1.first_line, @1.first_column); }
-;
 
 DEFINIR_ESTRUCTURA:
     DEFINE ID AS '[' LISTA_ATRIBUTOS ']'    { $$ = new DefinirEstructura($2, $5, @1.first_line, @1.first_column); }
@@ -262,9 +259,6 @@ ATRIBUTO:
     | TIPO '[]' ID '=' EXPRESION    { $$ = new Atributo(["Tarry", $1], $3, $5); }
 ;
 
-ASIGNAR_ESTRUCURA:
-    ID '.' ID '=' EXPRESION         { $$ = new AsignacionEstructuraAlto($1, $3, $5, @1.first_line, @1.first_column); }
-;
 
 SENTECIA_FOR:
     FOR '(' INICIO_FOR PTCOMA EXPRESION PTCOMA FIN_FOR ')' '{' SENTENCIAS '}'   { $$ =  new ForAlto($3, $5, $7, $10, @1.first_line, @1.first_column); }
@@ -321,6 +315,14 @@ TIPO_EXCEPCION:
 
 SENTENCIA_THROW:
     THROW STRC TIPO_EXCEPCION '('')'        { $$ = new ThrowAlto($3, @1.first_line, @1.first_column); }
+;
+
+ASIGNACION_ACCESOS:
+    ID LISTA_ACCESOS '=' EXPRESION      { $$ = new AsignacionAccesos($1, $2, $4, @1.first_line, @1.first_column); }
+;
+
+ASIGNACION_LLAMADA:
+    SENTECIA_LLAMADA LISTA_ACCESOS '=' EXPRESION      { $$ = new AsignacionLlamadaAccesos($1, $2, $4, @1.first_line, @1.first_column); }
 ;
 
 EXPRESION:
