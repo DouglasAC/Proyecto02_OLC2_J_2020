@@ -92,6 +92,7 @@
 /* operator associations and precedence */
 
 %left '++' '--'
+
 %left '^'
 %left '||'
 %left '&&'
@@ -100,6 +101,7 @@
 %left '+' '-'
 %left '*' '/' '%'
 %right '^^'
+%nonassoc ')'
 
 %right UMINUS '!'
 
@@ -335,7 +337,6 @@ EXPRESION:
     | EXPRESION_LOGICA              { $$ = $1; }
     | EXPRESION_RELACIONAL          { $$ = $1; }
     | PRIMITIVO                     { $$ = $1; }
-    | '(' EXPRESION ')'             { $$ = $2; }
     | SENTECIA_LLAMADA              { $$ = $1; }
     | EXPRESION_ARREGLO             { $$ = $1; }
     | EXPRESION_ESTRUCTURA          { $$ = $1; }
@@ -343,6 +344,8 @@ EXPRESION:
     | EXPRESION_LLAMADA_ACCESO      { $$ = $1; }
     | EXPRESION_AUMENTO             { $$ = $1; }
     | EXPRESION_DECREMENTO          { $$ = $1; }
+    | EXPRESION_CASTEO              { $$ = $1; }
+    | '(' EXPRESION ')'             { $$ = $2; }
 ;
 
 EXPRESION_ARREGLO:
@@ -380,6 +383,17 @@ EXPRESION_AUMENTO:
 
 EXPRESION_DECREMENTO:
     ID '--'             { $$ = new DecrementoAlto($1, @1.first_line, @1.first_column); }
+;
+
+EXPRESION_CASTEO:
+    '(' TIPO_CASTEO ')' EXPRESION  %prec CAST   { $$ = new CasteoAlto($2, $4, @1.first_line, @1.first_column); }
+;
+
+TIPO_CASTEO:
+    INT             { $$ = 'int'; }
+    | DOUBLE        { $$ = 'double'; }
+    | BOOLEAN       { $$ = 'boolean'; }
+    | CHAR          { $$ = 'char'; }
 ;
 
 EXPRESION_ARITMETICA:
