@@ -55,6 +55,11 @@ class LLamadaAlto {
             console.log(tipo);
             console.log(val);
             if (tipo[0] == val[0]) {
+                if (tipo[0] == "Tarry" && val[0] == "Tarry") {
+                    if (tipo[1] != val[1]) {
+                        return false;
+                    }
+                }
                 continue;
             }
             if (!((tipo[0] == "int" && val[0] == "char") || (tipo[0] == "double" && val[0] == "int") || (tipo[0] == "double" && val[0] == "char") || (tabla.existeEstructura(tipo[0]) && val[0] == "null") || (tipo[0] == "string" && val[0] == "null") || (tipo[0] == "Tarry" && val[0] == "null"))) {
