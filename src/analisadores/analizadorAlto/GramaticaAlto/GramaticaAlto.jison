@@ -37,7 +37,7 @@
 "="                     return '='
 ":="                    return ':='
 ":"                     return ':'
-
+"$"                     return '$'
 ";"                     return 'PTCOMA'
 "!"                     return '!'
 "%"                     return '%'
@@ -90,7 +90,7 @@
 /lex
 
 /* operator associations and precedence */
-
+%right '$'
 %left '++' '--'
 
 %left '^'
@@ -346,6 +346,7 @@ EXPRESION:
     | EXPRESION_DECREMENTO          { $$ = $1; }
     | EXPRESION_CASTEO              { $$ = $1; }
     | '(' EXPRESION ')'             { $$ = $2; }
+    | EXPRESION_POR_VALOR           { $$ = $1; }
 ;
 
 EXPRESION_ARREGLO:
@@ -394,6 +395,10 @@ TIPO_CASTEO:
     | DOUBLE        { $$ = 'double'; }
     | BOOLEAN       { $$ = 'boolean'; }
     | CHAR          { $$ = 'char'; }
+;
+
+EXPRESION_POR_VALOR:
+    '$' EXPRESION           { $$ = new PorValorAlto($2, @1.first_line, @1.first_column); }
 ;
 
 EXPRESION_ARITMETICA:
