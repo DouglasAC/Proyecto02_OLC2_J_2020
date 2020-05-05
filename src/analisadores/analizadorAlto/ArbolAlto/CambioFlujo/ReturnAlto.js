@@ -28,7 +28,7 @@ class ReturnAlto {
             }
             else {
                 //falta arreglos struct
-                if (!((tabla.tipoFuncion[0] == "int" && tipoVal[0] == "char") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "int") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "char") || (tabla.existeEstructura(tabla.tipoFuncion[0]) && tipoVal[0] == "null") || (tabla.tipoFuncion[0] == "Tarry" && tipoVal[0] == "null"))) {
+                if (!((tabla.tipoFuncion[0] == "int" && tipoVal[0] == "char") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "int") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "char") || (tabla.existeEstructura(tabla.tipoFuncion[0]) && tipoVal[0] == "null") || (tabla.tipoFuncion[0] == "Tarry" && tipoVal[0] == "null") || (tipo[0] == "string" && val[0] == "null"))) {
                     let err = new ErrorAlto("Semantico", "El la funcion es de tipo " + tabla.tipoFuncion + " el retorno es de tipo " + tipoVal, this.fila, this.columna);
                     tabla.errores.push(err);
                     return err;

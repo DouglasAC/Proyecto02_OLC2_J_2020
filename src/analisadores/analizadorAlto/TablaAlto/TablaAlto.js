@@ -127,6 +127,15 @@ class TablaAlto {
         }
         return false;
     }
+    getFunciones(nombre) {
+        let funciones = [];
+        for (let x = 0; x < this.funciones.length; x++) {
+            if (nombre == this.funciones[x].nombreReal) {
+                funciones.push(this.funciones[x]);
+            }
+        }
+        return funciones;
+    }
     existeTipo(tipo) {
         tipo = tipo.toLocaleLowerCase();
         for (let x = 0; x < this.tipos.length; x++) {

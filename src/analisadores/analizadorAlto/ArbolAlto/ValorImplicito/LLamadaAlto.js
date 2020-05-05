@@ -8,6 +8,7 @@ class LLamadaAlto {
     }
     analizar(tabla) {
         let nombre = this.identificador;
+        let tipo_parametros = [];
         for (let x = 0; x < this.parametros.length; x++) {
             let tipo = this.parametros[x].analizar(tabla);
             if (tipo instanceof ErrorAlto) {
@@ -18,16 +19,49 @@ class LLamadaAlto {
             } else {
                 nombre += "_" + tipo[0];
             }
-
+            tipo_parametros.push(tipo);
         }
         if (!tabla.existeFuncion(nombre)) {
-            let err = new ErrorAlto("Semantico", "La funcion " + this.identificador + " no existe o el tipo de parametros no existe", this.fila, this.columna);
-            tabla.errores.push(err);
-            return err;
+            let funciones = tabla.getFunciones(this.identificador);
+            let encontro = false;
+            let tipo = [];
+            for (let x = 0; x < funciones.length; x++) {
+                encontro = this.verificarFuncion(tabla, funciones[x], tipo_parametros);
+                if (encontro) {
+                    this.nombreFalso = funciones[x].nombre;
+                    tipo = funciones[x].tipo;
+                    break;
+                }
+            }
+            if (!encontro) {
+                let err = new ErrorAlto("Semantico", "La funcion " + this.identificador + " no existe o el tipo de parametros no existe", this.fila, this.columna);
+                tabla.errores.push(err);
+                return err;
+            }
+            return tipo;
         }
         this.nombreFalso = nombre;
         let fun = tabla.getFuncion(nombre);
         return fun.tipo;
+    }
+    verificarFuncion(tabla, funcion, tipo_valores) {
+
+        if (funcion.parametros.length != tipo_valores.length) {
+            return false;
+        }
+        for (let x = 0; x < funcion.parametros.length; x++) {
+            let tipo = funcion.parametros[x][0];
+            let val = tipo_valores[x];
+            console.log(tipo);
+            console.log(val);
+            if (tipo[0] == val[0]) {
+                continue;
+            }
+            if (!((tipo[0] == "int" && val[0] == "char") || (tipo[0] == "double" && val[0] == "int") || (tipo[0] == "double" && val[0] == "char") || (tabla.existeEstructura(tipo[0]) && val[0] == "null") || (tipo[0] == "string" && val[0] == "null") || (tipo[0] == "Tarry" && val[0] == "null"))) {
+                return false;
+            }
+        }
+        return true;
     }
     get3D(tabla) {
         let codigo = "# Inicio Llamada nombre: " + this.identificador + " nombreReal: " + this.nombreFalso + " fila " + this.fila + " columna " + this.columna + "\n";
