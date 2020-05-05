@@ -14,6 +14,8 @@
 \'([^\'']+|[\r\n])*\'                 return 'CARACTER'
 "*"                     return '*'
 "/"                     return '/'
+"--"                    return '--'
+"++"                    return '++'
 "-"                     return '-'
 "+"                     return '+'
 '^^'                    return '^^'
@@ -89,6 +91,7 @@
 
 /* operator associations and precedence */
 
+%left '++' '--'
 %left '^'
 %left '||'
 %left '&&'
@@ -162,6 +165,8 @@ SENTECIA:
     | SENTENCIA_THROW   PTCOMA      { $$ = $1; }
     | ASIGNACION_ACCESOS  PTCOMA    { $$ = $1; }
     | ASIGNACION_LLAMADA  PTCOMA    { $$ = $1; }
+    | EXPRESION_AUMENTO   PTCOMA    { $$ = $1; }
+    | EXPRESION_DECREMENTO PTCOMA   { $$ = $1; }
 ;
 
 SENTECIA_IMPRIMIR:
@@ -336,6 +341,8 @@ EXPRESION:
     | EXPRESION_ESTRUCTURA          { $$ = $1; }
     | EXPRESION_ACCESO              { $$ = $1; }
     | EXPRESION_LLAMADA_ACCESO      { $$ = $1; }
+    | EXPRESION_AUMENTO             { $$ = $1; }
+    | EXPRESION_DECREMENTO          { $$ = $1; }
 ;
 
 EXPRESION_ARREGLO:
@@ -365,6 +372,14 @@ ACCESO:
 
 EXPRESION_LLAMADA_ACCESO:
     SENTECIA_LLAMADA LISTA_ACCESOS      { $$ = new LlamadaAccesoAlto($1, $2, @1.first_line, @1.first_column); }
+;
+
+EXPRESION_AUMENTO:
+    ID '++'             { $$ = new AumentoAlto($1, @1.first_line, @1.first_column); }
+;
+
+EXPRESION_DECREMENTO:
+    ID '--'             { $$ = new DecrementoAlto($1, @1.first_line, @1.first_column); }
 ;
 
 EXPRESION_ARITMETICA:
