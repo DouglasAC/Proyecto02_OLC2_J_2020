@@ -34,6 +34,9 @@ function TraducurAlto() {
         funcionesPrimitivas += generarToUpperCase(tablaAlto);
         funcionesPrimitivas += generarToLowerrCase(tablaAlto);
         funcionesPrimitivas += generarCharAt(tablaAlto);
+        funcionesPrimitivas += GenerarConcatenacion(tablaAlto);
+        funcionesPrimitivas += GenerarDeBooleanAString(tablaAlto);
+        funcionesPrimitivas += GenerarDeEnteroAString(tablaAlto);
 
         let enc = "# Declaracion de temporales, punteros p & h y estructuras heap & stack\n";
         enc += "var ";

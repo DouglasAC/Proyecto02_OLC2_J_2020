@@ -329,10 +329,157 @@ class OperacionAlto {
         let op2 = tabla.getTemporalActual();
         tabla.agregarNoUsados(op2);
 
-        let tempR = tabla.getTemporal();
-        codigo += tempR + " = " + op1 + " + " + op2 + ";\n"
+        if ((tipo1[0] == "int" && tipo2[0] == "int") || (tipo1[0] == "int" && tipo2[0] == "double") || (tipo1[0] == "int" && tipo2[0] == "char") || (tipo1[0] == "double" && tipo2[0] == "double") || (tipo1[0] == "double" && tipo2[0] == "int") || (tipo1[0] == "double" && tipo2[0] == "char") || (tipo1[0] == "char" && tipo2[0] == "double") || (tipo1[0] == "char" && tipo2[0] == "int")) {
+            let tempR = tabla.getTemporal();
+            codigo += tempR + " = " + op1 + " + " + op2 + ";\n"
+            tabla.agregarNoUsados(tempR);
+        } else if (tipo1[0] == "string" && tipo2[0] == "string") {
+            codigo += "# Inicio Traduccion llamada a concatenar_15 fila: " + this.fila + " columna: " + this.columna + "\n";
+            let tempPar1 = tabla.getTemporal();
+            let tempPar2 = tabla.getTemporal();
+            let tempR = tabla.getTemporal();
+            let tempR2 = tabla.getTemporal();
 
-        tabla.agregarNoUsados(tempR);
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar1 + " = p + 1;\n";
+            codigo += "Stack[" + tempPar1 + "] = " + op1 + ";\n";
+            codigo += tempPar2 + " = p + 2;\n";
+            codigo += "Stack[" + tempPar2 + "] = " + op2 + ";\n";
+            codigo += "call concatenar_15;\n";
+            codigo += tempR + " = p + 0;\n";
+            codigo += tempR2 + " = Stack[" + tempR + "];\n";
+            tabla.agregarNoUsados(tempR2);
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a concatenar_15 \n";
+        } else if (tipo1[0] == "string" && tipo2[0] == "boolean") {
+            codigo += "# Inicio Traduccion llamada a booleanAstring fila: " + this.fila + " columna: " + this.columna + "\n";
+            let tempPar1 = tabla.getTemporal();
+            let tempR = tabla.getTemporal();
+            let tempR2 = tabla.getTemporal();
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar1 + " = p + 1;\n";
+            codigo += "Stack[" + tempPar1 + "] = " + op2 + ";\n";
+            codigo += "call booleanastring_15;\n";
+            codigo += tempR + " = p + 0;\n";
+            codigo += tempR2 + " = Stack[" + tempR + "];\n";
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a booleanAstring\n";
+
+            codigo += "# Inicio Traduccion llamada a concatenar_15 fila: " + this.fila + " columna: " + this.columna + "\n";
+            let tempPar3 = tabla.getTemporal();
+            let tempPar4 = tabla.getTemporal();
+            let tempR3 = tabla.getTemporal();
+            let tempR4 = tabla.getTemporal();
+
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar3 + " = p + 1;\n";
+            codigo += "Stack[" + tempPar3 + "] = " + op1 + ";\n";
+            codigo += tempPar4 + " = p + 2;\n";
+            codigo += "Stack[" + tempPar4 + "] = " + tempR2 + ";\n";
+            codigo += "call concatenar_15;\n";
+            codigo += tempR3 + " = p + 0;\n";
+            codigo += tempR4 + " = Stack[" + tempR3 + "];\n";
+            tabla.agregarNoUsados(tempR4);
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a concatenar_15 \n";
+
+        } else if (tipo1[0] == "boolean" && tipo2[0] == "string") {
+            codigo += "# Inicio Traduccion llamada a booleanAstring fila: " + this.fila + " columna: " + this.columna + "\n";
+            let tempPar1 = tabla.getTemporal();
+            let tempR = tabla.getTemporal();
+            let tempR2 = tabla.getTemporal();
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar1 + " = p + 1;\n";
+            codigo += "Stack[" + tempPar1 + "] = " + op1 + ";\n";
+            codigo += "call booleanastring_15;\n";
+            codigo += tempR + " = p + 0;\n";
+            codigo += tempR2 + " = Stack[" + tempR + "];\n";
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a booleanAstring\n";
+
+            codigo += "# Inicio Traduccion llamada a concatenar_15 fila: " + this.fila + " columna: " + this.columna + "\n";
+            let tempPar3 = tabla.getTemporal();
+            let tempPar4 = tabla.getTemporal();
+            let tempR3 = tabla.getTemporal();
+            let tempR4 = tabla.getTemporal();
+
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar3 + " = p + 1;\n";
+            codigo += "Stack[" + tempPar3 + "] = " + tempR2 + ";\n";
+            codigo += tempPar4 + " = p + 2;\n";
+            codigo += "Stack[" + tempPar4 + "] = " + op2 + ";\n";
+            codigo += "call concatenar_15;\n";
+            codigo += tempR3 + " = p + 0;\n";
+            codigo += tempR4 + " = Stack[" + tempR3 + "];\n";
+            tabla.agregarNoUsados(tempR4);
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a concatenar_15 \n";
+
+        } else if (tipo1[0] == "string" && tipo2[0] == "int") {
+            codigo += "# Inicio Traduccion llamada a enteroastring fila: " + this.fila + " columna: " + this.columna + "\n";
+            let tempPar1 = tabla.getTemporal();
+            let tempR = tabla.getTemporal();
+            let tempR2 = tabla.getTemporal();
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar1 + " = p + 1;\n";
+            codigo += "Stack[" + tempPar1 + "] = " + op2 + ";\n";
+            codigo += "call enteroastring_15;\n";
+            codigo += tempR + " = p + 0;\n";
+            codigo += tempR2 + " = Stack[" + tempR + "];\n";
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a entero a string\n";
+
+            codigo += "# Inicio Traduccion llamada a concatenar_15 fila: " + this.fila + " columna: " + this.columna + "\n";
+            let tempPar3 = tabla.getTemporal();
+            let tempPar4 = tabla.getTemporal();
+            let tempR3 = tabla.getTemporal();
+            let tempR4 = tabla.getTemporal();
+
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar3 + " = p + 1;\n";
+            codigo += "Stack[" + tempPar3 + "] = " + op1 + ";\n";
+            codigo += tempPar4 + " = p + 2;\n";
+            codigo += "Stack[" + tempPar4 + "] = " + tempR2 + ";\n";
+            codigo += "call concatenar_15;\n";
+            codigo += tempR3 + " = p + 0;\n";
+            codigo += tempR4 + " = Stack[" + tempR3 + "];\n";
+            tabla.agregarNoUsados(tempR4);
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a concatenar_15 \n";
+
+        } else if (tipo1[0] == "int" && tipo2[0] == "string") {
+            codigo += "# Inicio Traduccion llamada a entro a string fila: " + this.fila + " columna: " + this.columna + "\n";
+            let tempPar1 = tabla.getTemporal();
+            let tempR = tabla.getTemporal();
+            let tempR2 = tabla.getTemporal();
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar1 + " = p + 1;\n";
+            codigo += "Stack[" + tempPar1 + "] = " + op1 + ";\n";
+            codigo += "call enteroastring_15;\n";
+            codigo += tempR + " = p + 0;\n";
+            codigo += tempR2 + " = Stack[" + tempR + "];\n";
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a entero a string\n";
+
+            codigo += "# Inicio Traduccion llamada a concatenar_15 fila: " + this.fila + " columna: " + this.columna + "\n";
+            let tempPar3 = tabla.getTemporal();
+            let tempPar4 = tabla.getTemporal();
+            let tempR3 = tabla.getTemporal();
+            let tempR4 = tabla.getTemporal();
+
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar3 + " = p + 1;\n";
+            codigo += "Stack[" + tempPar3 + "] = " + tempR2 + ";\n";
+            codigo += tempPar4 + " = p + 2;\n";
+            codigo += "Stack[" + tempPar4 + "] = " + op2 + ";\n";
+            codigo += "call concatenar_15;\n";
+            codigo += tempR3 + " = p + 0;\n";
+            codigo += tempR4 + " = Stack[" + tempR3 + "];\n";
+            tabla.agregarNoUsados(tempR4);
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a concatenar_15 \n";
+        }
+
         tabla.quitarNoUsados(op1);
         tabla.quitarNoUsados(op2);
         return codigo;
