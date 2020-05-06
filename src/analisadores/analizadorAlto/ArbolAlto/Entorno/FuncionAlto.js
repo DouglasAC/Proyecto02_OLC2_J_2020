@@ -1,7 +1,7 @@
 class FuncionAlto {
     constructor(tipo, nombre, parametros, sentencias, fila, columna) {
         this.tipo = tipo;
-        this.nombre = nombre;
+        this.nombre = nombre.toLocaleLowerCase();
         this.parametros = parametros;//[tipo, nombre]
         this.sentencias = sentencias;
         this.fila = fila;

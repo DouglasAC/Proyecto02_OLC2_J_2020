@@ -78,7 +78,10 @@ class LLamadaAlto {
             let tem = tabla.getTemporalActual();
             val_parametros.push(tem);
         }
-
+        // no guardar los parametros
+        for (let x = 0; x < val_parametros.length; x++) {
+            tabla.quitarNoUsados(val_parametros[x]);
+        }
         //Cambir de ambito
 
 

@@ -9,6 +9,12 @@ class ImprimirAlto {
         if (val instanceof ErrorAlto) {
             return val;
         }
+        if(val[0]=="void")
+        {
+            let err = new ErrorAlto("Semantico", "No se puede imprimir una funcion void", this.valor.fila, this.valor.columna);
+            tabla.errores.push(err);
+            return err;
+        }
     }
     get3D(tabla) {
         let codigo = "# Inicio Imprimir fila: " + this.fila + " columna: " + this.columna + "\n";

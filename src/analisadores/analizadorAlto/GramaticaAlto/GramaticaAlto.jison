@@ -138,8 +138,8 @@ PARAMETROS:
 ;
 
 PARAMETRO:
-    TIPO ID         { $$ = [[$1], $2] }
-    | TIPO '[]' ID  { $$ = [["Tarry",$1], $3] }
+    TIPO ID         { $$ = [[$1], $2.toLocaleLowerCase()]; }
+    | TIPO '[]' ID  { $$ = [["Tarry",$1], $3.toLocaleLowerCase()]; }
 ;
 
 
@@ -229,12 +229,22 @@ SENTECIA_ASIGNACION:
 
 SENTECIA_LLAMADA:
     ID '(' LISTA_EXPRESION ')'      { $$ = new LLamadaAlto($1, $3, @1.first_line, @1.first_column); }
-    |  ID '(' ')'                   { $$ = new LLamadaAlto($1, [], @1.first_line, @1.first_column); }
+    | ID '(' ')'                    { $$ = new LLamadaAlto($1, [], @1.first_line, @1.first_column); }
+    | ID '(' NOMBRES ')'            { $$ = new LlamadaTipo2Alto($1, $3, @1.first_line, @1.first_column); }
 ;
 
 LISTA_EXPRESION:
-    LISTA_EXPRESION ',' EXPRESION       { $$ = $1, $$.push($3); }
+    LISTA_EXPRESION ',' EXPRESION       { $$ = $1; $$.push($3); }
     | EXPRESION                         { $$ = [$1]; }
+;
+
+NOMBRES:
+    NOMBRES ',' NOMBRE      { $$ = $1; $$.push($3); }
+    | NOMBRE                { $$ = [$1]; }
+;
+
+NOMBRE:
+    ID '=' EXPRESION        { $$ = [$1.toLocaleLowerCase()]; $$.push($3); }
 ;
 
 TIPO:
