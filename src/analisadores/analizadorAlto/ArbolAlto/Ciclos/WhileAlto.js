@@ -20,6 +20,7 @@ class WhileAlto {
         tabla.displayBreak.push(1);
         tabla.displayContinue.push(1);
         let local = new Entorno(tabla.locales);
+        tabla.locales = local;
         for (let x = 0; x < this.sentencias.length; x++) {
             let res = this.sentencias[x].analizar(tabla);
             if (res instanceof ErrorAlto) {

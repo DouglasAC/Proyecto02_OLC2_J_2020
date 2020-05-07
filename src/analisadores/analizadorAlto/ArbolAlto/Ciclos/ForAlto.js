@@ -10,6 +10,7 @@ class ForAlto {
     }
     analizar(tabla) {
         let local = new Entorno(tabla.locales);
+        tabla.locales = local;
         if (this.inicio != null) {
             let ini = this.inicio.analizar(tabla);
             if (ini instanceof ErrorAlto) {
