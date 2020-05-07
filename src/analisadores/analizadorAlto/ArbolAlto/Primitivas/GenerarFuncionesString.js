@@ -149,7 +149,7 @@ function GenerarDeEnteroAString(tabla) {
     codigo += "h = h + 1;\n";
     codigo += tempTam + " = 1;\n";
     codigo += etq1 + ":\n";
-    
+
     codigo += temp4 + " = 0;\n";
 
     codigo += etq2 + ":\n";
@@ -176,5 +176,92 @@ function GenerarDeEnteroAString(tabla) {
     codigo += "Stack[p] = " + tempApuntador + ";\n";
     codigo += "end\n";
     codigo += "# Fin Funcion de Entero a String\n";
+    return codigo;
+}
+
+function GenearrDeDoubleAString(tabla) {
+    let codigo = "# Inicio Funcion de Double a String\n";
+    codigo += "proc doubleastring_15 begin\n";
+    let temp1 = tabla.getTemporal();
+    let temp2 = tabla.getTemporal();
+    let temp3 = tabla.getTemporal();
+
+    let temp4 = tabla.getTemporal();
+    let temp5 = tabla.getTemporal();
+    let temp6 = tabla.getTemporal();
+    let temp7 = tabla.getTemporal();
+
+    let etq1 = tabla.getEtiqueta();
+    let etq2 = tabla.getEtiqueta();
+
+
+    codigo += temp1 + " = p + 1;\n"
+    codigo += temp2 + " = Stack[" + temp1 + "];\n";
+    codigo += temp3 + " = " + temp2 + ";\n";
+
+    codigo += temp4 + " = " + temp3 + " % 1;\n";
+    codigo += temp5 + " = " + temp3 + " - " + temp4 + ";\n"
+
+    codigo += "# Inicio Traduccion llamada a entro a string fila: " + this.fila + " columna: " + this.columna + "\n";
+    let tempPar1 = tabla.getTemporal();
+    let tempR = tabla.getTemporal();
+    let tempR2 = tabla.getTemporal();
+    codigo += "p = p + 2;\n";
+    codigo += tempPar1 + " = p + 1;\n";
+    codigo += "Stack[" + tempPar1 + "] = " + temp5 + ";\n";
+    codigo += "call enteroastring_15;\n";
+    codigo += tempR + " = p + 0;\n";
+    codigo += tempR2 + " = Stack[" + tempR + "];\n";
+    codigo += "p = p - 2;\n";
+    codigo += "# Fin Traduccion llamada a entero a string\n";
+
+    codigo += temp6 + " = Heap[" + tempR2 + "];\n";
+    codigo += temp6 + " = " + temp6 + " + 1;\n";
+    codigo += "Heap[" + tempR2 + "] = " + temp6 + ";\n";
+    codigo += "Heap[h] = 46;\n";
+    codigo += "h = h + 1;\n";
+
+    codigo += "if (" + temp4 + " > 0) goto " + etq1 + ";\n";
+    codigo += temp4 + " = " + temp4 + " * -1;\n";
+    codigo += etq1 + ":\n";
+    codigo += etq2 + ":\n";
+    codigo += temp4 + " = " + temp4 + " * 10;\n";
+    codigo += temp7 + " = " + temp4 + " % 1;\n";
+    codigo += "if (" + temp7 + " >  0) goto " + etq2 + ";\n";
+
+    codigo += "# Inicio Traduccion llamada a entro a string fila: " + this.fila + " columna: " + this.columna + "\n";
+    let tempPar2 = tabla.getTemporal();
+    let tempR3 = tabla.getTemporal();
+    let tempR4 = tabla.getTemporal();
+    codigo += "p = p + 2;\n";
+    codigo += tempPar2 + " = p + 1;\n";
+    codigo += "Stack[" + tempPar2 + "] = " + temp4 + ";\n";
+    codigo += "call enteroastring_15;\n";
+    codigo += tempR3 + " = p + 0;\n";
+    codigo += tempR4 + " = Stack[" + tempR3 + "];\n";
+    codigo += "p = p - 2;\n";
+    codigo += "# Fin Traduccion llamada a entero a string\n";
+
+    codigo += "# Inicio Traduccion llamada a concatenar_15 fila: " + this.fila + " columna: " + this.columna + "\n";
+    let tempPar3 = tabla.getTemporal();
+    let tempPar4 = tabla.getTemporal();
+    let tempR5 = tabla.getTemporal();
+    let tempR6 = tabla.getTemporal();
+
+    codigo += "p = p + 2;\n";
+    codigo += tempPar3 + " = p + 1;\n";
+    codigo += "Stack[" + tempPar3 + "] = " + tempR2 + ";\n";
+    codigo += tempPar4 + " = p + 2;\n";
+    codigo += "Stack[" + tempPar4 + "] = " + tempR4 + ";\n";
+    codigo += "call concatenar_15;\n";
+    codigo += tempR5 + " = p + 0;\n";
+    codigo += tempR6 + " = Stack[" + tempR5 + "];\n";
+
+    codigo += "p = p - 2;\n";
+    codigo += "# Fin Traduccion llamada a concatenar_15 \n";
+
+    codigo += "Stack[p] = " + tempR6 + ";\n";
+    codigo += "end\n";
+    codigo += "# Fin Funcion de Double a String\n";
     return codigo;
 }
