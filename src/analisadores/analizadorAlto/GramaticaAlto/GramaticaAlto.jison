@@ -82,6 +82,7 @@
 "invalidCastingException" return 'INVALIDCASTINGEXCEPTION'
 "heapoverflowError"     return 'HEAPOVERFLOWERROR'
 "stackoverflowError"    return 'STACKOVERFLOWERROR'
+"import"                return 'IMPORTAR'
 [a-zA-Z_][_a-zA-Z0-9ñÑ]*  return 'ID'
 
 <<EOF>>               return 'EOF'
@@ -115,12 +116,17 @@ INICIO:
 
 CUERPOS:
     CUERPOS CUERPO      { $$ = $1; $$.push($2); }
-    | CUERPO                { $$ = [$1]; }
+    | CUERPO            { $$ = [$1]; }
 ;
 
 CUERPO:
     SENTECIA                { $$ = $1; }
     | DECLARAR_FUNCION      { $$ = $1; }
+    | SENTECIA_IMPORTAR     { $$ = $1; }
+;
+
+SENTECIA_IMPORTAR:
+    IMPORTAR LISTA_ID      { $$ = new ImportarAlto($2, @1.first_line, @1.first_column); }
 ;
 
 DECLARAR_FUNCION:
