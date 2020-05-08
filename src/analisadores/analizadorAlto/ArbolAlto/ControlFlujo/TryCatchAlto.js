@@ -14,9 +14,21 @@ class TryCatchAlto {
         tabla.displayTry.push(1);
         let local = new Entorno(tabla.locales);
         for (let x = 0; x < this.sentencias.length; x++) {
-            let sen = this.sentencias[x].analizar(tabla);
-            if (sen instanceof ErrorAlto) {
-                return sen;
+            let sentencia = this.sentencias[x];
+            if (!(sentencia instanceof DefinirEstructura)) {
+                if (sentencia instanceof DeclaracionSinTipoAlto) {
+                    if (instrucion.tipo != "global") {
+                        let res = sentencia.analizar(tabla);
+                        if (res instanceof ErrorAlto) {
+                            return res;
+                        }
+                    }
+                } else {
+                    let res = sentencia.analizar(tabla);
+                    if (res instanceof ErrorAlto) {
+                        return res;
+                    }
+                }
             }
         }
         this.local = local;
@@ -24,9 +36,21 @@ class TryCatchAlto {
         tabla.displayTry.pop();
         let localCatch = new Entorno(tabla.locales);
         for (let x = 0; x < this.sentenciasCatch.length; x++) {
-            let sen = this.sentenciasCatch[x].analizar(tabla);
-            if (sen instanceof ErrorAlto) {
-                return sen;
+            let sentencia = this.sentenciasCatch[x];
+            if (!(sentencia instanceof DefinirEstructura)) {
+                if (sentencia instanceof DeclaracionSinTipoAlto) {
+                    if (instrucion.tipo != "global") {
+                        let res = sentencia.analizar(tabla);
+                        if (res instanceof ErrorAlto) {
+                            return res;
+                        }
+                    }
+                } else {
+                    let res = sentencia.analizar(tabla);
+                    if (res instanceof ErrorAlto) {
+                        return res;
+                    }
+                }
             }
         }
         this.localCatch = localCatch;

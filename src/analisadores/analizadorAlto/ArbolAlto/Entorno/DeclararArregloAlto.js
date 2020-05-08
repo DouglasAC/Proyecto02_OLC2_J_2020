@@ -13,23 +13,23 @@ class DeclararArregloAlto {
             tabla.errores.push(err);
             return err;
         }
-        let tipoE = this.expresion.analizar(tabla);
-        if (tipoE instanceof ErrorAlto) {
-            return tipoE;
+        if (this.expresion != null) {
+            let tipoE = this.expresion.analizar(tabla);
+            if (tipoE instanceof ErrorAlto) {
+                return tipoE;
+            }
+            if (tipoE[0] != "Tarry") {
+                let err = new ErrorAlto("Semantico", "El valor de la expresion no es un arreglo, no se puede declarar el arreglo", this.expresion.fila, this.expresion.columna);
+                tabla.errores.push(err);
+                return err;
+            }
+            if (this.tipo[0] != tipoE[1]) {
+                if (!((this.tipo[0] == "int" && tipoE[1] == "char") || (this.tipo[0] == "double" && tipoE[1] == "int") || (this.tipo[0] == "double" && tipoE[1] == "char"))) { }
+                let err = new ErrorAlto("Semantico", "El tipo de la declaracion " + this.tipo[0] + " no es igual al de la expresion " + tipoE[1], this.fila, this.columna);
+                tabla.errores.push(err);
+                return err;
+            }
         }
-        if (tipoE[0] != "Tarry") {
-            let err = new ErrorAlto("Semantico", "El valor de la expresion no es un arreglo, no se puede declarar el arreglo", this.expresion.fila, this.expresion.columna);
-            tabla.errores.push(err);
-            return err;
-        }
-        if (this.tipo[0] != tipoE[1]) {
-            if (!((this.tipo[0] == "int" && tipoE[1] == "char") || (this.tipo[0] == "double" && tipoE[1] == "int") || (this.tipo[0] == "double" && tipoE[1] == "char"))) { }
-            let err = new ErrorAlto("Semantico", "El tipo de la declaracion " + this.tipo[0] + " no es igual al de la expresion " + tipoE[1], this.fila, this.columna);
-            tabla.errores.push(err);
-            return err;
-        }
-
-
         if (tabla.entorno == "local") {
             let sim = new SimboloAlto(["Tarry", this.tipo[0]], this.nombre, "local", tabla.getStack(), true, 1, tabla.ambito, "Variable/Arreglo", false);
             tabla.agregarLocal(sim);
@@ -43,21 +43,32 @@ class DeclararArregloAlto {
     get3D(tabla) {
         let codigo = "# Traduccion de Declaracion de Arreglo fila " + this.fila + " columna: " + this.columna + "\n";
 
-        codigo += this.expresion.get3D(tabla);
-        let tempV = tabla.getTemporalActual();
+        if (this.expresion != null) {
+            codigo += this.expresion.get3D(tabla);
+            let tempV = tabla.getTemporalActual();
 
-        let sim = tabla.getSimbolo(this.nombre);
-        tabla.quitarNoUsados(tempV);
-        if (sim.entorno == "local") {
-            let temp = tabla.getTemporal();
-            codigo += temp + " = p + " + sim.apuntador + ";\n";
-            codigo += "Stack[" + temp + "] = " + tempV + ";\n";
-        } else {
-            let temp = tabla.getTemporal();
-            codigo += temp + " = " + sim.apuntador + ";\n";
-            codigo += "Heap[" + temp + "] = " + tempV + ";\n";
+            let sim = tabla.getSimbolo(this.nombre);
+            tabla.quitarNoUsados(tempV);
+            if (sim.entorno == "local") {
+                let temp = tabla.getTemporal();
+                codigo += temp + " = p + " + sim.apuntador + ";\n";
+                codigo += "Stack[" + temp + "] = " + tempV + ";\n";
+            } else {
+                let temp = tabla.getTemporal();
+                codigo += temp + " = " + sim.apuntador + ";\n";
+                codigo += "Heap[" + temp + "] = " + tempV + ";\n";
+            }
+        }else{
+            if (sim.entorno == "local") {
+                let temp = tabla.getTemporal();
+                codigo += temp + " = p + " + sim.apuntador + ";\n";
+                codigo += "Stack[" + temp + "] = -1;\n";
+            } else {
+                let temp = tabla.getTemporal();
+                codigo += temp + " = " + sim.apuntador + ";\n";
+                codigo += "Heap[" + temp + "] = -1;\n";
+            }
         }
-
         codigo += "# Fin Declaracion de Arreglo\n";
         return codigo;
     }

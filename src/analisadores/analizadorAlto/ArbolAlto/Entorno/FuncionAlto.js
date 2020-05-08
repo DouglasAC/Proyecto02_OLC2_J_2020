@@ -12,13 +12,12 @@ class FuncionAlto {
         let nombreFun = this.nombre;
         let nombres_par = [];
         for (let x = 0; x < this.parametros.length; x++) {
-            if(this.parametros[x][0][0]=="Tarry")
-            {
+            if (this.parametros[x][0][0] == "Tarry") {
                 nombreFun += "_arreglo_" + this.parametros[x][0][1];
-            }else{
+            } else {
                 nombreFun += "_" + this.parametros[x][0];
             }
-            
+
             let nom = this.parametros[x][1].toLocaleLowerCase();
             for (let y = 0; y < nombres_par.length; y++) {
                 if (nom == nombres_par[y].toLocaleLowerCase()) {
@@ -58,7 +57,16 @@ class FuncionAlto {
             tabla.agregarLocal(sim);
         }
         for (let x = 0; x < this.sentencias.length; x++) {
-            this.sentencias[x].analizar(tabla);
+            let sentencia = this.sentencias[x];
+            if (!(sentencia instanceof DefinirEstructura)) {
+                if (sentencia instanceof DeclaracionSinTipoAlto) {
+                    if (instrucion.tipo != "global") {
+                        let val = sentencia.analizar(tabla);
+                    }
+                } else {
+                    let val = sentencia.analizar(tabla);
+                }
+            }
         }
         if (tabla.errores.length > 0) {
             tabla.tipoFuncion = ["void"];

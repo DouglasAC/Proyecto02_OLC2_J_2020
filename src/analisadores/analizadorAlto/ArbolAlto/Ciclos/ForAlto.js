@@ -40,11 +40,25 @@ class ForAlto {
         tabla.displayContinue.push(1);
 
         for (let x = 0; x < this.sentencias.length; x++) {
-            let res = this.sentencias[x].analizar(tabla);
-            if (res instanceof ErrorAlto) {
-                tabla.displayBreak.pop();
-                tabla.displayContinue.pop();
-                return res;
+            let sentencia = this.sentencias[x];
+            if (!(sentencia instanceof DefinirEstructura)) {
+                if (sentencia instanceof DeclaracionSinTipoAlto) {
+                    if (instrucion.tipo != "global") {
+                        let res = sentencia.analizar(tabla);
+                        if (res instanceof ErrorAlto) {
+                            tabla.displayBreak.pop();
+                            tabla.displayContinue.pop();
+                            return res;
+                        }
+                    }
+                } else {
+                    let res = sentencia.analizar(tabla);
+                    if (res instanceof ErrorAlto) {
+                        tabla.displayBreak.pop();
+                        tabla.displayContinue.pop();
+                        return res;
+                    }
+                }
             }
         }
         this.local = local;

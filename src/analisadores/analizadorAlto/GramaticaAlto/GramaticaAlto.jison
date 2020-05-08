@@ -120,9 +120,12 @@ CUERPOS:
 ;
 
 CUERPO:
-    SENTECIA                { $$ = $1; }
-    | DECLARAR_FUNCION      { $$ = $1; }
-    | SENTECIA_IMPORTAR     { $$ = $1; }
+    SENTECIA_DECLARACION            { $$ = $1; }
+    | DECLARAR_ARREGLO              { $$ = $1; }
+    | SENTECIA_DECLARACION PTCOMA   { $$ = $1; }
+    | DECLARAR_ARREGLO PTCOMA       { $$ = $1; }
+    | DECLARAR_FUNCION              { $$ = $1; }
+    | SENTECIA_IMPORTAR             { $$ = $1; }
 ;
 
 SENTECIA_IMPORTAR:
@@ -263,6 +266,7 @@ TIPO:
 
 DECLARAR_ARREGLO:
     TIPO '[]' ID '=' EXPRESION       { $$ = new DeclararArregloAlto([$1], $3, $5, @1.first_line, @1.first_column); }
+    | TIPO '[]' ID                     { $$ = new DeclararArregloAlto([$1], $3, null, @1.first_line, @1.first_column); }
 ;
 
 

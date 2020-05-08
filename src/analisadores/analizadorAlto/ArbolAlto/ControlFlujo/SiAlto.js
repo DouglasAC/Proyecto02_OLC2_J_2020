@@ -22,9 +22,21 @@ class SiAlto {
         let local = new Entorno(tabla.locales);
         tabla.locales = local;
         for (let x = 0; x < this.sentencias.length; x++) {
-            let res = this.sentencias[x].analizar(tabla);
-            if (res instanceof ErrorAlto) {
-                return res;
+            let sentencia = this.sentencias[x];
+            if (!(sentencia instanceof DefinirEstructura)) {
+                if (sentencia instanceof DeclaracionSinTipoAlto) {
+                    if (instrucion.tipo != "global") {
+                        let res = sentencia.analizar(tabla);
+                        if (res instanceof ErrorAlto) {
+                            return res;
+                        }
+                    }
+                } else {
+                    let res = sentencia.analizar(tabla);
+                    if (res instanceof ErrorAlto) {
+                        return res;
+                    }
+                }
             }
         }
         this.local = local;
@@ -34,9 +46,21 @@ class SiAlto {
         tabla.locales = localElse;
         if (this.sentenciasElse != null) {
             for (let x = 0; x < this.sentenciasElse.length; x++) {
-                let res = this.sentenciasElse[x].analizar(tabla);
-                if (res instanceof ErrorAlto) {
-                    return res;
+                let sentencia = this.sentenciasElse[x];
+                if (!(sentencia instanceof DefinirEstructura)) {
+                    if (sentencia instanceof DeclaracionSinTipoAlto) {
+                        if (instrucion.tipo != "global") {
+                            let res = sentencia.analizar(tabla);
+                            if (res instanceof ErrorAlto) {
+                                return res;
+                            }
+                        }
+                    } else {
+                        let res = sentencia.analizar(tabla);
+                        if (res instanceof ErrorAlto) {
+                            return res;
+                        }
+                    }
                 }
             }
         }

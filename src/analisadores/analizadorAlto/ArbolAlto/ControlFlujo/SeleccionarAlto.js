@@ -24,9 +24,12 @@ class SeleccionarAlto {
             let sentencias = caso.sentencias;
 
             for (let x = 0; x < sentencias.length; x++) {
-                let res = sentencias[x].analizar(tabla);
-                if (res instanceof ErrorAlto) {
-                    return res;
+                let sentencia = sentencias[x];
+                if (!(sentencia instanceof DefinirEstructura)) {
+                    let res = sentencia.analizar(tabla);
+                    if (res instanceof ErrorAlto) {
+                        return res;
+                    }
                 }
             }
             caso.local = local;
@@ -38,9 +41,21 @@ class SeleccionarAlto {
             tabla.locales = local;
             let sentencias = this.defecto.sentencias;
             for (let x = 0; x < sentencias.length; x++) {
-                let res = sentencias[x].analizar(tabla);
-                if (res instanceof ErrorAlto) {
-                    return res;
+                let sentencia = sentencias[x];
+                if (!(sentencia instanceof DefinirEstructura)) {
+                    if (sentencia instanceof DeclaracionSinTipoAlto) {
+                        if (instrucion.tipo != "global") {
+                            let res = sentencia.analizar(tabla);
+                            if (res instanceof ErrorAlto) {
+                                return res;
+                            }
+                        }
+                    } else {
+                        let res = sentencia.analizar(tabla);
+                        if (res instanceof ErrorAlto) {
+                            return res;
+                        }
+                    }
                 }
             }
             this.defecto.local = local;
