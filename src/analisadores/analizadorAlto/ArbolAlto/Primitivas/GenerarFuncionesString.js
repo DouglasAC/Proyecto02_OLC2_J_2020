@@ -202,7 +202,7 @@ function GenearrDeDoubleAString(tabla) {
     codigo += temp4 + " = " + temp3 + " % 1;\n";
     codigo += temp5 + " = " + temp3 + " - " + temp4 + ";\n"
 
-    codigo += "# Inicio Traduccion llamada a entro a string fila: " + this.fila + " columna: " + this.columna + "\n";
+    codigo += "# Inicio Traduccion llamada a entro a string\n";
     let tempPar1 = tabla.getTemporal();
     let tempR = tabla.getTemporal();
     let tempR2 = tabla.getTemporal();
@@ -229,7 +229,7 @@ function GenearrDeDoubleAString(tabla) {
     codigo += temp7 + " = " + temp4 + " % 1;\n";
     codigo += "if (" + temp7 + " >  0) goto " + etq2 + ";\n";
 
-    codigo += "# Inicio Traduccion llamada a entro a string fila: " + this.fila + " columna: " + this.columna + "\n";
+    codigo += "# Inicio Traduccion llamada a entro a string\n";
     let tempPar2 = tabla.getTemporal();
     let tempR3 = tabla.getTemporal();
     let tempR4 = tabla.getTemporal();
@@ -242,7 +242,7 @@ function GenearrDeDoubleAString(tabla) {
     codigo += "p = p - 2;\n";
     codigo += "# Fin Traduccion llamada a entero a string\n";
 
-    codigo += "# Inicio Traduccion llamada a concatenar_15 fila: " + this.fila + " columna: " + this.columna + "\n";
+    codigo += "# Inicio Traduccion llamada a concatenar_15\n";
     let tempPar3 = tabla.getTemporal();
     let tempPar4 = tabla.getTemporal();
     let tempR5 = tabla.getTemporal();

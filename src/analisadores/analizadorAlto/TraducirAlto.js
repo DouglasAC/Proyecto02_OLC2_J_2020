@@ -48,23 +48,22 @@ function TraducurAlto() {
 
 
         let etq = tablaAlto.getEtiqueta();
-        
-        // Traducir 
-        for (let x = 0; x < result.instrucciones.length; x++) {
-            let trad = result.instrucciones[x].get3D(this.tablaAlto);
-            if (!(trad instanceof ErrorAlto)) {
-                codigo += trad;
-            }
+
+        // Traducir globales 
+        let codigoGlobales = "";
+        codigoGlobales += traducirGlobales(tablaAlto, result.instrucciones);
+        // Traducir globales import
+        for (let y = 0; y < importares.length; y++) {
+            let arbolImport = importares[x];
+            codigoGlobales += traducirGlobales(arbolImport.instrucciones);
         }
+
+        // Traducir funciones y estructuras 
+        codigo += traducirFuncionesyEstructuras(tablaAlto, result.instrucciones);
         // Taducir imports
         for (let y = 0; y < importares.length; y++) {
             let arbolImport = importares[x];
-            for (let x = 0; x < arbolImport.instrucciones.length; x++) {
-                let trad = arbolImport.instrucciones[x].get3D(this.tablaAlto);
-                if (!(trad instanceof ErrorAlto)) {
-                    codigo += trad;
-                }
-            }
+            codigo += traducirFuncionesyEstructuras(tablaAlto, arbolImport.instrucciones);
         }
 
 
@@ -114,13 +113,12 @@ function TraducurAlto() {
 
         codigo = enc + codigo;
         codigo += etq + ":\n";
-
-        if(tablaAlto.existeFuncion("principal"))
-        {
+        codigo += codigoGlobales;
+        if (tablaAlto.existeFuncion("principal")) {
             codigo += "call principal;"
         }
 
-        editor3D.setValue(editor3D.getValue() + codigo);
+        editor3D.setValue( codigo);
 
         if (this.tablaAlto.errores.length != 0) {
             alert("hay erres");
@@ -173,22 +171,22 @@ function obtenerEstructuras(tabla, instrucciones) {
 function obtenerFunciones(tabla, instrucciones) {
     console.log(instrucciones.length);
     for (let x = 0; x < instrucciones.length; x++) {
-        let instrucion = instrucciones[x];
-        console.log(instrucion);
-        if (instrucion instanceof FuncionAlto) {
-            let val = instrucion.analizar(tabla);
+        let instruccion = instrucciones[x];
+        console.log(instruccion);
+        if (instruccion instanceof FuncionAlto) {
+            let val = instruccion.analizar(tabla);
         }
     }
 }
 
 function obtenerGlobales(tabla, instrucciones) {
     for (let x = 0; x < instrucciones.length; x++) {
-        let instrucion = instrucciones[x];
-        if (instrucion instanceof DeclaracionAlto) {
-            let val = instrucion.analizar(tabla);
-        } else if (instrucion instanceof DeclaracionSinTipoAlto) {
-            if (instrucion.tipo != "global") {
-                let val = instrucion.analizar(tabla);
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof DeclaracionAlto || instruccion instanceof DeclararArregloAlto) {
+            let val = instruccion.analizar(tabla);
+        } else if (instruccion instanceof DeclaracionSinTipoAlto) {
+            if (instruccion.tipo != "global") {
+                let val = instruccion.analizar(tabla);
             }
         }
     }
@@ -196,35 +194,70 @@ function obtenerGlobales(tabla, instrucciones) {
 
 function obtenerGlobalesDentro(tabla, instrucciones) {
     for (let x = 0; x < instrucciones.length; x++) {
-        let instrucion = instrucciones[x];
-        if (instrucion instanceof DeclaracionSinTipoAlto) {
-            if (instrucion.tipo == "global") {
-                let val = instrucion.analizar(tabla);
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof DeclaracionSinTipoAlto) {
+            if (instruccion.tipo == "global") {
+                let val = instruccion.analizar(tabla);
             }
-        } else if (instrucion instanceof FuncionAlto) {
-            obtenerGlobalesDentro(tabla, instrucion.sentencias);
-        } else if (instrucion instanceof SiAlto) {
-            obtenerGlobalesDentro(tabla, instrucion.sentencias);
-            if (instrucion.sentenciasElse != null) {
-                obtenerGlobalesDentro(tabla, instrucion.sentenciasElse);
+        } else if (instruccion instanceof FuncionAlto) {
+            obtenerGlobalesDentro(tabla, instruccion.sentencias);
+        } else if (instruccion instanceof SiAlto) {
+            obtenerGlobalesDentro(tabla, instruccion.sentencias);
+            if (instruccion.sentenciasElse != null) {
+                obtenerGlobalesDentro(tabla, instruccion.sentenciasElse);
             }
-        } else if (instrucion instanceof SeleccionarAlto) {
-            for (let y = 0; y < instrucion.casos; y++) {
-                let caso = instrucion.casos[y];
+        } else if (instruccion instanceof SeleccionarAlto) {
+            for (let y = 0; y < instruccion.casos; y++) {
+                let caso = instruccion.casos[y];
                 obtenerGlobalesDentro(tabla, caso.sentencias);
             }
-            if (instrucion.defecto != null) {
-                obtenerGlobalesDentro(tabla, instrucion.defecto.sentencias);
+            if (instruccion.defecto != null) {
+                obtenerGlobalesDentro(tabla, instruccion.defecto.sentencias);
             }
-        } else if (instrucion instanceof TryCatchAlto) {
-            obtenerGlobalesDentro(tabla, instrucion.sentencias);
-            obtenerGlobalesDentro(tabla, instrucion.sentenciasCatch);
-        } else if (instrucion instanceof WhileAlto) {
-            obtenerGlobalesDentro(tabla, instrucion.sentencias);
-        } else if (instrucion instanceof DoWhileAlto) {
-            obtenerGlobalesDentro(tabla, instrucion.sentencias);
-        } else if (instrucion instanceof ForAlto) {
-            obtenerGlobalesDentro(tabla, instrucion.sentencias);
+        } else if (instruccion instanceof TryCatchAlto) {
+            obtenerGlobalesDentro(tabla, instruccion.sentencias);
+            obtenerGlobalesDentro(tabla, instruccion.sentenciasCatch);
+        } else if (instruccion instanceof WhileAlto) {
+            obtenerGlobalesDentro(tabla, instruccion.sentencias);
+        } else if (instruccion instanceof DoWhileAlto) {
+            obtenerGlobalesDentro(tabla, instruccion.sentencias);
+        } else if (instruccion instanceof ForAlto) {
+            obtenerGlobalesDentro(tabla, instruccion.sentencias);
         }
     }
+}
+
+function traducirGlobales(tabla, instrucciones) {
+    let codigo = "";
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof DeclaracionAlto || instruccion instanceof DeclararArregloAlto) {
+            let val = instruccion.get3D(tabla);
+            if (!(val instanceof ErrorAlto)) {
+                codigo += val;
+            }
+        } else if (instruccion instanceof DeclaracionSinTipoAlto) {
+            if (instruccion.tipo != "global") {
+                let val = instruccion.get3D(tabla);
+                if (!(val instanceof ErrorAlto)) {
+                    codigo += val;
+                }
+            }
+        }
+    }
+    return codigo;
+}
+
+function traducirFuncionesyEstructuras(tabla, instrucciones) {
+    let codigo = "";
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof FuncionAlto || instruccion instanceof DefinirEstructura) {
+            let val = instruccion.get3D(tabla);
+            if (!(val instanceof ErrorAlto)) {
+                codigo += val;
+            }
+        }
+    }
+    return codigo;
 }

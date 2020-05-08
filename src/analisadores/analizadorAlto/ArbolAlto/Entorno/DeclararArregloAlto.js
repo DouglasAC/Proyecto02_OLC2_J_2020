@@ -42,12 +42,12 @@ class DeclararArregloAlto {
     }
     get3D(tabla) {
         let codigo = "# Traduccion de Declaracion de Arreglo fila " + this.fila + " columna: " + this.columna + "\n";
-
+        let sim = tabla.getSimbolo(this.nombre);
         if (this.expresion != null) {
             codigo += this.expresion.get3D(tabla);
             let tempV = tabla.getTemporalActual();
 
-            let sim = tabla.getSimbolo(this.nombre);
+            
             tabla.quitarNoUsados(tempV);
             if (sim.entorno == "local") {
                 let temp = tabla.getTemporal();
