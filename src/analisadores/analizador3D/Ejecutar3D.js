@@ -1,9 +1,11 @@
 function ejecutar3D() {
-    if (!editor3D.getValue()) {
-        alert("NO HAY NADA PARA ANALIZAR");
+    let number = tabActivaBajo.split(' ');
+    let entrada = ace.edit(`editorBajo${number[1]}`).getValue();
+    if (entrada=="") {
+        alert("No hay entrada para traducir");
         return;
     }
-    var result = gramatica3d.parse(editor3D.getValue());
+    var result = gramatica3d.parse(entrada);
     document.getElementById("consola").value = "";
     var indexInstruccion = 0;
     var tabla;

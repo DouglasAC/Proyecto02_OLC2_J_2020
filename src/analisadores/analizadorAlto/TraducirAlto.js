@@ -1,10 +1,12 @@
 function TraducurAlto() {
-    if (!editor.getValue()) {
-        alert("NO HAY NADA PARA TRADUCIR");
+    let number = tabActivaAlto.split(' ');
+    let entrada = ace.edit(`editor${number[1]}`).getValue();
+    if (entrada=="") {
+        alert("No hay entrada para traducir");
         return;
     }
-    var result = GramaticaAlto.parse(editor.getValue());
-    editor3D.setValue("");
+    var result = GramaticaAlto.parse(entrada);
+    
     tablaAlto = new TablaAlto(null);
 
     console.log(result);
@@ -118,12 +120,18 @@ function TraducurAlto() {
             codigo += "call principal;"
         }
 
-        editor3D.setValue( codigo);
+        
 
         if (this.tablaAlto.errores.length != 0) {
             alert("hay erres");
             console.log(this.tablaAlto.errores);
-            editor3D.setValue("");
+        }else{
+            
+            crearTabBajo();
+            let number = tabActivaBajo.split(' ');
+            ace.edit(`editorBajo${number[1]}`).setValue(codigo);
+
+            
         }
 
     } else {

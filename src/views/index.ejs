@@ -1,73 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Prueba</title>
-    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="codemirror/themes/ayu-dark.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-</head>
 
-<body id="cuerpo" class="cuerpo">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/prueba.css" />
+  </head>
+
+  <body
+    id="cuerpo"
+    class="cuerpo"
+    onload="crearTabAlto();crearTabBajo();"
+    style="font-family: 'Raleway', sans-serif;"
+  >
     <div class="container-fluid" id="editores">
-
-        <div class="row">
-            <div class="col-sm-6">
-                <h4>Alto Nivel</h4>
-                <button type="button" class="btn btn-primary" onclick="TraducurAlto()">Traducir</button>
-                <textarea id="myTextarea" name="myTextarea"></textarea>
-            </div>
-            <div class="col-sm-6">
-                <h4>Bajo Nivel</h4>
-                <button type="button" class="btn btn-primary" onclick="ejecutar3D()">Ejecutar</button>
-                <button type="button" class="btn btn-warning" onclick="obtener('pruebas')">Debug</button>
-                <button type="button" class="btn btn-info">Siguiente</button>
-                <textarea id="myTextarea3D" name="myTextarea3D"></textarea>
-            </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <h3 style="text-align: center;">Alto Nivel</h3>
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="TraducurAlto()"
+          >
+            Traducir
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="crearTabAlto()"
+          >
+            Nuevo
+          </button>
+          <input
+            id="archivoAlto"
+            type="file"
+            style="display: none;"
+            m
+            onchange="abrirArchivo()"
+          />
+          <input
+            id="archivoBajo"
+            type="file"
+            style="display: none;"
+            m
+            onchange="abrirArchivoBajo()"
+          />
+          <button
+            type="button"
+            class="btn btn-info"
+            onclick="document.getElementById('archivoAlto').click();"
+          >
+            Abrir
+          </button>
+          <button type="button" class="btn btn-success" onclick="guardarAlto()">
+            Guardar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="cerrarActualAltoTab()"
+          >
+            Cerrar
+          </button>
+          <br />
+          <div class="tab" id="tabslinksAlto"></div>
+          <div id="tabsAlto"></div>
         </div>
-        <div class="container-fluid">
+        <div class="col-sm-6">
+          <h3 style="text-align: center;">Bajo Nivel</h3>
+          <button type="button" class="btn btn-primary" onclick="ejecutar3D()">
+            Ejecutar
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="crearTabBajo()"
+          >
+            Nuevo
+          </button>
+          <button
+            type="button"
+            class="btn btn-info"
+            onclick="document.getElementById('archivoBajo').click();"
+          >
+            Abrir
+          </button>
+          <button type="button" class="btn btn-success" onclick="guardarBajo()">
+            Guardar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="cerrarActualBajoTab()"
+          >
+            Cerrar
+          </button>
 
-            <h3>Consola</h3>
+          <div class="tab" id="tabsLinksBajo"></div>
+          <div id="tabsBajo"></div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="tab" id="reportes">
+          <button id="btnConsola" onclick="cambiarReporte('divConsola')">
+            Consola
+          </button>
+          <button id="btnErrores" onclick="cambiarReporte('divErrores')">
+            Errores
+          </button>
+          <button id="btnTablaSimbolos" onclick="cambiarReporte('divTabla')">
+            Tabla
+          </button>
+          <button id="btnAst" onclick="cambiarReporte('divAst')">Ast</button>
+        </div>
+        <div class="tabsReportes">
+          <div id="divConsola" style="display: block;" class="reporte">
             <textarea class="form-control" id="consola" rows="8"></textarea>
+          </div>
+          <div id="divErrores" style="display: none;" class="reporte">
+            <h3>errores</h3>
+          </div>
+          <div id="divTabla" style="display: none;" class="reporte">
+            <h3>tabla</h3>
+          </div>
+          <div id="divAst" style="display: none;" class="reporte">
+            <h3>ast</h3>
+          </div>
         </div>
-
+      </div>
     </div>
-    
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
+
     <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
+
     <button type="button" class="btn btn-light">Light</button>
     <button type="button" class="btn btn-dark">Dark</button>
 
     <button type="button" class="btn btn-link">Link</button>
 
-    <script src="codemirror/lib/codemirror.js"></script>
-    <script src="codemirror/mode/pascal.js"></script>
+    <script type="text/javascript" src="ace/ace.js"></script>
+
     <script src="js/Jquery.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/Funciones.js"></script>
-    <script>
-        var editor = CodeMirror.fromTextArea(myTextarea, {
-            lineNumbers: true,
-            mode: "pascal",
-            theme: "ayu-dark"
-        });
 
-        var editor3D = CodeMirror.fromTextArea(myTextarea3D, {
-            lineNumbers: true,
-            mode: "pascal",
-            theme: "ayu-dark"
-        });
-    </script>
     <script>
-        var exports = {};
+      var exports = {};
     </script>
+
     <script src="analizador3D/Ejecutar3D.js"></script>
     <script src="analizador3D/Gramatica/gramatica3d.js"></script>
     <script src="analizador3D/Tabla/Simbolo.js"></script>
@@ -115,7 +202,6 @@
     <script src="analizadorAlto/ArbolAlto/Entorno/DefinirEstructura.js"></script>
     <script src="analizadorAlto/ArbolAlto/Entorno/FuncionAlto.js"></script>
 
-
     <script src="analizadorAlto/ArbolAlto/Primitivas/ImprimirAlto.js"></script>
     <script src="analizadorAlto/ArbolAlto/Primitivas/GenerarFuncionesPropias.js"></script>
     <script src="analizadorAlto/ArbolAlto/Primitivas/GenerarFuncionesString.js"></script>
@@ -149,6 +235,5 @@
     <script src="analizadorAlto/TablaAlto/Estructura.js"></script>
 
     <script src="analizadorAlto/TraducirAlto.js"></script>
-</body>
-
+  </body>
 </html>

@@ -57,7 +57,7 @@
 "continue"              return 'CONTINUE'
 "print"                 return 'PRINT'
 "for"                   return 'FOR'
-"int"                   return 'INT'
+"integer"               return 'INT'
 "double"                return 'DOUBLE'
 "boolean"               return 'BOOLEAN'
 "char"                  return 'CHAR'
