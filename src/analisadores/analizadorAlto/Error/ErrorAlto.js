@@ -1,9 +1,9 @@
 class ErrorAlto {
-    constructor(tipo, descricion, fila, columa) {
+    constructor(tipo, descripcion, fila, columna) {
         this.tipo = tipo;
-        this.descricion = descricion;
+        this.descripcion = descripcion;
         this.fila = fila;
-        this.columa = columa;
+        this.columna = columna;
     }
 }
 exports.ErrorAlto = ErrorAlto;

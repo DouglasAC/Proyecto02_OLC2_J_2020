@@ -125,18 +125,20 @@ function TraducurAlto() {
         if (this.tablaAlto.errores.length != 0) {
             alert("hay erres");
             console.log(this.tablaAlto.errores);
+            generarReporteErrores(tablaAlto.errores);
         }else{
             
             crearTabBajo();
             let number = tabActivaBajo.split(' ');
             ace.edit(`editorBajo${number[1]}`).setValue(codigo);
 
-            
+            generarReporteErrores(tablaAlto.errores);
         }
 
     } else {
         alert("hay erres");
         console.log(this.tablaAlto.errores);
+        generarReporteErrores(tablaAlto.errores);
     }
 
 }
