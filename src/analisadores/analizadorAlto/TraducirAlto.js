@@ -126,6 +126,7 @@ function TraducurAlto() {
             alert("hay erres");
             console.log(this.tablaAlto.errores);
             generarReporteErrores(tablaAlto.errores);
+            generarReporteTablaSimbolos(tablaAlto.simbolos);
         }else{
             
             crearTabBajo();
@@ -133,12 +134,14 @@ function TraducurAlto() {
             ace.edit(`editorBajo${number[1]}`).setValue(codigo);
 
             generarReporteErrores(tablaAlto.errores);
+            generarReporteTablaSimbolos(tablaAlto.simbolos);
         }
 
     } else {
         alert("hay erres");
         console.log(this.tablaAlto.errores);
         generarReporteErrores(tablaAlto.errores);
+        generarReporteTablaSimbolos(tablaAlto.simbolos);
     }
 
 }

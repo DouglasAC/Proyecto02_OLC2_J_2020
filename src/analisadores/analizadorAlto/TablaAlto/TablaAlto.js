@@ -21,6 +21,7 @@ class TablaAlto {
         this.estructuras = [];
         this.codigoEstructuras = [];
         this.displayTry = [];
+        this.simbolos = [];
     }
     agregarNoUsados(temp) {
         if (this.temporalesNoUsados.indexOf(temp) == -1) {

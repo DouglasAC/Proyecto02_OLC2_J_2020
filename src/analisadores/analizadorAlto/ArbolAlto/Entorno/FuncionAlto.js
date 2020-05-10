@@ -36,6 +36,7 @@ class FuncionAlto {
         this.nombreFalso = nombreFun;
         let fun = new SimboloFuncion(nombreFun, this.nombre, this.tipo, this.parametros, this.sentencias, this.parametros.length + 1);
         tabla.agregarFuncion(fun);
+        tabla.simbolos.push(sim);
     }
     get3D(tabla) {
         let codigo = "# Inicio traduccion Funcion: " + this.nombre + " fila: " + this.fila + " columna: " + this.columna + "\n";
@@ -55,6 +56,7 @@ class FuncionAlto {
         for (let x = 0; x < this.parametros.length; x++) {
             let sim = new SimboloAlto(this.parametros[x][0], this.parametros[x][1].toLocaleLowerCase(), "local", tabla.getStack(), false, null, tabla.ambito, "Parametro / Variable", false);
             tabla.agregarLocal(sim);
+            tabla.simbolos.push(sim);
         }
         for (let x = 0; x < this.sentencias.length; x++) {
             let sentencia = this.sentencias[x];

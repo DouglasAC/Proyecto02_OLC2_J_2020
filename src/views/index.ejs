@@ -17,7 +17,7 @@
   <body
     id="cuerpo"
     class="cuerpo"
-    onload="crearTabAlto();crearTabBajo();"
+    onload="crearTabAlto(); crearTabBajo();"
     style="font-family: 'Raleway', sans-serif;"
   >
     <div class="container-fluid" id="editores">
@@ -128,15 +128,25 @@
             
           </div>
           <div id="divTabla" style="display: none;" class="reporte">
-            <h3>tabla</h3>
+            
           </div>
-          <div id="divAst" style="display: none;" class="reporte">
-            <h3>ast</h3>
+          <div id="divAst" style="display: none;" class="reporte"style="height: 450px;">
+            
+            <div id = "divMermaid" class="mermaid" >
+              graph LR
+                  A --- B
+                  B-->C[fa:fa-ban forbidden]
+                  B-->D(fa:fa-spinner);
+              </div>
+              
           </div>
         </div>
       </div>
     </div>
 
+    
+    <script  src="js/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:false});</script>
     <button type="button" class="btn btn-warning">Warning</button>
 
     <button type="button" class="btn btn-light">Light</button>

@@ -274,4 +274,8 @@ function cambiarReporte(reporte) {
             reportes[i].style.display = "none";
         }
     }
+    if(reporte=="divAst")
+    {
+        mermaid.init();
+    }
 }

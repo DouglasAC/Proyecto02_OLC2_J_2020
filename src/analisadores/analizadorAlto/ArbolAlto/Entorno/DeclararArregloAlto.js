@@ -33,9 +33,11 @@ class DeclararArregloAlto {
         if (tabla.entorno == "local") {
             let sim = new SimboloAlto(["Tarry", this.tipo[0]], this.nombre, "local", tabla.getStack(), true, 1, tabla.ambito, "Variable/Arreglo", false);
             tabla.agregarLocal(sim);
+            tabla.simbolos.push(sim);
         } else {
             let sim = new SimboloAlto(["Tarry", this.tipo[0]], this.nombre, "global", tabla.getHeap(), true, 1, tabla.ambito, "Variable/Arreglo", false);
             tabla.agregarGlobal(sim);
+            tabla.simbolos.push(sim);
         }
 
 

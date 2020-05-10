@@ -16,6 +16,7 @@ class DeclaracionAlto {
                 } else {
                     let sim = new SimboloAlto(this.tipo, this.nombres[x].toLocaleLowerCase(), "global", tabla.getHeap(), false, null, tabla.ambito, "Variable", false);
                     tabla.agregarGlobal(sim);
+                    tabla.simbolos.push(sim);
                 }
             }
         } else {
@@ -27,6 +28,7 @@ class DeclaracionAlto {
                 } else {
                     let sim = new SimboloAlto(this.tipo, this.nombres[x].toLocaleLowerCase(), "local", tabla.getStack(), false, null, tabla.ambito, "Variable", false);
                     tabla.agregarLocal(sim);
+                    tabla.simbolos.push(sim);
                 }
             }
         }

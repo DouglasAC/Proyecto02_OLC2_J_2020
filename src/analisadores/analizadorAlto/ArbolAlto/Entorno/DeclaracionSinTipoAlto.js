@@ -41,6 +41,7 @@ class DeclaracionSinTipoAlto {
             if (this.tipo == "global") {
                 let sim = new SimboloAlto(val, this.nombre.toLocaleLowerCase(), "global", tabla.getHeap(), false, null, tabla.ambito, "Variable", false);
                 tabla.agregarGlobal(sim);
+                tabla.simbolos.push(sim);
             } else {
                 let constante = false;
                 if (this.tipo == "const") {
@@ -49,9 +50,11 @@ class DeclaracionSinTipoAlto {
                 if (tabla.entorno == "local") {
                     let sim = new SimboloAlto(val, this.nombre.toLocaleLowerCase(), "local", tabla.getStack(), false, null, tabla.ambito, "Variable", constante);
                     tabla.agregarLocal(sim);
+                    tabla.simbolos.push(sim);
                 } else {
                     let sim = new SimboloAlto(val, this.nombre.toLocaleLowerCase(), "global", tabla.getHeap(), false, null, tabla.ambito, "Variable", constante);
                     tabla.agregarGlobal(sim);
+                    tabla.simbolos.push(sim);
                 }
             }
 
