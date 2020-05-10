@@ -105,6 +105,40 @@ class SiAlto {
         codigo += "# Fin traduccion if \n"
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(\"Sentencia_Si\")\n";
+        let nodoIdent = "node" + numero++;
+        cuerpo += nodoIdent + "(\"Condicion\")\n";
+        cuerpo += nodo + " --> " + nodoIdent + ";\n";
+        let valorNodo = this.condicion.generarCuerpo(numero);
+        numero = valorNodo.nuevo;
+        cuerpo += valorNodo.cuerpo;
+        cuerpo += nodoIdent + " --> " + valorNodo.nombre + "\n";
+        let NodoSentencias = "node" + numero++;
+        cuerpo += NodoSentencias + "(\"Sentencias\")\n";
+        cuerpo += nodo + " --> " + NodoSentencias + "\n";
+        numero = valorNodo.Numero + 3;
+        for (let x = 0; x < this.sentencias.length; x++) {
+            let nuevo = this.sentencias[x].generarCuerpo(numero);
+            numero = nuevo.numero;
+            cuerpo += nuevo.cuerpo;
+            cuerpo += NodoSentencias + " --> " + nuevo.nombre + "\n";
+        }
+        if (this.sentenciasElse != null) {
+            let NodoSentenciasElse = "node" + numero++;
+            cuerpo += NodoSentenciasElse + "(\"Sentencias_Else\")\n";
+            cuerpo += nodo + " --> " + NodoSentenciasElse + "\n";
+            for (let x = 0; x < this.sentenciasElse.length; x++) {
+                let nuevo = this.sentenciasElse[x].generarCuerpo(numero);
+                numero = nuevo.numero;
+                cuerpo += nuevo.cuerpo;
+                cuerpo += NodoSentenciasElse + " --> " + nuevo.nombre + "\n";
+            }
+        }
 
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 exports.SiAlto = SiAlto;

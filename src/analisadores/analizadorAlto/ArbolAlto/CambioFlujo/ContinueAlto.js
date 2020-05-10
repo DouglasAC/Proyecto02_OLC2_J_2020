@@ -17,6 +17,12 @@ class ContinueAlto {
         codigo += "# Fin Continue\n"
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero;
+        let cuerpo = "  " + nodo + "(\"Continue\")\n";
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 
 exports.ContinueAlto = BreakAlto;

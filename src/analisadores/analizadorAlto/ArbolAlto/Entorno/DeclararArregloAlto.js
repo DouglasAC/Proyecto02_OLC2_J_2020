@@ -49,7 +49,7 @@ class DeclararArregloAlto {
             codigo += this.expresion.get3D(tabla);
             let tempV = tabla.getTemporalActual();
 
-            
+
             tabla.quitarNoUsados(tempV);
             if (sim.entorno == "local") {
                 let temp = tabla.getTemporal();
@@ -60,7 +60,7 @@ class DeclararArregloAlto {
                 codigo += temp + " = " + sim.apuntador + ";\n";
                 codigo += "Heap[" + temp + "] = " + tempV + ";\n";
             }
-        }else{
+        } else {
             if (sim.entorno == "local") {
                 let temp = tabla.getTemporal();
                 codigo += temp + " = p + " + sim.apuntador + ";\n";
@@ -74,9 +74,30 @@ class DeclararArregloAlto {
         codigo += "# Fin Declaracion de Arreglo\n";
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Declaracion)\n";
+        let nodoTipo = "node" + numero++;
+        cuerpo += nodoTipo + "\"Tipo Arreglo de " + this.tipo[1] + "\"\n";
+        cuerpo += nodo + " --> " + nodoTipo + ";\n";
 
+        let nodoIdent = "node" + numero++;
+        cuerpo += nodoIdent + "\"Identificador: " + this.nombre + "\"\n";
+        cuerpo += nodo + " --> " + nodoIdent + ";\n";
 
+        if (this.expresion != null) {
+            let nodoValor = "node" + numero++;
+            cuerpo += nodoValor + "\"Expresion\"\n";
+            cuerpo += nodo + " --> " + nodoValor + ";\n";
 
+            let expr = this.expresion.generarCuerpo(numero);
+            cuerpo += expr.cuerpo;
+            numero = cuerpo.numero;
+            cuerpo += nodoValor + " --> " + expr.nombre + ";\n";
+        }
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 
 exports.DeclararArregloAlto = DeclararArregloAlto;

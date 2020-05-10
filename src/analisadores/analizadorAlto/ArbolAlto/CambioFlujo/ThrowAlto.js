@@ -35,5 +35,11 @@ class ThrowAlto {
         codigo += "# Fin Thorw\n"
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero;
+        let cuerpo = "  " + nodo + "(\"Throw " + this.tipoExcepcion + "\")\n";
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 exports.ThrowAlto = ThrowAlto;

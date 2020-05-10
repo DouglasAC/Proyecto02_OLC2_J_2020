@@ -115,6 +115,66 @@ class SeleccionarAlto {
         codigo += "# Fin traduccion Switch\n";
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(\"Sentencia_Switch\")\n";
+        let nodoIdent = "node" + numero++;
+        cuerpo += nodoIdent + "(\"Condicion\")\n";
+        cuerpo += nodo + " --> " + nodoIdent + "\n";
+        let valorNodo = this.expresion.generarDot(numero);
+        cuerpo += valorNodo.cuerpo;
+        numero = valorNodo.numero;
+        cuerpo += nodoIdent + " --> " + valorNodo.nombre + "\n";
+        let NodoSentencias = "node" + numero++;
+        cuerpo += NodoSentencias + "(\"Casos\")\n";
+        cuerpo += nodo + "->" + NodoSentencias + "\n";
 
+
+        for (let x = 0; x < this.casos.length; x++) {
+            let caso = this.casos[x];
+            let nodoCaso = "node" + numero++;
+            cuerpo += nodoCaso + "(\"Caso\")\n";
+            cuerpo += NodoSentencias + " --> " + nodoCaso + ";\n";
+            let cas = caso.expresion.generarCuerpo(numero);
+            cuerpo += cas.cuerpo;
+            numero = cas.numero;
+            let comparar = "node" + numero++;
+            cuerpo += comparar + "(\"Comparar\")\n";
+            cuerpo += nodoCaso + " --> " + comparar + "\n";
+            cuerpo += comparar + " --> " + cas.nombre + "\n";
+
+            let sentencias = "node" + numero++;
+
+            cuerpo += sentencias + "(\"Sentencias\")\n";
+            cuerpo += nodoCaso + " -> " + sentencias + "\n";
+            numero++;
+            for (let y = 0; y < caso.sentencias.length; y++) {
+                let nuevo = caso.sentencia[y].generarDot(numero);
+                numero = nuevo.numero;
+                cuerpo += nuevo.cuerpo;
+                cuerpo += sentencias + " -> " + nuevo.nombre + "\n";
+            }
+        }
+
+        if (this.defecto != null) {
+            let nodoCaso = "node" + numero++;
+            cuerpo += nodoCaso + "(\"Caso_Defecto\")\n";
+            cuerpo += NodoSentencias + " --> " + nodoCaso + ";\n";
+
+            let sentencias = "node" + numero;
+            cuerpo += sentencias + "(\"Sentencias\")\n";
+            cuerpo += nodoCaso + " -> " + sentencias + ";\n";
+
+            for (let x = 0; x < this.defecto.sentencias.length; x++) {
+                let nuevo = this.defecto.sentencias[x].generarCuerpo(numero);
+                numero = nuevo.numero;
+                cuerpo += nuevo.cuerpo;
+                cuerpo += sentencias + " --> " + nuevo.nombre + ";\n";
+            }
+        }
+
+        let nuevo = new NodoDot(nodo, valorNodo.Cuerpo + cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 exports.SeleccionarAlto = SeleccionarAlto;

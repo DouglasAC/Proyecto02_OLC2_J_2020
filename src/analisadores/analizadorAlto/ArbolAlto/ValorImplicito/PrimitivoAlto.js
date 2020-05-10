@@ -46,5 +46,11 @@ class PrimitivoAlto {
         }
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Primitivo " + this.valor + ")\n";
+        let nuevo = new NodoDot(nodo, cuerpo, numero);
+        return nuevo;
+    }
 }
 exports.PrimitivoAlto = PrimitivoAlto;

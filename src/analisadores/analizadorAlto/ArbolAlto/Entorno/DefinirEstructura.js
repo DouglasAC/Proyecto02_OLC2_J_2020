@@ -108,5 +108,45 @@ class DefinirEstructura {
 
         return "";
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Definir Estructura)\n";
+        let ide = "node" + numero++;
+        cuerpo += ide + "(Identificador: " + this.nombre + ")\n";
+        cuerpo += nodo + " --> " + ide;
+
+        let parames = "node" + numero++;
+        cuerpo += parames + "(Atributos)\n";
+        cuerpo += nodo + " --> " + parames;
+        for (let x = 0; x < this.atributos.length; x++) {
+            let atributo = this.atributos[x];
+            let nodoA = "node" + numero++;
+            cuerpo += nodoA + "(Atributo)\n";
+            cuerpo += parames + " --> " + nodoA + "\n";
+            let tipo = "node" + numero++;
+            if (atributo.tipo[0] == "Tarry") {
+                cuerpo += nodoA + "(Tipo: Arreglo de " + atributo.tipo[1] + ")\n";
+            } else {
+                cuerpo += nodoA + "(Tipo: " + atributo.tipo[1] + ")\n";
+            }
+            cuerpo += nodoA + " --> " + tipo + "\n";
+            let nom = "node" + numero++;
+            cuerpo += nom + "(Identificador: " + atributo.nombre + ")\n";
+            cuerpo += nodoA + " --> " + nom + "\n";
+
+            if (atributo.valor != null) {
+                let nodoValor = "node" + numero++;
+                cuerpo += nodoValor + "\"Expresion\"\n";
+                cuerpo += nodo + " --> " + nodoValor + ";\n";
+
+                let expr = atributo.valor.generarCuerpo(numero);
+                cuerpo += expr.cuerpo;
+                numero = cuerpo.numero;
+                cuerpo += nodoValor + " --> " + expr.nombre + ";\n";
+            }
+        }
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 exports.DefinirEstructura = DefinirEstructura;

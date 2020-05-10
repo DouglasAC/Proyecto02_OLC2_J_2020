@@ -9,8 +9,7 @@ class ImprimirAlto {
         if (val instanceof ErrorAlto) {
             return val;
         }
-        if(val[0]=="void")
-        {
+        if (val[0] == "void") {
             let err = new ErrorAlto("Semantico", "No se puede imprimir una funcion void", this.valor.fila, this.valor.columna);
             tabla.errores.push(err);
             return err;
@@ -73,6 +72,16 @@ class ImprimirAlto {
         codigo += "print(\"%c\", 13);\n";
         codigo += "# Fin Imprimir\n"
         return codigo;
+    }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Imprimir)\n";
+        let nodoExpresion = this.valor.generarCuerpo(numero);
+        cuerpo += nodoExpresion.cuerpo;
+        numero = nodoExpresion.numero;
+        cuerpo += nodo + " --> " + nodoExpresion.nombre;
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
     }
 }
 exports.ImprimirAlto = ImprimirAlto;

@@ -47,4 +47,17 @@ class AsignacionAlto {
         codigo += "# Fin Asignacion\n";
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "\"Asignacion\"\n";
+        let nodoIdent = "node" + numero++;
+        cuerpo += nodoIdent + "\"Identificador: " + this.nombre + "\"\n";
+        cuerpo += nodo + " --> " + nodoIdent + ";\n";
+        let valorNodo = this.valor.generarDot(numero);
+        cuerpo += valorNodo.cuerpo;
+        cuerpo += nodo + " --> " + valorNodo.nombre + ";\n";
+        numero = valorNodo.numero;
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }

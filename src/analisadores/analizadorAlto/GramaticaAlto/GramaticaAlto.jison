@@ -126,6 +126,8 @@ CUERPO:
     | DECLARAR_ARREGLO PTCOMA       { $$ = $1; }
     | DECLARAR_FUNCION              { $$ = $1; }
     | SENTECIA_IMPORTAR             { $$ = $1; }
+    | DEFINIR_ESTRUCTURA PTCOMA     { $$ = $1; }
+    | DEFINIR_ESTRUCTURA            { $$ = $1; }
 ;
 
 SENTECIA_IMPORTAR:

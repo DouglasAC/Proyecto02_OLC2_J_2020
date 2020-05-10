@@ -17,6 +17,12 @@ class BreakAlto {
         codigo += "# Fin Break\n"
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero;
+        let cuerpo = "  " + nodo + "(\"Break\")\n";
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 
 exports.BreakAlto = BreakAlto;

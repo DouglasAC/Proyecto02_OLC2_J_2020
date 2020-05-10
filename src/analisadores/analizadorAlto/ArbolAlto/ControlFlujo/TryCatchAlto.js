@@ -113,5 +113,30 @@ class TryCatchAlto {
         codigo += "# Fin Traduccuion Try Catch\n";
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(\"Sentencia_Try_Catch\")";
+
+        let sentenciaTry = "node" + numero++;
+        cuerpo += nodo + "(\"Sentencias_Try\")";
+        cuerpo += nodo + " --> " + sentenciaTry + "\n";
+        for (let x = 0; x < this.sentencias; x++) {
+            let nuevo = this.sentencias[x].generarCuerpo(numero);
+            cuerpo += nuevo.cuerpo;
+            numero += nuevo.numero;
+            cuerpo += sentenciaTry + " --> " + nuevo.nombre;
+        }
+        let sentenciaCatch = "node" + numero++;
+        cuerpo += nodo + "(\"Sentencias_Catch\")";
+        cuerpo += nodo + " --> " + sentenciaCatch + "\n";
+        for (let x = 0; x < this.sentenciasCatch; x++) {
+            let nuevo = this.sentenciasCatch[x].generarCuerpo(numero);
+            cuerpo += nuevo.cuerpo;
+            numero += nuevo.numero;
+            cuerpo += sentenciaCatch + " --> " + nuevo.nombre;
+        }
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 exports.TryCatchAlto = TryCatchAlto;

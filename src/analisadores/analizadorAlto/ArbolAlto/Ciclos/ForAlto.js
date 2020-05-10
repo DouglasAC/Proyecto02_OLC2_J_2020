@@ -119,6 +119,50 @@ class ForAlto {
         codigo += "# Fin tradiccion For\n";
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(\"Sentencia_For\")\n";
+        if (this.inicio != null) {
+            let nodoInicio = "node" + numero++;
+            cuerpo += nodoInicio + "(\"Inicio_For\")\n";
+            cuerpo += nodo + " --> " + nodoInicio + "\n";
+            let nodoIni = this.inicio.generarCuerpo(numero);
+            numero = nodoIni.numero;
+            cuerpo += nodoIni.cuerpo;
+            cuerpo += nodoInicio + " --> " + nodoIni.nombre + "\n";
+        }
+        if (this.condicion != null) {
+            let nodoCondicion = "node" + numero++;
+            cuerpo += nodoCondicion + "(\"Condicion_For\")\n"
+            cuerpo += nodo + " --> " + nodoCondicion + "\n";
+            let nodoIni = this.condicion.generarCuerpo(numero);
+            numero = nodoIni.numero;
+            cuerpo += nodoIni.cuerpo;
+            cuerpo += nodoCondicion + " --> " + nodoIni.nombre + "\n";
+        }
+        if (this.final != null) {
+            let nodoCondicion = "node" + numero++;
+            cuerpo += nodoCondicion + "(\"Final_For\")\n"
+            cuerpo += nodo + " --> " + nodoCondicion + "\n";
+            let nodoIni = this.final.generarCuerpo(numero);
+            numero = nodoIni.numero;
+            cuerpo += nodoIni.cuerpo;
+            cuerpo += nodoCondicion + " --> " + nodoIni.nombre + "\n";
+        }
+        let NodoSentencias = "node" + numero++;
+        cuerpo += NodoSentencias + "(\"Sentencias\")\n";
+        cuerpo += nodo + " --> " + NodoSentencias + "\n";
+        
+        for (let x = 0; x<this.sentencias.length; x++) {
+            let nuevo = this.sentencias[x].generarDot(numero);
+            numero = nuevo.Numero;
+            cuerpo += nuevo.Cuerpo;
+            cuerpo += NodoSentencias + " -> " + nuevo.Nombre + ";\n";
+        }
+
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 
 exports.ForAlto = ForAlto;

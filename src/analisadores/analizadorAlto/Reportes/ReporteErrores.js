@@ -194,5 +194,13 @@ function generarReporteTablaSimbolos(simbolos) {
     codigo += "</tbody>\n";
     codigo += "</table>\n";
     codigo += "<br>\n";
-    document.getElementById('divTabla').innerHTML = codigo;        
+    document.getElementById('divTabla').innerHTML = codigo;
+    var divNuevaTab = document.createElement("DIV");
+    divNuevaTab.id = 'divMermaid';
+    divNuevaTab.className = "mermaid"
+    texto = "graph LR\n A --- B"
+    document.getElementById('divAst').innerHTML = "";
+    document.getElementById('divAst').appendChild(divNuevaTab);
+    document.getElementById('divMermaid').innerHTML = texto;
+                  
 }

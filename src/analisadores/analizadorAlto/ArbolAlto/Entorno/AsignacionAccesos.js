@@ -534,6 +534,34 @@ class AsignacionAccesos {
         codigo += "# Fin Traduccion Asignacion con acceso Acceso\n";
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Asignacion con Accesos)\n";
+        let nodoAccesos = "node" + numero++;
+        cuerpo += nodo + "(Accesos)\n";
+        cuerpo += nodo + " --> " + nodoAccesos + "\n";
+        for (let x = 0; x < this.accessos.length; x++) {
+            let acceso = this.accessos[x];
+            let nodoAcceso = "nodo" + numero++;
+            if (acceso.tipo == "arreglo") {
+                cuerpo += nodoAcceso + "(Acceso Arreglo posicion:)\n";
+                let nodoPos = acceso.posicion.generarCuerpo(numero);
+                cuerpo += nodoPos.cuerpo;
+                numero = nodoPos.numero;
+                cuerpo += nodoAcceso + " --> " + nodoPos.cuerpo + "\n";
+            } else if (acceso.tipo == "atributo") {
+                cuerpo += nodoAcceso + "(Acceso Atributo: " + acceso.nombre + ")\n";
+            } else if (acceso.tipo == "funcion") {
+                cuerpo += nodoAcceso + "(Acceso Funcion: " + acceso.nombre + ")\n";
+            }
+        }
 
+        let valorNodo = this.valor.generarDot(numero);
+        cuerpo += valorNodo.cuerpo;
+        cuerpo += nodo + " --> " + valorNodo.nombre + ";\n";
+        numero = valorNodo.numero;
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 exports.AsignacionAccesos = AsignacionAccesos;

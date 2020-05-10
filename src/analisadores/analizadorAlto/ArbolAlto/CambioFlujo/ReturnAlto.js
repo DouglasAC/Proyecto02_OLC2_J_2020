@@ -55,5 +55,21 @@ class ReturnAlto {
         codigo += "# Fin Return\n"
         return codigo;
     }
+    generarCuerpo(numero) {
+
+        if (this.valor != null) {
+            let nodo = "node" + numero;
+            let cuerpo = "  " + nodo + "(\"Return\")\n";
+            let val = this.valor.generarCuerpo(numero + 1);
+            cuerpo += "  " + nodo + " --> " + val.Nombre + ";\n";
+            let nuevo = new NodoDot(nodo, val.Cuerpo + cuerpo, val.numero + 1);
+            return nuevo;
+        } else {
+            let nodo = "node" + numero;
+            let cuerpo = "  " + nodo + "(\"Return\")\n";
+            let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+            return nuevo;
+        }
+    }
 }
 exports.ReturnAlto = ReturnAlto;
