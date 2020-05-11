@@ -21,7 +21,7 @@ class ImprimirAlto {
         codigo += this.valor.get3D(tabla);
         let temp = tabla.getTemporalActual(tabla);
         console.log("imprimir " + tipo);
-        if (tipo[0] == "int") {
+        if (tipo[0] == "integer") {
             codigo += "print(\"%i\", " + temp + ");\n";
         } else if (tipo[0] == "double") {
             codigo += "print(\"%d\", " + temp + " );\n";

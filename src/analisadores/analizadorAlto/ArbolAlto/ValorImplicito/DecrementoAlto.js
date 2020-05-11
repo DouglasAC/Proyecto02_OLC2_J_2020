@@ -10,7 +10,7 @@ class DecrementoAlto {
         if (tipo instanceof ErrorAlto) {
             return tipo;
         }
-        if (!(tipo[0] == "int" || tipo[0] == "double")) {
+        if (!(tipo[0] == "integer" || tipo[0] == "double")) {
             let err = new ErrorAlto("Semantico", "La variable " + this.nombre + " es de tipo " + tipo[0] + ", no se puede aumetar su valor", this.fila, this.columna);
             tabla.errores.push(err);
             return err;

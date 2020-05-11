@@ -70,7 +70,12 @@ class LlamadaTipo2Alto {
                     }
                     continue;
                 }
-                if (!((tipo[0] == "int" && val[0] == "char") || (tipo[0] == "double" && val[0] == "int") || (tipo[0] == "double" && val[0] == "char") || (tabla.existeEstructura(tipo[0]) && val[0] == "null") || (tipo[0] == "string" && val[0] == "null") || (tipo[0] == "Tarry" && val[0] == "null"))) {
+                if (!((tipo[0] == "integer" && val[0] == "char")
+                    || (tipo[0] == "double" && val[0] == "integer")
+                    || (tipo[0] == "double" && val[0] == "char")
+                    || (tabla.existeEstructura(tipo[0]) && val[0] == "null")
+                    || (tipo[0] == "string" && val[0] == "null")
+                    || (tipo[0] == "Tarry" && val[0] == "null"))) {
                     return false;
                 }
             } else {

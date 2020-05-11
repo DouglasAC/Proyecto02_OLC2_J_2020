@@ -192,7 +192,7 @@ case 72:
  this.$ = [$$[$0-2].toLocaleLowerCase()]; this.$.push($$[$0]); 
 break;
 case 73: case 144:
- this.$ = 'int'; 
+ this.$ = 'integer'; 
 break;
 case 74: case 145:
  this.$ = 'double'; 
@@ -390,7 +390,7 @@ case 166:
  this.$ = new OperacionAlto($$[$0-2], $$[$0], null, '<=', _$[$0-1].first_line, _$[$0-1].first_column); 
 break;
 case 167:
- this.$ = new PrimitivoAlto('int', Number(yytext), _$[$0].first_line, _$[$0].first_column); 
+ this.$ = new PrimitivoAlto('integer', Number(yytext), _$[$0].first_line, _$[$0].first_column); 
 break;
 case 168:
  this.$ = new PrimitivoAlto('double', Number(yytext), _$[$0].first_line, _$[$0].first_column); 

@@ -73,7 +73,7 @@ class DefinirEstructura {
                 tempAtributos.push(temp);
             } else {
                 let temp = tabla.getTemporal();
-                if (at.tipo[0] == "int" || at.tipo[0] == "boolean" || at.tipo[0] == "char") {
+                if (at.tipo[0] == "integer" || at.tipo[0] == "boolean" || at.tipo[0] == "char") {
                     codigo += temp + " = 0;\n";
                 } else if (at.tipo[0] == "double") {
                     codigo += temp + " = 0.0;\n";

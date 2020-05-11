@@ -24,7 +24,7 @@ class AccesoArregloAlto {
             return tipoPos;
         }
 
-        if (!(tipoPos[0] == "int" || tipoPos[0] == "char")) {
+        if (!(tipoPos[0] == "integer" || tipoPos[0] == "char")) {
             let err = new ErrorAlto("Semantico", "La posicion que se desea acceder debe tipo Integer, se encontro " + tipoPos[0], this.fila, this.columna);
             tabla.errores.push(err);
             return err;

@@ -17,7 +17,7 @@ class TablaAlto {
         this.funciones = [];
         this.tipoFuncion = ["void"];
         this.finFuncion = "";
-        this.tipos = ["int", "double", "char", "boolean", "string"];
+        this.tipos = ["integer", "double", "char", "boolean", "string"];
         this.estructuras = [];
         this.codigoEstructuras = [];
         this.displayTry = [];

@@ -259,7 +259,7 @@ NOMBRE:
 ;
 
 TIPO:
-    INT             { $$ = 'int'; }
+    INT             { $$ = 'integer'; }
     | DOUBLE        { $$ = 'double'; }
     | BOOLEAN       { $$ = 'boolean'; }
     | CHAR          { $$ = 'char'; }
@@ -413,7 +413,7 @@ EXPRESION_CASTEO:
 ;
 
 TIPO_CASTEO:
-    INT             { $$ = 'int'; }
+    INT             { $$ = 'integer'; }
     | DOUBLE        { $$ = 'double'; }
     | BOOLEAN       { $$ = 'boolean'; }
     | CHAR          { $$ = 'char'; }
@@ -451,7 +451,7 @@ EXPRESION_RELACIONAL:
 ;
 
 PRIMITIVO:
-    ENTERO              { $$ = new PrimitivoAlto('int', Number(yytext), @1.first_line, @1.first_column); }
+    ENTERO              { $$ = new PrimitivoAlto('integer', Number(yytext), @1.first_line, @1.first_column); }
     | DECIMAL           { $$ = new PrimitivoAlto('double', Number(yytext), @1.first_line, @1.first_column); }
     | VERDADERO         { $$ = new PrimitivoAlto('boolean', true, @1.first_line, @1.first_column); }
     | FALSO             { $$ = new PrimitivoAlto('boolean', false, @1.first_line, @1.first_column); }

@@ -39,7 +39,9 @@ class DeclaracionAlto {
                 return val;
             }
             if (this.tipo[0] != val[0]) {
-                if (!((this.tipo[0] == "int" && val[0] == "char") || (this.tipo[0] == "double" && val[0] == "int") || (this.tipo[0] == "double" && val[0] == "char"))) {
+                if (!((this.tipo[0] == "integer" && val[0] == "char") 
+                || (this.tipo[0] == "double" && val[0] == "integer") 
+                || (this.tipo[0] == "double" && val[0] == "char"))) {
                     console.log(this.tipo);
                     console.log(val);
                     let erro = new ErrorAlto("Semantico", "El tipo declarado no es igual al valor a asignar", this.fila, this.columna);
@@ -58,7 +60,7 @@ class DeclaracionAlto {
                 if (sim.entorno == "local") {
                     let temp = tabla.getTemporal();
                     codigo += temp + " = p + " + sim.apuntador + ";\n";
-                    if (sim.tipo[0] == "int" || sim.tipo[0] == "boolean" || sim.tipo[0] == "char") {
+                    if (sim.tipo[0] == "integer" || sim.tipo[0] == "boolean" || sim.tipo[0] == "char") {
                         codigo += "Stack[" + temp + "] = 0;\n";
                     } else if (sim.tipo[0] == "double") {
                         codigo += "Stack[" + temp + "] = 0.0;\n";
@@ -68,7 +70,7 @@ class DeclaracionAlto {
                 } else {
                     let temp = tabla.getTemporal();
                     codigo += temp + " = " + sim.apuntador + ";\n";
-                    if (sim.tipo[0] == "int" || sim.tipo[0] == "boolean" || sim.tipo[0] == "char") {
+                    if (sim.tipo[0] == "integer" || sim.tipo[0] == "boolean" || sim.tipo[0] == "char") {
                         codigo += "Heap[" + temp + "] = 0;\n";
                     } else if (sim.tipo[0] == "double") {
                         codigo += "Heap[" + temp + "] = 0.0;\n";

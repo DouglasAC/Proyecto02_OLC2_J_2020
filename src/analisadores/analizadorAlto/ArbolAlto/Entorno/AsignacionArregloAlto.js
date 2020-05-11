@@ -25,7 +25,7 @@ class AsignacionArregloAlto {
             return tipoPos;
         }
 
-        if (!(tipoPos[0] == "int" || tipoPos[0] == "char")) {
+        if (!(tipoPos[0] == "integer" || tipoPos[0] == "char")) {
             let err = new ErrorAlto("Semantico", "La posicion que se desea acceder debe tipo Integer, se encontro " + tipoPos[0], this.fila, this.columna);
             tabla.errores.push(err);
             return err;
@@ -38,7 +38,9 @@ class AsignacionArregloAlto {
 
         let tipoSim = sim.tipo;
         if (tipoSim[1] != tipoVal[0]) {
-            if (!((tipoSim[1] == "int" && tipoVal[0] == "char") || (tipoSim[1] == "double" && tipoVal[0] == "int") || (tipoSim[1] == "double" && tipoVal[0] == "char"))) {
+            if (!((tipoSim[1] == "integer" && tipoVal[0] == "char") 
+            || (tipoSim[1] == "double" && tipoVal[0] == "integer") 
+            || (tipoSim[1] == "double" && tipoVal[0] == "char"))) {
                 let erro = new ErrorAlto("Semantico", "El tipo del arreglo es " + tipoSim[1] + " no es igual al valor a asignar es " + tipoVal[0], this.fila, this.columna);
                 tabla.agregarError(erro);
                 return erro;

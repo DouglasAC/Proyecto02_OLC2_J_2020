@@ -12,7 +12,9 @@ class CasteoAlto {
             return valor;
         }
 
-        if (!((this.tipo == "int" && valor[0] == "double") || (this.tipo == "char" && valor[0] == "double") || (this.tipo == "char" && valor[0] == "int"))) {
+        if (!((this.tipo == "integer" && valor[0] == "double")
+            || (this.tipo == "char" && valor[0] == "double")
+            || (this.tipo == "char" && valor[0] == "integer"))) {
             let err = new ErrorAlto("Semantico", "Se intenta castear a " + tipo + " un tipo " + valor[0] + " no es valido este casteo", this.fila, this.columna);
             tabla.errores.push(err);
             return err;
@@ -30,14 +32,14 @@ class CasteoAlto {
         else {
             codigo += exp;
         }
-        if (this.tipo == "int" && this.tipoExp == "double") {
+        if (this.tipo == "integer" && this.tipoExp == "double") {
             let temp1 = tabla.getTemporal();
             codigo += temp1 + " = " + temVal + " % 1;\n";
             let temp2 = tabla.getTemporal();
             codigo += temp2 + " = " + temVal + " - " + temp1 + ";\n";
             tabla.agregarNoUsados(temp2);
             tabla.quitarNoUsados(temVal);
-        } else if (this.tipo == "char" && this.tipoExp == "int") {
+        } else if (this.tipo == "char" && this.tipoExp == "integer") {
             let etq = tabla.getEtiqueta();
             let etqFin = tabla.getEtiqueta();
             codigo += "if (" + temVal + " > 255) goto " + etq + ";\n";

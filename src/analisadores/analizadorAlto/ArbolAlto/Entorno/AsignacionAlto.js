@@ -22,7 +22,10 @@ class AsignacionAlto {
             return erro;
         }
         if (sim.tipo[0] != val[0]) {
-            if (!((sim.tipo[0] == "int" && val[0] == "char") || (sim.tipo[0] == "double" && val[0] == "int") || (sim.tipo[0] == "double" && val[0] == "char") || (tabla.existeEstructura(sim.tipo[0]) && val[0] == "null"))) {
+            if (!((sim.tipo[0] == "integer" && val[0] == "char") 
+            || (sim.tipo[0] == "double" && val[0] == "integer") 
+            || (sim.tipo[0] == "double" && val[0] == "char") 
+            || (tabla.existeEstructura(sim.tipo[0]) && val[0] == "null"))) {
                 let erro = new ErrorAlto("Semantico", "El tipo declarado no es igual al valor a asignar", this.fila, this.columna);
                 tabla.agregarError(erro);
                 return erro;

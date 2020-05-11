@@ -18,7 +18,7 @@ class ArregloSinTipoAlto {
         let tipo = tipos[0];
         if (!this.todosIguales(tipos)) {
             if (this.todosInt(tipos)) {
-                tipo = ["int"];
+                tipo = ["integer"];
             } else if (this.todosDouble(tipos)) {
                 tipo = ["double"]
             } else {
@@ -41,7 +41,7 @@ class ArregloSinTipoAlto {
     }
     todosInt(tipos) {
         for (let x = 0; x < tipos.length; x++) {
-            if (!(tipos[x][0] == "int" || tipos[x][0] == "char")) {
+            if (!(tipos[x][0] == "integer" || tipos[x][0] == "char")) {
                 return false;
             }
         }
@@ -49,7 +49,7 @@ class ArregloSinTipoAlto {
     }
     todosDouble(tipos) {
         for (let x = 0; x < tipos.length; x++) {
-            if (!(tipos[x][0] == "int" || tipos[x][0] == "char" || tipos[x][0] == "double")) {
+            if (!(tipos[x][0] == "integer" || tipos[x][0] == "char" || tipos[x][0] == "double")) {
                 return false;
             }
         }

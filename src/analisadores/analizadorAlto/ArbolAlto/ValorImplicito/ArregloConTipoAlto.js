@@ -16,7 +16,7 @@ class ArregloConTipoAlto {
             return tipoT;
         }
 
-        if (!(tipoT[0] == "int" || tipoT[0] == "char")) {
+        if (!(tipoT[0] == "integer" || tipoT[0] == "char")) {
             let err = new ErrorAlto("Semantico", "El tamaño del arreglo debe ser entero, se encontro " + tipoT[0], this.fila, this.columna);
             tabla.errores.push(err);
             return err;
@@ -42,7 +42,7 @@ class ArregloConTipoAlto {
 
         codigo += etqF + ":\n"
         codigo += "if (" + tempV + " <= 0) goto " + etqV + ";\n";
-        if (this.tipo[0] == "int" || this.tipo[0] == "boolean" || this.tipo[0] == "char") {
+        if (this.tipo[0] == "integer" || this.tipo[0] == "boolean" || this.tipo[0] == "char") {
             codigo += "Heap[h] = 0;\n";
         } else if (this.tipo[0] == "double") {
             codigo += "Heap[h] = 0.0;\n";

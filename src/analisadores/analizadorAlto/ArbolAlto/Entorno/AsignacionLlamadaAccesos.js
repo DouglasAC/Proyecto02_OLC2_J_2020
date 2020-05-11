@@ -26,14 +26,14 @@ class AsignacionLlamadaAccesos {
                 if (tipoPos instanceof ErrorAlto) {
                     return tipoPos;
                 }
-                if (!(tipoPos[0] == "int" || tipoPos[0] == "char")) {
+                if (!(tipoPos[0] == "integer" || tipoPos[0] == "char")) {
                     let err = new ErrorAlto("Semantico", "La posicion que se desea acceder debe tipo Integer, se encontro " + tipoPos[0], acceso.fila, acceso.columna);
                     tabla.errores.push(err);
                     return err;
                 }
             } else if (acceso.tipo == "atributo") {
                 if (acceso.nombre == "length" && tipo[0] == "Tarry") {
-                    tipo = ["int"];
+                    tipo = ["integer"];
                 } else {
                     if (!tabla.existeEstructura(tipo[0])) {
                         let err = new ErrorAlto("Semantico", "La variable no es una estructura, es de tipo " + tipo[0], acceso.fila, acceso.columna);
@@ -60,7 +60,7 @@ class AsignacionLlamadaAccesos {
                     }
                 } else if (acceso.nombre == "length") {
                     if (tipo[0] == "string") {
-                        tipo = ["int"];
+                        tipo = ["integer"];
                     } else {
                         let err = ErrorAlto("Semantico", "La funcion length solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
@@ -91,7 +91,7 @@ class AsignacionLlamadaAccesos {
                         return err;
                     }
                     let tipoPos = acceso.parametros[0].analizar(tabla);
-                    if (!(tipoPos[0] == "int" || tipoPos[0] == "char")) {
+                    if (!(tipoPos[0] == "integer" || tipoPos[0] == "char")) {
                         let err = new ErrorAlto("Semantico", "La posicion que se desea acceder debe tipo Integer, se encontro " + tipoPos[0], acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
@@ -110,14 +110,14 @@ class AsignacionLlamadaAccesos {
                         tabla.errores.push(err);
                         return err;
                     }
-                    tipo = ["int"];
+                    tipo = ["integer"];
                 } else if (acceso.nombre == "getreference") {
                     if (!tabla.existeEstructura(tipo[0])) {
                         let err = new ErrorAlto("Semantico", "La variable no es una estructura, es de tipo " + tipo[0], acceso.fila, this.columna);
                         tabla.errores.push(err);
                         return err;
                     }
-                    tipo = ["int"];
+                    tipo = ["integer"];
                 } else if (acceso.nombre == "instanceof") {
                     if (!tabla.existeEstructura(tipo[0])) {
                         let err = new ErrorAlto("Semantico", "La variable no es una estructura, es de tipo " + tipo[0], acceso.fila, this.columna);
@@ -141,7 +141,7 @@ class AsignacionLlamadaAccesos {
         }
 
         if (tipo[0] != val[0]) {
-            if (!((tipo[0] == "int" && val[0] == "char") || (tipo[0] == "double" && val[0] == "int") || (tipo[0] == "double" && val[0] == "char") || (tabla.existeEstructura(tipo[0]) && val[0] == "null") || (tipo[0] == "Tarry" && val[0] == "null"))) {
+            if (!((tipo[0] == "integer" && val[0] == "char") || (tipo[0] == "double" && val[0] == "integer") || (tipo[0] == "double" && val[0] == "char") || (tabla.existeEstructura(tipo[0]) && val[0] == "null") || (tipo[0] == "Tarry" && val[0] == "null"))) {
                 let erro = new ErrorAlto("Semantico", "El tipo es " + tipo[0] + " no es igual al valor a asignar de tipo" + val[0], this.fila, this.columna);
                 tabla.agregarError(erro);
                 return erro;
@@ -203,7 +203,7 @@ class AsignacionLlamadaAccesos {
             } else if (acceso.tipo == "atributo") {
                 if (acceso.nombre == "length" && tipo[0] == "Tarry") {
                     codigo += "# Inicio Traduccion Atributo lenght fila: " + acceso.fila + " columna: " + acceso.columna + "\n";
-                    tipo = ["int"];
+                    tipo = ["integer"];
                     let tempPar1 = tabla.getTemporal();
                     let tempR = tabla.getTemporal();
                     let tempR2 = tabla.getTemporal();
@@ -278,7 +278,7 @@ class AsignacionLlamadaAccesos {
                     }
                 } else if (acceso.nombre == "length") {
                     if (tipo[0] == "string") {
-                        tipo = ["int"];
+                        tipo = ["integer"];
                         let tempPar1 = tabla.getTemporal();
                         let tempR = tabla.getTemporal();
                         let tempR2 = tabla.getTemporal();
@@ -405,7 +405,7 @@ class AsignacionLlamadaAccesos {
                         tabla.errores.push(err);
                         return err;
                     }
-                    tipo = ["int"];
+                    tipo = ["integer"];
                     let tempPar1 = tabla.getTemporal();
                     let tempR = tabla.getTemporal();
                     let tempR2 = tabla.getTemporal();
@@ -427,7 +427,7 @@ class AsignacionLlamadaAccesos {
                         tabla.errores.push(err);
                         return err;
                     }
-                    tipo = ["int"];
+                    tipo = ["integer"];
 
                 } else if (acceso.nombre == "instanceof") {
                     if (!tabla.existeEstructura(tipo[0])) {

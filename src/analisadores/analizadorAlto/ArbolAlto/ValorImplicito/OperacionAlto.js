@@ -329,7 +329,14 @@ class OperacionAlto {
         let op2 = tabla.getTemporalActual();
         tabla.agregarNoUsados(op2);
 
-        if ((tipo1[0] == "int" && tipo2[0] == "int") || (tipo1[0] == "int" && tipo2[0] == "double") || (tipo1[0] == "int" && tipo2[0] == "char") || (tipo1[0] == "double" && tipo2[0] == "double") || (tipo1[0] == "double" && tipo2[0] == "int") || (tipo1[0] == "double" && tipo2[0] == "char") || (tipo1[0] == "char" && tipo2[0] == "double") || (tipo1[0] == "char" && tipo2[0] == "int")) {
+        if ((tipo1[0] == "integer" && tipo2[0] == "integer")
+            || (tipo1[0] == "integer" && tipo2[0] == "double")
+            || (tipo1[0] == "integer" && tipo2[0] == "char")
+            || (tipo1[0] == "double" && tipo2[0] == "double")
+            || (tipo1[0] == "double" && tipo2[0] == "integer")
+            || (tipo1[0] == "double" && tipo2[0] == "char")
+            || (tipo1[0] == "char" && tipo2[0] == "double")
+            || (tipo1[0] == "char" && tipo2[0] == "integer")) {
             let tempR = tabla.getTemporal();
             codigo += tempR + " = " + op1 + " + " + op2 + ";\n"
             tabla.agregarNoUsados(tempR);
@@ -415,7 +422,7 @@ class OperacionAlto {
             codigo += "p = p - " + tabla.stack + ";\n";
             codigo += "# Fin Traduccion llamada a concatenar_15 \n";
 
-        } else if (tipo1[0] == "string" && tipo2[0] == "int") {
+        } else if (tipo1[0] == "string" && tipo2[0] == "integer") {
             codigo += "# Inicio Traduccion llamada a enteroastring fila: " + this.fila + " columna: " + this.columna + "\n";
             let tempPar1 = tabla.getTemporal();
             let tempR = tabla.getTemporal();
@@ -447,7 +454,7 @@ class OperacionAlto {
             codigo += "p = p - " + tabla.stack + ";\n";
             codigo += "# Fin Traduccion llamada a concatenar_15 \n";
 
-        } else if (tipo1[0] == "int" && tipo2[0] == "string") {
+        } else if (tipo1[0] == "integer" && tipo2[0] == "string") {
             codigo += "# Inicio Traduccion llamada a entro a string fila: " + this.fila + " columna: " + this.columna + "\n";
             let tempPar1 = tabla.getTemporal();
             let tempR = tabla.getTemporal();
