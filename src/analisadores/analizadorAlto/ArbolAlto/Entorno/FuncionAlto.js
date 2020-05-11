@@ -62,7 +62,7 @@ class FuncionAlto {
             let sentencia = this.sentencias[x];
             if (!(sentencia instanceof DefinirEstructura)) {
                 if (sentencia instanceof DeclaracionSinTipoAlto) {
-                    if (instrucion.tipo != "global") {
+                    if (sentencia.tipo != "global") {
                         let val = sentencia.analizar(tabla);
                     }
                 } else {
@@ -137,6 +137,7 @@ class FuncionAlto {
             cuerpo += NodoSentencias + " --> " + nuevo.nombre + "\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        console.log("numero funcion "+nuevo.numero)
         return nuevo;
     }
 }

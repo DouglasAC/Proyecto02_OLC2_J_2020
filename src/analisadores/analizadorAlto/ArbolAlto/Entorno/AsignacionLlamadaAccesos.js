@@ -539,9 +539,9 @@ class AsignacionLlamadaAccesos {
         let nodoLlamada = this.llamada.generarCuerpo(numero);
         cuerpo += nodoLlamada.cuerpo;
         numero = nodoLlamada.numero;
-        cuerpo += nodo + " --> " + nodoLlamada.nombre;
+        cuerpo += nodo + " --> " + nodoLlamada.nombre + "\n";
         let nodoAccesos = "node" + numero++;
-        cuerpo += nodo + "(Accesos)\n";
+        cuerpo += nodoAccesos + "(Accesos)\n";
         cuerpo += nodo + " --> " + nodoAccesos + "\n";
         for (let x = 0; x < this.accessos.length; x++) {
             let acceso = this.accessos[x];
@@ -557,9 +557,10 @@ class AsignacionLlamadaAccesos {
             } else if (acceso.tipo == "funcion") {
                 cuerpo += nodoAcceso + "(Acceso Funcion: " + acceso.nombre + ")\n";
             }
+            cuerpo += nodoAccesos + " --> " + nodoAcceso + "\n";
         }
 
-        let valorNodo = this.valor.generarDot(numero);
+        let valorNodo = this.expresion.generarCuerpo(numero);
         cuerpo += valorNodo.cuerpo;
         cuerpo += nodo + " --> " + valorNodo.nombre + ";\n";
         numero = valorNodo.numero;

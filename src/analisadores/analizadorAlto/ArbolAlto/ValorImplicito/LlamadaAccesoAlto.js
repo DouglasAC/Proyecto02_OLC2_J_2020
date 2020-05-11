@@ -447,7 +447,7 @@ class LlamadaAccesoAlto {
         let nodoLlamada = this.llamada.generarCuerpo(numero);
         cuerpo += nodoLlamada.cuerpo;
         numero = nodoLlamada.numero;
-        cuerpo += nodo + " --> " + nodoLlamada.nombre;
+        cuerpo += nodo + " --> " + nodoLlamada.nombre + "\n";
         let nodoAccesos = "node" + numero++;
         cuerpo += nodoAccesos + "(Accesos)\n";
         cuerpo += nodo + " --> " + nodoAccesos + "\n";

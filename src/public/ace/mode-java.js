@@ -804,7 +804,7 @@ var JavaHighlightRules = function() {
     "break|double|implements|protected|throw|" +
     "byte|else|import|public|throws|" +
     "case|enum|instanceof|return|transient|" +
-    "catch|extends|integer|short|try|" +
+    "catch|extends|integer|short|try|as|strc|print|" +
     "char|final|interface|static|void|" +
     "class|finally|long|strictfp|volatile|" +
     "const|float|native|super|while|" +

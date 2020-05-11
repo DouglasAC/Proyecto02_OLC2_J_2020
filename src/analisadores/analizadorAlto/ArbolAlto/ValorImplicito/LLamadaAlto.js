@@ -131,7 +131,7 @@ class LLamadaAlto {
         let nodo = "node" + numero++;
         let cuerpo = nodo + "(Llamada)\n";
         let nodoIde = "node" + numero++;
-        cuerpo += nodoIde + "(Identificador" + this.identificador + ")\n";
+        cuerpo += nodoIde + "(\"Identificador: " + this.identificador + "\")\n";
         cuerpo += nodo + " --> " + nodoIde + "\n";
         let nodoExpres = "node" + numero++;
         cuerpo += nodoExpres + "(Expresiones)\n";
@@ -139,11 +139,11 @@ class LLamadaAlto {
         for (let x = 0; x < this.parametros.length; x++) {
             let nodoExp = "node" + numero++;
             cuerpo += nodoExp + "(Expresion)\n";
-            cuerpo += nodoExpres + " --> " + nodoExp;
+            cuerpo += nodoExpres + " --> " + nodoExp + "\n";
             let nodoVal = this.parametros[x].generarCuerpo(numero);
             cuerpo += nodoVal.cuerpo;
             numero = nodoVal.numero;
-            cuerpo += nodoExp + " --> " + nodoVal + "\n";
+            cuerpo += nodoExp + " --> " + nodoVal.nombre + "\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;

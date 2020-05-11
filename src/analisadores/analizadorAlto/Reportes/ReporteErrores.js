@@ -234,4 +234,8 @@ function generarReporteAst(arbol, importares) {
     document.getElementById('divAst').innerHTML = "";
     document.getElementById('divAst').appendChild(divNuevaTab);
     document.getElementById('divMermaid').innerHTML = cuerpo;
+    if(document.getElementById('divAst').style.display == "block")
+    {
+        mermaid.init();
+    }
 }

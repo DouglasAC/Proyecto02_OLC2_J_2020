@@ -44,7 +44,7 @@ class SeleccionarAlto {
                 let sentencia = sentencias[x];
                 if (!(sentencia instanceof DefinirEstructura)) {
                     if (sentencia instanceof DeclaracionSinTipoAlto) {
-                        if (instrucion.tipo != "global") {
+                        if (sentencia.tipo != "global") {
                             let res = sentencia.analizar(tabla);
                             if (res instanceof ErrorAlto) {
                                 return res;

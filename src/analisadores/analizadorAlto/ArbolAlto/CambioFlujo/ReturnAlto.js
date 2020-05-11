@@ -28,7 +28,7 @@ class ReturnAlto {
             }
             else {
                 //falta arreglos struct
-                if (!((tabla.tipoFuncion[0] == "int" && tipoVal[0] == "char") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "int") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "char") || (tabla.existeEstructura(tabla.tipoFuncion[0]) && tipoVal[0] == "null") || (tabla.tipoFuncion[0] == "Tarry" && tipoVal[0] == "null") || (tabla.tipoFuncion[0] == "string" && val[0] == "null"))) {
+                if (!((tabla.tipoFuncion[0] == "int" && tipoVal[0] == "char") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "int") || (tabla.tipoFuncion[0] == "double" && tipoVal[0] == "char") || (tabla.existeEstructura(tabla.tipoFuncion[0]) && tipoVal[0] == "null") || (tabla.tipoFuncion[0] == "Tarry" && tipoVal[0] == "null") || (tabla.tipoFuncion[0] == "string" && tipoVal[0] == "null"))) {
                     let err = new ErrorAlto("Semantico", "El la funcion es de tipo " + tabla.tipoFuncion + " el retorno es de tipo " + tipoVal, this.fila, this.columna);
                     tabla.errores.push(err);
                     return err;
@@ -58,9 +58,9 @@ class ReturnAlto {
     generarCuerpo(numero) {
 
         if (this.valor != null) {
-            let nodo = "node" + numero;
+            let nodo = "node" + numero++;
             let cuerpo = nodo + "(\"Return\")\n";
-            let val = this.valor.generarCuerpo(numero + 1);
+            let val = this.valor.generarCuerpo(numero);
             cuerpo +=  nodo + " --> " + val.nombre + ";\n";
             let nuevo = new NodoDot(nodo, val.cuerpo + cuerpo, val.numero + 1);
             return nuevo;

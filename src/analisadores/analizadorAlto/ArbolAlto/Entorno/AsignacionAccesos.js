@@ -560,7 +560,7 @@ class AsignacionAccesos {
             cuerpo += nodoAccesos + " --> " + nodoAcceso + "\n";
         }
 
-        let valorNodo = this.valor.gen(numero);
+        let valorNodo = this.expresion.generarCuerpo(numero);
         cuerpo += valorNodo.cuerpo;
         cuerpo += nodo + " --> " + valorNodo.nombre + ";\n";
         numero = valorNodo.numero;

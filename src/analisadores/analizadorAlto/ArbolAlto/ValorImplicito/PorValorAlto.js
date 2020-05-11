@@ -21,7 +21,7 @@ class PorValorAlto {
         } else {
             codigo += val;
         }
-        if (this.tipo[0] == "Tarry" || this.tipo[0] == "string" || tabla.existeEstructura(tipo[0])) {
+        if (this.tipo[0] == "Tarry" || this.tipo[0] == "string" || tabla.existeEstructura(this.tipo[0])) {
             let temp = tabla.getTemporalActual();
             tabla.agregarNoUsados(temp);
             let tempPar1 = tabla.getTemporal();
@@ -48,7 +48,7 @@ class PorValorAlto {
         let exp = this.expresion.generarCuerpo(numero);
         cuerpo += exp.cuerpo;
         numero = exp.numero;
-        cuerpo += nodo + " --> " + exp.nombre;
+        cuerpo += nodo + " --> " + exp.nombre+"\n";
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;
     }

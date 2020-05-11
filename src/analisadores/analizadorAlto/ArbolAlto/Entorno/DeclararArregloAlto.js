@@ -92,7 +92,7 @@ class DeclararArregloAlto {
 
             let expr = this.expresion.generarCuerpo(numero);
             cuerpo += expr.cuerpo;
-            numero = cuerpo.numero;
+            numero = expr.numero;
             cuerpo += nodoValor + " --> " + expr.nombre + ";\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
