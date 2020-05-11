@@ -112,13 +112,13 @@ class SiAlto {
         cuerpo += nodoIdent + "(\"Condicion\")\n";
         cuerpo += nodo + " --> " + nodoIdent + ";\n";
         let valorNodo = this.condicion.generarCuerpo(numero);
-        numero = valorNodo.nuevo;
+        numero = valorNodo.numero;
         cuerpo += valorNodo.cuerpo;
         cuerpo += nodoIdent + " --> " + valorNodo.nombre + "\n";
         let NodoSentencias = "node" + numero++;
         cuerpo += NodoSentencias + "(\"Sentencias\")\n";
         cuerpo += nodo + " --> " + NodoSentencias + "\n";
-        numero = valorNodo.Numero + 3;
+
         for (let x = 0; x < this.sentencias.length; x++) {
             let nuevo = this.sentencias[x].generarCuerpo(numero);
             numero = nuevo.numero;

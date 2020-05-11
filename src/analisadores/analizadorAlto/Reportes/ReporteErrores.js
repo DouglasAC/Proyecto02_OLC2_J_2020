@@ -194,13 +194,44 @@ function generarReporteTablaSimbolos(simbolos) {
     codigo += "</tbody>\n";
     codigo += "</table>\n";
     codigo += "<br>\n";
-    document.getElementById('divTabla').innerHTML = codigo;
+    document.getElementById('divTabla').innerHTML = codigo
+}
+
+function generarReporteAst(arbol, importares) {
+    let cuerpo = "graph TD\n";
+    let numero = 0;
+    let nodoAst = "node" + numero++;
+    cuerpo += nodoAst + "(AST)\n";
+    let nodoSentencias = "node" + numero++;
+    cuerpo += nodoSentencias + "(Sentencias)\n";
+    cuerpo += nodoAst + " --> " + nodoSentencias + "\n";
+    for (let x = 0; x < arbol.instrucciones.length; x++) {
+        let nodoInstruccion = arbol.instrucciones[x].generarCuerpo(numero);
+        cuerpo += nodoInstruccion.cuerpo;
+        
+        numero = nodoInstruccion.numero;
+        console.log("numeor " +numero);
+        cuerpo += nodoSentencias + " --> " + nodoInstruccion.nombre + "\n";
+    }
+    if (importares.length > 0) {
+        let nodoImport = "node" + numero++;
+        cuerpo += nodoImport + "(Sentencias_Import)\n";
+        cuerpo += nodoAst + " --> " + nodoImport + "\n";
+        for (let y = 0; y < importares.length; y++) {
+            let arbolImport = importares[y];
+            for (let x = 0; x < arbolImport.instrucciones.length; x++) {
+                let nodoInstruccion = arbolImport.instrucciones[x].generarCuerpo(numero);
+                cuerpo += nodoInstruccion.cuerpo;
+                numero = nodoInstruccion.numero;
+                cuerpo += nodoSentencias + " --> " + nodoInstruccion.nombre + "\n";
+            }
+        }
+    }
+    console.log(cuerpo);
     var divNuevaTab = document.createElement("DIV");
     divNuevaTab.id = 'divMermaid';
     divNuevaTab.className = "mermaid"
-    texto = "graph LR\n A --- B"
     document.getElementById('divAst').innerHTML = "";
     document.getElementById('divAst').appendChild(divNuevaTab);
-    document.getElementById('divMermaid').innerHTML = texto;
-                  
+    document.getElementById('divMermaid').innerHTML = cuerpo;
 }

@@ -42,5 +42,15 @@ class PorValorAlto {
         codigo += "# Fin por Valor";
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Por Valor)\n";
+        let exp = this.expresion.generarCuerpo(numero);
+        cuerpo += exp.cuerpo;
+        numero = exp.numero;
+        cuerpo += nodo + " --> " + exp.nombre;
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
+    }
 }
 exports.PorValorAlto = PorValorAlto;

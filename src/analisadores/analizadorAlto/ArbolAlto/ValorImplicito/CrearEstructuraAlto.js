@@ -49,5 +49,16 @@ class CrearEstructuraAlto {
         codigo += "# Fin llamada\n"
         return codigo;
     }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Crear Estructura)\n";
+
+        let nodoIdent = "node" + numero++;
+        cuerpo += nodoIdent + "(Identificador: " + this.nombre + ")\n";
+        cuerpo += nodo + " --> " + nodoIdent + "\n";
+
+        let nuevo = new NodoDot(nodo, cuerpo, numero);
+        return nuevo;
+    } 
 }
 exports.CrearEstructuraAlto = CrearEstructuraAlto;

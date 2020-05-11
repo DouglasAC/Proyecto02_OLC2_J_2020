@@ -121,13 +121,13 @@ class SeleccionarAlto {
         let nodoIdent = "node" + numero++;
         cuerpo += nodoIdent + "(\"Condicion\")\n";
         cuerpo += nodo + " --> " + nodoIdent + "\n";
-        let valorNodo = this.expresion.generarDot(numero);
+        let valorNodo = this.expresion.generarCuerpo(numero);
         cuerpo += valorNodo.cuerpo;
         numero = valorNodo.numero;
         cuerpo += nodoIdent + " --> " + valorNodo.nombre + "\n";
         let NodoSentencias = "node" + numero++;
         cuerpo += NodoSentencias + "(\"Casos\")\n";
-        cuerpo += nodo + "->" + NodoSentencias + "\n";
+        cuerpo += nodo + " --> " + NodoSentencias + "\n";
 
 
         for (let x = 0; x < this.casos.length; x++) {
@@ -146,13 +146,13 @@ class SeleccionarAlto {
             let sentencias = "node" + numero++;
 
             cuerpo += sentencias + "(\"Sentencias\")\n";
-            cuerpo += nodoCaso + " -> " + sentencias + "\n";
+            cuerpo += nodoCaso + " --> " + sentencias + "\n";
             numero++;
             for (let y = 0; y < caso.sentencias.length; y++) {
-                let nuevo = caso.sentencia[y].generarDot(numero);
+                let nuevo = caso.sentencias[y].generarCuerpo(numero);
                 numero = nuevo.numero;
                 cuerpo += nuevo.cuerpo;
-                cuerpo += sentencias + " -> " + nuevo.nombre + "\n";
+                cuerpo += sentencias + " --> " + nuevo.nombre + "\n";
             }
         }
 
@@ -161,9 +161,9 @@ class SeleccionarAlto {
             cuerpo += nodoCaso + "(\"Caso_Defecto\")\n";
             cuerpo += NodoSentencias + " --> " + nodoCaso + ";\n";
 
-            let sentencias = "node" + numero;
+            let sentencias = "node" + numero++;
             cuerpo += sentencias + "(\"Sentencias\")\n";
-            cuerpo += nodoCaso + " -> " + sentencias + ";\n";
+            cuerpo += nodoCaso + " --> " + sentencias + ";\n";
 
             for (let x = 0; x < this.defecto.sentencias.length; x++) {
                 let nuevo = this.defecto.sentencias[x].generarCuerpo(numero);
@@ -173,7 +173,7 @@ class SeleccionarAlto {
             }
         }
 
-        let nuevo = new NodoDot(nodo, valorNodo.Cuerpo + cuerpo, numero + 1);
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;
     }
 }

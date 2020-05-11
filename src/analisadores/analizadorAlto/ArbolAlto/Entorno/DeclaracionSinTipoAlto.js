@@ -85,12 +85,12 @@ class DeclaracionSinTipoAlto {
        
 
         let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "\"Identificador: " + this.nombre + "\"\n";
+        cuerpo += nodoIdent + "(\"Identificador: " + this.nombre + "\")\n";
         cuerpo += nodo + " --> " + nodoIdent + ";\n";
 
 
         let nodoTipo = "node" + numero++;
-        cuerpo += nodoTipo + "\"Expresion\"\n";
+        cuerpo += nodoTipo + "(\"Expresion\")\n";
         cuerpo += nodo + " --> " + nodoTipo + ";\n";
 
         let expr = this.valor.generarCuerpo(numero);

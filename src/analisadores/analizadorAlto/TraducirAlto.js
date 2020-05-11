@@ -127,6 +127,7 @@ function TraducurAlto() {
             console.log(this.tablaAlto.errores);
             generarReporteErrores(tablaAlto.errores);
             generarReporteTablaSimbolos(tablaAlto.simbolos);
+            generarReporteAst(result, importares);
         }else{
             
             crearTabBajo();
@@ -135,6 +136,7 @@ function TraducurAlto() {
 
             generarReporteErrores(tablaAlto.errores);
             generarReporteTablaSimbolos(tablaAlto.simbolos);
+            generarReporteAst(result, importares);
         }
 
     } else {
@@ -142,6 +144,7 @@ function TraducurAlto() {
         console.log(this.tablaAlto.errores);
         generarReporteErrores(tablaAlto.errores);
         generarReporteTablaSimbolos(tablaAlto.simbolos);
+        generarReporteAst(result, importares);
     }
 
 }

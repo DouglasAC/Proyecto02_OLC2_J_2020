@@ -102,26 +102,26 @@ class DeclaracionAlto {
         let nodo = "node" + numero++;
         let cuerpo = nodo + "(Declaracion)\n";
         let nodoTipo = "node" + numero++;
-        cuerpo += nodoTipo + "\"Tipo " + this.tipo[0] + "\"\n";
+        cuerpo += nodoTipo + "(\"Tipo " + this.tipo[0] + "\")\n";
         cuerpo += nodo + " --> " + nodoTipo + ";\n";
 
         let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "\"Identificadores\"\n";
+        cuerpo += nodoIdent + "(\"Identificadores\")\n";
         cuerpo += nodo + " --> " + nodoIdent + ";\n";
         for (let x = 0; x < this.nombres.length; x++) {
             let nodoId = "node" + numero++;
-            cuerpo += nodoId + "\"Identificador: " + this.nombres[x] + "\"\n";
+            cuerpo += nodoId + "(\"Identificador: " + this.nombres[x] + "\")\n";
             cuerpo += nodoIdent + " --> " + nodoId + ";\n";
         }
 
         if (this.valor != null) {
             let nodoValor = "node" + numero++;
-            cuerpo += nodoValor + "\"Expresion\"\n";
+            cuerpo += nodoValor + "(\"Expresion\")\n";
             cuerpo += nodo + " --> " + nodoValor + ";\n";
 
             let expr = this.valor.generarCuerpo(numero);
             cuerpo += expr.cuerpo;
-            numero = cuerpo.numero;
+            numero = expr.numero;
             cuerpo += nodoValor + " --> " + expr.nombre + ";\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);

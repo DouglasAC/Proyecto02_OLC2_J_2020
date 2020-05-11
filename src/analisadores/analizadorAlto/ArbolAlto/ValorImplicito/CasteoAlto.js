@@ -34,7 +34,7 @@ class CasteoAlto {
             let temp1 = tabla.getTemporal();
             codigo += temp1 + " = " + temVal + " % 1;\n";
             let temp2 = tabla.getTemporal();
-            codigo += temp2 +" = "+ temVal + " - " + temp1 + ";\n";
+            codigo += temp2 + " = " + temVal + " - " + temp1 + ";\n";
             tabla.agregarNoUsados(temp2);
             tabla.quitarNoUsados(temVal);
         } else if (this.tipo == "char" && this.tipoExp == "int") {
@@ -50,7 +50,7 @@ class CasteoAlto {
             let temp1 = tabla.getTemporal();
             codigo += temp1 + " = " + temVal + " % 1;\n";
             let temp2 = tabla.getTemporal();
-            codigo += temp2 +" = "+ temVal + " - " + temp1 + ";\n";
+            codigo += temp2 + " = " + temVal + " - " + temp1 + ";\n";
             tabla.agregarNoUsados(temp2);
             tabla.quitarNoUsados(temVal);
             let etq = tabla.getEtiqueta();
@@ -64,6 +64,22 @@ class CasteoAlto {
         }
         codigo += "# Fin Traduccion Casteo\n";
         return codigo;
+    }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Casteo)\n";
+
+        let nodoIdent = "node" + numero++;
+        cuerpo += nodoIdent + "(Tipo: " + this.tipo + ")\n";
+        cuerpo += nodo + " --> " + nodoIdent + "\n";
+
+        let nodoExp = this.expresion.generarCuerpo(nuevo);
+        cuerpo += nodoExp.cuerpo;
+        numero = nodoExp.numero;
+        cuerpo += nodo + " --> " + nodoExp.nombre + "\n";
+
+        let nuevo = new NodoDot(nodo, cuerpo, numero);
+        return nuevo;
     }
 }
 exports.CasteoAlto = CasteoAlto;

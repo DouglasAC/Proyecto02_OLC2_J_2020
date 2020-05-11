@@ -59,7 +59,7 @@ var identifierRe = "[a-zA-Z\\$_\u00a1-\uffff][a-zA-Z\\d\\$_\u00a1-\uffff]*";
 var JavaScriptHighlightRules = function(options) {
     var keywordMapper = this.createKeywordMapper({
         "variable.language":
-            "Array|Boolean|Date|Function|Iterator|Number|Object|RegExp|String|Proxy|"  + // Constructors
+            "Array|Boolean|Date|Function|Iterator|Number|Object|RegExp|String|Proxy|strc|"  + // Constructors
             "Namespace|QName|XML|XMLList|"                                             + // E4X
             "ArrayBuffer|Float32Array|Float64Array|Int16Array|Int32Array|Int8Array|"   +
             "Uint16Array|Uint32Array|Uint8Array|Uint8ClampedArray|"                    +

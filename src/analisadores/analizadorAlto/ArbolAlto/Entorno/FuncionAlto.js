@@ -36,7 +36,7 @@ class FuncionAlto {
         this.nombreFalso = nombreFun;
         let fun = new SimboloFuncion(nombreFun, this.nombre, this.tipo, this.parametros, this.sentencias, this.parametros.length + 1);
         tabla.agregarFuncion(fun);
-        tabla.simbolos.push(sim);
+        tabla.simbolos.push(fun);
     }
     get3D(tabla) {
         let codigo = "# Inicio traduccion Funcion: " + this.nombre + " fila: " + this.fila + " columna: " + this.columna + "\n";
@@ -94,36 +94,36 @@ class FuncionAlto {
         let cuerpo = nodo + "(Funcion)\n";
         let tipo = "node" + numero++;
         if (this.tipo[0] == "Tarry") {
-            cuerpo += tipo + "(Tipo: Arreglo de " + this.tipo[0] + ")\n";
+            cuerpo += tipo + "(\"Tipo: Arreglo de " + this.tipo[0] + "\")\n";
         } else {
-            cuerpo += tipo + "(Tipo: " + this.tipo[0] + ")\n";
+            cuerpo += tipo + "(\"Tipo: " + this.tipo[0] + "\")\n";
         }
-        cuerpo += nodo + " --> " + tipo;
+        cuerpo += nodo + " --> " + tipo + "\n";
 
         let nom = "node" + numero++;
-        cuerpo += nom + "(Identificador: " + this.nombre + ")\n";
-        cuerpo += nodo + " --> " + nom;
+        cuerpo += nom + "(\"Identificador: " + this.nombre + "\")\n";
+        cuerpo += nodo + " --> " + nom + "\n";
 
         let param = "node" + numero++;
-        cuerpo += param + "(Parametros)\n";
-        cuerpo += nodo + " --> " + param;
+        cuerpo += param + "(\"Parametros\")\n";
+        cuerpo += nodo + " --> " + param + "\n";
 
         for (let x = 0; x < this.parametros.length; x++) {
             let par = this.parametros[x];
             let para = "node" + numero++;
             cuerpo += para + "(Parametro)\n";
-            cuerpo += param + " --> " + para;
+            cuerpo += param + " --> " + para + "\n";
             let tpar = par[0];
             let tipar = "node" + numero++;
             if (tpar[0] == "Tarry") {
-                cuerpo += tipar + "(Tipo: Arreglo de " + tpar[1] + ")\n";
+                cuerpo += tipar + "(\"Tipo: Arreglo de " + tpar[1] + "\")\n";
             } else {
-                cuerpo += tipar + "(Tipo: " + tpar[0] + ")\n";
+                cuerpo += tipar + "(\"Tipo: " + tpar[0] + "\")\n";
             }
-            cuerpo += para + " --> " + tipar;
+            cuerpo += para + " --> " + tipar + "\n";
             let nompar = "node" + numero++;
-            cuerpo += nompar + "(Identificador: " + par[1] + ")\n";
-            cuerpo += para + " --> " + nompar;
+            cuerpo += nompar + "(\"Identificador: " + par[1] + "\")\n";
+            cuerpo += para + " --> " + nompar + "\n";
         }
 
         let NodoSentencias = "node" + numero++;
@@ -136,7 +136,7 @@ class FuncionAlto {
             cuerpo += nuevo.cuerpo;
             cuerpo += NodoSentencias + " --> " + nuevo.nombre + "\n";
         }
-        let nuevo = new NodoDot(nodo, valorNodo.cuerpo + cuerpo, numero + 1);
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;
     }
 }

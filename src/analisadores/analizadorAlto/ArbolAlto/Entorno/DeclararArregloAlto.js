@@ -76,18 +76,18 @@ class DeclararArregloAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Declaracion)\n";
+        let cuerpo = nodo + "(Declaracion de Arreglo)\n";
         let nodoTipo = "node" + numero++;
-        cuerpo += nodoTipo + "\"Tipo Arreglo de " + this.tipo[1] + "\"\n";
+        cuerpo += nodoTipo + "(\"Tipo Arreglo de " + this.tipo[0] + "\")\n";
         cuerpo += nodo + " --> " + nodoTipo + ";\n";
 
         let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "\"Identificador: " + this.nombre + "\"\n";
+        cuerpo += nodoIdent + "(\"Identificador: " + this.nombre + "\")\n";
         cuerpo += nodo + " --> " + nodoIdent + ";\n";
 
         if (this.expresion != null) {
             let nodoValor = "node" + numero++;
-            cuerpo += nodoValor + "\"Expresion\"\n";
+            cuerpo += nodoValor + "(\"Expresion\")\n";
             cuerpo += nodo + " --> " + nodoValor + ";\n";
 
             let expr = this.expresion.generarCuerpo(numero);

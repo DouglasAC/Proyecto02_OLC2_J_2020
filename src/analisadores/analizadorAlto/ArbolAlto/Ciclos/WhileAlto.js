@@ -86,7 +86,7 @@ class WhileAlto {
         let valorNodo = this.condicion.generarCuerpo(numero);
 
         let nodo = "node" + valorNodo.numero;
-        let cuerpo = "  " + nodo + "(\"Sentencia_While\")\n";
+        let cuerpo = nodo + "(\"Sentencia_While\")\n";
         let nodoIdent = "node" + (valorNodo.numero + 1);
         cuerpo += nodoIdent + "(\"Condicion\");\n";
         cuerpo += nodo + " --> " + nodoIdent + ";\n";

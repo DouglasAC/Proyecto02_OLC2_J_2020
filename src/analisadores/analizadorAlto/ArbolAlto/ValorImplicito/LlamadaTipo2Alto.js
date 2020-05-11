@@ -25,14 +25,14 @@ class LlamadaTipo2Alto {
             return bienNombres;
         }
         for (let x = 0; x < funciones.length; x++) {
-            let bien = this.verificarFuncion(tabla, funciones[x],tipo_parametros, nombres);
+            let bien = this.verificarFuncion(tabla, funciones[x], tipo_parametros, nombres);
             if (bien) {
                 this.nombreFalso = funciones[x].nombre;
                 this.funcion = funciones[x];
                 return this.funcion.tipo;
             }
         }
-        let err = new ErrorAlto("Semantico","No se encontro una funcion que cumpla con los nombres y tipos de la llamada", this.fila, this.columna);
+        let err = new ErrorAlto("Semantico", "No se encontro una funcion que cumpla con los nombres y tipos de la llamada", this.fila, this.columna);
         tabla.errores.push(err);
         return err;
     }
@@ -164,6 +164,30 @@ class LlamadaTipo2Alto {
         tabla.agregarNoUsados(tempValorReturn);
         codigo += "# Fin llamada Tipo 2\n"
         return codigo;
+    }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Llamada)\n";
+        let nodoIde = "node" + numero++;
+        cuerpo += nodoIde + "(Identificador" + this.identificador + ")\n";
+        cuerpo += nodo + " --> " + nodoIde + "\n";
+        let nodoExpres = "node" + numero++;
+        cuerpo += nodoExpres + "(Expresiones)\n";
+        cuerpo += nodo + " --> " + nodoExpres + "\n";
+        for (let x = 0; x < this.parametros.length; x++) {
+            let nodoExp = "node" + numero++;
+            cuerpo += nodoExp + "(Expresion)\n";
+            cuerpo += nodoExpres + " --> " + nodoExp;
+            let nodoNom = "node" + numero++;
+            cuerpo += nodoNom + "(Nombre: " + this.parametros[x][0] + ")\n";
+            cuerpo += nodoExp + " --> " + nodoNom + "\n";
+            let nodoVal = this.parametros[x][1].generarCuerpo(numero);
+            cuerpo += nodoVal.cuerpo;
+            numero = nodoVal.numero;
+            cuerpo += nodoExp + " --> " + nodoVal + "\n";
+        }
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
     }
 }
 exports.LlamadaTipo2Alto = LlamadaTipo2Alto;

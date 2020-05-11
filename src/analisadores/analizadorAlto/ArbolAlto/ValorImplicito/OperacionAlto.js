@@ -536,7 +536,7 @@ class OperacionAlto {
             tabla.agregarNoUsados(tempR4);
             codigo += "p = p - " + tabla.stack + ";\n";
             codigo += "# Fin Traduccion llamada a concatenar_15 \n";
-        }else if (tipo1[0] == "string" && tipo2[0] == "double") {
+        } else if (tipo1[0] == "string" && tipo2[0] == "double") {
             codigo += "# Inicio Traduccion llamada a double a string fila: " + this.fila + " columna: " + this.columna + "\n";
             let tempPar1 = tabla.getTemporal();
             let tempR = tabla.getTemporal();
@@ -567,7 +567,7 @@ class OperacionAlto {
             tabla.agregarNoUsados(tempR4);
             codigo += "p = p - " + tabla.stack + ";\n";
             codigo += "# Fin Traduccion llamada a concatenar_15 \n";
-        }else if (tipo1[0] == "double" && tipo2[0] == "string") {
+        } else if (tipo1[0] == "double" && tipo2[0] == "string") {
             codigo += "# Inicio Traduccion llamada a double a string fila: " + this.fila + " columna: " + this.columna + "\n";
             let tempPar1 = tabla.getTemporal();
             let tempR = tabla.getTemporal();
@@ -988,6 +988,28 @@ class OperacionAlto {
         tabla.agregarNoUsados(tempR);
 
         return codigo;
+    }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(\"Operacion: " + this.operador + "\")\n";
+
+        if (this.operandoU != null) {
+            let nodoUni = this.operandoU.generarCuerpo(numero);
+            cuerpo += nodoUni.cuerpo;
+            numero = nodoUni.numero;
+            cuerpo += nodo + " --> " + nodoUni.nombre + "\n";;
+        } else {
+            let nodoOp1 = this.operando1.generarCuerpo(numero);
+            cuerpo += nodoOp1.cuerpo;
+            numero = nodoOp1.numero;
+            cuerpo += nodo + " --> " + nodoOp1.nombre + "\n";
+            let nodoOp2 = this.operando2.generarCuerpo(numero);
+            cuerpo += nodoOp2.cuerpo;
+            numero = nodoOp2.numero;
+            cuerpo += nodo + " --> " + nodoOp2.nombre + "\n";;
+        }
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
     }
 }
 

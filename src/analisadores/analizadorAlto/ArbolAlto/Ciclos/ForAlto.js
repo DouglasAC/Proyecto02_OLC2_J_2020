@@ -154,10 +154,10 @@ class ForAlto {
         cuerpo += nodo + " --> " + NodoSentencias + "\n";
         
         for (let x = 0; x<this.sentencias.length; x++) {
-            let nuevo = this.sentencias[x].generarDot(numero);
-            numero = nuevo.Numero;
-            cuerpo += nuevo.Cuerpo;
-            cuerpo += NodoSentencias + " -> " + nuevo.Nombre + ";\n";
+            let nuevo = this.sentencias[x].generarCuerpo(numero);
+            numero = nuevo.numero;
+            cuerpo += nuevo.cuerpo;
+            cuerpo += NodoSentencias + " --> " + nuevo.nombre + ";\n";
         }
 
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);

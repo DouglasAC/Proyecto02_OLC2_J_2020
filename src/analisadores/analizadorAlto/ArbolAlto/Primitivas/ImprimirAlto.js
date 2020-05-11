@@ -75,11 +75,11 @@ class ImprimirAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Imprimir)\n";
+        let cuerpo = nodo + "(\"Imprimir\")\n";
         let nodoExpresion = this.valor.generarCuerpo(numero);
         cuerpo += nodoExpresion.cuerpo;
         numero = nodoExpresion.numero;
-        cuerpo += nodo + " --> " + nodoExpresion.nombre;
+        cuerpo += nodo + " --> " + nodoExpresion.nombre+"\n";
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;
     }

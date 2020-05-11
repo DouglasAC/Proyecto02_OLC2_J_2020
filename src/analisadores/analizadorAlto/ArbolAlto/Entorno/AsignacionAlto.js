@@ -49,11 +49,11 @@ class AsignacionAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "\"Asignacion\"\n";
+        let cuerpo = nodo + "(\"Asignacion\")\n";
         let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "\"Identificador: " + this.nombre + "\"\n";
+        cuerpo += nodoIdent + "(\"Identificador: " + this.nombre + "\")\n";
         cuerpo += nodo + " --> " + nodoIdent + ";\n";
-        let valorNodo = this.valor.generarDot(numero);
+        let valorNodo = this.valor.generarCuerpo(numero);
         cuerpo += valorNodo.cuerpo;
         cuerpo += nodo + " --> " + valorNodo.nombre + ";\n";
         numero = valorNodo.numero;

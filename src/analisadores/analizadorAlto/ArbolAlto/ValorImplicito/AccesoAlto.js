@@ -54,7 +54,7 @@ class AccesoAlto {
                     if (tipo[0] == "string") {
                         tipo = ["Tarry", "char"];
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion toCharArray solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion toCharArray solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -62,7 +62,7 @@ class AccesoAlto {
                     if (tipo[0] == "string") {
                         tipo = ["int"];
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion length solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion length solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -70,7 +70,7 @@ class AccesoAlto {
                     if (tipo[0] == "string") {
                         tipo = ["string"];
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion toUpperCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion toUpperCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -78,7 +78,7 @@ class AccesoAlto {
                     if (tipo[0] == "string") {
                         tipo = ["string"];
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion toLowerCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion toLowerCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -86,7 +86,7 @@ class AccesoAlto {
                     if (tipo[0] == "string") {
                         tipo = ["char"];
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion toLowerCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion toLowerCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -252,7 +252,7 @@ class AccesoAlto {
                         codigo += "p = p - " + tabla.stack + ";\n";
                         codigo += "# Fin Traduccion llamada a tocharArray\n";
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion toCharArray solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion toCharArray solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -275,7 +275,7 @@ class AccesoAlto {
                         codigo += "p = p - " + tabla.stack + ";\n";
                         codigo += "# Fin Traduccion llamada Lenght \n";
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion length solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion length solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -298,7 +298,7 @@ class AccesoAlto {
                         codigo += "p = p - " + tabla.stack + ";\n";
                         codigo += "# Fin Traduccion llamada a toUpperCase\n";
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion toUpperCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion toUpperCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -321,7 +321,7 @@ class AccesoAlto {
                         codigo += "p = p - " + tabla.stack + ";\n";
                         codigo += "# Fin Traduccion llamada a toLowerCase\n";
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion toLowerCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion toLowerCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -351,7 +351,7 @@ class AccesoAlto {
                         codigo += "p = p - " + tabla.stack + ";\n";
                         codigo += "# Fin Traduccion llamada a charAt\n";
                     } else {
-                        let err = ErrorAlto("Semantico", "La funcion toLowerCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
+                        let err = new ErrorAlto("Semantico", "La funcion toLowerCase solo es para Strings, se encontro tipo " + tipo, acceso.fila, acceso.columna);
                         tabla.errores.push(err);
                         return err;
                     }
@@ -441,6 +441,36 @@ class AccesoAlto {
         tabla.agregarNoUsados(tempFinal);
         codigo += "# Fin Traduccion Acceso\n";
         return codigo;
+    }
+    generarCuerpo(numero) {
+        let nodo = "node" + numero++;
+        let cuerpo = nodo + "(Expresion Acceso)\n";
+        let nodoNom = "node" + numero++
+        cuerpo += nodoNom + "(Identificador: " + this.nombre + ")\n";
+        cuerpo += nodo + " --> " + nodoNom + "\n";
+        let nodoAccesos = "node" + numero++;
+        cuerpo += nodoAccesos + "(Accesos)\n";
+        cuerpo += nodo + " --> " + nodoAccesos + "\n";
+        for (let x = 0; x < this.accessos.length; x++) {
+            let acceso = this.accessos[x];
+            let nodoAcceso = "node" + numero++;
+            if (acceso.tipo == "arreglo") {
+                cuerpo += nodoAcceso + "(Acceso Arreglo posicion:)\n";
+                let nodoPos = acceso.posicion.generarCuerpo(numero);
+                cuerpo += nodoPos.cuerpo;
+                numero = nodoPos.numero;
+                cuerpo += nodoAcceso + " --> " + nodoPos.cuerpo + "\n";
+            } else if (acceso.tipo == "atributo") {
+                cuerpo += nodoAcceso + "(Acceso Atributo: " + acceso.nombre + ")\n";
+            } else if (acceso.tipo == "funcion") {
+                cuerpo += nodoAcceso + "(Acceso Funcion: " + acceso.nombre + ")\n";
+            }
+            cuerpo += nodoAccesos + " --> " + nodoAcceso + "\n";
+        }
+
+        
+        let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
+        return nuevo;
     }
 }
 exports.AccesoAlto = AccesoAlto;
