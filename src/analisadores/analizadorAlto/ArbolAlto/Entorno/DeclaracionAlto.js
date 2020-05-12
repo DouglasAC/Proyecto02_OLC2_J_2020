@@ -39,9 +39,12 @@ class DeclaracionAlto {
                 return val;
             }
             if (this.tipo[0] != val[0]) {
-                if (!((this.tipo[0] == "integer" && val[0] == "char") 
-                || (this.tipo[0] == "double" && val[0] == "integer") 
-                || (this.tipo[0] == "double" && val[0] == "char"))) {
+                if (!((this.tipo[0] == "integer" && val[0] == "char")
+                    || (this.tipo[0] == "double" && val[0] == "integer")
+                    || (this.tipo[0] == "double" && val[0] == "char")
+                    || (tabla.existeEstructura(this.tipo[0]) && val[0] == "null")
+                    || (this.tipo[0] == "string" && val[0] == "null")
+                )) {
                     console.log(this.tipo);
                     console.log(val);
                     let erro = new ErrorAlto("Semantico", "El tipo declarado no es igual al valor a asignar", this.fila, this.columna);

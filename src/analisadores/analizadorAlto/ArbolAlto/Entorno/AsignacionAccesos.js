@@ -142,7 +142,12 @@ class AsignacionAccesos {
         }
 
         if (tipo[0] != val[0]) {
-            if (!((tipo[0] == "integer" && val[0] == "char") || (tipo[0] == "double" && val[0] == "integer") || (tipo[0] == "double" && val[0] == "char") || (tabla.existeEstructura(tipo[0]) && val[0] == "null") || (tipo[0] == "Tarry" && val[0] == "null"))) {
+            if (!((tipo[0] == "integer" && val[0] == "char")
+                || (tipo[0] == "double" && val[0] == "integer")
+                || (tipo[0] == "double" && val[0] == "char")
+                || (tabla.existeEstructura(tipo[0]) && val[0] == "null")
+                || (tipo[0] == "Tarry" && val[0] == "null")
+                || (tipo[0] == "string" && val[0] == "null"))) {
                 let erro = new ErrorAlto("Semantico", "El tipo es " + tipo[0] + " no es igual al valor a asignar de tipo" + val[0], this.fila, this.columna);
                 tabla.agregarError(erro);
                 return erro;

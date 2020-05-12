@@ -22,13 +22,23 @@ class AsignacionAlto {
             return erro;
         }
         if (sim.tipo[0] != val[0]) {
-            if (!((sim.tipo[0] == "integer" && val[0] == "char") 
-            || (sim.tipo[0] == "double" && val[0] == "integer") 
-            || (sim.tipo[0] == "double" && val[0] == "char") 
-            || (tabla.existeEstructura(sim.tipo[0]) && val[0] == "null"))) {
-                let erro = new ErrorAlto("Semantico", "El tipo declarado no es igual al valor a asignar", this.fila, this.columna);
+            if (!((sim.tipo[0] == "integer" && val[0] == "char")
+                || (sim.tipo[0] == "double" && val[0] == "integer")
+                || (sim.tipo[0] == "double" && val[0] == "char")
+                || (tabla.existeEstructura(sim.tipo[0]) && val[0] == "null")
+                || (sim.tipo[0] == "Tarry" && val[0] == "null")
+                || (sim.tipo[0] == "string" && val[0] == "null")
+            )) {
+                let erro = new ErrorAlto("Semantico", "El tipo de la variable es " + sim.tipo + " no es igual al valor a asignar de tipo " + val, this.fila, this.columna);
                 tabla.agregarError(erro);
                 return erro;
+            }
+        } else if (sim.tipo[0] == "Tarry" && val[0] == "Tarry") {
+            if (sim.tipo[1] != val[1]) {
+                let erro = new ErrorAlto("Semantico", "El tipo de la variable es arreglo de " + sim.tipo[1] + " no es igual al valor a asignar de tipo arreglo de " + val[1], this.fila, this.columna);
+                tabla.agregarError(erro);
+                return erro;
+
             }
         }
     }

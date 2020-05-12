@@ -24,12 +24,16 @@ class DeclararArregloAlto {
                 return err;
             }
             if (this.tipo[0] != tipoE[1]) {
-                if (!((this.tipo[0] == "integer" && tipoE[1] == "char") 
-                || (this.tipo[0] == "double" && tipoE[1] == "integer") 
-                || (this.tipo[0] == "double" && tipoE[1] == "char"))) { }
-                let err = new ErrorAlto("Semantico", "El tipo de la declaracion " + this.tipo[0] + " no es igual al de la expresion " + tipoE[1], this.fila, this.columna);
-                tabla.errores.push(err);
-                return err;
+                if (!((this.tipo[0] == "integer" && tipoE[1] == "char")
+                    || (this.tipo[0] == "double" && tipoE[1] == "integer")
+                    || (this.tipo[0] == "double" && tipoE[1] == "char")
+                    || (tabla.existeEstructura(this.tipo[0]) && tipoE[0] == "null")
+                    || (this.tipo[0] == "string" && val[0] == "null")
+                )) {
+                    let err = new ErrorAlto("Semantico", "El tipo de la declaracion " + this.tipo[0] + " no es igual al de la expresion " + tipoE[1], this.fila, this.columna);
+                    tabla.errores.push(err);
+                    return err;
+                }
             }
         }
         if (tabla.entorno == "local") {
