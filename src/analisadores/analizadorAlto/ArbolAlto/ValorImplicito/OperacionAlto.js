@@ -657,7 +657,14 @@ class OperacionAlto {
         tabla.agregarNoUsados(op2);
 
         let tempR = tabla.getTemporal();
+        let etq = tabla.getEtiqueta();
+        let etq2 = tabla.getEtiqueta();
+        codigo += "if (" + op2 + " == 0) goto " + etq + ";\n";
         codigo += tempR + " = " + op1 + " / " + op2 + ";\n"
+        codigo += "goto " + etq2 + ";\n";
+        codigo += etq + ":\n"
+        codigo += "e = 1;\n";
+        codigo += etq2 + ":\n"
 
         tabla.agregarNoUsados(tempR);
         tabla.quitarNoUsados(op1);
