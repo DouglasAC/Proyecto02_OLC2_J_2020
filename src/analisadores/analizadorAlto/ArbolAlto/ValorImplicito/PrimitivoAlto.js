@@ -10,7 +10,7 @@ class PrimitivoAlto {
     }
     get3D(tabla) {
         let codigo = "";
-        if (this.tipo == 'int' || this.tipo == 'double') {
+        if (this.tipo == 'integer' || this.tipo == 'double') {
             let temp = tabla.getTemporal();
             codigo = temp + " = " + this.valor + ";\n";
             tabla.agregarNoUsados(temp);

@@ -92,24 +92,24 @@ class OperacionAlto {
         return [tipoResultado];
     }
     analizarSuma(tipo1, tipo2) {
-        if ((tipo1 == 'int' && tipo2 == 'int')
-            || (tipo1 == 'int' && tipo2 == 'char')
-            || (tipo1 == 'char' && tipo2 == 'int')
+        if ((tipo1 == 'integer' && tipo2 == 'integer')
+            || (tipo1 == 'integer' && tipo2 == 'char')
+            || (tipo1 == 'char' && tipo2 == 'integer')
         ) {
-            return 'int';
+            return 'integer';
         } else if ((tipo1 == 'double' && tipo2 == 'double')
             || (tipo1 == 'double' && tipo2 == 'char')
             || (tipo1 == 'char' && tipo2 == 'double')
-            || (tipo1 == 'double' && tipo2 == 'int')
-            || (tipo1 == 'int' && tipo2 == 'double')
+            || (tipo1 == 'double' && tipo2 == 'integer')
+            || (tipo1 == 'integer' && tipo2 == 'double')
         ) {
             return 'double';
         } else if ((tipo1 == 'string' && tipo2 == 'string')
-            || (tipo1 == 'string' && tipo2 == 'int')
+            || (tipo1 == 'string' && tipo2 == 'integer')
             || (tipo1 == 'string' && tipo2 == 'double')
             || (tipo1 == 'string' && tipo2 == 'char')
             || (tipo1 == 'string' && tipo2 == 'boolean')
-            || (tipo1 == 'int' && tipo2 == 'string')
+            || (tipo1 == 'integer' && tipo2 == 'string')
             || (tipo1 == 'double' && tipo2 == 'string')
             || (tipo1 == 'char' && tipo2 == 'string')
             || (tipo1 == 'boolean' && tipo2 == 'string')
@@ -121,17 +121,17 @@ class OperacionAlto {
         }
     }
     analizarResta(tipo1, tipo2) {
-        if ((tipo1 == 'int' && tipo2 == 'int')
-            || (tipo1 == 'int' && tipo2 == 'char')
-            || (tipo1 == 'char' && tipo2 == 'int')
+        if ((tipo1 == 'integer' && tipo2 == 'integer')
+            || (tipo1 == 'integer' && tipo2 == 'char')
+            || (tipo1 == 'char' && tipo2 == 'integer')
             || (tipo1 == 'char' && tipo2 == 'char')
         ) {
-            return 'int';
+            return 'integer';
         } else if ((tipo1 == 'double' && tipo2 == 'double')
             || (tipo1 == 'double' && tipo2 == 'char')
             || (tipo1 == 'char' && tipo2 == 'double')
-            || (tipo1 == 'double' && tipo2 == 'int')
-            || (tipo1 == 'int' && tipo2 == 'double')
+            || (tipo1 == 'double' && tipo2 == 'integer')
+            || (tipo1 == 'integer' && tipo2 == 'double')
         ) {
             return 'double';
         } else {
@@ -139,17 +139,17 @@ class OperacionAlto {
         }
     }
     analizarMultiplicacion(tipo1, tipo2) {
-        if ((tipo1 == 'int' && tipo2 == 'int')
-            || (tipo1 == 'int' && tipo2 == 'char')
-            || (tipo1 == 'char' && tipo2 == 'int')
+        if ((tipo1 == 'integer' && tipo2 == 'integer')
+            || (tipo1 == 'integer' && tipo2 == 'char')
+            || (tipo1 == 'char' && tipo2 == 'integer')
             || (tipo1 == 'char' && tipo2 == 'char')
         ) {
-            return 'int';
+            return 'integer';
         } else if ((tipo1 == 'double' && tipo2 == 'double')
             || (tipo1 == 'double' && tipo2 == 'char')
             || (tipo1 == 'char' && tipo2 == 'double')
-            || (tipo1 == 'double' && tipo2 == 'int')
-            || (tipo1 == 'int' && tipo2 == 'double')
+            || (tipo1 == 'double' && tipo2 == 'integer')
+            || (tipo1 == 'integer' && tipo2 == 'double')
         ) {
             return 'double';
         } else {
@@ -157,15 +157,15 @@ class OperacionAlto {
         }
     }
     analizarDivision(tipo1, tipo2) {
-        if ((tipo1 == 'int' && tipo2 == 'int')
-            || (tipo1 == 'int' && tipo2 == 'char')
-            || (tipo1 == 'int' && tipo2 == 'double')
+        if ((tipo1 == 'integer' && tipo2 == 'integer')
+            || (tipo1 == 'integer' && tipo2 == 'char')
+            || (tipo1 == 'integer' && tipo2 == 'double')
             || (tipo1 == 'double' && tipo2 == 'double')
             || (tipo1 == 'double' && tipo2 == 'char')
-            || (tipo1 == 'double' && tipo2 == 'int')
+            || (tipo1 == 'double' && tipo2 == 'integer')
             || (tipo1 == 'char' && tipo2 == 'char')
             || (tipo1 == 'char' && tipo2 == 'double')
-            || (tipo1 == 'char' && tipo2 == 'int')
+            || (tipo1 == 'char' && tipo2 == 'integer')
         ) {
             return 'double';
         } else {
@@ -173,28 +173,28 @@ class OperacionAlto {
         }
     }
     analizarPotencia(tipo1, tipo2) {
-        if (tipo1 == 'int' && tipo2 == 'int') {
-            return 'int';
+        if (tipo1 == 'integer' && tipo2 == 'integer') {
+            return 'integer';
         } else {
             return new ErrorAlto("Semantico", "Error de tipos en Potencia", this.fila, this.columna);
         }
     }
     analizarModulo(tipo1, tipo2) {
-        if (tipo1 == 'int' && tipo2 == 'int') {
-            return 'int';
+        if (tipo1 == 'integer' && tipo2 == 'integer') {
+            return 'integer';
         } else {
             return new ErrorAlto("Semantico", "Error de tipos en Modulo", this.fila, this.columna);
         }
     }
     analizarIgualdad(tipo1, tipo2) {
-        if ((tipo1 == 'int' && tipo2 == 'int')
-            || (tipo1 == 'int' && tipo2 == 'double')
-            || (tipo1 == 'int' && tipo2 == 'char')
+        if ((tipo1 == 'integer' && tipo2 == 'integer')
+            || (tipo1 == 'integer' && tipo2 == 'double')
+            || (tipo1 == 'integer' && tipo2 == 'char')
             || (tipo1 == 'double' && tipo2 == 'double')
-            || (tipo1 == 'double' && tipo2 == 'int')
+            || (tipo1 == 'double' && tipo2 == 'integer')
             || (tipo1 == 'double' && tipo2 == 'char')
             || (tipo1 == 'char' && tipo2 == 'char')
-            || (tipo1 == 'char' && tipo2 == 'int')
+            || (tipo1 == 'char' && tipo2 == 'integer')
             || (tipo1 == 'char' && tipo2 == 'double')
             || (tipo1 == 'boolean' && tipo2 == 'boolean')
             || (tipo1 == 'string' && tipo2 == 'string')
@@ -215,15 +215,15 @@ class OperacionAlto {
         }
     }
     analizarRelacional(tipo1, tipo2) {
-        if ((tipo1 == 'int' && tipo2 == 'int')
-            || (tipo1 == 'int' && tipo2 == 'double')
-            || (tipo1 == 'int' && tipo2 == 'char')
+        if ((tipo1 == 'integer' && tipo2 == 'integer')
+            || (tipo1 == 'integer' && tipo2 == 'double')
+            || (tipo1 == 'integer' && tipo2 == 'char')
             || (tipo1 == 'double' && tipo2 == 'double')
-            || (tipo1 == 'double' && tipo2 == 'int')
+            || (tipo1 == 'double' && tipo2 == 'integer')
             || (tipo1 == 'double' && tipo2 == 'char')
             || (tipo1 == 'char' && tipo2 == 'char')
             || (tipo1 == 'char' && tipo2 == 'double')
-            || (tipo1 == 'char' && tipo2 == 'int')
+            || (tipo1 == 'char' && tipo2 == 'integer')
         ) {
             return 'boolean';
         } else {
@@ -238,8 +238,8 @@ class OperacionAlto {
         }
     }
     analizarMenosUnitario(tipo) {
-        if (tipo == 'int') {
-            return 'int';
+        if (tipo == 'integer') {
+            return 'integer';
         } else if (tipo == 'double') {
             return 'double';
         } else {
