@@ -7,11 +7,18 @@ class DeclararArregloAlto {
         this.columna = columna;
     }
     analizar(tabla) {
-        let existe = tabla.existeLocal(this.nombre);
-        if (existe) {
-            let err = new ErrorAlto("Semantico", "Ya existe una variable con el nombre " + this.nombre + " por lo tanto no se puede declarar el arreglo", fila, columna);
-            tabla.errores.push(err);
-            return err;
+        if (tabla.entorno == "global") {
+            if (tabla.existeGlobal(this.nombre)) {
+                let err = new ErrorAlto("Semantico", "Ya existe una variable global con el nombre " + this.nombre, fila, columna);
+                tabla.advertencias.push(err);
+                
+            }
+        } else {
+            if (tabla.existeLocal(this.nombre)) {
+                let erro = new ErrorAlto("Semantico", "Ya existe variable local con este nombre: " + this.nombre, this.fila, this.columna);
+                tabla.agregarError(erro);
+                return erro;
+            }
         }
         if (this.expresion != null) {
             let tipoE = this.expresion.analizar(tabla);

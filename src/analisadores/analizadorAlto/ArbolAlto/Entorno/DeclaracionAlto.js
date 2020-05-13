@@ -11,12 +11,13 @@ class DeclaracionAlto {
             for (let x = 0; x < this.nombres.length; x++) {
                 if (tabla.existeGlobal(this.nombres[x].toLocaleLowerCase())) {
                     let erro = new ErrorAlto("Semantico", "Ya existe variable global con este nombre: " + this.nombres[x], this.fila, this.columna);
-                    tabla.agregarError(erro);
-                    return erro;
+                    tabla.advertencias.push(erro);
+            
                 } else {
                     let sim = new SimboloAlto(this.tipo, this.nombres[x].toLocaleLowerCase(), "global", tabla.getHeap(), false, null, tabla.ambito, "Variable", false);
                     tabla.agregarGlobal(sim);
                     tabla.simbolos.push(sim);
+                    
                 }
             }
         } else {
@@ -45,9 +46,9 @@ class DeclaracionAlto {
                     || (tabla.existeEstructura(this.tipo[0]) && val[0] == "null")
                     || (this.tipo[0] == "string" && val[0] == "null")
                 )) {
-                    console.log(this.tipo);
-                    console.log(val);
-                    let erro = new ErrorAlto("Semantico", "El tipo declarado no es igual al valor a asignar", this.fila, this.columna);
+                    //console.log(this.tipo);
+                    //console.log(val);
+                    let erro = new ErrorAlto("Semantico", "El tipo declarado es " + this.tipo + " no es igual al valor a asignar es: " + val, this.fila, this.columna);
                     tabla.agregarError(erro);
                     return erro;
                 }

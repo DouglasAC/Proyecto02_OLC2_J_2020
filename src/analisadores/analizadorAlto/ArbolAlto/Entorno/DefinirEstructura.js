@@ -103,7 +103,7 @@ class DefinirEstructura {
         codigo += "end\n";
         codigo += "# Fin Traduccion Estructura est_15_" + this.nombre + "\n";
         tabla.agregarCodigoEstructura(codigo);
-
+        tabla.quitarNoUsados(tempApun);
 
 
         return "";

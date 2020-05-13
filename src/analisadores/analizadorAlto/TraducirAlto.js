@@ -96,7 +96,7 @@ function TraducurAlto() {
         enc += "var Heap[];\n";
         enc += "var Stack[];\n";
         for (let x = 0; x < tablaAlto.heap; x++) {
-            enc += "Heap[" + x + "] = 0;\n";
+            enc += "Heap[" + x + "] = -1;\n";
         }
         enc += "h = " + tablaAlto.heap + ";\n";
         enc += "goto " + etq + ";\n";
@@ -128,6 +128,7 @@ function TraducurAlto() {
             generarReporteErrores(tablaAlto.errores);
             generarReporteTablaSimbolos(tablaAlto.simbolos);
             generarReporteAst(result, importares);
+            ponerAdvertencias(tablaAlto.advertencias);
         }else{
             
             crearTabBajo();
@@ -137,6 +138,7 @@ function TraducurAlto() {
             generarReporteErrores(tablaAlto.errores);
             generarReporteTablaSimbolos(tablaAlto.simbolos);
             generarReporteAst(result, importares);
+            ponerAdvertencias(tablaAlto.advertencias);
         }
 
     } else {
@@ -145,6 +147,7 @@ function TraducurAlto() {
         generarReporteErrores(tablaAlto.errores);
         generarReporteTablaSimbolos(tablaAlto.simbolos);
         generarReporteAst(result, importares);
+        ponerAdvertencias(tablaAlto.advertencias);
     }
 
 }

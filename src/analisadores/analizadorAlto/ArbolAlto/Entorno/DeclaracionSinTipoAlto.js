@@ -10,15 +10,15 @@ class DeclaracionSinTipoAlto {
         if (this.tipo == "global") {
             if (tabla.existeGlobal(this.nombre)) {
                 let erro = new ErrorAlto("Semantico", "Ya existe variable global con este nombre: " + this.nombre, this.fila, this.columna);
-                tabla.agregarError(erro);
-                return erro;
+                tabla.advertencias.push(erro);
+
             }
         } else {
             if (tabla.entorno == "global") {
                 if (tabla.existeGlobal(this.nombre)) {
                     let erro = new ErrorAlto("Semantico", "Ya existe variable global con este nombre: " + this.nombre, this.fila, this.columna);
-                    tabla.agregarError(erro);
-                    return erro;
+                    tabla.advertencias.advertencias(erro);
+
                 }
             } else {
                 if (tabla.existeLocal(this.nombre)) {
@@ -39,9 +39,11 @@ class DeclaracionSinTipoAlto {
             return erro;
         } else {
             if (this.tipo == "global") {
-                let sim = new SimboloAlto(val, this.nombre.toLocaleLowerCase(), "global", tabla.getHeap(), false, null, tabla.ambito, "Variable", false);
-                tabla.agregarGlobal(sim);
-                tabla.simbolos.push(sim);
+                if (!tabla.existeGlobal(this.nombre)) {
+                    let sim = new SimboloAlto(val, this.nombre, "global", tabla.getHeap(), false, null, tabla.ambito, "Variable", false);
+                    tabla.agregarGlobal(sim);
+                    tabla.simbolos.push(sim);
+                }
             } else {
                 let constante = false;
                 if (this.tipo == "const") {
@@ -82,7 +84,7 @@ class DeclaracionSinTipoAlto {
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
         let cuerpo = nodo + "(Declaracion)\n";
-       
+
 
         let nodoIdent = "node" + numero++;
         cuerpo += nodoIdent + "(\"Identificador: " + this.nombre + "\")\n";
@@ -95,7 +97,7 @@ class DeclaracionSinTipoAlto {
 
         let expr = this.valor.generarCuerpo(numero);
         cuerpo += expr.cuerpo;
-        numero = cuerpo.numero;
+        numero = expr.numero;
         cuerpo += nodoTipo + " --> " + expr.nombre + ";\n";
 
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);

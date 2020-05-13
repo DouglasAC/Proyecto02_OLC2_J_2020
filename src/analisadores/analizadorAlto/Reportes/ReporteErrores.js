@@ -208,9 +208,9 @@ function generarReporteAst(arbol, importares) {
     for (let x = 0; x < arbol.instrucciones.length; x++) {
         let nodoInstruccion = arbol.instrucciones[x].generarCuerpo(numero);
         cuerpo += nodoInstruccion.cuerpo;
-        
+
         numero = nodoInstruccion.numero;
-        console.log("numeor " +numero);
+        console.log("numeor " + numero);
         cuerpo += nodoSentencias + " --> " + nodoInstruccion.nombre + "\n";
     }
     if (importares.length > 0) {
@@ -234,8 +234,20 @@ function generarReporteAst(arbol, importares) {
     document.getElementById('divAst').innerHTML = "";
     document.getElementById('divAst').appendChild(divNuevaTab);
     document.getElementById('divMermaid').innerHTML = cuerpo;
-    if(document.getElementById('divAst').style.display == "block")
-    {
+    if (document.getElementById('divAst').style.display == "block") {
         mermaid.init();
+    }
+}
+
+
+function ponerAdvertencias(advert) {
+    if (advert.length != 0) {
+        let texto = "Advertencias\n";
+        for (let x = 0; x < advert.length; x++) {
+            let err = advert[x];
+            texto += (x + 1) + ". " + err.descripcion + "\n";
+            texto += "Fila: " + err.fila + " Columna: " + err.columna + "\n";
+        }
+        document.getElementById("consola").value += texto;
     }
 }

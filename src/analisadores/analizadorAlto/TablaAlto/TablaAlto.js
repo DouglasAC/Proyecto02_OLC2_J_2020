@@ -22,6 +22,7 @@ class TablaAlto {
         this.codigoEstructuras = [];
         this.displayTry = [];
         this.simbolos = [];
+        this.advertencias = [];
     }
     agregarNoUsados(temp) {
         if (this.temporalesNoUsados.indexOf(temp) == -1) {
