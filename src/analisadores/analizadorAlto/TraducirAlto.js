@@ -80,6 +80,8 @@ function TraducurAlto() {
         funcionesPrimitivas += GenerarDeBooleanAString(tablaAlto);
         funcionesPrimitivas += GenerarDeEnteroAString(tablaAlto);
         funcionesPrimitivas += GenearrDeDoubleAString(tablaAlto);
+        funcionesPrimitivas += GenerarIgualIgual(tablaAlto);
+        funcionesPrimitivas += GenerarDiferente(tablaAlto);
 
         let enc = "# Declaracion de temporales, punteros p & h y estructuras heap & stack\n";
         enc += "var ";

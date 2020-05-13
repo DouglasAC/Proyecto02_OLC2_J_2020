@@ -278,7 +278,7 @@ class OperacionAlto {
                 codigo += this.get3DIgualIgual(tabla);
                 break;
             case '===':
-                codigo += this.get3DIgualIgual(tabla);
+                codigo += this.get3DIgualIgualIgual(tabla);
                 break;
             case '!=':
                 codigo += this.get3DDiferente(tabla);
@@ -820,23 +820,42 @@ class OperacionAlto {
         codigo += this.operando1.get3D(tabla);
         let op1 = tabla.getTemporalActual();
         tabla.agregarNoUsados(op1);
-
+        let tipo1 = this.operando1.analizar(tabla);
         codigo += this.operando2.get3D(tabla);
         let op2 = tabla.getTemporalActual();
         tabla.agregarNoUsados(op2);
-
-        let tempR = tabla.getTemporal();
-        let etqV = tabla.getEtiqueta();
-        let etqF = tabla.getEtiqueta();
-        codigo += "if (" + op1 + " <> " + op2 + ") goto " + etqV + ";\n";
-        codigo += tempR + " = 0;\n";
-        codigo += "goto " + etqF + ";\n";
-        codigo += etqV + ":\n"
-        codigo += tempR + " = 1;\n";
-        codigo += etqF + ":\n"
+        let tipo2 = this.operando2.analizar(tabla);
+        if (tipo1[0] == "string" && tipo2[0] == "string") {
+            let tempPar1 = tabla.getTemporal();
+            let tempPar2 = tabla.getTemporal();
+            let tempR = tabla.getTemporal();
+            let tempR2 = tabla.getTemporal();
+            codigo += "# Inicio Traduccion llamada a diferentestring fila: " + this.fila + " columna: " + this.columna + "\n";
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar1 + " = p + 1;\n"
+            codigo += "Stack[" + tempPar1 + "] = " + op1 + ";\n"
+            codigo += tempPar2 + " = p + 2;\n"
+            codigo += "Stack[" + tempPar2 + "] = " + op2 + ";\n"
+            codigo += "call diferentestring_15;\n"
+            codigo += tempR + " = p + 0;\n";
+            codigo += tempR2 + " = Stack[" + tempR + "];\n";
+            tabla.agregarNoUsados(tempR2);
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a diferentestring\n";
+        } else {
+            let tempR = tabla.getTemporal();
+            let etqV = tabla.getEtiqueta();
+            let etqF = tabla.getEtiqueta();
+            codigo += "if (" + op1 + " <> " + op2 + ") goto " + etqV + ";\n";
+            codigo += tempR + " = 0;\n";
+            codigo += "goto " + etqF + ";\n";
+            codigo += etqV + ":\n"
+            codigo += tempR + " = 1;\n";
+            codigo += etqF + ":\n"
+            tabla.agregarNoUsados(tempR);
+        }
         tabla.quitarNoUsados(op1);
         tabla.quitarNoUsados(op2);
-        tabla.agregarNoUsados(tempR);
         return codigo;
     }
     get3DIgualIgual(tabla) {
@@ -844,10 +863,55 @@ class OperacionAlto {
         codigo += this.operando1.get3D(tabla);
         let op1 = tabla.getTemporalActual();
         tabla.agregarNoUsados(op1);
-
+        let tipo1 = this.operando1.analizar(tabla);
         codigo += this.operando2.get3D(tabla);
         let op2 = tabla.getTemporalActual();
         tabla.agregarNoUsados(op2);
+        let tipo2 = this.operando2.analizar(tabla);
+        if (tipo1[0] == "string" && tipo2[0] == "string") {
+            let tempPar1 = tabla.getTemporal();
+            let tempPar2 = tabla.getTemporal();
+            let tempR = tabla.getTemporal();
+            let tempR2 = tabla.getTemporal();
+            codigo += "# Inicio Traduccion llamada a igualigualstring fila: " + this.fila + " columna: " + this.columna + "\n";
+            codigo += "p = p + " + tabla.stack + ";\n";
+            codigo += tempPar1 + " = p + 1;\n"
+            codigo += "Stack[" + tempPar1 + "] = " + op1 + ";\n"
+            codigo += tempPar2 + " = p + 2;\n"
+            codigo += "Stack[" + tempPar2 + "] = " + op2 + ";\n"
+            codigo += "call igualigualstring_15;\n"
+            codigo += tempR + " = p + 0;\n";
+            codigo += tempR2 + " = Stack[" + tempR + "];\n";
+            tabla.agregarNoUsados(tempR2);
+            codigo += "p = p - " + tabla.stack + ";\n";
+            codigo += "# Fin Traduccion llamada a igualigualstring\n";
+        } else {
+            let tempR = tabla.getTemporal();
+            let etqV = tabla.getEtiqueta();
+            let etqF = tabla.getEtiqueta();
+            codigo += "if (" + op1 + " == " + op2 + ") goto " + etqV + ";\n";
+            codigo += tempR + " = 0;\n";
+            codigo += "goto " + etqF + ";\n";
+            codigo += etqV + ":\n"
+            codigo += tempR + " = 1;\n";
+            codigo += etqF + ":\n"
+
+            tabla.agregarNoUsados(tempR);
+        }
+        tabla.quitarNoUsados(op1);
+        tabla.quitarNoUsados(op2);
+        return codigo;
+    }
+    get3DIgualIgualIgual(tabla) {
+        let codigo = "";
+        codigo += this.operando1.get3D(tabla);
+        let op1 = tabla.getTemporalActual();
+        tabla.agregarNoUsados(op1);
+        let tipo1 = this.operando1.analizar(tabla);
+        codigo += this.operando2.get3D(tabla);
+        let op2 = tabla.getTemporalActual();
+        tabla.agregarNoUsados(op2);
+        let tipo2 = this.operando2.analizar(tabla);
 
         let tempR = tabla.getTemporal();
         let etqV = tabla.getEtiqueta();
@@ -858,9 +922,11 @@ class OperacionAlto {
         codigo += etqV + ":\n"
         codigo += tempR + " = 1;\n";
         codigo += etqF + ":\n"
+
+        tabla.agregarNoUsados(tempR);
+
         tabla.quitarNoUsados(op1);
         tabla.quitarNoUsados(op2);
-        tabla.agregarNoUsados(tempR);
         return codigo;
     }
     get3DAnd(tabla) {

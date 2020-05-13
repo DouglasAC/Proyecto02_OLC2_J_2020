@@ -265,3 +265,117 @@ function GenearrDeDoubleAString(tabla) {
     codigo += "# Fin Funcion de Double a String\n";
     return codigo;
 }
+
+function GenerarIgualIgual(tabla) {
+    let codigo = "# Inicio funcion IgualIgualString\n";
+    codigo += "proc igualigualstring_15 begin\n";
+    let temp1 = tabla.getTemporal();
+    let temp2 = tabla.getTemporal();
+    let temp3 = tabla.getTemporal();
+
+    let temp4 = tabla.getTemporal();
+    let temp5 = tabla.getTemporal();
+    let temp6 = tabla.getTemporal();
+    let temp7 = tabla.getTemporal();
+    let temp8 = tabla.getTemporal();
+    let temp9 = tabla.getTemporal();
+    let temp10 = tabla.getTemporal();
+    let temp11 = tabla.getTemporal();
+    let temp12 = tabla.getTemporal();
+
+
+    let etq1 = tabla.getEtiqueta();
+    let etq2 = tabla.getEtiqueta();
+    let etq3 = tabla.getEtiqueta();
+
+    codigo += temp1 + " = p + 1;\n";
+    codigo += temp2 + " = Stack[" + temp1 + "];\n";
+    codigo += temp3 + " = p + 2;\n";
+    codigo += temp4 + " = Stack[" + temp3 + "];\n";
+
+    codigo += "if (" + temp2 + " == -1) goto " + etq1 + ";\n";
+    codigo += "if (" + temp4 + " == -1) goto " + etq1 + ";\n";
+
+    codigo += temp5 + " = Heap[" + temp2 + "];\n";
+    codigo += temp6 + " = Heap[" + temp4 + "];\n";
+
+    codigo += "if (" + temp5 + " <> " + temp6 + ") goto " + etq1 + ";\n";
+    codigo += temp7 + " = 1;\n";
+
+    codigo += etq2 + ":\n";
+    codigo += temp8 + " = " + temp2 + " + " + temp7 + ";\n";
+    codigo += temp9 + " = Heap[" + temp8 + "];\n";
+    codigo += temp10 + " = " + temp4 + " + " + temp7 + ";\n";
+    codigo += temp11 + " = Heap[" + temp10 + "];\n";
+    codigo += "if (" + temp9 + " <> " + temp11 + ") goto " + etq1 + ";\n";
+    codigo += temp7 + " = " + temp7 + " + 1;\n";
+    codigo += "if (" + temp7 + " <= " + temp5 + ") goto " + etq2 + ";\n";
+
+    codigo += temp12 + " = p + 0;\n";
+    codigo += "Stack[" + temp12 + "] = 1;\n";
+    codigo += "goto " + etq3 + ";\n";
+    codigo += etq1 + ":\n";
+    codigo += temp12 + " = p + 0;\n";
+    codigo += "Stack[" + temp12 + "] = 0;\n";
+    codigo += etq3 + ":\n";
+    codigo += "end\n";
+    codigo += "# Fin fuincion IgualIgualString\n";
+    return codigo;
+}
+
+function GenerarDiferente(tabla) {
+    let codigo = "# Inicio funcion DiferenteString\n";
+    codigo += "proc diferentestring_15 begin\n";
+    let temp1 = tabla.getTemporal();
+    let temp2 = tabla.getTemporal();
+    let temp3 = tabla.getTemporal();
+
+    let temp4 = tabla.getTemporal();
+    let temp5 = tabla.getTemporal();
+    let temp6 = tabla.getTemporal();
+    let temp7 = tabla.getTemporal();
+    let temp8 = tabla.getTemporal();
+    let temp9 = tabla.getTemporal();
+    let temp10 = tabla.getTemporal();
+    let temp11 = tabla.getTemporal();
+    let temp12 = tabla.getTemporal();
+
+
+    let etq1 = tabla.getEtiqueta();
+    let etq2 = tabla.getEtiqueta();
+    let etq3 = tabla.getEtiqueta();
+
+    codigo += temp1 + " = p + 1;\n";
+    codigo += temp2 + " = Stack[" + temp1 + "];\n";
+    codigo += temp3 + " = p + 2;\n";
+    codigo += temp4 + " = Stack[" + temp3 + "];\n";
+
+    codigo += "if (" + temp2 + " == -1) goto " + etq1 + ";\n";
+    codigo += "if (" + temp4 + " == -1) goto " + etq1 + ";\n";
+
+    codigo += temp5 + " = Heap[" + temp2 + "];\n";
+    codigo += temp6 + " = Heap[" + temp4 + "];\n";
+
+    codigo += "if (" + temp5 + " <> " + temp6 + ") goto " + etq1 + ";\n";
+    codigo += temp7 + " = 1;\n";
+
+    codigo += etq2 + ":\n";
+    codigo += temp8 + " = " + temp2 + " + " + temp7 + ";\n";
+    codigo += temp9 + " = Heap[" + temp8 + "];\n";
+    codigo += temp10 + " = " + temp4 + " + " + temp7 + ";\n";
+    codigo += temp11 + " = Heap[" + temp10 + "];\n";
+    codigo += "if (" + temp9 + " <> " + temp11 + ") goto " + etq1 + ";\n";
+    codigo += temp7 + " = " + temp7 + " + 1;\n";
+    codigo += "if (" + temp7 + " <= " + temp5 + ") goto " + etq2 + ";\n";
+
+    codigo += temp12 + " = p + 0;\n";
+    codigo += "Stack[" + temp12 + "] = 0;\n";
+    codigo += "goto " + etq3 + ";\n";
+    codigo += etq1 + ":\n";
+    codigo += temp12 + " = p + 0;\n";
+    codigo += "Stack[" + temp12 + "] = 1;\n";
+    codigo += etq3 + ":\n";
+    codigo += "end\n";
+    codigo += "# Fin fuincion diferenteString\n";
+    return codigo;
+}

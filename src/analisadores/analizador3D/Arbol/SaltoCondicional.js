@@ -22,7 +22,7 @@ class SaltoCondicional {
             } else {
                 return null;
             }
-        } else if (signo == "!=") {
+        } else if (signo == "<>") {
             if (dato1 != dato2) {
                 let value = tabla.getItem(this.identificador);
                 return value;

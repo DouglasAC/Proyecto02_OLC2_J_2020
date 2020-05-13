@@ -227,7 +227,7 @@ function generarReporteAst(arbol, importares) {
             }
         }
     }
-    console.log(cuerpo);
+    //console.log(cuerpo);
     var divNuevaTab = document.createElement("DIV");
     divNuevaTab.id = 'divMermaid';
     divNuevaTab.className = "mermaid"
