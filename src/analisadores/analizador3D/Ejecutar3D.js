@@ -2,7 +2,7 @@ function ejecutar3D() {
     let number = tabActivaBajo.split(' ');
     let entrada = ace.edit(`editorBajo${number[1]}`).getValue();
     if (entrada=="") {
-        alert("No hay entrada para traducir");
+        alert("No hay entrada para ejecutar");
         return;
     }
     var result = gramatica3d.parse(entrada);

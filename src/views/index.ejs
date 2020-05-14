@@ -103,6 +103,13 @@
             Cerrar
           </button>
 
+          <button
+            type="button"
+            class="btn btn-dark"
+            onclick="OptimizarMirilla()"
+          >
+            Optimizar Mirilla
+          </button>
           <div class="tab" id="tabsLinksBajo"></div>
           <div id="tabsBajo"></div>
         </div>
@@ -119,38 +126,52 @@
             Tabla
           </button>
           <button id="btnAst" onclick="cambiarReporte('divAst')">Ast</button>
+          <button id="btnOpt" onclick="cambiarReporte('divOpt')">
+            Optimizacion
+          </button>
+          <button id="btnBloq" onclick="cambiarReporte('divBloques')">
+            Diagrama Bloques
+          </button>
         </div>
         <div class="tabsReportes">
           <div id="divConsola" style="display: block;" class="reporte">
             <textarea class="form-control" id="consola" rows="8"></textarea>
           </div>
-          <div id="divErrores" style="display: none;" class="reporte">
-            
-          </div>
-          <div id="divTabla" style="display: none;" class="reporte">
-            
-          </div>
-          <div id="divAst" style="display: none;" class="reporte"style="height: 450px;">
-            
-            <div id = "divMermaid" class="mermaid" >
+          <div id="divErrores" style="display: none;" class="reporte"></div>
+          <div id="divTabla" style="display: none;" class="reporte"></div>
+          <div
+            id="divAst"
+            style="display: none;"
+            class="reporte"
+            style="height: 450px;"
+          >
+            <div id="divMermaid" class="mermaid">
               graph LR
-                  A --- B
-                  B-->C[fa:fa-ban forbidden]
-                  B-->D(fa:fa-spinner);
-              </div>
-              
+              A --- B 
+              B-->C[fa:fa-ban forbidden] 
+              B-->D(fa:fa-spinner);
+            </div>
+          </div>
+          <div id="divOpt" style="display: none;" class="reporte"></div>
+          <div id="divBloques" style="display: none;" class="reporte">
+            <div id="divBloq" class="mermaid">
+              graph LR 
+              A --- B 
+              B-->C[fa:fa-ban forbidden] 
+              B-->D(fa:fa-spinner);
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    
-    <script  src="js/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:false});</script>
+    <script src="js/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: false });
+    </script>
     <button type="button" class="btn btn-warning">Warning</button>
 
     <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
 
     <button type="button" class="btn btn-link">Link</button>
 
@@ -248,5 +269,22 @@
     <script src="analizadorAlto/TablaAlto/Estructura.js"></script>
 
     <script src="analizadorAlto/TraducirAlto.js"></script>
+
+    <script src="analizadorOptimizacion/Obtimizar.js"></script>
+    <script src="analizadorOptimizacion/Gramatica/GramaticaOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/ArbolOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/AsignarEnEstruOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/AsignarEstruOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/AsignarOperacionOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/AsignarSimpleOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/DeclararEstruOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/DeclararTemOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/EtiquetaOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/FinProcOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/InicioProcOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/LlamadaOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/PrintOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/SaltoCondicionalOp.js"></script>
+    <script src="analizadorOptimizacion/ArbolOp/SaltoIncondicionalOp.js"></script>
   </body>
 </html>

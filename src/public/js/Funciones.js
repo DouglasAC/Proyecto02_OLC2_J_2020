@@ -274,7 +274,7 @@ function cambiarReporte(reporte) {
             reportes[i].style.display = "none";
         }
     }
-    if(reporte=="divAst")
+    if(reporte=="divAst"||reporte == "divBloques")
     {
         mermaid.init();
     }

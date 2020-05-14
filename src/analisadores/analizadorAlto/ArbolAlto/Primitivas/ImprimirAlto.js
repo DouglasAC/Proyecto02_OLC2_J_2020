@@ -49,7 +49,7 @@ class ImprimirAlto {
         }
         else if (tipo[0] == "char") {
             codigo += "print(\"%c\", " + temp + ");\n";
-        } else if (tipo[0] = "string") {
+        } else if (tipo[0] == "string") {
             let tempLetra = tabla.getTemporal();
             let etqV = tabla.getEtiqueta();
             let etqF = tabla.getEtiqueta();
@@ -67,6 +67,8 @@ class ImprimirAlto {
             codigo += "goto " + etqF + ";\n";
             codigo += etqV + ":\n";
             codigo += etqV2 + ":\n";
+        }else{
+            codigo += "print(\"%i\", " + temp + ");\n";
         }
         tabla.quitarNoUsados(temp);
         codigo += "print(\"%c\", 13);\n";
