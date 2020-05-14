@@ -12,5 +12,9 @@ class EtiquetaOp {
         }
         return "";
     }
+    getExpresion() {
+        let codigo = this.etiqueta + ":\n";
+        return codigo;
+    }
 }
 this.EtiquetaOp = EtiquetaOp;

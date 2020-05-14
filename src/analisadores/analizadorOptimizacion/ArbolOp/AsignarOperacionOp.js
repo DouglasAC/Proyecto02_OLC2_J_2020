@@ -15,5 +15,9 @@ class AsignarOperacionOp {
         }
         return "";
     }
+    getExpresion() {
+        let codigo = this.temp + " = " + this.ope1 + " " + this.signo + " " + this.ope2 + ";\n";
+        return codigo;
+    }
 }
 exports.AsignarOperacionOp = AsignarOperacionOp;

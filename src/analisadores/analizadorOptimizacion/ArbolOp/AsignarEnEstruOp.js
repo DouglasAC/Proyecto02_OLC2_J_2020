@@ -14,5 +14,9 @@ class AsignarEnEstruOp {
         }
         return "";
     }
+    getExpresion() {
+        let codigo = this.estructura + "[" + this.posicion + "] = " + this.valor + ";\n";
+        return codigo;
+    }
 }
 exports.AsignarEnEstruOp = AsignarEnEstruOp;

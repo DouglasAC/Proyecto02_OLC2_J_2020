@@ -12,5 +12,9 @@ class SaltoIncondicionalOp {
         }
         return "";
     }
+    getExpresion() {
+        let codigo = "goto " + this.etiqueta + ";\n";
+        return codigo;
+    }
 }
 exports.SaltoIncondicionalOp = SaltoIncondicionalOp;

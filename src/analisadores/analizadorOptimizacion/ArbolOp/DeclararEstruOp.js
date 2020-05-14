@@ -12,5 +12,9 @@ class DeclararEstruOp {
         }
         return "";
     }
+    getExpresion() {
+        let codigo = "var " + this.estructura + "[];\n";
+        return codigo;
+    }
 }
 exports.DeclararEstruOp = DeclararEstruOp;

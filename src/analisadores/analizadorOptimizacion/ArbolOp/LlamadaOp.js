@@ -12,5 +12,9 @@ class LlamadaOp {
         }
         return "";
     }
+    getExpresion() {
+        let codigo = "call " + this.nombre + ";\n";
+        return codigo;
+    }
 }
 exports.LlamadaOp = LlamadaOp;

@@ -10,5 +10,8 @@ class FinProcOp {
         }
         return "";
     }
+    getExpresion() {
+        return "end\n";
+    }
 }
 exports.FinProcOp = FinProcOp;

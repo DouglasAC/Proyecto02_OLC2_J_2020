@@ -12,5 +12,9 @@ class InicioProcOp {
         }
         return "";
     }
+    getExpresion() {
+        let codigo = "proc " + this.nombre + " begin\n";
+        return codigo;
+    }
 }
 exports.InicioProcOp = InicioProcOp;
