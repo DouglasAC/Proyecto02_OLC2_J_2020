@@ -1,5 +1,3 @@
-
-
 function OptimizarMirilla() {
     let number = tabActivaBajo.split(' ');
     let entrada = ace.edit(`editorBajo${number[1]}`).getValue();
@@ -12,6 +10,13 @@ function OptimizarMirilla() {
 
 
     let reporte = [];
+    mirillaRegla1(result.instrucciones, reporte);
+    mirillaRegla2(result.instrucciones, reporte);
+    mirillaRegla3(result.instrucciones, reporte);
+    mirillaRegla4(result.instrucciones, reporte);
+    mirillaRegla5(result.instrucciones, reporte);
+    mirillaRegla6(result.instrucciones, reporte);
+    mirillaRegla7(result.instrucciones, reporte);
     mirillaRegla8(result.instrucciones, reporte);
     mirillaRegla9(result.instrucciones, reporte);
     mirillaRegla10(result.instrucciones, reporte);
@@ -35,6 +40,287 @@ function OptimizarMirilla() {
     ace.edit(`editorBajo${number[1]}`).setValue(codigo);
 }
 
+function mirillaRegla1(instrucciones, reporte) {
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof AsignarSimpleOp) {
+            let y = x + 1;
+            if (y < instrucciones.length) {
+                let siguiente = instrucciones[y];
+                if (siguiente instanceof AsignarSimpleOp) {
+                    let temp = instruccion.temp;
+                    let val = instruccion.valor;
+                    let temp2 = siguiente.temp;
+                    let val2 = siguiente.valor;
+                    if (temp == val2 && val == temp2) {
+                        let nuevo = new NodoOp(1, instruccion.getExpresion() + "<br>" + siguiente.getExpresion(), instruccion.getExpresion(), instruccion.fila);
+                        reporte.push(nuevo);
+                        siguiente.avilitado = false;
+                    }
+                }
+            }
+        }
+    }
+}
+
+function mirillaRegla2(instrucciones, reporte) {
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof SaltoIncondicionalOp) {
+            let etiqueta = instruccion.etiqueta;
+            let eliminar = true;
+            for (let y = x + 1; y < instrucciones.length; y++) {
+                let siguiente = instrucciones[y];
+                if (siguiente instanceof InicioProcOp || siguiente instanceof FinProcOp) {
+                    eliminar = false;
+                    break;
+                } else if (siguiente instanceof EtiquetaOp) {
+                    let etiqueta2 = siguiente.etiqueta;
+                    if (etiqueta != etiqueta2) {
+                        eliminar = false;
+                    }
+                    break;
+                }
+            }
+            if (eliminar && (x + 1) < instrucciones.length) {
+                let anterior = "";
+                let actual = "";
+                for (let y = x; y < instrucciones.length; y++) {
+                    let siguiente = instrucciones[y];
+                    if (siguiente instanceof InicioProcOp || siguiente instanceof FinProcOp) {
+                        break;
+                    } else if (siguiente instanceof EtiquetaOp) {
+                        let etiqueta2 = siguiente.etiqueta;
+                        if (etiqueta == etiqueta2) {
+                            actual = siguiente.getExpresion();
+                        }
+                        break;
+                    } else {
+                        anterior += siguiente.getExpresion() + "<br>";
+                        siguiente.avilitado = false;
+                    }
+                }
+                let nuevo = new NodoOp(2, anterior + actual, actual, instruccion.fila);
+                reporte.push(nuevo);
+            }
+        }
+    }
+}
+
+function mirillaRegla3(instrucciones, reporte) {
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof SaltoCondicionalOp) {
+            let y = x + 1;
+            let z = x + 2;
+            if (y < instrucciones.length && z < instrucciones.length) {
+                let siguiente = instrucciones[y];
+                let siguiente2 = instrucciones[z];
+                if (siguiente instanceof SaltoIncondicionalOp && siguiente2 instanceof EtiquetaOp) {
+                    let etiqueta = instruccion.etiqueta;
+                    let etiqueta2 = siguiente.etiqueta;
+                    let etiqueta3 = siguiente2.etiqueta;
+                    if (etiqueta == etiqueta3) {
+                        let tipo = instruccion.tipo;
+                        if (tipo == "<") {
+                            tipo = ">="
+                        } else if (tipo == ">") {
+                            tipo = "<="
+                        } else if (tipo == "<=") {
+                            tipo = ">"
+                        } else if (tipo == ">") {
+                            tipo = "<="
+                        } else if (tipo == "==") {
+                            tipo = "<>"
+                        } else if (tipo == "<>") {
+                            tipo = "=="
+                        }
+                        let anterior = instruccion.getExpresion() + "<br>" + siguiente.getExpresion() + "<br>" + siguiente2.getExpresion();
+                        instruccion.tipo = tipo;
+                        instruccion.etiqueta = etiqueta2;
+                        siguiente.avilitado = false;
+                        let actual = instruccion.getExpresion();
+                        let nuevo = new NodoOp(3, anterior, actual, instruccion.fila);
+                        reporte.push(nuevo);
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+function mirillaRegla4(instrucciones, reporte) {
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof SaltoCondicionalOp) {
+            let y = x + 1;
+            if (y < instrucciones.length) {
+                let siguiente = instrucciones[y];
+                if (siguiente instanceof SaltoIncondicionalOp) {
+                    let ope1 = instruccion.ope1;
+                    let ope2 = instruccion.ope2;
+                    let signo = instruccion.tipo;
+
+                    if (!isNaN(ope1) && !isNaN(ope2)) {
+                        let dato1 = parseFloat(ope1);
+                        let dato2 = parseFloat(ope2);
+                        let cambiar = false;
+                        if (signo == "==") {
+                            if (dato1 == dato2) {
+                                cambiar = true;
+                            }
+                        } else if (signo == "<>") {
+                            if (dato1 != dato2) {
+                                cambiar = true;
+                            }
+                        } else if (signo == "<") {
+                            if (dato1 < dato2) {
+                                cambiar = true;
+                            }
+                        } else if (signo == ">") {
+                            if (dato1 > dato2) {
+                                cambiar = true;
+                            }
+                        } else if (signo == "<=") {
+                            if (dato1 <= dato2) {
+                                cambiar = true;
+                            }
+                        } else if (signo == ">=") {
+                            if (dato1 >= dato2) {
+                                cambiar = true;
+                            }
+                        }
+                        if (cambiar) {
+                            let anterior = instruccion.getExpresion() + "<br>" + siguiente.getExpresion();
+                            let salto = new SaltoIncondicionalOp(instruccion.etiqueta, instruccion.fila, instruccion.columna);
+                            salto.avilitado = instruccion.avilitado;
+                            instrucciones[x] = salto;
+                            let nueva = new NodoOp(4, anterior, salto.getExpresion(), instruccion.fila);
+                            reporte.push(nueva);
+                            siguiente.avilitado = false;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+function mirillaRegla5(instrucciones, reporte) {
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof SaltoCondicionalOp) {
+            let y = x + 1;
+            if (y < instrucciones.length) {
+                let siguiente = instrucciones[y];
+                if (siguiente instanceof SaltoIncondicionalOp) {
+                    let ope1 = instruccion.ope1;
+                    let ope2 = instruccion.ope2;
+                    let signo = instruccion.tipo;
+
+                    if (!isNaN(ope1) && !isNaN(ope2)) {
+                        let dato1 = parseFloat(ope1);
+                        let dato2 = parseFloat(ope2);
+                        let cambiar = false;
+                        if (signo == "==") {
+                            if (!(dato1 == dato2)) {
+                                cambiar = true;
+                            }
+                        } else if (signo == "<>") {
+                            if (!(dato1 != dato2)) {
+                                cambiar = true;
+                            }
+                        } else if (signo == "<") {
+                            if (!(dato1 < dato2)) {
+                                cambiar = true;
+                            }
+                        } else if (signo == ">") {
+                            if (!(dato1 > dato2)) {
+                                cambiar = true;
+                            }
+                        } else if (signo == "<=") {
+                            if (!(dato1 <= dato2)) {
+                                cambiar = true;
+                            }
+                        } else if (signo == ">=") {
+                            if (!(dato1 >= dato2)) {
+                                cambiar = true;
+                            }
+                        }
+                        if (cambiar) {
+                            let anterior = instruccion.getExpresion() + "<br>" + siguiente.getExpresion();
+                            let salto = new SaltoIncondicionalOp(siguiente.etiqueta, instruccion.fila, instruccion.columna);
+                            salto.avilitado = instruccion.avilitado;
+                            instrucciones[x] = salto;
+                            let nueva = new NodoOp(5, anterior, salto.getExpresion(), instruccion.fila);
+                            reporte.push(nueva);
+                            siguiente.avilitado = false;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+function mirillaRegla6(instrucciones, reporte) {
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof SaltoIncondicionalOp) {
+            let etiqueta = instruccion.etiqueta;
+            for (let y = 0; y < instrucciones.length; y++) {
+                let siguiente = instrucciones[y];
+                if (siguiente instanceof EtiquetaOp) {
+                    let etiqueta2 = siguiente.etiqueta;
+                    if (etiqueta == etiqueta2) {
+                        let z = y + 1;
+                        if (z < instrucciones.length) {
+                            let siguiente2 = instrucciones[z];
+                            if (siguiente2 instanceof SaltoIncondicionalOp) {
+                                let anterior = instruccion.getExpresion() + "<br>-------<br>" + siguiente.getExpresion() + "<br>" + siguiente2.getExpresion();
+                                instruccion.etiqueta = siguiente2.etiqueta;
+                                let actual = instruccion.getExpresion() + "<br>-------<br>" + siguiente.getExpresion() + "<br>" + siguiente2.getExpresion();
+                                let nueva = new NodoOp(6, anterior, actual, instruccion.fila);
+                                reporte.push(nueva);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function mirillaRegla7(instrucciones, reporte) {
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof SaltoCondicionalOp) {
+            let etiqueta = instruccion.etiqueta;
+            for (let y = 0; y < instrucciones.length; y++) {
+                let siguiente = instrucciones[y];
+                if (siguiente instanceof EtiquetaOp) {
+                    let etiqueta2 = siguiente.etiqueta;
+                    if (etiqueta == etiqueta2) {
+                        let z = y + 1;
+                        if (z < instrucciones.length) {
+                            let siguiente2 = instrucciones[z];
+                            if (siguiente2 instanceof SaltoIncondicionalOp) {
+                                let anterior = instruccion.getExpresion() + "<br>-------<br>" + siguiente.getExpresion() + "<br>" + siguiente2.getExpresion();
+                                instruccion.etiqueta = siguiente2.etiqueta;
+                                let actual = instruccion.getExpresion() + "<br>-------<br>" + siguiente.getExpresion() + "<br>" + siguiente2.getExpresion();
+                                let nueva = new NodoOp(7, anterior, actual, instruccion.fila);
+                                reporte.push(nueva);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 function mirillaRegla8(instrucciones, reporte) {
     for (let x = 0; x < instrucciones.length; x++) {
