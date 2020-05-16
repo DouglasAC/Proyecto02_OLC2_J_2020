@@ -70,8 +70,7 @@ function crearTabAlto() {
 
 function cambiarTabAlto(evt, tabName) {
     if (tabActivaAlto != "") {
-        console.log("si hay : " + tabName);
-        console.log("activo : " + tabActivaAlto);
+        
         let number = tabActivaAlto.split(' ');
         document.getElementById(tabActivaAlto).style.display = "none";
         document.getElementById("buttonArchivo " + number[1]).className = "tablinks";
@@ -79,7 +78,7 @@ function cambiarTabAlto(evt, tabName) {
         evt.currentTarget.className += " active";
         tabActivaAlto = tabName;
     } else {
-        console.log("no hay : " + tabName);
+        
         document.getElementById(tabName).style.display = "block";
         evt.currentTarget.className += " active";
         tabActivaAlto = tabName;
@@ -189,8 +188,7 @@ function crearTabBajo() {
 
 function cambiarTabBajo(evt, tabName) {
     if (tabActivaBajo != "") {
-        console.log("si hay : " + tabName);
-        console.log("activo : " + tabActivaBajo);
+        
         let number = tabActivaBajo.split(' ');
         document.getElementById(tabActivaBajo).style.display = "none";
         document.getElementById("buttonC3D " + number[1]).className = "tablinks";
@@ -198,7 +196,7 @@ function cambiarTabBajo(evt, tabName) {
         evt.currentTarget.className += " active";
         tabActivaBajo = tabName;
     } else {
-        console.log("no hay : " + tabName);
+       
         document.getElementById(tabName).style.display = "block";
         evt.currentTarget.className += " active";
         tabActivaBajo = tabName;
@@ -274,8 +272,5 @@ function cambiarReporte(reporte) {
             reportes[i].style.display = "none";
         }
     }
-    if(reporte=="divAst"||reporte == "divBloques")
-    {
-        mermaid.init();
-    }
+    
 }

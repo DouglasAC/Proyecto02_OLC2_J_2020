@@ -228,15 +228,11 @@ function generarReporteAst(arbol, importares) {
         }
     }
     //console.log(cuerpo);
-    var divNuevaTab = document.createElement("DIV");
-    divNuevaTab.id = 'divMermaid';
-    divNuevaTab.className = "mermaid"
-    document.getElementById('divAst').innerHTML = "";
-    document.getElementById('divAst').appendChild(divNuevaTab);
-    document.getElementById('divMermaid').innerHTML = cuerpo;
-    if (document.getElementById('divAst').style.display == "block") {
-        mermaid.init();
-    }
+    
+    
+    mermaid.render('GraphAst', cuerpo, (svg) => {
+        document.getElementById('divAst').innerHTML = svg;
+    });
 }
 
 

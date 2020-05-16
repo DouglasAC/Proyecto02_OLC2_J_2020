@@ -110,6 +110,13 @@
           >
             Optimizar Mirilla
           </button>
+          <button
+            type="button"
+            class="btn btn-warning"
+            onclick="ObtimizarBloques()"
+          >
+            Optimizar Bloques
+          </button>
           <div class="tab" id="tabsLinksBajo"></div>
           <div id="tabsBajo"></div>
         </div>
@@ -145,21 +152,11 @@
             class="reporte"
             style="height: 450px;"
           >
-            <div id="divMermaid" class="mermaid">
-              graph LR
-              A --- B 
-              B-->C[fa:fa-ban forbidden] 
-              B-->D(fa:fa-spinner);
-            </div>
+           
           </div>
           <div id="divOpt" style="display: none;" class="reporte"></div>
           <div id="divBloques" style="display: none;" class="reporte">
-            <div id="divBloq" class="mermaid">
-              graph LR 
-              A --- B 
-              B-->C[fa:fa-ban forbidden] 
-              B-->D(fa:fa-spinner);
-            </div>
+            
           </div>
         </div>
       </div>
@@ -169,7 +166,6 @@
     <script>
       mermaid.initialize({ startOnLoad: false });
     </script>
-    <button type="button" class="btn btn-warning">Warning</button>
 
     <button type="button" class="btn btn-light">Light</button>
 
@@ -288,5 +284,7 @@
     <script src="analizadorOptimizacion/ArbolOp/SaltoIncondicionalOp.js"></script>
     <script src="analizadorOptimizacion/Reporte/NodoOp.js"></script>
     <script src="analizadorOptimizacion/Reporte/ReporteOp.js"></script>
+    <script src="analizadorOptimizacion/Reporte/NodoBloque.js"></script>
+    <script src="analizadorOptimizacion/ObtimizarBloques.js"></script>
   </body>
 </html>
