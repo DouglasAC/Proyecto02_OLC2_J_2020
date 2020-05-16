@@ -7,7 +7,7 @@
 
 \s+                     /* skip whitespace */
 "//"([^\n])*            /* Comentario de Linea */
-"/*"([^\*])*"*/"        /* Comentario Multi Linea */
+[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]       /* Comentario Multi Linea */
 [0-9]+("."[0-9]+)\b     return 'DECIMAL'
 [0-9]+\b                return 'ENTERO'
 \"([^\"]+|[\r\n])*\"    return 'CADENA'

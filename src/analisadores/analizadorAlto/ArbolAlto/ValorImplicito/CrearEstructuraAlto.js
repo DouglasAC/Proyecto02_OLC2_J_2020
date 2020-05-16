@@ -6,8 +6,8 @@ class CrearEstructuraAlto {
     }
     analizar(tabla) {
         if (!tabla.existeTipo(this.nombre)) {
-            let err = new ErroAlto("Semantico", "El tipo de estructura " + this.nombre + "no existe", this.fila, this.columna);
-            tabla.errres.push(err);
+            let err = new ErrorAlto("Semantico", "El tipo de estructura " + this.nombre + " no existe", this.fila, this.columna);
+            tabla.errores.push(err);
             return err;
         }
 
