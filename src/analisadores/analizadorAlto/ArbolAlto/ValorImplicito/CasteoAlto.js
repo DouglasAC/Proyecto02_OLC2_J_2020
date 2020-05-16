@@ -69,16 +69,16 @@ class CasteoAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Casteo)\n";
+        let cuerpo = nodo + "[label=\"Casteo\"]\n";
 
         let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "(Tipo: " + this.tipo + ")\n";
-        cuerpo += nodo + " --> " + nodoIdent + "\n";
+        cuerpo += nodoIdent + "[label=\"Tipo: " + this.tipo + "\"]\n";
+        cuerpo += nodo + " -> " + nodoIdent + "\n";
 
         let nodoExp = this.expresion.generarCuerpo(numero);
         cuerpo += nodoExp.cuerpo;
         numero = nodoExp.numero;
-        cuerpo += nodo + " --> " + nodoExp.nombre + "\n";
+        cuerpo += nodo + " -> " + nodoExp.nombre + "\n";
 
         let nuevo = new NodoDot(nodo, cuerpo, numero);
         return nuevo;

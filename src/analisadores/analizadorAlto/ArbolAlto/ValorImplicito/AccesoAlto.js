@@ -444,28 +444,28 @@ class AccesoAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Expresion Acceso)\n";
+        let cuerpo = nodo + "[label=\"Expresion Acceso\"]\n";
         let nodoNom = "node" + numero++
-        cuerpo += nodoNom + "(Identificador: " + this.nombre + ")\n";
-        cuerpo += nodo + " --> " + nodoNom + "\n";
+        cuerpo += nodoNom + "[label=\"Identificador: " + this.nombre + "\"]\n";
+        cuerpo += nodo + " -> " + nodoNom + "\n";
         let nodoAccesos = "node" + numero++;
-        cuerpo += nodoAccesos + "(Accesos)\n";
-        cuerpo += nodo + " --> " + nodoAccesos + "\n";
+        cuerpo += nodoAccesos + "[label=\"Accesos\"]\n";
+        cuerpo += nodo + " -> " + nodoAccesos + "\n";
         for (let x = 0; x < this.accessos.length; x++) {
             let acceso = this.accessos[x];
             let nodoAcceso = "node" + numero++;
             if (acceso.tipo == "arreglo") {
-                cuerpo += nodoAcceso + "(Acceso Arreglo posicion:)\n";
+                cuerpo += nodoAcceso + "[label=\"Acceso Arreglo posicion:\"]\n";
                 let nodoPos = acceso.posicion.generarCuerpo(numero);
                 cuerpo += nodoPos.cuerpo;
                 numero = nodoPos.numero;
-                cuerpo += nodoAcceso + " --> " + nodoPos.cuerpo + "\n";
+                cuerpo += nodoAcceso + " -> " + nodoPos.cuerpo + "\n";
             } else if (acceso.tipo == "atributo") {
-                cuerpo += nodoAcceso + "(Acceso Atributo: " + acceso.nombre + ")\n";
+                cuerpo += nodoAcceso + "[label=\"Acceso Atributo: " + acceso.nombre + "\"]\n";
             } else if (acceso.tipo == "funcion") {
-                cuerpo += nodoAcceso + "(Acceso Funcion: " + acceso.nombre + ")\n";
+                cuerpo += nodoAcceso + "[label=\"Acceso Funcion: " + acceso.nombre + "\"]\n";
             }
-            cuerpo += nodoAccesos + " --> " + nodoAcceso + "\n";
+            cuerpo += nodoAccesos + " -> " + nodoAcceso + "\n";
         }
 
         

@@ -13,7 +13,7 @@ class EtiquetaOp {
         return "";
     }
     getExpresion() {
-        let codigo = this.etiqueta + ":\n";
+        let codigo = this.etiqueta + ":\\n";
         return codigo;
     }
 }

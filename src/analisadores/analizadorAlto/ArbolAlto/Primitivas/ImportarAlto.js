@@ -19,11 +19,11 @@ class ImportarAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Importar)\n";
+        let cuerpo = nodo + "[label=\"Importar\"]\n";
         for (let x = 0; x < this.nombres.length; x++) {
             let nom = "node" + numero++;
-            cuerpo += nom + "(Nombre Archivo: " + this.nombres[x] + ")\n";
-            cuerpo += nodo + " --> " + nom + "\n";
+            cuerpo += nom + "[label=\"Nombre Archivo: " + this.nombres[x] + "\"]\n";
+            cuerpo += nodo + " -> " + nom + "\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;

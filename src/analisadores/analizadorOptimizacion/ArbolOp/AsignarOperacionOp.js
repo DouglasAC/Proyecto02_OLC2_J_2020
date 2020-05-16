@@ -16,7 +16,7 @@ class AsignarOperacionOp {
         return "";
     }
     getExpresion() {
-        let codigo = this.temp + " = " + this.ope1 + " " + this.signo + " " + this.ope2 + ";\n";
+        let codigo = this.temp + " = " + this.ope1 + " " + this.signo + " " + this.ope2 + ";\\n";
         return codigo;
     }
 }

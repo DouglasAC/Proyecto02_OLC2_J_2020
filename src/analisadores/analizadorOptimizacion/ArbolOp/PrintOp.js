@@ -14,7 +14,7 @@ class PrintOp {
         return "";
     }
     getExpresion() {
-        let codigo = `print(${this.tipo}, ${this.valor});\n`;
+        let codigo = `print(${this.tipo}, ${this.valor});\\n`;
         return codigo;
     }
 }

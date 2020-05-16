@@ -13,7 +13,7 @@ class SaltoIncondicionalOp {
         return "";
     }
     getExpresion() {
-        let codigo = "goto " + this.etiqueta + ";\n";
+        let codigo = "goto " + this.etiqueta + ";\\n";
         return codigo;
     }
 }

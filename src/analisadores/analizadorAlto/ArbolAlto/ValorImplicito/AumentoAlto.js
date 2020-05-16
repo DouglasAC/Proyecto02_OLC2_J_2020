@@ -49,11 +49,11 @@ class AumentoAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Aumento)\n";
+        let cuerpo = nodo + "[label=\"Aumento\"]\n";
 
         let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "(Identificador: " + this.nombre + ")\n";
-        cuerpo += nodo + " --> " + nodoIdent + "\n";
+        cuerpo += nodoIdent + "[label=\"Identificador: " + this.nombre + "\"]\n";
+        cuerpo += nodo + " -> " + nodoIdent + "\n";
 
         let nuevo = new NodoDot(nodo, cuerpo, numero);
         return nuevo;

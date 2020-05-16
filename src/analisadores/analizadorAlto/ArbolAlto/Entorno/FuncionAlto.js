@@ -100,53 +100,53 @@ class FuncionAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Funcion)\n";
+        let cuerpo = nodo + "[label=\"Funcion\"]\n";
         let tipo = "node" + numero++;
         if (this.tipo[0] == "Tarry") {
-            cuerpo += tipo + "(\"Tipo: Arreglo de " + this.tipo[0] + "\")\n";
+            cuerpo += tipo + "[label=\"Tipo: Arreglo de " + this.tipo[0] + "\"]\n";
         } else {
-            cuerpo += tipo + "(\"Tipo: " + this.tipo[0] + "\")\n";
+            cuerpo += tipo + "[label=\"Tipo: " + this.tipo[0] + "\"]\n";
         }
-        cuerpo += nodo + " --> " + tipo + "\n";
+        cuerpo += nodo + " -> " + tipo + "\n";
 
         let nom = "node" + numero++;
-        cuerpo += nom + "(\"Identificador: " + this.nombre + "\")\n";
-        cuerpo += nodo + " --> " + nom + "\n";
+        cuerpo += nom + "[label=\"Identificador: " + this.nombre + "\"]\n";
+        cuerpo += nodo + " -> " + nom + "\n";
 
         let param = "node" + numero++;
-        cuerpo += param + "(\"Parametros\")\n";
-        cuerpo += nodo + " --> " + param + "\n";
+        cuerpo += param + "[label=\"Parametros\"]\n";
+        cuerpo += nodo + " -> " + param + "\n";
 
         for (let x = 0; x < this.parametros.length; x++) {
             let par = this.parametros[x];
             let para = "node" + numero++;
-            cuerpo += para + "(Parametro)\n";
-            cuerpo += param + " --> " + para + "\n";
+            cuerpo += para + "[label=\"Parametro\"]\n";
+            cuerpo += param + " -> " + para + "\n";
             let tpar = par[0];
             let tipar = "node" + numero++;
             if (tpar[0] == "Tarry") {
-                cuerpo += tipar + "(\"Tipo: Arreglo de " + tpar[1] + "\")\n";
+                cuerpo += tipar + "[label=\"Tipo: Arreglo de " + tpar[1] + "\"]\n";
             } else {
-                cuerpo += tipar + "(\"Tipo: " + tpar[0] + "\")\n";
+                cuerpo += tipar + "[label=\"Tipo: " + tpar[0] + "\"]\n";
             }
-            cuerpo += para + " --> " + tipar + "\n";
+            cuerpo += para + " -> " + tipar + "\n";
             let nompar = "node" + numero++;
-            cuerpo += nompar + "(\"Identificador: " + par[1] + "\")\n";
-            cuerpo += para + " --> " + nompar + "\n";
+            cuerpo += nompar + "[label=\"Identificador: " + par[1] + "\"]\n";
+            cuerpo += para + " -> " + nompar + "\n";
         }
 
         let NodoSentencias = "node" + numero++;
-        cuerpo += NodoSentencias + "(\"Sentencias\")\n";
-        cuerpo += nodo + " --> " + NodoSentencias + "\n";
+        cuerpo += NodoSentencias + "[label=\"Sentencias\"]\n";
+        cuerpo += nodo + " -> " + NodoSentencias + "\n";
 
         for (let x = 0; x < this.sentencias.length; x++) {
             let nuevo = this.sentencias[x].generarCuerpo(numero);
             numero = nuevo.numero;
             cuerpo += nuevo.cuerpo;
-            cuerpo += NodoSentencias + " --> " + nuevo.nombre + "\n";
+            cuerpo += NodoSentencias + " -> " + nuevo.nombre + "\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
-        console.log("numero funcion " + nuevo.numero)
+        //console.log("numero funcion " + nuevo.numero)
         return nuevo;
     }
 }

@@ -89,24 +89,24 @@ class DeclararArregloAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Declaracion de Arreglo)\n";
+        let cuerpo = nodo + "[label=\"Declaracion de Arreglo\"]\n";
         let nodoTipo = "node" + numero++;
-        cuerpo += nodoTipo + "(\"Tipo Arreglo de " + this.tipo[0] + "\")\n";
-        cuerpo += nodo + " --> " + nodoTipo + ";\n";
+        cuerpo += nodoTipo + "[label=\"Tipo Arreglo de " + this.tipo[0] + "\"]\n";
+        cuerpo += nodo + " -> " + nodoTipo + ";\n";
 
         let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "(\"Identificador: " + this.nombre + "\")\n";
-        cuerpo += nodo + " --> " + nodoIdent + ";\n";
+        cuerpo += nodoIdent + "[label=\"Identificador: " + this.nombre + "\"]\n";
+        cuerpo += nodo + " -> " + nodoIdent + ";\n";
 
         if (this.expresion != null) {
             let nodoValor = "node" + numero++;
-            cuerpo += nodoValor + "(\"Expresion\")\n";
-            cuerpo += nodo + " --> " + nodoValor + ";\n";
+            cuerpo += nodoValor + "[label=\"Expresion\"]\n";
+            cuerpo += nodo + " -> " + nodoValor + ";\n";
 
             let expr = this.expresion.generarCuerpo(numero);
             cuerpo += expr.cuerpo;
             numero = expr.numero;
-            cuerpo += nodoValor + " --> " + expr.nombre + ";\n";
+            cuerpo += nodoValor + " -> " + expr.nombre + ";\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;

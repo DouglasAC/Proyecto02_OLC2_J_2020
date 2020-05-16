@@ -541,34 +541,34 @@ class AsignacionLlamadaAccesos {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Asignacion con Llamada con Accesos)\n";
+        let cuerpo = nodo + "[label=\"Asignacion con Llamada con Accesos\"]\n";
         let nodoLlamada = this.llamada.generarCuerpo(numero);
         cuerpo += nodoLlamada.cuerpo;
         numero = nodoLlamada.numero;
-        cuerpo += nodo + " --> " + nodoLlamada.nombre + "\n";
+        cuerpo += nodo + " -> " + nodoLlamada.nombre + "\n";
         let nodoAccesos = "node" + numero++;
-        cuerpo += nodoAccesos + "(Accesos)\n";
-        cuerpo += nodo + " --> " + nodoAccesos + "\n";
+        cuerpo += nodoAccesos + "[label=\"Accesos\"]\n";
+        cuerpo += nodo + " -> " + nodoAccesos + "\n";
         for (let x = 0; x < this.accessos.length; x++) {
             let acceso = this.accessos[x];
             let nodoAcceso = "nodo" + numero++;
             if (acceso.tipo == "arreglo") {
-                cuerpo += nodoAcceso + "(Acceso Arreglo posicion:)\n";
+                cuerpo += nodoAcceso + "[label=\"Acceso Arreglo posicion\"]\n";
                 let nodoPos = acceso.posicion.generarCuerpo(numero);
                 cuerpo += nodoPos.cuerpo;
                 numero = nodoPos.numero;
-                cuerpo += nodoAcceso + " --> " + nodoPos.cuerpo + "\n";
+                cuerpo += nodoAcceso + " -> " + nodoPos.cuerpo + "\n";
             } else if (acceso.tipo == "atributo") {
-                cuerpo += nodoAcceso + "(Acceso Atributo: " + acceso.nombre + ")\n";
+                cuerpo += nodoAcceso + "[label=\"Acceso Atributo: " + acceso.nombre + "\"]\n";
             } else if (acceso.tipo == "funcion") {
-                cuerpo += nodoAcceso + "(Acceso Funcion: " + acceso.nombre + ")\n";
+                cuerpo += nodoAcceso + "[label=\"Acceso Funcion: " + acceso.nombre + "\"]\n";
             }
-            cuerpo += nodoAccesos + " --> " + nodoAcceso + "\n";
+            cuerpo += nodoAccesos + " -> " + nodoAcceso + "\n";
         }
 
         let valorNodo = this.expresion.generarCuerpo(numero);
         cuerpo += valorNodo.cuerpo;
-        cuerpo += nodo + " --> " + valorNodo.nombre + ";\n";
+        cuerpo += nodo + " -> " + valorNodo.nombre + ";\n";
         numero = valorNodo.numero;
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;

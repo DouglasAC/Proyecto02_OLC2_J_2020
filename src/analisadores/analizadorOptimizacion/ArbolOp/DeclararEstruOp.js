@@ -13,7 +13,7 @@ class DeclararEstruOp {
         return "";
     }
     getExpresion() {
-        let codigo = "var " + this.estructura + "[];\n";
+        let codigo = "var " + this.estructura + "[];\\n";
         return codigo;
     }
 }

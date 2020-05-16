@@ -19,7 +19,7 @@ class ContinueAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero;
-        let cuerpo = "  " + nodo + "(\"Continue\")\n";
+        let cuerpo = "  " + nodo + "[label=\"Continue\"];\n";
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;
     }

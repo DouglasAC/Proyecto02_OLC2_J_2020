@@ -44,11 +44,11 @@ class PorValorAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Por Valor)\n";
+        let cuerpo = nodo + "[label=\"Por Valor\"]\n";
         let exp = this.expresion.generarCuerpo(numero);
         cuerpo += exp.cuerpo;
         numero = exp.numero;
-        cuerpo += nodo + " --> " + exp.nombre+"\n";
+        cuerpo += nodo + " -> " + exp.nombre+"\n";
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;
     }

@@ -123,33 +123,33 @@ class SiAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(\"Sentencia_Si\")\n";
+        let cuerpo = nodo + "[label=\"Sentencia_Si\"]\n";
         let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "(\"Condicion\")\n";
-        cuerpo += nodo + " --> " + nodoIdent + ";\n";
+        cuerpo += nodoIdent + "[label=\"Condicion\"]\n";
+        cuerpo += nodo + " -> " + nodoIdent + ";\n";
         let valorNodo = this.condicion.generarCuerpo(numero);
         numero = valorNodo.numero;
         cuerpo += valorNodo.cuerpo;
-        cuerpo += nodoIdent + " --> " + valorNodo.nombre + "\n";
+        cuerpo += nodoIdent + " -> " + valorNodo.nombre + "\n";
         let NodoSentencias = "node" + numero++;
-        cuerpo += NodoSentencias + "(\"Sentencias\")\n";
-        cuerpo += nodo + " --> " + NodoSentencias + "\n";
+        cuerpo += NodoSentencias + "[label=\"Sentencias\"]\n";
+        cuerpo += nodo + " -> " + NodoSentencias + "\n";
 
         for (let x = 0; x < this.sentencias.length; x++) {
             let nuevo = this.sentencias[x].generarCuerpo(numero);
             numero = nuevo.numero;
             cuerpo += nuevo.cuerpo;
-            cuerpo += NodoSentencias + " --> " + nuevo.nombre + "\n";
+            cuerpo += NodoSentencias + " -> " + nuevo.nombre + "\n";
         }
         if (this.sentenciasElse != null) {
             let NodoSentenciasElse = "node" + numero++;
-            cuerpo += NodoSentenciasElse + "(\"Sentencias_Else\")\n";
-            cuerpo += nodo + " --> " + NodoSentenciasElse + "\n";
+            cuerpo += NodoSentenciasElse + "[label=\"Sentencias_Else\"]\n";
+            cuerpo += nodo + " -> " + NodoSentenciasElse + "\n";
             for (let x = 0; x < this.sentenciasElse.length; x++) {
                 let nuevo = this.sentenciasElse[x].generarCuerpo(numero);
                 numero = nuevo.numero;
                 cuerpo += nuevo.cuerpo;
-                cuerpo += NodoSentenciasElse + " --> " + nuevo.nombre + "\n";
+                cuerpo += NodoSentenciasElse + " -> " + nuevo.nombre + "\n";
             }
         }
 

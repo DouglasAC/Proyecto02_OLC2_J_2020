@@ -443,29 +443,29 @@ class LlamadaAccesoAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Llamada con Accesos)\n";
+        let cuerpo = nodo + "[label=\"Llamada con Accesos\"]\n";
         let nodoLlamada = this.llamada.generarCuerpo(numero);
         cuerpo += nodoLlamada.cuerpo;
         numero = nodoLlamada.numero;
-        cuerpo += nodo + " --> " + nodoLlamada.nombre + "\n";
+        cuerpo += nodo + " -> " + nodoLlamada.nombre + "\n";
         let nodoAccesos = "node" + numero++;
-        cuerpo += nodoAccesos + "(Accesos)\n";
-        cuerpo += nodo + " --> " + nodoAccesos + "\n";
+        cuerpo += nodoAccesos + "[label=\"Accesos\"]\n";
+        cuerpo += nodo + " -> " + nodoAccesos + "\n";
         for (let x = 0; x < this.accessos.length; x++) {
             let acceso = this.accessos[x];
             let nodoAcceso = "node" + numero++;
             if (acceso.tipo == "arreglo") {
-                cuerpo += nodoAcceso + "(Acceso Arreglo posicion:)\n";
+                cuerpo += nodoAcceso + "[label=\"Acceso Arreglo posicion:\"]\n";
                 let nodoPos = acceso.posicion.generarCuerpo(numero);
                 cuerpo += nodoPos.cuerpo;
                 numero = nodoPos.numero;
-                cuerpo += nodoAcceso + " --> " + nodoPos.cuerpo + "\n";
+                cuerpo += nodoAcceso + " -> " + nodoPos.cuerpo + "\n";
             } else if (acceso.tipo == "atributo") {
-                cuerpo += nodoAcceso + "(Acceso Atributo: " + acceso.nombre + ")\n";
+                cuerpo += nodoAcceso + "[label=\"Acceso Atributo: " + acceso.nombre + "\"]\n";
             } else if (acceso.tipo == "funcion") {
-                cuerpo += nodoAcceso + "(Acceso Funcion: " + acceso.nombre + ")\n";
+                cuerpo += nodoAcceso + "[label=\"Acceso Funcion: " + acceso.nombre + "\"]\n";
             }
-            cuerpo += nodoAccesos + " --> " + nodoAcceso + "\n";
+            cuerpo += nodoAccesos + " -> " + nodoAcceso + "\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;

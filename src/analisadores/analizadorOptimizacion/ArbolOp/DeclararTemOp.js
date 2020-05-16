@@ -29,7 +29,7 @@ class DeclararTempOp {
             }
             codigo += this.lista[x];
         }
-        codigo += ";\n";
+        codigo += ";\\n";
         return codigo;
     }
 }

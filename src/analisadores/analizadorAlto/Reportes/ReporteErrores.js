@@ -198,41 +198,55 @@ function generarReporteTablaSimbolos(simbolos) {
 }
 
 function generarReporteAst(arbol, importares) {
-    let cuerpo = "graph TD\n";
+    let cuerpo = "\n";
     let numero = 0;
     let nodoAst = "node" + numero++;
-    cuerpo += nodoAst + "(AST)\n";
+    cuerpo += nodoAst + "[label=\"AST\"]\n";
     let nodoSentencias = "node" + numero++;
-    cuerpo += nodoSentencias + "(Sentencias)\n";
-    cuerpo += nodoAst + " --> " + nodoSentencias + "\n";
+    cuerpo += nodoSentencias + "[label=\"Sentencias\"]\n";
+    cuerpo += nodoAst + " -> " + nodoSentencias + "\n";
     for (let x = 0; x < arbol.instrucciones.length; x++) {
         let nodoInstruccion = arbol.instrucciones[x].generarCuerpo(numero);
         cuerpo += nodoInstruccion.cuerpo;
 
         numero = nodoInstruccion.numero;
         console.log("numeor " + numero);
-        cuerpo += nodoSentencias + " --> " + nodoInstruccion.nombre + "\n";
+        cuerpo += nodoSentencias + " -> " + nodoInstruccion.nombre + "\n";
     }
     if (importares.length > 0) {
         let nodoImport = "node" + numero++;
-        cuerpo += nodoImport + "(Sentencias_Import)\n";
-        cuerpo += nodoAst + " --> " + nodoImport + "\n";
+        cuerpo += nodoImport + "[label=\"Sentencias_Import\"]\n";
+        cuerpo += nodoAst + " -> " + nodoImport + "\n";
         for (let y = 0; y < importares.length; y++) {
             let arbolImport = importares[y];
             for (let x = 0; x < arbolImport.instrucciones.length; x++) {
                 let nodoInstruccion = arbolImport.instrucciones[x].generarCuerpo(numero);
                 cuerpo += nodoInstruccion.cuerpo;
                 numero = nodoInstruccion.numero;
-                cuerpo += nodoSentencias + " --> " + nodoInstruccion.nombre + "\n";
+                cuerpo += nodoSentencias + " -> " + nodoInstruccion.nombre + "\n";
             }
         }
     }
     //console.log(cuerpo);
-    
-    
-    mermaid.render('GraphAst', cuerpo, (svg) => {
-        document.getElementById('divAst').innerHTML = svg;
+    $.ajax({
+        async: false,
+        contentType: 'application/json;  charset=utf-8',
+        type: "POST",
+        url: "/ast",
+        data: JSON.stringify({
+            cuerpo: cuerpo
+        }),
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+           
+            document.getElementById("imgAst").src = "ast.jpg?"+Math.random();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+
     });
+    
+    
 }
 
 

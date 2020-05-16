@@ -19,7 +19,7 @@ class BreakAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero;
-        let cuerpo = "  " + nodo + "(\"Break\")\n";
+        let cuerpo = "  " + nodo + "[label=\"Break\"];\n";
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;
     }

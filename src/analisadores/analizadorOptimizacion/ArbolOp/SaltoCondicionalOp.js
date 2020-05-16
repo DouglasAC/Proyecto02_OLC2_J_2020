@@ -16,7 +16,7 @@ class SaltoCondicionalOp {
         return "";
     }
     getExpresion() {
-        let codigo = "if (" + this.ope1 + " " + this.tipo + " " + this.ope2 + ") goto " + this.etiqueta + ";\n";
+        let codigo = "if (" + this.ope1 + " " + this.tipo + " " + this.ope2 + ") goto " + this.etiqueta + ";\\n";
         return codigo;
     }
 }

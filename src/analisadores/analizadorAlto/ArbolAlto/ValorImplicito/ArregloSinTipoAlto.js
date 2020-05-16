@@ -85,18 +85,18 @@ class ArregloSinTipoAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Expresion Arreglo ST)\n";
+        let cuerpo = nodo + "[label=\"Expresion Arreglo ST\"]\n";
         let nodoExpresiones = "node" + numero++;
-        cuerpo += nodoExpresiones + "(Expresiones)\n";
-        cuerpo += nodo + " --> " + nodoExpresiones + "\n";
+        cuerpo += nodoExpresiones + "[label=\"Expresiones\"]\n";
+        cuerpo += nodo + " -> " + nodoExpresiones + "\n";
         for (let x = 0; x < this.expresiones.length; x++) {
             let nodoExp = "node" + numero++;
-            cuerpo += nodoExp + "(Expresion)\n";
-            cuerpo += nodoExpresiones + " --> " + nodoExp + "\n";
+            cuerpo += nodoExp + "[label=\"Expresion\"]\n";
+            cuerpo += nodoExpresiones + " -> " + nodoExp + "\n";
             let val = this.expresiones[x].generarCuerpo(numero);
             cuerpo += val.cuerpo;
             numero = val.numero;
-            cuerpo += nodoExp + " --> " + val.nombre + "\n";
+            cuerpo += nodoExp + " -> " + val.nombre + "\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;

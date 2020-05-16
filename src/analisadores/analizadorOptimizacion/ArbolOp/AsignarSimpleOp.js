@@ -14,7 +14,7 @@ class AsignarSimpleOp {
         return "";
     }
     getExpresion() {
-        let codigo = this.temp + " = " + this.valor + ";\n";
+        let codigo = this.temp + " = " + this.valor + ";\\n";
         return codigo;
     }
 }

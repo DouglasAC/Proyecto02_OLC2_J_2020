@@ -13,7 +13,7 @@ class LlamadaOp {
         return "";
     }
     getExpresion() {
-        let codigo = "call " + this.nombre + ";\n";
+        let codigo = "call " + this.nombre + ";\\n";
         return codigo;
     }
 }

@@ -1071,22 +1071,22 @@ class OperacionAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(\"Operacion: " + this.operador + "\")\n";
+        let cuerpo = nodo + "[label=\"Operacion: " + this.operador + "\"]\n";
 
         if (this.operandoU != null) {
             let nodoUni = this.operandoU.generarCuerpo(numero);
             cuerpo += nodoUni.cuerpo;
             numero = nodoUni.numero;
-            cuerpo += nodo + " --> " + nodoUni.nombre + "\n";;
+            cuerpo += nodo + " -> " + nodoUni.nombre + "\n";;
         } else {
             let nodoOp1 = this.operando1.generarCuerpo(numero);
             cuerpo += nodoOp1.cuerpo;
             numero = nodoOp1.numero;
-            cuerpo += nodo + " --> " + nodoOp1.nombre + "\n";
+            cuerpo += nodo + " -> " + nodoOp1.nombre + "\n";
             let nodoOp2 = this.operando2.generarCuerpo(numero);
             cuerpo += nodoOp2.cuerpo;
             numero = nodoOp2.numero;
-            cuerpo += nodo + " --> " + nodoOp2.nombre + "\n";;
+            cuerpo += nodo + " -> " + nodoOp2.nombre + "\n";;
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;

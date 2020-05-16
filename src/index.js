@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const v8 = require('v8');
+const bodyParser = require('body-parser')
 //"dev": "nodemon --max-old-space-size=4096 src/"
 //console.log(v8.getHeapStatistics())
 const total = v8.getHeapStatistics().total_available_size;
@@ -17,9 +18,16 @@ app.set('view engine', 'ejs');
 
 //Middlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
+
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  parameterLimit: 100000,
+  extended: true 
+}));
 //Variables globales
 app.use((req, res, next) => {
   next();
@@ -30,6 +38,7 @@ app.use(require('./routes'));
 
 // Publico
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'archivos')));
 app.use(express.static(path.join(__dirname, 'analisadores')));
 // Iniciar servidor
 

@@ -36,12 +36,7 @@ class IdentificadorAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Identificador)\n";
-
-        let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "(" + this.nombre + ")\n";
-        cuerpo += nodo + " --> " + nodoIdent + "\n";
-
+        let cuerpo = nodo + "[label=\"Identificador: "+this.nombre+"\"]\n";
         let nuevo = new NodoDot(nodo, cuerpo, numero);
         return nuevo;
     }

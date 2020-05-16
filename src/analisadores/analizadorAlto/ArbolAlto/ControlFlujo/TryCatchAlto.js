@@ -131,25 +131,25 @@ class TryCatchAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(\"Try Catch\")\n";
+        let cuerpo = nodo + "[label=\"Try Catch\"]\n";
 
         let sentenciaTry = "node" + numero++;
-        cuerpo += sentenciaTry + "(\"Sentencias_Try\")\n";
-        cuerpo += nodo + " --> " + sentenciaTry + "\n";
+        cuerpo += sentenciaTry + "[label=\"Sentencias_Try\"]\n";
+        cuerpo += nodo + " -> " + sentenciaTry + "\n";
         for (let x = 0; x < this.sentencias.length; x++) {
             let nuevo = this.sentencias[x].generarCuerpo(numero);
             cuerpo += nuevo.cuerpo;
             numero += nuevo.numero;
-            cuerpo += sentenciaTry + " --> " + nuevo.nombre + "\n";
+            cuerpo += sentenciaTry + " -> " + nuevo.nombre + "\n";
         }
         let sentenciaCatch = "node" + numero++;
-        cuerpo += sentenciaCatch + "(\"Sentencias_Catch\")\n";
-        cuerpo += nodo + " --> " + sentenciaCatch + "\n";
+        cuerpo += sentenciaCatch + "[label=\"Sentencias_Catch\"]\n";
+        cuerpo += nodo + " -> " + sentenciaCatch + "\n";
         for (let x = 0; x < this.sentenciasCatch.length; x++) {
             let nuevo = this.sentenciasCatch[x].generarCuerpo(numero);
             cuerpo += nuevo.cuerpo;
             numero += nuevo.numero;
-            cuerpo += sentenciaCatch + " --> " + nuevo.nombre + "\n";
+            cuerpo += sentenciaCatch + " -> " + nuevo.nombre + "\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;

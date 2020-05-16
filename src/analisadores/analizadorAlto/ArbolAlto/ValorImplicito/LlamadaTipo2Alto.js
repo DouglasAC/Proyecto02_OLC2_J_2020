@@ -172,24 +172,24 @@ class LlamadaTipo2Alto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Llamada)\n";
+        let cuerpo = nodo + "[label=\"Llamada\"]\n";
         let nodoIde = "node" + numero++;
-        cuerpo += nodoIde + "(\"Identificador: " + this.identificador + "\")\n";
-        cuerpo += nodo + " --> " + nodoIde + "\n";
+        cuerpo += nodoIde + "[label=\"Identificador: " + this.identificador + "\"]\n";
+        cuerpo += nodo + " -> " + nodoIde + "\n";
         let nodoExpres = "node" + numero++;
-        cuerpo += nodoExpres + "(Expresiones)\n";
-        cuerpo += nodo + " --> " + nodoExpres + "\n";
+        cuerpo += nodoExpres + "[label=\"Expresiones\"]\n";
+        cuerpo += nodo + " -> " + nodoExpres + "\n";
         for (let x = 0; x < this.parametros.length; x++) {
             let nodoExp = "node" + numero++;
-            cuerpo += nodoExp + "(Expresion)\n";
-            cuerpo += nodoExpres + " --> " + nodoExp + "\n";
+            cuerpo += nodoExp + "[label=\"Expresion\"]\n";
+            cuerpo += nodoExpres + " -> " + nodoExp + "\n";
             let nodoNom = "node" + numero++;
-            cuerpo += nodoNom + "(Nombre: " + this.parametros[x][0] + ")\n";
-            cuerpo += nodoExp + " --> " + nodoNom + "\n";
+            cuerpo += nodoNom + "[label=\"Nombre: " + this.parametros[x][0] + "\"]\n";
+            cuerpo += nodoExp + " -> " + nodoNom + "\n";
             let nodoVal = this.parametros[x][1].generarCuerpo(numero);
             cuerpo += nodoVal.cuerpo;
             numero = nodoVal.numero;
-            cuerpo += nodoExp + " --> " + nodoVal.nombre + "\n";
+            cuerpo += nodoExp + " -> " + nodoVal.nombre + "\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;

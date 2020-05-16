@@ -65,14 +65,14 @@ class ReturnAlto {
 
         if (this.valor != null) {
             let nodo = "node" + numero++;
-            let cuerpo = nodo + "(\"Return\")\n";
+            let cuerpo = nodo + "[label=\"Return\"];\n";
             let val = this.valor.generarCuerpo(numero);
-            cuerpo += nodo + " --> " + val.nombre + ";\n";
+            cuerpo += nodo + " -> " + val.nombre + ";\n";
             let nuevo = new NodoDot(nodo, val.cuerpo + cuerpo, val.numero + 1);
             return nuevo;
         } else {
             let nodo = "node" + numero;
-            let cuerpo = nodo + "(\"Return\")\n";
+            let cuerpo = nodo + "[label=\"Return\"];\n";
             let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
             return nuevo;
         }

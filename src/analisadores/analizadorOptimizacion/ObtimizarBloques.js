@@ -6,7 +6,7 @@ function ObtimizarBloques() {
         return;
     }
     var result = GramaticaOp.parse(entrada);
-    
+
     let bloques = [];
     GenerarBloques(result.instrucciones, bloques);
 
@@ -27,7 +27,7 @@ function ObtimizarBloques() {
 
 function GenerarBloques(instrucciones, bloques) {
     let insBloque = [];
-    
+
     for (let x = 0; x < instrucciones.length; x++) {
         let instruccion = instrucciones[x];
         if (instruccion instanceof SaltoCondicionalOp || instruccion instanceof SaltoIncondicionalOp) {
@@ -53,7 +53,7 @@ function GenerarBloques(instrucciones, bloques) {
 }
 
 function GenerarDiagrama(bloques) {
-    let cuerpo = "graph TD\n";
+    let cuerpo = "";
     let anterior = "";
     for (let x = 0; x < bloques.length; x++) {
         let bloque = bloques[x];
@@ -65,28 +65,43 @@ function GenerarDiagrama(bloques) {
             nombre = "node" + (x + 1);
         }
         let dentro = "";
-       
+
         for (let y = 0; y < bloque.instrucciones.length; y++) {
             let a = "";
-            dentro += bloque.instrucciones[y].getExpresion()+ "<br>";
+            dentro += bloque.instrucciones[y].getExpresion();
         }
-        
-        cuerpo += `${nombre}(\"${dentro}\")\n`;
+
+        cuerpo += `${nombre}[label=\"${dentro}\"]\n`;
         if (anterior != "") {
-            cuerpo += `${anterior} --> ${nombre}\n`;
+            cuerpo += `${anterior} -> ${nombre}\n`;
         }
         if (bloque.instrucciones[bloque.instrucciones.length - 1] instanceof SaltoCondicionalOp
             || bloque.instrucciones[bloque.instrucciones.length - 1] instanceof SaltoIncondicionalOp
         ) {
             let ultima = bloque.instrucciones[bloque.instrucciones.length - 1];
-            cuerpo += `${nombre} --> node${ultima.etiqueta}\n`;
+            cuerpo += `${nombre} -> node${ultima.etiqueta}\n`;
         }
         anterior = nombre;
     }
 
+    
 
-    mermaid.render('GraphBlo', cuerpo, (svg) => {
-        document.getElementById('divBloques').innerHTML = svg;
+    $.ajax({
+        async: false,
+        contentType: 'application/json;  charset=utf-8',
+        type: "POST",
+        url: "/bloques",
+        data: JSON.stringify({
+            cuerpo: cuerpo
+        }),
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+           
+            document.getElementById("imgBloq").src = "bloq.jpg?"+Math.random();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+
     });
 }
 

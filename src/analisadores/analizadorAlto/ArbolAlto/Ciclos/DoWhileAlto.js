@@ -93,20 +93,20 @@ class DoWhileAlto {
         let valorNodo = this.condicion.generarCuerpo(numero);
 
         let nodo = "node" + valorNodo.numero;
-        let cuerpo = nodo + "(\"Sentencia_Do_While\")\n";
+        let cuerpo = nodo + "[label=\"Sentencia_Do_While\"]\n";
         let nodoIdent = "node" + (valorNodo.numero + 1);
-        cuerpo += nodoIdent + "(\"Condicion\")\n";
-        cuerpo += nodo + " --> " + nodoIdent + ";\n";
-        cuerpo += nodoIdent + " --> " + valorNodo.nombre + ";\n";
+        cuerpo += nodoIdent + "[label=\"Condicion\"]\n";
+        cuerpo += nodo + " -> " + nodoIdent + ";\n";
+        cuerpo += nodoIdent + " -> " + valorNodo.nombre + ";\n";
         let NodoSentencias = "node" + (valorNodo.numero + 2);
-        cuerpo += NodoSentencias + "(\"Sentencias\")\n";
-        cuerpo += nodo + " --> " + NodoSentencias + ";\n";
+        cuerpo += NodoSentencias + "[label=\"Sentencias\"]\n";
+        cuerpo += nodo + " -> " + NodoSentencias + ";\n";
         numero = valorNodo.numero + 3;
         for (let x = 0; x < this.sentencias.length; x++) {
             let nuevo = this.sentencias[x].generarCuerpo(numero);
             numero = nuevo.numero;
             cuerpo += nuevo.cuerpo;
-            cuerpo += NodoSentencias + " --> " + nuevo.nombre + ";\n";
+            cuerpo += NodoSentencias + " -> " + nuevo.nombre + ";\n";
         }
 
         let nuevo = new NodoDot(nodo, valorNodo.cuerpo + cuerpo, numero + 1);

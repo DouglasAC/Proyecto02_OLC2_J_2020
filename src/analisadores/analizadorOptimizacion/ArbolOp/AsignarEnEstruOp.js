@@ -15,7 +15,7 @@ class AsignarEnEstruOp {
         return "";
     }
     getExpresion() {
-        let codigo = this.estructura + "[" + this.posicion + "] = " + this.valor + ";\n";
+        let codigo = this.estructura + "[" + this.posicion + "] = " + this.valor + ";\\n";
         return codigo;
     }
 }

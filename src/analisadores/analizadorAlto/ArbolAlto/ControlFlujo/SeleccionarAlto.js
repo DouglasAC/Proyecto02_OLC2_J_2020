@@ -133,59 +133,59 @@ class SeleccionarAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(\"Sentencia_Switch\")\n";
+        let cuerpo = nodo + "[label=\"Sentencia_Switch\"]\n";
         let nodoIdent = "node" + numero++;
-        cuerpo += nodoIdent + "(\"Condicion\")\n";
-        cuerpo += nodo + " --> " + nodoIdent + "\n";
+        cuerpo += nodoIdent + "[label=\"Condicion\"]\n";
+        cuerpo += nodo + " -> " + nodoIdent + "\n";
         let valorNodo = this.expresion.generarCuerpo(numero);
         cuerpo += valorNodo.cuerpo;
         numero = valorNodo.numero;
-        cuerpo += nodoIdent + " --> " + valorNodo.nombre + "\n";
+        cuerpo += nodoIdent + " -> " + valorNodo.nombre + "\n";
         let NodoSentencias = "node" + numero++;
-        cuerpo += NodoSentencias + "(\"Casos\")\n";
-        cuerpo += nodo + " --> " + NodoSentencias + "\n";
+        cuerpo += NodoSentencias + "[label=\"Casos\"]\n";
+        cuerpo += nodo + " -> " + NodoSentencias + "\n";
 
 
         for (let x = 0; x < this.casos.length; x++) {
             let caso = this.casos[x];
             let nodoCaso = "node" + numero++;
-            cuerpo += nodoCaso + "(\"Caso\")\n";
-            cuerpo += NodoSentencias + " --> " + nodoCaso + ";\n";
+            cuerpo += nodoCaso + "[label=\"Caso\"]\n";
+            cuerpo += NodoSentencias + " -> " + nodoCaso + ";\n";
             let cas = caso.expresion.generarCuerpo(numero);
             cuerpo += cas.cuerpo;
             numero = cas.numero;
             let comparar = "node" + numero++;
-            cuerpo += comparar + "(\"Comparar\")\n";
-            cuerpo += nodoCaso + " --> " + comparar + "\n";
-            cuerpo += comparar + " --> " + cas.nombre + "\n";
+            cuerpo += comparar + "[label=\"Comparar\"]\n";
+            cuerpo += nodoCaso + " -> " + comparar + "\n";
+            cuerpo += comparar + " -> " + cas.nombre + "\n";
 
             let sentencias = "node" + numero++;
 
-            cuerpo += sentencias + "(\"Sentencias\")\n";
-            cuerpo += nodoCaso + " --> " + sentencias + "\n";
+            cuerpo += sentencias + "[label=\"Sentencias\"]\n";
+            cuerpo += nodoCaso + " -> " + sentencias + "\n";
             numero++;
             for (let y = 0; y < caso.sentencias.length; y++) {
                 let nuevo = caso.sentencias[y].generarCuerpo(numero);
                 numero = nuevo.numero;
                 cuerpo += nuevo.cuerpo;
-                cuerpo += sentencias + " --> " + nuevo.nombre + "\n";
+                cuerpo += sentencias + " -> " + nuevo.nombre + "\n";
             }
         }
 
         if (this.defecto != null) {
             let nodoCaso = "node" + numero++;
-            cuerpo += nodoCaso + "(\"Caso_Defecto\")\n";
-            cuerpo += NodoSentencias + " --> " + nodoCaso + ";\n";
+            cuerpo += nodoCaso + "[label=\"Caso_Defecto\"]\n";
+            cuerpo += NodoSentencias + " -> " + nodoCaso + ";\n";
 
             let sentencias = "node" + numero++;
-            cuerpo += sentencias + "(\"Sentencias\")\n";
-            cuerpo += nodoCaso + " --> " + sentencias + ";\n";
+            cuerpo += sentencias + "[label=\"Sentencias\"]\n";
+            cuerpo += nodoCaso + " -> " + sentencias + ";\n";
 
             for (let x = 0; x < this.defecto.sentencias.length; x++) {
                 let nuevo = this.defecto.sentencias[x].generarCuerpo(numero);
                 numero = nuevo.numero;
                 cuerpo += nuevo.cuerpo;
-                cuerpo += sentencias + " --> " + nuevo.nombre + ";\n";
+                cuerpo += sentencias + " -> " + nuevo.nombre + ";\n";
             }
         }
 

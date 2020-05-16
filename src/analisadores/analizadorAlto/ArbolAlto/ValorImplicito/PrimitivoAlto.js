@@ -48,7 +48,7 @@ class PrimitivoAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(\"Primitivo: " + this.valor + "\")\n";
+        let cuerpo = nodo + "[label=\"Primitivo: " + this.valor + "\"]\n";
         let nuevo = new NodoDot(nodo, cuerpo, numero);
         return nuevo;
     }

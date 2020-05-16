@@ -60,19 +60,19 @@ class ArregloConTipoAlto {
     }
     generarCuerpo(numero) {
         let nodo = "node" + numero++;
-        let cuerpo = nodo + "(Expresion Arreglo Con Tipo)\n";
+        let cuerpo = nodo + "[label=\"Expresion Arreglo Con Tipo\"]\n";
 
         let nodoTipo = "node" + numero++;
-        cuerpo += nodoTipo + "(Tipo: " + this.tipo[0] + ")\n";
-        cuerpo += nodo + " --> " + nodoTipo + "\n";
+        cuerpo += nodoTipo + "[label=\"Tipo: " + this.tipo[0] + "\"]\n";
+        cuerpo += nodo + " -> " + nodoTipo + "\n";
 
         let nodoTam = "node" + numero++;
-        cuerpo += nodoTam + "(Tamaño)\n";
-        cuerpo += nodo + " --> " + nodoTam + "\n";
+        cuerpo += nodoTam + "[label=\"Tamaño\"]\n";
+        cuerpo += nodo + " -> " + nodoTam + "\n";
         let nodoEsp = this.valor.generarCuerpo(numero);
         cuerpo += nodoEsp.cuerpo;
         numero = nodoEsp.numero;
-        cuerpo += nodoTam + " --> " + nodoEsp.nombre + "\n";
+        cuerpo += nodoTam + " -> " + nodoEsp.nombre + "\n";
 
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;
