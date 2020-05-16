@@ -67,8 +67,10 @@ function GenerarDiagrama(bloques) {
         let dentro = "";
        
         for (let y = 0; y < bloque.instrucciones.length; y++) {
-            dentro += bloque.instrucciones[y].getExpresion() + "<br>";
+            let a = "";
+            dentro += bloque.instrucciones[y].getExpresion()+ "<br>";
         }
+        
         cuerpo += `${nombre}(\"${dentro}\")\n`;
         if (anterior != "") {
             cuerpo += `${anterior} --> ${nombre}\n`;
