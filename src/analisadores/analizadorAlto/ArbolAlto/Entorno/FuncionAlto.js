@@ -76,7 +76,16 @@ class FuncionAlto {
             return tabla.errores[0];
         }
         for (let x = 0; x < this.sentencias.length; x++) {
-            codigo += this.sentencias[x].get3D(tabla);
+            let sentencia = this.sentencias[x];
+            codigo += sentencia.get3D(tabla);
+            if (sentencia instanceof LLamadaAlto
+                || sentencia instanceof LlamadaTipo2Alto
+                || sentencia instanceof LlamadaAccesoAlto
+                || sentencia instanceof AccesoAlto
+            ) {
+                let quit = tabla.getTemporalActual();
+                tabla.quitarNoUsados(quit);
+            }
         }
         tabla.entorno = "global";
         tabla.ambito = "global";
@@ -137,7 +146,7 @@ class FuncionAlto {
             cuerpo += NodoSentencias + " --> " + nuevo.nombre + "\n";
         }
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
-        console.log("numero funcion "+nuevo.numero)
+        console.log("numero funcion " + nuevo.numero)
         return nuevo;
     }
 }

@@ -71,6 +71,14 @@ class WhileAlto {
                 return cod;
             }
             codigo += cod;
+            if (m instanceof LLamadaAlto
+                || m instanceof LlamadaTipo2Alto
+                || m instanceof LlamadaAccesoAlto
+                || m instanceof AccesoAlto
+            ) {
+                let quit = tabla.getTemporalActual();
+                tabla.quitarNoUsados(quit);
+            }
         });
         tabla.locales = this.local.anterior;
         codigo += "goto " + etqCon + ";\n";

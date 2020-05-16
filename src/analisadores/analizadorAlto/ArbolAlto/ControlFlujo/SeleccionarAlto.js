@@ -92,6 +92,14 @@ class SeleccionarAlto {
                     return cod;
                 }
                 codigo += cod;
+                if (m instanceof LLamadaAlto
+                    || m instanceof LlamadaTipo2Alto
+                    || m instanceof LlamadaAccesoAlto
+                    || m instanceof AccesoAlto
+                ) {
+                    let quit = tabla.getTemporalActual();
+                    tabla.quitarNoUsados(quit);
+                }
             });
             tabla.locales = caso.local.anterior;
         }
@@ -106,6 +114,14 @@ class SeleccionarAlto {
                     return cod;
                 }
                 codigo += cod;
+                if (m instanceof LLamadaAlto
+                    || m instanceof LlamadaTipo2Alto
+                    || m instanceof LlamadaAccesoAlto
+                    || m instanceof AccesoAlto
+                ) {
+                    let quit = tabla.getTemporalActual();
+                    tabla.quitarNoUsados(quit);
+                }
             });
             tabla.locales = caso.local.anterior;
         }

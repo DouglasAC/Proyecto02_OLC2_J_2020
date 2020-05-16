@@ -86,6 +86,14 @@ class SiAlto {
                     return cod;
                 }
                 codigo += cod;
+                if (m instanceof LLamadaAlto
+                    || m instanceof LlamadaTipo2Alto
+                    || m instanceof LlamadaAccesoAlto
+                    || m instanceof AccesoAlto
+                ) {
+                    let quit = tabla.getTemporalActual();
+                    tabla.quitarNoUsados(quit);
+                }
             });
             tabla.locales = this.localElse.anterior;
             codigo += "# Fin Traducion Else\n";
@@ -99,6 +107,14 @@ class SiAlto {
                 return cod;
             }
             codigo += cod;
+            if (m instanceof LLamadaAlto
+                || m instanceof LlamadaTipo2Alto
+                || m instanceof LlamadaAccesoAlto
+                || m instanceof AccesoAlto
+            ) {
+                let quit = tabla.getTemporalActual();
+                tabla.quitarNoUsados(quit);
+            }
         });
         tabla.locales = this.local.anterior;
         codigo += etqF + ":\n";

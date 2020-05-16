@@ -59,7 +59,19 @@ class DoWhileAlto {
         codigo += etqV + ":\n";
         tabla.locales = this.local;
         this.sentencias.map(m => {
-            codigo += m.get3D(tabla);
+            let cod = m.get3D(tabla);
+            if (cod instanceof ErrorAlto) {
+                return cod;
+            }
+            codigo += cod;
+            if (m instanceof LLamadaAlto
+                || m instanceof LlamadaTipo2Alto
+                || m instanceof LlamadaAccesoAlto
+                || m instanceof AccesoAlto
+            ) {
+                let quit = tabla.getTemporalActual();
+                tabla.quitarNoUsados(quit);
+            }
         });
         tabla.locales = this.local.anterior;
 
