@@ -29,11 +29,23 @@ class PrimitivoAlto {
             tabla.agregarNoUsados(temp);
         } else if (this.tipo == "char") {
             let temp = tabla.getTemporal();
+            this.valor = this.replaceAll(this.valor, "\\'", "\'");
+            this.valor = this.replaceAll(this.valor, "\\\"", "\"");
+            this.valor = this.replaceAll(this.valor, "\\\\", "\\");
+            this.valor = this.replaceAll(this.valor, "\\n", "\n");
+            this.valor = this.replaceAll(this.valor, "\\t", "\t");
+            this.valor = this.replaceAll(this.valor, "\\r", "\r");
             codigo = temp + ' = ' + this.valor.charCodeAt(0) + ";\n";
             tabla.agregarNoUsados(temp);
         } else if (this.tipo == "string") {
             let tempInicio = tabla.getTemporal();
             codigo += tempInicio + " = h;\n";
+            this.valor = this.replaceAll(this.valor, "\\'", "\'");
+            this.valor = this.replaceAll(this.valor, "\\\"", "\"");
+            this.valor = this.replaceAll(this.valor, "\\\\", "\\");
+            this.valor = this.replaceAll(this.valor, "\\n", "\n");
+            this.valor = this.replaceAll(this.valor, "\\t", "\t");
+            this.valor = this.replaceAll(this.valor, "\\r", "\r");
             codigo += "Heap[h] = " + this.valor.length + ";\n";
             codigo += "h = h + 1;\n";
             for (let i = 0; i < this.valor.length; i++) {
@@ -51,6 +63,9 @@ class PrimitivoAlto {
         let cuerpo = nodo + "[label=\"Primitivo: " + this.valor + "\"]\n";
         let nuevo = new NodoDot(nodo, cuerpo, numero);
         return nuevo;
+    }
+    replaceAll(string, search, replace) {
+        return string.split(search).join(replace);
     }
 }
 exports.PrimitivoAlto = PrimitivoAlto;

@@ -52,11 +52,12 @@ class ReturnAlto {
             let temp = tabla.getTemporal();
             codigo += temp + " = p + 0;\n";
             codigo += "Stack[" + temp + "] = " + tempR + ";\n";
-
+            codigo += "goto " + tabla.finFuncion + ";\n";
         } else {
             let temp = tabla.getTemporal();
             codigo += temp + " = p + 0;\n";
             codigo += "Stack[" + temp + "] = -1;\n";
+            codigo += "goto " + tabla.finFuncion + ";\n";
         }
         codigo += "# Fin Return\n"
         return codigo;
