@@ -180,6 +180,8 @@ SENTECIA:
     | ASIGNACION_LLAMADA  PTCOMA    { $$ = $1; }
     | EXPRESION_AUMENTO   PTCOMA    { $$ = $1; }
     | EXPRESION_DECREMENTO PTCOMA   { $$ = $1; }
+    | EXPRESION_ACCESO  PTCOMA      { $$ = $1; }
+    | EXPRESION_LLAMADA_ACCESO PTCOMA { $$ = $1; }
     | SENTECIA_DECLARACION          { $$ = $1; }
     | SENTECIA_ASIGNACION           { $$ = $1; }
     | SENTECIA_IMPRIMIR             { $$ = $1; }
@@ -194,6 +196,8 @@ SENTECIA:
     | ASIGNACION_LLAMADA            { $$ = $1; }
     | EXPRESION_AUMENTO             { $$ = $1; }
     | EXPRESION_DECREMENTO          { $$ = $1; }
+    | EXPRESION_ACCESO              { $$ = $1; }
+    | EXPRESION_LLAMADA_ACCESO      { $$ = $1; }
 ;
 
 SENTECIA_IMPRIMIR:

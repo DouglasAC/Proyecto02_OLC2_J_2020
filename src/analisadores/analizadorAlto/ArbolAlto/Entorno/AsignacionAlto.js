@@ -13,7 +13,7 @@ class AsignacionAlto {
         }
         let val = this.valor.analizar(tabla);
         if (val instanceof ErrorAlto) {
-            return err;
+            return val;
         }
         let sim = tabla.getSimbolo(this.nombre);
         if (sim.constante) {

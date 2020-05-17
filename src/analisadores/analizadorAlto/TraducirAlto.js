@@ -56,15 +56,15 @@ function TraducurAlto() {
         codigoGlobales += traducirGlobales(tablaAlto, result.instrucciones);
         // Traducir globales import
         for (let y = 0; y < importares.length; y++) {
-            let arbolImport = importares[x];
-            codigoGlobales += traducirGlobales(arbolImport.instrucciones);
+            let arbolImport = importares[y];
+            codigoGlobales += traducirGlobales(tablaAlto, arbolImport.instrucciones);
         }
 
         // Traducir funciones y estructuras 
         codigo += traducirFuncionesyEstructuras(tablaAlto, result.instrucciones);
         // Taducir imports
         for (let y = 0; y < importares.length; y++) {
-            let arbolImport = importares[x];
+            let arbolImport = importares[y];
             codigo += traducirFuncionesyEstructuras(tablaAlto, arbolImport.instrucciones);
         }
 

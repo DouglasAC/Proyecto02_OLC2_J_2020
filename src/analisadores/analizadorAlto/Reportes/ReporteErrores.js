@@ -223,7 +223,7 @@ function generarReporteAst(arbol, importares) {
                 let nodoInstruccion = arbolImport.instrucciones[x].generarCuerpo(numero);
                 cuerpo += nodoInstruccion.cuerpo;
                 numero = nodoInstruccion.numero;
-                cuerpo += nodoSentencias + " -> " + nodoInstruccion.nombre + "\n";
+                cuerpo += nodoImport + " -> " + nodoInstruccion.nombre + "\n";
             }
         }
     }
