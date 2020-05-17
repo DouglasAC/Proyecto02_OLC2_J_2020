@@ -86,7 +86,7 @@
 [a-zA-Z_][_a-zA-Z0-9ñÑ]*  return 'ID'
 
 <<EOF>>               return 'EOF'
-.                     return 'INVALID'
+.                     tablaAlto.errores.push(new ErrorAlto("Lexico", yytext, yylloc.first_line, yylloc.first_column)); return 'INVALID'
 
 /lex
 
@@ -128,6 +128,7 @@ CUERPO:
     | SENTECIA_IMPORTAR             { $$ = $1; }
     | DEFINIR_ESTRUCTURA PTCOMA     { $$ = $1; }
     | DEFINIR_ESTRUCTURA            { $$ = $1; }
+    | error PTCOMA                  { $$ = new ErrorAlto("Sintactico", yytext, this._$.first_line , this._$.first_column); }
 ;
 
 SENTECIA_IMPORTAR:
@@ -198,6 +199,7 @@ SENTECIA:
     | EXPRESION_DECREMENTO          { $$ = $1; }
     | EXPRESION_ACCESO              { $$ = $1; }
     | EXPRESION_LLAMADA_ACCESO      { $$ = $1; }
+    | error PTCOMA                  { $$ = new ErrorAlto("Sintactico", yytext, this._$.first_line , this._$.first_column); }
 ;
 
 SENTECIA_IMPRIMIR:

@@ -1,13 +1,14 @@
 function TraducurAlto() {
     let number = tabActivaAlto.split(' ');
     let entrada = ace.edit(`editor${number[1]}`).getValue();
-    if (entrada=="") {
+    if (entrada == "") {
         alert("No hay entrada para traducir");
         return;
     }
-    var result = GramaticaAlto.parse(entrada);
-    
     tablaAlto = new TablaAlto(null);
+    var result = GramaticaAlto.parse(entrada);
+
+
 
     console.log(result);
 
@@ -17,6 +18,11 @@ function TraducurAlto() {
         if (result.instrucciones[x] instanceof ImportarAlto) {
             result.instrucciones[x].analizar(tablaAlto);
         }
+    }
+    //Obtener errores
+    obtenerErrores(tablaAlto, result.instrucciones)
+    for (let x = 0; x < importares.length; x++) {
+        obtenerErrores(tablaAlto, importares[x].instrucciones);
     }
 
     // Obtener Estructuras
@@ -122,7 +128,7 @@ function TraducurAlto() {
             codigo += "call principal;"
         }
 
-        
+
 
         if (this.tablaAlto.errores.length != 0) {
             alert("hay erres");
@@ -131,8 +137,8 @@ function TraducurAlto() {
             generarReporteTablaSimbolos(tablaAlto.simbolos);
             generarReporteAst(result, importares);
             ponerAdvertencias(tablaAlto.advertencias);
-        }else{
-            
+        } else {
+
             crearTabBajo();
             let number = tabActivaBajo.split(' ');
             ace.edit(`editorBajo${number[1]}`).setValue(codigo);
@@ -281,4 +287,14 @@ function traducirFuncionesyEstructuras(tabla, instrucciones) {
         }
     }
     return codigo;
+}
+
+function obtenerErrores(tabla, instrucciones) {
+    for (let x = 0; x < instrucciones.length; x++) {
+        let instruccion = instrucciones[x];
+        if (instruccion instanceof ErrorAlto) {
+            instruccion.analizar(tabla);
+        }
+    }
+
 }

@@ -7,51 +7,47 @@ node0[label="AST"]
 node1[label="Sentencias"]
 node0 -> node1
 node2[label="Declaracion"]
-node3[label="Tipo string"]
+node3[label="Tipo integer"]
 node2 -> node3;
 node4[label="Identificadores"]
 node2 -> node4;
-node5[label="Identificador: a"]
+node5[label="Identificador: b"]
 node4 -> node5;
 node6[label="Expresion"]
 node2 -> node6;
-node7[label="Primitivo: hola"]
+node7[label="Primitivo: 10"]
 node6 -> node7;
 node1 -> node2
 node9[label="Funcion"]
 node10[label="Tipo: void"]
 node9 -> node10
-node11[label="Identificador: principal"]
+node11[label="Identificador: fun"]
 node9 -> node11
 node12[label="Parametros"]
 node9 -> node12
 node13[label="Sentencias"]
 node9 -> node13
-node14[label="Llamada con Accesos"]
-node15[label="Llamada"]
-node16[label="Identificador: re"]
-node15 -> node16
-node17[label="Expresiones"]
-node15 -> node17
-node14 -> node15
-node19[label="Accesos"]
-node14 -> node19
-node20[label="Acceso Funcion: length"]
-node19 -> node20
+node14[label="Declaracion"]
+node15[label="Tipo integer"]
+node14 -> node15;
+node16[label="Identificadores"]
+node14 -> node16;
+node17[label="Identificador: a"]
+node16 -> node17;
 node13 -> node14
+node19[label="Error: Sintactico"]
+node13 -> node19
+node20[label="Declaracion"]
+node21[label="Tipo integer"]
+node20 -> node21;
+node22[label="Identificadores"]
+node20 -> node22;
+node23[label="Identificador: b"]
+node22 -> node23;
+node24[label="Expresion"]
+node20 -> node24;
+node25[label="Primitivo: 10"]
+node24 -> node25;
+node13 -> node20
 node1 -> node9
-node23[label="Funcion"]
-node24[label="Tipo: string"]
-node23 -> node24
-node25[label="Identificador: re"]
-node23 -> node25
-node26[label="Parametros"]
-node23 -> node26
-node27[label="Sentencias"]
-node23 -> node27
-node29[label="Identificador: a"]
-node28[label="Return"];
-node28 -> node29;
-node27 -> node28
-node1 -> node23
 }
