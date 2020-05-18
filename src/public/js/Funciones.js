@@ -86,43 +86,43 @@ function cambiarTabAlto(evt, tabName) {
 }
 
 function cerrarActualAltoTab() {
-    var tabLinks = document.getElementById("tabslinksAlto");
-    var tabs = document.getElementById("tabsAlto");
-    let number = tabActivaAlto.split(' ');
+    var tabLinksAlto = document.getElementById("tabslinksAlto");
+    var tabsALTO = document.getElementById("tabsAlto");
+    let numeroTab = tabActivaAlto.split(' ');
 
     let buttonPane = document.getElementById("button" + tabActivaAlto);
     let tabPane = document.getElementById(tabActivaAlto);
-    let textPane = document.getElementById("editor" + number[1]);
+    let textPane = document.getElementById("editor" + numeroTab[1]);
 
     tabPane.removeChild(textPane);
-    tabs.removeChild(tabPane);
-    tabLinks.removeChild(buttonPane);
+    tabsALTO.removeChild(tabPane);
+    tabLinksAlto.removeChild(buttonPane);
     tabActivaAlto = "";
 }
 
 
 function guardarAlto() {
-    let number = tabActivaAlto.split(' ');
-    var textToWrite = ace.edit(`editor${number[1]}`).getValue();
-    var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
+    let numeroTab = tabActivaAlto.split(' ');
+    var textToWrite = ace.edit(`editor${numeroTab[1]}`).getValue();
+    var textoB = new Blob([textToWrite], { type: 'text/plain' });
 
-    var fileNameToSaveAs = prompt("Por favor ingrese el nombre del archivo:", "Archivo.j");
-    if (fileNameToSaveAs == null) {
+    var nombreArchivo = prompt("Por favor ingrese el nombre del archivo:", "Archivo.j");
+    if (nombreArchivo == null) {
         return;
     }
-    var downloadLink = document.createElement("a");
-    downloadLink.download = fileNameToSaveAs;
-    downloadLink.innerHTML = "Descargar Archivo";
+    var descargarArchivo = document.createElement("a");
+    descargarArchivo.download = nombreArchivo;
+    descargarArchivo.innerHTML = "Descargar Archivo";
     if (window.webkitURL != null) {
-        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+        descargarArchivo.href = window.webkitURL.createObjectURL(textoB);
     }
     else {
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.onclick = destroyClickedElement;
-        downloadLink.style.display = "none";
-        document.body.appendChild(downloadLink);
+        descargarArchivo.href = window.URL.createObjectURL(textoB);
+        descargarArchivo.onclick = destroyClickedElement;
+        descargarArchivo.style.display = "none";
+        document.body.appendChild(descargarArchivo);
     }
-    downloadLink.click();
+    descargarArchivo.click();
 }
 
 
@@ -189,9 +189,9 @@ function crearTabBajo() {
 function cambiarTabBajo(evt, tabName) {
     if (tabActivaBajo != "") {
         
-        let number = tabActivaBajo.split(' ');
+        let numeroTab = tabActivaBajo.split(' ');
         document.getElementById(tabActivaBajo).style.display = "none";
-        document.getElementById("buttonC3D " + number[1]).className = "tablinks";
+        document.getElementById("buttonC3D " + numeroTab[1]).className = "tablinks";
         document.getElementById(tabName).style.display = "block";
         evt.currentTarget.className += " active";
         tabActivaBajo = tabName;
@@ -207,11 +207,11 @@ function cambiarTabBajo(evt, tabName) {
 function cerrarActualBajoTab() {
     var tabLinks = document.getElementById("tabsLinksBajo");
     var tabs = document.getElementById("tabsBajo");
-    let number = tabActivaBajo.split(' ');
+    let numeroTab = tabActivaBajo.split(' ');
 
     let buttonPane = document.getElementById("button" + tabActivaBajo);
     let tabPane = document.getElementById(tabActivaBajo);
-    let textPane = document.getElementById("editorBajo" + number[1]);
+    let textPane = document.getElementById("editorBajo" + numeroTab[1]);
 
     tabPane.removeChild(textPane);
     tabs.removeChild(tabPane);
@@ -222,27 +222,27 @@ function cerrarActualBajoTab() {
 
 
 function guardarBajo() {
-    let number = tabActivaBajo.split(' ');
-    var textToWrite = ace.edit(`editorBajo${number[1]}`).getValue();
-    var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
+    let numeroTab = tabActivaBajo.split(' ');
+    var textToWrite = ace.edit(`editorBajo${numeroTab[1]}`).getValue();
+    var textoB = new Blob([textToWrite], { type: 'text/plain' });
 
-    var fileNameToSaveAs = prompt("Por favor ingrese el nombre del archivo:", "Archivo.j");
-    if (fileNameToSaveAs == null) {
+    var nombreArchivo = prompt("Por favor ingrese el nombre del archivo:", "Archivo.j");
+    if (nombreArchivo == null) {
         return;
     }
-    var downloadLink = document.createElement("a");
-    downloadLink.download = fileNameToSaveAs;
-    downloadLink.innerHTML = "Descargar Archivo";
+    var descargarArchivo = document.createElement("a");
+    descargarArchivo.download = nombreArchivo;
+    descargarArchivo.innerHTML = "Descargar Archivo";
     if (window.webkitURL != null) {
-        downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+        descargarArchivo.href = window.webkitURL.createObjectURL(textoB);
     }
     else {
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.onclick = destroyClickedElement;
-        downloadLink.style.display = "none";
-        document.body.appendChild(downloadLink);
+        descargarArchivo.href = window.URL.createObjectURL(textoB);
+        descargarArchivo.onclick = destroyClickedElement;
+        descargarArchivo.style.display = "none";
+        document.body.appendChild(descargarArchivo);
     }
-    downloadLink.click();
+    descargarArchivo.click();
 }
 
 
