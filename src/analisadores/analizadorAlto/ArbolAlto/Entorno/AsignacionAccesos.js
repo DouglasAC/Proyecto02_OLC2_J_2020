@@ -1,6 +1,6 @@
 class AsignacionAccesos {
     constructor(nombre, accesos, expresion, fila, columna) {
-        this.nombre = nombre;
+        this.nombre = nombre.toLocaleLowerCase();
         this.accessos = accesos;
         this.expresion = expresion;
         this.fila = fila;
@@ -9,7 +9,7 @@ class AsignacionAccesos {
     analizar(tabla) {
         let ide = new IdentificadorAlto(this.nombre, this.fila, this.columna);
         let tipo = ide.analizar(tabla);
-        console.log(tipo);
+        //console.log(tipo);
         if (tipo instanceof ErrorAlto) {
             return tipo;
         }
@@ -202,7 +202,7 @@ class AsignacionAccesos {
                     codigo += etq2 + ":\n";
                     codigo += "# Fin Acceso Arreglo\n";
                 } else {
-                    let err = new ErrorAlto("Semantico", "No es un arreglo por lo tanto no se puede acceder", acceso.fila, this.columna);
+                    let err = new ErrorAlto("Semantico", "No es un arreglo por lo tanto no se puede acceder", acceso.fila, acceso.columna);
                     tabla.errores.push(err);
                     return err;
                 }

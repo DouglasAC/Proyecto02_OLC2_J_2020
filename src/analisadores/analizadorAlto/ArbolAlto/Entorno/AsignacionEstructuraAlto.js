@@ -1,6 +1,6 @@
 class AsignacionEstructuraAlto {
     constructor(nombre, atributo, valor, fila, columna) {
-        this.nombre = nombre;
+        this.nombre = nombre.toLocaleLowerCase();
         this.atributo = atributo;
         this.valor = valor;
         this.fila = fila;

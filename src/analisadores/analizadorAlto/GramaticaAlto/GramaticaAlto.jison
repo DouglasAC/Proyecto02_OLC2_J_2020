@@ -302,10 +302,10 @@ LISTA_ATRIBUTOS:
 ;
 
 ATRIBUTO:
-    TIPO ID                         { $$ = new Atributo([$1], $2, null); }
-    | TIPO ID '=' EXPRESION         { $$ = new Atributo([$1], $2, $4); }
-    | TIPO '[]' ID                  { $$ = new Atributo(["Tarry", $1], $3, null); }
-    | TIPO '[]' ID '=' EXPRESION    { $$ = new Atributo(["Tarry", $1], $3, $5); }
+    TIPO ID                         { $$ = new Atributo([$1.toLocaleLowerCase()], $2, null); }
+    | TIPO ID '=' EXPRESION         { $$ = new Atributo([$1.toLocaleLowerCase()], $2, $4); }
+    | TIPO '[]' ID                  { $$ = new Atributo(["Tarry", $1.toLocaleLowerCase()], $3, null); }
+    | TIPO '[]' ID '=' EXPRESION    { $$ = new Atributo(["Tarry", $1.toLocaleLowerCase()], $3, $5); }
 ;
 
 

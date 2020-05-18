@@ -1,6 +1,6 @@
 class Estructura {
     constructor(nombre, entorno, atributos) {
-        this.nombre = nombre;
+        this.nombre = nombre.toLocaleLowerCase();
         this.entorno = entorno;
         this.atributos = atributos;
     }

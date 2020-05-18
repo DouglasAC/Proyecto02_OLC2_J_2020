@@ -8,7 +8,7 @@ class SeleccionarAlto {
     }
     analizar(tabla) {
         let exp = this.expresion.analizar(tabla);
-        if (this.expresion instanceof ErrorAlto) {
+        if (exp instanceof ErrorAlto) {
             return exp;
         }
         tabla.displayBreak.push(1);

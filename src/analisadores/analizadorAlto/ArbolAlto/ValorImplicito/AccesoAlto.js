@@ -8,7 +8,7 @@ class AccesoAlto {
     analizar(tabla) {
         let ide = new IdentificadorAlto(this.nombre, this.fila, this.columna);
         let tipo = ide.analizar(tabla);
-        console.log(tipo);
+        //console.log(tipo);
         if (tipo instanceof ErrorAlto) {
             return tipo;
         }
@@ -139,6 +139,9 @@ class AccesoAlto {
         let codigo = "# Inicio Traduccion Acceso fila: " + this.fila + " columna: " + this.columna + "\n";
         let ide = new IdentificadorAlto(this.nombre, this.fila, this.columna);
         let tipo = ide.analizar(tabla);
+        if (tipo instanceof ErrorAlto) {
+            return tipo;
+        }
         codigo += ide.get3D(tabla);
         let temp = tabla.getTemporalActual();
         tabla.agregarNoUsados(temp);
@@ -468,7 +471,7 @@ class AccesoAlto {
             cuerpo += nodoAccesos + " -> " + nodoAcceso + "\n";
         }
 
-        
+
         let nuevo = new NodoDot(nodo, cuerpo, numero + 1);
         return nuevo;
     }

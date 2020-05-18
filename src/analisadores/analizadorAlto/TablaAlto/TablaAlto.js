@@ -70,27 +70,27 @@ class TablaAlto {
     }
     existe(nombre) {
         let existe = false;
-        existe = this.locales.existe(nombre);
+        existe = this.locales.existe(nombre.toLocaleLowerCase());
         if (existe) {
             return existe;
         }
         for (let x = 0; x < this.globales.length; x++) {
             let sim = this.globales[x];
-            if (nombre == sim.nombre) {
+            if (nombre.toLocaleLowerCase() == sim.nombre.toLocaleLowerCase()) {
                 return true;
             }
         }
         return existe;
     }
     existeLocal(nombre) {
-        let existe = this.locales.existeActual(nombre);
+        let existe = this.locales.existeActual(nombre.toLocaleLowerCase());
         return existe;
     }
     existeGlobal(nombre) {
         let existe = false;
         for (let x = 0; x < this.globales.length; x++) {
             let sim = this.globales[x];
-            if (nombre == sim.nombre) {
+            if (nombre.toLocaleLowerCase() == sim.nombre.toLocaleLowerCase()) {
                 return true;
             }
         }
@@ -98,13 +98,13 @@ class TablaAlto {
     }
     getSimbolo(nombre) {
         let existe = null;
-        existe = this.locales.getSimbolo(nombre);
+        existe = this.locales.getSimbolo(nombre.toLocaleLowerCase());
         if (existe != null) {
             return existe;
         }
         for (let x = 0; x < this.globales.length; x++) {
             let sim = this.globales[x];
-            if (nombre == sim.nombre) {
+            if (nombre.toLocaleLowerCase() == sim.nombre.toLocaleLowerCase()) {
                 return sim;
             }
         }
@@ -112,7 +112,7 @@ class TablaAlto {
     }
     existeFuncion(nombre) {
         for (let x = 0; x < this.funciones.length; x++) {
-            if (nombre == this.funciones[x].nombre) {
+            if (nombre.toLocaleLowerCase() == this.funciones[x].nombre.toLocaleLowerCase()) {
                 return true;
             }
         }
@@ -123,7 +123,7 @@ class TablaAlto {
     }
     getFuncion(nombre) {
         for (let x = 0; x < this.funciones.length; x++) {
-            if (nombre == this.funciones[x].nombre) {
+            if (nombre.toLocaleLowerCase() == this.funciones[x].nombre.toLocaleLowerCase()) {
                 return this.funciones[x];
             }
         }
@@ -132,7 +132,7 @@ class TablaAlto {
     getFunciones(nombre) {
         let funciones = [];
         for (let x = 0; x < this.funciones.length; x++) {
-            if (nombre == this.funciones[x].nombreReal) {
+            if (nombre.toLocaleLowerCase() == this.funciones[x].nombreReal.toLocaleLowerCase()) {
                 funciones.push(this.funciones[x]);
             }
         }
@@ -148,11 +148,11 @@ class TablaAlto {
         return false;
     }
     agregarTipo(tipo) {
-        this.tipos.push(tipo);
+        this.tipos.push(tipo.toLocaleLowerCase());
     }
     existeEstructura(tipo) {
         for (let x = 0; x < this.estructuras.length; x++) {
-            if (tipo == this.estructuras[x].nombre) {
+            if (tipo.toLocaleLowerCase() == this.estructuras[x].nombre.toLocaleLowerCase()) {
                 return true;
             }
         }
@@ -160,7 +160,7 @@ class TablaAlto {
     }
     getEstructura(nombre) {
         for (let x = 0; x < this.estructuras.length; x++) {
-            if (nombre == this.estructuras[x].nombre) {
+            if (nombre.toLocaleLowerCase() == this.estructuras[x].nombre.toLocaleLowerCase()) {
                 return this.estructuras[x];
             }
         }

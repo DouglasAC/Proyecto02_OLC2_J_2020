@@ -65,7 +65,7 @@ class DefinirEstructura {
             if (at.valor != null) {
                 let tipo = at.valor.analizar(tabla);
                 if (tipo instanceof ErrorAlto) {
-                    return err;
+                    return tipo;
                 }
                 codigo += at.valor.get3D(tabla);
                 let temp = tabla.getTemporalActual();

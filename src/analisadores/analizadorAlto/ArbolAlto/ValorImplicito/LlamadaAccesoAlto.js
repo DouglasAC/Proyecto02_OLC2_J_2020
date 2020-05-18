@@ -7,7 +7,7 @@ class LlamadaAccesoAlto {
     }
     analizar(tabla) {
         let tipo = this.llamada.analizar(tabla);
-        console.log(tipo);
+        //console.log(tipo);
         if (tipo instanceof ErrorAlto) {
             return tipo;
         }

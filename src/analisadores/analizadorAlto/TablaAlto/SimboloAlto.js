@@ -1,7 +1,7 @@
 class SimboloAlto {
     constructor(tipo, nombre, entorno, apuntador, arreglo, dimension, ambito, rol, constante) {
         this.tipo = tipo;
-        this.nombre = nombre;
+        this.nombre = nombre.toLocaleLowerCase();
         this.entorno = entorno;
         this.apuntador = apuntador;
         this.arreglo = arreglo;

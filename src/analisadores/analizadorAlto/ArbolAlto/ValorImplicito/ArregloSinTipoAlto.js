@@ -22,7 +22,7 @@ class ArregloSinTipoAlto {
             } else if (this.todosDouble(tipos)) {
                 tipo = ["double"]
             } else {
-                let err = new ErrorAlto("Semantico", "La expresions para formar el arreglo deben  ser derl mismo tipo, " + tipos, this.fila, this.columna);
+                let err = new ErrorAlto("Semantico", "La expresions para formar el arreglo deben  ser del mismo tipo, " + tipos, this.fila, this.columna);
                 tabla.errores.push(err);
                 return err;
             }
