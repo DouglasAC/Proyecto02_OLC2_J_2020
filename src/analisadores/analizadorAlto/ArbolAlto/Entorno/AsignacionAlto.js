@@ -1,6 +1,6 @@
 class AsignacionAlto {
     constructor(nombre, valor, fila, columna) {
-        this.nombre = nombre;
+        this.nombre = nombre.toLocaleLowerCase();
         this.valor = valor;
         this.fila = fila;
         this.columna = columna;
