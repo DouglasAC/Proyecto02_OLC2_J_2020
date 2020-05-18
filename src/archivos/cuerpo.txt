@@ -6,3071 +6,936 @@ edge[color=lightblue];
 node0[label="AST"]
 node1[label="Sentencias"]
 node0 -> node1
-node2[label="Declaracion"]
-node3[label="Identificador: var1"]
-node2 -> node3;
-node4[label="Expresion"]
-node2 -> node4;
-node5[label="Primitivo: 1"]
-node4 -> node5;
+node2[label="Definir Estructura"]
+node3[label="Identificador: bnode"]
+node2 -> node3
+node4[label="Atributos"]
+node2 -> node4
+node5[label="Atributo"]
+node4 -> node5
+node6[label="Tipo: bnode"]
+node5 -> node6
+node7[label="Identificador: left"]
+node5 -> node7
+node8[label="Atributo"]
+node4 -> node8
+node9[label="Tipo: bnode"]
+node8 -> node9
+node10[label="Identificador: right"]
+node8 -> node10
+node11[label="Atributo"]
+node4 -> node11
+node12[label="Tipo: string"]
+node11 -> node12
+node13[label="Identificador: value"]
+node11 -> node13
 node1 -> node2
-node7[label="Declaracion"]
-node8[label="Identificador: punteo"]
-node7 -> node8;
-node9[label="Expresion"]
-node7 -> node9;
-node10[label="Primitivo: 0"]
-node9 -> node10;
-node1 -> node7
-node12[label="Funcion"]
-node13[label="Tipo: void"]
-node12 -> node13
-node14[label="Identificador: principal"]
-node12 -> node14
-node15[label="Parametros"]
-node12 -> node15
-node16[label="Sentencias"]
-node12 -> node16
-node17[label="Imprimir"]
-node18[label="Primitivo: ---------------------------------- EVALUANDO ARCHIVO DE ALBA --------------------------------------------------"]
+node15[label="Definir Estructura"]
+node16[label="Identificador: btree"]
+node15 -> node16
+node17[label="Atributos"]
+node15 -> node17
+node18[label="Atributo"]
 node17 -> node18
-node16 -> node17
-node20[label="Imprimir"]
-node21[label="Primitivo: -----------------CALIFICACION-----------------"]
-node20 -> node21
-node16 -> node20
-node23[label="Asignacion"]
-node24[label="Identificador: var1"]
-node23 -> node24;
-node25[label="Primitivo: 0"]
-node23 -> node25;
-node16 -> node23
-node27[label="Sentencia_Si"]
-node28[label="Condicion"]
+node19[label="Tipo: bnode"]
+node18 -> node19
+node20[label="Identificador: root"]
+node18 -> node20
+node1 -> node15
+node22[label="Funcion"]
+node23[label="Tipo: void"]
+node22 -> node23
+node24[label="Identificador: principal"]
+node22 -> node24
+node25[label="Parametros"]
+node22 -> node25
+node26[label="Sentencias"]
+node22 -> node26
+node27[label="Declaracion"]
+node28[label="Tipo btree"]
 node27 -> node28;
-node29[label="Operacion: !="]
-node30[label="Identificador: var1"]
-node29 -> node30
-node31[label="Primitivo: 0"]
-node29 -> node31
-node28 -> node29
-node33[label="Sentencias"]
-node27 -> node33
-node34[label="Imprimir"]
-node35[label="Primitivo: No se toma con prioridad la variable local ante la global"]
-node34 -> node35
-node33 -> node34
-node37[label="Imprimir"]
-node38[label="Primitivo: Perdiste 5 puntos :c"]
-node37 -> node38
-node33 -> node37
-node40[label="Sentencias_Else"]
-node27 -> node40
-node41[label="Asignacion"]
-node42[label="Identificador: punteo"]
-node41 -> node42;
-node43[label="Operacion: +"]
-node44[label="Identificador: punteo"]
-node43 -> node44
-node45[label="Primitivo: 5"]
-node43 -> node45
-node41 -> node43;
-node40 -> node41
-node16 -> node27
-node49[label="Llamada"]
-node50[label="Identificador: declaracion"]
-node49 -> node50
-node51[label="Expresiones"]
-node49 -> node51
-node16 -> node49
-node53[label="Declaracion"]
-node54[label="Identificador: amb1"]
-node53 -> node54;
-node55[label="Expresion"]
-node53 -> node55;
-node56[label="Primitivo: 5"]
-node55 -> node56;
-node16 -> node53
-node58[label="Llamada"]
-node59[label="Identificador: ambitos2"]
+node29[label="Identificadores"]
+node27 -> node29;
+node30[label="Identificador: tree"]
+node29 -> node30;
+node31[label="Expresion"]
+node27 -> node31;
+node32[label="Crear Estructura"]
+node33[label="Identificador: btree"]
+node32 -> node33
+node31 -> node32;
+node26 -> node27
+node35[label="Asignacion con Accesos"]
+node36[label="Identificador: tree"]
+node35 -> node36
+node37[label="Accesos"]
+node35 -> node37
+nodo38[label="Acceso Atributo: root"]
+node37 -> nodo38
+node39[label="Llamada"]
+node40[label="Identificador: addnode"]
+node39 -> node40
+node41[label="Expresiones"]
+node39 -> node41
+node42[label="Expresion"]
+node41 -> node42
+node43[label="Primitivo: Luis"]
+node42 -> node43
+node44[label="Expresion"]
+node41 -> node44
+node45[label="Expresion Acceso"]
+node46[label="Identificador: tree"]
+node45 -> node46
+node47[label="Accesos"]
+node45 -> node47
+node48[label="Acceso Atributo: root"]
+node47 -> node48
+node44 -> node45
+node35 -> node39;
+node26 -> node35
+node52[label="Asignacion con Accesos"]
+node53[label="Identificador: tree"]
+node52 -> node53
+node54[label="Accesos"]
+node52 -> node54
+nodo55[label="Acceso Atributo: root"]
+node54 -> nodo55
+node56[label="Llamada"]
+node57[label="Identificador: addnode"]
+node56 -> node57
+node58[label="Expresiones"]
+node56 -> node58
+node59[label="Expresion"]
 node58 -> node59
-node60[label="Expresiones"]
-node58 -> node60
-node16 -> node58
-node62[label="Llamada"]
-node63[label="Identificador: aritmeticas"]
+node60[label="Primitivo: Rainman"]
+node59 -> node60
+node61[label="Expresion"]
+node58 -> node61
+node62[label="Expresion Acceso"]
+node63[label="Identificador: tree"]
 node62 -> node63
-node64[label="Expresiones"]
+node64[label="Accesos"]
 node62 -> node64
-node16 -> node62
-node66[label="Llamada"]
-node67[label="Identificador: logicas"]
-node66 -> node67
-node68[label="Expresiones"]
-node66 -> node68
-node16 -> node66
-node70[label="Llamada"]
-node71[label="Identificador: relacionales"]
-node70 -> node71
-node72[label="Expresiones"]
-node70 -> node72
-node16 -> node70
-node74[label="Imprimir"]
-node75[label="Operacion: +"]
-node76[label="Primitivo: punteo Final: "]
+node65[label="Acceso Atributo: root"]
+node64 -> node65
+node61 -> node62
+node52 -> node56;
+node26 -> node52
+node69[label="Asignacion con Accesos"]
+node70[label="Identificador: tree"]
+node69 -> node70
+node71[label="Accesos"]
+node69 -> node71
+nodo72[label="Acceso Atributo: root"]
+node71 -> nodo72
+node73[label="Llamada"]
+node74[label="Identificador: addnode"]
+node73 -> node74
+node75[label="Expresiones"]
+node73 -> node75
+node76[label="Expresion"]
 node75 -> node76
-node77[label="Identificador: punteo"]
-node75 -> node77
-node74 -> node75
-node16 -> node74
-node1 -> node12
-node81[label="Funcion"]
-node82[label="Tipo: void"]
+node77[label="Primitivo: Pavel"]
+node76 -> node77
+node78[label="Expresion"]
+node75 -> node78
+node79[label="Expresion Acceso"]
+node80[label="Identificador: tree"]
+node79 -> node80
+node81[label="Accesos"]
+node79 -> node81
+node82[label="Acceso Atributo: root"]
 node81 -> node82
-node83[label="Identificador: declaracion"]
-node81 -> node83
-node84[label="Parametros"]
-node81 -> node84
-node85[label="Sentencias"]
-node81 -> node85
-node86[label="Imprimir"]
-node87[label="Primitivo: ========= Metodo Declaracion ========="]
+node78 -> node79
+node69 -> node73;
+node26 -> node69
+node86[label="Asignacion con Accesos"]
+node87[label="Identificador: tree"]
 node86 -> node87
-node85 -> node86
-node89[label="Declaracion"]
-node90[label="Identificador: n4"]
-node89 -> node90;
-node91[label="Expresion"]
-node89 -> node91;
-node92[label="Primitivo: 2"]
-node91 -> node92;
-node85 -> node89
-node94[label="Declaracion"]
-node95[label="Identificador: str4"]
-node94 -> node95;
-node96[label="Expresion"]
-node94 -> node96;
-node97[label="Primitivo: Voy a ganar Compiladore"]
-node96 -> node97;
-node85 -> node94
-node99[label="Declaracion"]
-node100[label="Identificador: db4"]
-node99 -> node100;
-node101[label="Expresion"]
-node99 -> node101;
-node102[label="Primitivo: 0"]
-node101 -> node102;
-node85 -> node99
-node104[label="Declaracion"]
-node105[label="Identificador: db1"]
-node104 -> node105;
-node106[label="Expresion"]
-node104 -> node106;
-node107[label="Identificador: db4"]
-node106 -> node107;
-node85 -> node104
-node109[label="Declaracion"]
-node110[label="Identificador: chr4"]
-node109 -> node110;
-node111[label="Expresion"]
-node109 -> node111;
-node112[label="Primitivo: s"]
-node111 -> node112;
-node85 -> node109
-node114[label="Sentencia_Si"]
-node115[label="Condicion"]
-node114 -> node115;
-node116[label="Operacion: =="]
-node117[label="Identificador: db1"]
-node116 -> node117
-node118[label="Identificador: db4"]
-node116 -> node118
+node88[label="Accesos"]
+node86 -> node88
+nodo89[label="Acceso Atributo: root"]
+node88 -> nodo89
+node90[label="Llamada"]
+node91[label="Identificador: addnode"]
+node90 -> node91
+node92[label="Expresiones"]
+node90 -> node92
+node93[label="Expresion"]
+node92 -> node93
+node94[label="Primitivo: Juan Carlos"]
+node93 -> node94
+node95[label="Expresion"]
+node92 -> node95
+node96[label="Expresion Acceso"]
+node97[label="Identificador: tree"]
+node96 -> node97
+node98[label="Accesos"]
+node96 -> node98
+node99[label="Acceso Atributo: root"]
+node98 -> node99
+node95 -> node96
+node86 -> node90;
+node26 -> node86
+node103[label="Asignacion con Accesos"]
+node104[label="Identificador: tree"]
+node103 -> node104
+node105[label="Accesos"]
+node103 -> node105
+nodo106[label="Acceso Atributo: root"]
+node105 -> nodo106
+node107[label="Llamada"]
+node108[label="Identificador: addnode"]
+node107 -> node108
+node109[label="Expresiones"]
+node107 -> node109
+node110[label="Expresion"]
+node109 -> node110
+node111[label="Primitivo: Bayron"]
+node110 -> node111
+node112[label="Expresion"]
+node109 -> node112
+node113[label="Expresion Acceso"]
+node114[label="Identificador: tree"]
+node113 -> node114
+node115[label="Accesos"]
+node113 -> node115
+node116[label="Acceso Atributo: root"]
 node115 -> node116
-node120[label="Sentencias"]
-node114 -> node120
-node121[label="Imprimir"]
-node122[label="Operacion: +"]
-node123[label="Operacion: +"]
-node124[label="Operacion: +"]
-node125[label="Operacion: +"]
-node126[label="Identificador: str4"]
-node125 -> node126
-node127[label="Identificador: chr4"]
-node125 -> node127
-node124 -> node125
-node129[label="Primitivo:  "]
-node124 -> node129
-node123 -> node124
-node131[label="Identificador: n4"]
-node123 -> node131
-node122 -> node123
-node133[label="Primitivo:  :D"]
-node122 -> node133
-node121 -> node122
+node112 -> node113
+node103 -> node107;
+node26 -> node103
+node120[label="Asignacion con Accesos"]
+node121[label="Identificador: tree"]
 node120 -> node121
-node136[label="Sentencias_Else"]
-node114 -> node136
-node137[label="Imprimir"]
-node138[label="Primitivo: Problemas en el metodo declaracion :("]
+node122[label="Accesos"]
+node120 -> node122
+nodo123[label="Acceso Atributo: root"]
+node122 -> nodo123
+node124[label="Llamada"]
+node125[label="Identificador: addnode"]
+node124 -> node125
+node126[label="Expresiones"]
+node124 -> node126
+node127[label="Expresion"]
+node126 -> node127
+node128[label="Primitivo: Edgar"]
+node127 -> node128
+node129[label="Expresion"]
+node126 -> node129
+node130[label="Expresion Acceso"]
+node131[label="Identificador: tree"]
+node130 -> node131
+node132[label="Accesos"]
+node130 -> node132
+node133[label="Acceso Atributo: root"]
+node132 -> node133
+node129 -> node130
+node120 -> node124;
+node26 -> node120
+node137[label="Asignacion con Accesos"]
+node138[label="Identificador: tree"]
 node137 -> node138
-node136 -> node137
-node85 -> node114
-node141[label="Imprimir"]
-node142[label="Primitivo: ======================================"]
+node139[label="Accesos"]
+node137 -> node139
+nodo140[label="Acceso Atributo: root"]
+node139 -> nodo140
+node141[label="Llamada"]
+node142[label="Identificador: addnode"]
 node141 -> node142
-node85 -> node141
-node144[label="Asignacion"]
-node145[label="Identificador: punteo"]
-node144 -> node145;
-node146[label="Operacion: +"]
-node147[label="Identificador: punteo"]
+node143[label="Expresiones"]
+node141 -> node143
+node144[label="Expresion"]
+node143 -> node144
+node145[label="Primitivo: Erick"]
+node144 -> node145
+node146[label="Expresion"]
+node143 -> node146
+node147[label="Expresion Acceso"]
+node148[label="Identificador: tree"]
+node147 -> node148
+node149[label="Accesos"]
+node147 -> node149
+node150[label="Acceso Atributo: root"]
+node149 -> node150
 node146 -> node147
-node148[label="Primitivo: 5"]
-node146 -> node148
-node144 -> node146;
-node85 -> node144
-node1 -> node81
-node152[label="Funcion"]
-node153[label="Tipo: void"]
-node152 -> node153
-node154[label="Identificador: ambitos2"]
-node152 -> node154
-node155[label="Parametros"]
-node152 -> node155
-node156[label="Sentencias"]
-node152 -> node156
-node157[label="Imprimir"]
-node158[label="Primitivo: ========= Error Ambitos =============="]
-node157 -> node158
-node156 -> node157
-node160[label="Declaracion"]
-node161[label="Identificador: amb1"]
-node160 -> node161;
-node162[label="Expresion"]
-node160 -> node162;
-node163[label="Primitivo: Desde ambito2"]
-node162 -> node163;
-node156 -> node160
-node165[label="Imprimir"]
-node166[label="Primitivo: ======================================"]
-node165 -> node166
-node156 -> node165
-node168[label="Imprimir"]
-node169[label="Primitivo: ================ Nice ================"]
-node168 -> node169
-node156 -> node168
-node171[label="Asignacion"]
-node172[label="Identificador: punteo"]
-node171 -> node172;
-node173[label="Operacion: +"]
-node174[label="Identificador: punteo"]
+node137 -> node141;
+node26 -> node137
+node154[label="Asignacion con Accesos"]
+node155[label="Identificador: tree"]
+node154 -> node155
+node156[label="Accesos"]
+node154 -> node156
+nodo157[label="Acceso Atributo: root"]
+node156 -> nodo157
+node158[label="Llamada"]
+node159[label="Identificador: addnode"]
+node158 -> node159
+node160[label="Expresiones"]
+node158 -> node160
+node161[label="Expresion"]
+node160 -> node161
+node162[label="Primitivo: Luis"]
+node161 -> node162
+node163[label="Expresion"]
+node160 -> node163
+node164[label="Expresion Acceso"]
+node165[label="Identificador: tree"]
+node164 -> node165
+node166[label="Accesos"]
+node164 -> node166
+node167[label="Acceso Atributo: root"]
+node166 -> node167
+node163 -> node164
+node154 -> node158;
+node26 -> node154
+node171[label="Llamada"]
+node172[label="Identificador: preorder"]
+node171 -> node172
+node173[label="Expresiones"]
+node171 -> node173
+node174[label="Expresion"]
 node173 -> node174
-node175[label="Primitivo: 5"]
-node173 -> node175
-node171 -> node173;
-node156 -> node171
-node178[label="Imprimir"]
-node179[label="Operacion: +"]
-node180[label="Primitivo: Sin error: "]
-node179 -> node180
-node181[label="Identificador: amb1"]
-node179 -> node181
-node178 -> node179
-node156 -> node178
-node184[label="Imprimir"]
-node185[label="Primitivo: ======================================"]
-node184 -> node185
-node156 -> node184
-node1 -> node152
-node188[label="Funcion"]
-node189[label="Tipo: void"]
-node188 -> node189
-node190[label="Identificador: aritmeticas"]
-node188 -> node190
-node191[label="Parametros"]
-node188 -> node191
+node175[label="Expresion Acceso"]
+node176[label="Identificador: tree"]
+node175 -> node176
+node177[label="Accesos"]
+node175 -> node177
+node178[label="Acceso Atributo: root"]
+node177 -> node178
+node174 -> node175
+node26 -> node171
+node1 -> node22
+node182[label="Funcion"]
+node183[label="Tipo: bnode"]
+node182 -> node183
+node184[label="Identificador: addnode"]
+node182 -> node184
+node185[label="Parametros"]
+node182 -> node185
+node186[label="Parametro"]
+node185 -> node186
+node187[label="Tipo: string"]
+node186 -> node187
+node188[label="Identificador: value"]
+node186 -> node188
+node189[label="Parametro"]
+node185 -> node189
+node190[label="Tipo: bnode"]
+node189 -> node190
+node191[label="Identificador: subroot"]
+node189 -> node191
 node192[label="Sentencias"]
-node188 -> node192
-node193[label="Imprimir"]
-node194[label="Primitivo: ==============Aritmeticas============="]
-node193 -> node194
-node192 -> node193
-node196[label="Declaracion"]
-node197[label="Identificador: art1"]
-node196 -> node197;
+node182 -> node192
+node193[label="Sentencia_Si"]
+node194[label="Condicion"]
+node193 -> node194;
+node195[label="Llamada"]
+node196[label="Identificador: exists"]
+node195 -> node196
+node197[label="Expresiones"]
+node195 -> node197
 node198[label="Expresion"]
-node196 -> node198;
-node199[label="Operacion: +"]
-node200[label="Operacion: +"]
-node201[label="Operacion: +"]
-node202[label="Operacion: +"]
-node203[label="Operacion: +"]
-node204[label="Operacion: +"]
-node205[label="Operacion: +"]
-node206[label="Operacion: +"]
-node207[label="Operacion: +"]
-node208[label="Primitivo: Hola "]
-node207 -> node208
-node209[label="Primitivo: C"]
-node207 -> node209
-node206 -> node207
-node211[label="Primitivo: "]
-node206 -> node211
-node205 -> node206
-node213[label="Primitivo: O"]
-node205 -> node213
-node204 -> node205
-node215[label="Primitivo: "]
-node204 -> node215
-node203 -> node204
-node217[label="Primitivo: M"]
-node203 -> node217
-node202 -> node203
-node219[label="Primitivo: "]
-node202 -> node219
-node201 -> node202
-node221[label="Primitivo: P"]
-node201 -> node221
+node197 -> node198
+node199[label="Identificador: value"]
+node198 -> node199
+node200[label="Expresion"]
+node197 -> node200
+node201[label="Identificador: subroot"]
 node200 -> node201
-node223[label="Primitivo: "]
-node200 -> node223
-node199 -> node200
-node225[label="Primitivo: I"]
-node199 -> node225
-node198 -> node199;
-node192 -> node196
-node228[label="Imprimir"]
-node229[label="Identificador: art1"]
+node194 -> node195
+node203[label="Sentencias"]
+node193 -> node203
+node204[label="Imprimir"]
+node205[label="Operacion: +"]
+node206[label="Identificador: value"]
+node205 -> node206
+node207[label="Primitivo:  está repetido"]
+node205 -> node207
+node204 -> node205
+node203 -> node204
+node211[label="Identificador: subroot"]
+node210[label="Return"];
+node210 -> node211;
+node203 -> node210
+node192 -> node193
+node215[label="Llamada"]
+node216[label="Identificador: add"]
+node215 -> node216
+node217[label="Expresiones"]
+node215 -> node217
+node218[label="Expresion"]
+node217 -> node218
+node219[label="Identificador: value"]
+node218 -> node219
+node220[label="Expresion"]
+node217 -> node220
+node221[label="Identificador: subroot"]
+node220 -> node221
+node214[label="Return"];
+node214 -> node215;
+node192 -> node214
+node1 -> node182
+node225[label="Funcion"]
+node226[label="Tipo: bnode"]
+node225 -> node226
+node227[label="Identificador: add"]
+node225 -> node227
+node228[label="Parametros"]
+node225 -> node228
+node229[label="Parametro"]
 node228 -> node229
-node192 -> node228
-node231[label="Sentencia_Si"]
-node232[label="Condicion"]
-node231 -> node232;
-node233[label="Operacion: =="]
-node234[label="Identificador: art1"]
-node233 -> node234
-node235[label="Primitivo: Hola COMPI"]
-node233 -> node235
+node230[label="Tipo: string"]
+node229 -> node230
+node231[label="Identificador: value"]
+node229 -> node231
+node232[label="Parametro"]
+node228 -> node232
+node233[label="Tipo: bnode"]
 node232 -> node233
-node237[label="Sentencias"]
-node231 -> node237
-node238[label="Asignacion"]
-node239[label="Identificador: punteo"]
-node238 -> node239;
-node240[label="Operacion: +"]
-node241[label="Identificador: punteo"]
-node240 -> node241
-node242[label="Primitivo: 3"]
-node240 -> node242
-node238 -> node240;
+node234[label="Identificador: subroot"]
+node232 -> node234
+node235[label="Sentencias"]
+node225 -> node235
+node236[label="Sentencia_Si"]
+node237[label="Condicion"]
+node236 -> node237;
+node238[label="Operacion: =="]
+node239[label="Identificador: subroot"]
+node238 -> node239
+node240[label="Primitivo: null"]
+node238 -> node240
 node237 -> node238
-node245[label="Sentencias_Else"]
-node231 -> node245
-node246[label="Imprimir"]
-node247[label="Primitivo: Perdiste 3 puntos en suma de y :c"]
-node246 -> node247
+node242[label="Sentencias"]
+node236 -> node242
+node243[label="Asignacion"]
+node244[label="Identificador: subroot"]
+node243 -> node244;
+node245[label="Crear Estructura"]
+node246[label="Identificador: bnode"]
 node245 -> node246
-node192 -> node231
-node250[label="Declaracion"]
-node251[label="Identificador: n1"]
-node250 -> node251;
-node252[label="Expresion"]
-node250 -> node252;
-node253[label="Operacion: +"]
-node254[label="Operacion: +"]
-node255[label="Operacion: +"]
-node256[label="Operacion: +"]
-node257[label="Operacion: +"]
-node258[label="Primitivo: 0"]
+node243 -> node245;
+node242 -> node243
+node248[label="Asignacion con Accesos"]
+node249[label="Identificador: subroot"]
+node248 -> node249
+node250[label="Accesos"]
+node248 -> node250
+nodo251[label="Acceso Atributo: value"]
+node250 -> nodo251
+node252[label="Identificador: value"]
+node248 -> node252;
+node242 -> node248
+node254[label="Sentencias_Else"]
+node236 -> node254
+node255[label="Sentencia_Si"]
+node256[label="Condicion"]
+node255 -> node256;
+node257[label="Llamada"]
+node258[label="Identificador: esmayor"]
 node257 -> node258
-node259[label="Primitivo: 1"]
+node259[label="Expresiones"]
 node257 -> node259
+node260[label="Expresion"]
+node259 -> node260
+node261[label="Expresion Acceso"]
+node262[label="Identificador: subroot"]
+node261 -> node262
+node263[label="Accesos"]
+node261 -> node263
+node264[label="Acceso Atributo: value"]
+node263 -> node264
+node260 -> node261
+node266[label="Expresion"]
+node259 -> node266
+node267[label="Identificador: value"]
+node266 -> node267
 node256 -> node257
-node261[label="Primitivo: 1"]
-node256 -> node261
-node255 -> node256
-node263[label="Primitivo: 1"]
-node255 -> node263
-node254 -> node255
-node265[label="Primitivo: 0.1"]
-node254 -> node265
-node253 -> node254
-node267[label="Primitivo: 49"]
-node253 -> node267
-node252 -> node253;
-node192 -> node250
-node270[label="Imprimir"]
-node271[label="Operacion: +"]
-node272[label="Primitivo: El valor de  n1 = "]
-node271 -> node272
-node273[label="Identificador: n1"]
-node271 -> node273
+node269[label="Sentencias"]
+node255 -> node269
+node270[label="Asignacion con Accesos"]
+node271[label="Identificador: subroot"]
 node270 -> node271
-node192 -> node270
-node276[label="Sentencia_Si"]
-node277[label="Condicion"]
-node276 -> node277;
-node278[label="Operacion: =="]
-node279[label="Identificador: n1"]
-node278 -> node279
-node280[label="Primitivo: 52.1"]
-node278 -> node280
+node272[label="Accesos"]
+node270 -> node272
+nodo273[label="Acceso Atributo: left"]
+node272 -> nodo273
+node274[label="Llamada"]
+node275[label="Identificador: add"]
+node274 -> node275
+node276[label="Expresiones"]
+node274 -> node276
+node277[label="Expresion"]
+node276 -> node277
+node278[label="Identificador: value"]
 node277 -> node278
-node282[label="Sentencias"]
-node276 -> node282
-node283[label="Asignacion"]
-node284[label="Identificador: punteo"]
-node283 -> node284;
-node285[label="Operacion: +"]
-node286[label="Identificador: punteo"]
-node285 -> node286
-node287[label="Primitivo: 5"]
-node285 -> node287
-node283 -> node285;
+node279[label="Expresion"]
+node276 -> node279
+node280[label="Expresion Acceso"]
+node281[label="Identificador: subroot"]
+node280 -> node281
+node282[label="Accesos"]
+node280 -> node282
+node283[label="Acceso Atributo: left"]
 node282 -> node283
-node290[label="Sentencias_Else"]
-node276 -> node290
-node291[label="Imprimir"]
-node292[label="Primitivo: Perdiste 5 puntos en suma de enteros booleanos y caracteres :c"]
-node291 -> node292
+node279 -> node280
+node270 -> node274;
+node269 -> node270
+node287[label="Sentencias_Else"]
+node255 -> node287
+node288[label="Sentencia_Si"]
+node289[label="Condicion"]
+node288 -> node289;
+node290[label="Llamada"]
+node291[label="Identificador: esmayor"]
 node290 -> node291
-node192 -> node276
-node295[label="Declaracion"]
-node296[label="Identificador: n4"]
-node295 -> node296;
-node297[label="Expresion"]
-node295 -> node297;
-node298[label="Operacion: +"]
-node299[label="Operacion: -"]
-node300[label="Operacion: *"]
-node301[label="Primitivo: 5750"]
-node300 -> node301
-node302[label="Primitivo: 2"]
-node300 -> node302
-node299 -> node300
-node304[label="Primitivo: 11800"]
-node299 -> node304
+node292[label="Expresiones"]
+node290 -> node292
+node293[label="Expresion"]
+node292 -> node293
+node294[label="Identificador: value"]
+node293 -> node294
+node295[label="Expresion"]
+node292 -> node295
+node296[label="Expresion Acceso"]
+node297[label="Identificador: subroot"]
+node296 -> node297
+node298[label="Accesos"]
+node296 -> node298
+node299[label="Acceso Atributo: value"]
 node298 -> node299
-node306[label="Primitivo: 1"]
-node298 -> node306
-node297 -> node298;
-node192 -> node295
-node309[label="Declaracion"]
-node310[label="Identificador: n3"]
-node309 -> node310;
-node311[label="Expresion"]
-node309 -> node311;
-node312[label="Operacion: +"]
-node313[label="Operacion: -"]
-node314[label="Operacion: -"]
-node315[label="Operacion: +"]
-node316[label="Operacion: +"]
-node317[label="Operacion: -"]
-node318[label="Operacion: +"]
-node319[label="Operacion: *"]
-node320[label="Primitivo: 3"]
-node319 -> node320
-node321[label="Primitivo: 3"]
-node319 -> node321
-node318 -> node319
-node323[label="Primitivo: 4"]
-node318 -> node323
-node317 -> node318
-node325[label="Primitivo: 80"]
-node317 -> node325
-node316 -> node317
-node327[label="Operacion: *"]
-node328[label="Primitivo: 40"]
-node327 -> node328
-node329[label="Primitivo: 2"]
-node327 -> node329
-node316 -> node327
-node315 -> node316
-node332[label="Primitivo: 358.5"]
-node315 -> node332
-node314 -> node315
-node334[label="Operacion: /"]
-node335[label="Primitivo: 29"]
-node334 -> node335
-node336[label="Primitivo: 14.5"]
-node334 -> node336
-node314 -> node334
+node295 -> node296
+node289 -> node290
+node302[label="Sentencias"]
+node288 -> node302
+node303[label="Asignacion con Accesos"]
+node304[label="Identificador: subroot"]
+node303 -> node304
+node305[label="Accesos"]
+node303 -> node305
+nodo306[label="Acceso Atributo: right"]
+node305 -> nodo306
+node307[label="Llamada"]
+node308[label="Identificador: add"]
+node307 -> node308
+node309[label="Expresiones"]
+node307 -> node309
+node310[label="Expresion"]
+node309 -> node310
+node311[label="Identificador: value"]
+node310 -> node311
+node312[label="Expresion"]
+node309 -> node312
+node313[label="Expresion Acceso"]
+node314[label="Identificador: subroot"]
 node313 -> node314
-node339[label="Primitivo: 0.5"]
-node313 -> node339
+node315[label="Accesos"]
+node313 -> node315
+node316[label="Acceso Atributo: right"]
+node315 -> node316
 node312 -> node313
-node341[label="Identificador: n4"]
-node312 -> node341
-node311 -> node312;
-node192 -> node309
-node344[label="Imprimir"]
-node345[label="Operacion: +"]
-node346[label="Primitivo: El valor de n3 = "]
-node345 -> node346
-node347[label="Identificador: n3"]
-node345 -> node347
-node344 -> node345
-node192 -> node344
-node350[label="Sentencia_Si"]
-node351[label="Condicion"]
-node350 -> node351;
-node352[label="Operacion: ||"]
-node353[label="Operacion: =="]
-node354[label="Identificador: n3"]
-node353 -> node354
-node355[label="Primitivo: 70"]
-node353 -> node355
-node352 -> node353
-node357[label="Operacion: =="]
-node358[label="Identificador: n3"]
-node357 -> node358
-node359[label="Primitivo: 70"]
-node357 -> node359
-node352 -> node357
+node303 -> node307;
+node302 -> node303
+node287 -> node288
+node254 -> node255
+node235 -> node236
+node324[label="Identificador: subroot"]
+node323[label="Return"];
+node323 -> node324;
+node235 -> node323
+node1 -> node225
+node327[label="Funcion"]
+node328[label="Tipo: boolean"]
+node327 -> node328
+node329[label="Identificador: exists"]
+node327 -> node329
+node330[label="Parametros"]
+node327 -> node330
+node331[label="Parametro"]
+node330 -> node331
+node332[label="Tipo: string"]
+node331 -> node332
+node333[label="Identificador: value"]
+node331 -> node333
+node334[label="Parametro"]
+node330 -> node334
+node335[label="Tipo: bnode"]
+node334 -> node335
+node336[label="Identificador: subroot"]
+node334 -> node336
+node337[label="Sentencias"]
+node327 -> node337
+node338[label="Sentencia_Si"]
+node339[label="Condicion"]
+node338 -> node339;
+node340[label="Operacion: !="]
+node341[label="Identificador: subroot"]
+node340 -> node341
+node342[label="Primitivo: null"]
+node340 -> node342
+node339 -> node340
+node344[label="Sentencias"]
+node338 -> node344
+node346[label="Operacion: ||"]
+node347[label="Operacion: ||"]
+node348[label="Operacion: =="]
+node349[label="Expresion Acceso"]
+node350[label="Identificador: subroot"]
+node349 -> node350
+node351[label="Accesos"]
+node349 -> node351
+node352[label="Acceso Atributo: value"]
 node351 -> node352
-node362[label="Sentencias"]
-node350 -> node362
-node363[label="Asignacion"]
-node364[label="Identificador: punteo"]
-node363 -> node364;
-node365[label="Operacion: +"]
-node366[label="Identificador: punteo"]
-node365 -> node366
-node367[label="Primitivo: 3"]
-node365 -> node367
-node363 -> node365;
+node348 -> node349
+node354[label="Identificador: value"]
+node348 -> node354
+node347 -> node348
+node356[label="Llamada"]
+node357[label="Identificador: exists"]
+node356 -> node357
+node358[label="Expresiones"]
+node356 -> node358
+node359[label="Expresion"]
+node358 -> node359
+node360[label="Identificador: value"]
+node359 -> node360
+node361[label="Expresion"]
+node358 -> node361
+node362[label="Expresion Acceso"]
+node363[label="Identificador: subroot"]
 node362 -> node363
-node370[label="Sentencias_Else"]
-node350 -> node370
-node371[label="Imprimir"]
-node372[label="Primitivo: Perdiste 3 puntos :c "]
+node364[label="Accesos"]
+node362 -> node364
+node365[label="Acceso Atributo: left"]
+node364 -> node365
+node361 -> node362
+node347 -> node356
+node346 -> node347
+node369[label="Llamada"]
+node370[label="Identificador: exists"]
+node369 -> node370
+node371[label="Expresiones"]
+node369 -> node371
+node372[label="Expresion"]
 node371 -> node372
-node370 -> node371
-node192 -> node350
-node375[label="Llamada"]
-node376[label="Identificador: operacionesbasicas"]
+node373[label="Identificador: value"]
+node372 -> node373
+node374[label="Expresion"]
+node371 -> node374
+node375[label="Expresion Acceso"]
+node376[label="Identificador: subroot"]
 node375 -> node376
-node377[label="Expresiones"]
+node377[label="Accesos"]
 node375 -> node377
-node192 -> node375
-node379[label="Llamada"]
-node380[label="Identificador: operacionesavanzadas"]
-node379 -> node380
-node381[label="Expresiones"]
-node379 -> node381
-node192 -> node379
-node383[label="Imprimir"]
-node384[label="Primitivo: ======================================"]
-node383 -> node384
-node192 -> node383
-node1 -> node188
-node387[label="Funcion"]
-node388[label="Tipo: void"]
-node387 -> node388
-node389[label="Identificador: operacionesbasicas"]
-node387 -> node389
-node390[label="Parametros"]
-node387 -> node390
-node391[label="Sentencias"]
-node387 -> node391
-node392[label="Imprimir"]
-node393[label="Primitivo: Operaciones Aritmeticas 1: valor esperado:  
-a)62   
-b)0   
-c)-19   
-d)256   
-resultados>"]
-node392 -> node393
+node378[label="Acceso Atributo: right"]
+node377 -> node378
+node374 -> node375
+node346 -> node369
+node345[label="Return"];
+node345 -> node346;
+node344 -> node345
+node337 -> node338
+node385[label="Primitivo: false"]
+node384[label="Return"];
+node384 -> node385;
+node337 -> node384
+node1 -> node327
+node388[label="Funcion"]
+node389[label="Tipo: void"]
+node388 -> node389
+node390[label="Identificador: preorder"]
+node388 -> node390
+node391[label="Parametros"]
+node388 -> node391
+node392[label="Parametro"]
 node391 -> node392
-node395[label="Declaracion"]
-node396[label="Identificador: a"]
-node395 -> node396;
-node397[label="Expresion"]
-node395 -> node397;
-node398[label="Operacion: +"]
-node399[label="Operacion: -"]
-node400[label="Operacion: -"]
-node401[label="Operacion: +"]
-node402[label="Operacion: +"]
-node403[label="Operacion: -"]
-node404[label="Primitivo: 20"]
-node403 -> node404
-node405[label="Primitivo: 10"]
-node403 -> node405
-node402 -> node403
-node407[label="Operacion: *"]
-node408[label="Operacion: /"]
-node409[label="Primitivo: 8"]
-node408 -> node409
-node410[label="Primitivo: 2"]
-node408 -> node410
-node407 -> node408
-node412[label="Primitivo: 3"]
-node407 -> node412
-node402 -> node407
-node401 -> node402
-node415[label="Primitivo: 10"]
-node401 -> node415
-node400 -> node401
-node417[label="Primitivo: 10"]
-node400 -> node417
-node399 -> node400
-node419[label="Primitivo: 10"]
-node399 -> node419
+node393[label="Tipo: bnode"]
+node392 -> node393
+node394[label="Identificador: subroot"]
+node392 -> node394
+node395[label="Sentencias"]
+node388 -> node395
+node396[label="Sentencia_Si"]
+node397[label="Condicion"]
+node396 -> node397;
+node398[label="Operacion: !="]
+node399[label="Identificador: subroot"]
 node398 -> node399
-node421[label="Primitivo: 50"]
-node398 -> node421
-node397 -> node398;
-node391 -> node395
-node424[label="Declaracion"]
-node425[label="Identificador: b"]
-node424 -> node425;
-node426[label="Expresion"]
-node424 -> node426;
-node427[label="Operacion: -"]
-node428[label="Operacion: +"]
-node429[label="Operacion: -"]
-node430[label="Operacion: +"]
-node431[label="Operacion: *"]
-node432[label="Operacion: /"]
-node433[label="Primitivo: 50"]
+node400[label="Primitivo: null"]
+node398 -> node400
+node397 -> node398
+node402[label="Sentencias"]
+node396 -> node402
+node403[label="Llamada"]
+node404[label="Identificador: preorder"]
+node403 -> node404
+node405[label="Expresiones"]
+node403 -> node405
+node406[label="Expresion"]
+node405 -> node406
+node407[label="Expresion Acceso"]
+node408[label="Identificador: subroot"]
+node407 -> node408
+node409[label="Accesos"]
+node407 -> node409
+node410[label="Acceso Atributo: left"]
+node409 -> node410
+node406 -> node407
+node402 -> node403
+node413[label="Imprimir"]
+node414[label="Expresion Acceso"]
+node415[label="Identificador: subroot"]
+node414 -> node415
+node416[label="Accesos"]
+node414 -> node416
+node417[label="Acceso Atributo: value"]
+node416 -> node417
+node413 -> node414
+node402 -> node413
+node420[label="Llamada"]
+node421[label="Identificador: preorder"]
+node420 -> node421
+node422[label="Expresiones"]
+node420 -> node422
+node423[label="Expresion"]
+node422 -> node423
+node424[label="Expresion Acceso"]
+node425[label="Identificador: subroot"]
+node424 -> node425
+node426[label="Accesos"]
+node424 -> node426
+node427[label="Acceso Atributo: right"]
+node426 -> node427
+node423 -> node424
+node402 -> node420
+node395 -> node396
+node1 -> node388
+node432[label="Funcion"]
+node433[label="Tipo: boolean"]
 node432 -> node433
-node434[label="Primitivo: 50"]
+node434[label="Identificador: esmayor"]
 node432 -> node434
-node431 -> node432
-node436[label="Primitivo: 50"]
-node431 -> node436
-node430 -> node431
-node438[label="Primitivo: 50"]
-node430 -> node438
-node429 -> node430
-node440[label="Primitivo: 100"]
-node429 -> node440
-node428 -> node429
-node442[label="Primitivo: 100"]
-node428 -> node442
-node427 -> node428
-node444[label="Primitivo: 100"]
-node427 -> node444
-node426 -> node427;
-node391 -> node424
-node447[label="Declaracion"]
-node448[label="Identificador: c"]
-node447 -> node448;
-node449[label="Expresion"]
-node447 -> node449;
-node450[label="Operacion: +"]
-node451[label="Operacion: -"]
-node452[label="Operacion: +"]
-node453[label="Operacion: -"]
-node454[label="Operacion: +"]
-node455[label="Operacion: -"]
-node456[label="Operacion: *"]
-node457[label="Operacion: /"]
-node458[label="Primitivo: 100"]
+node435[label="Parametros"]
+node432 -> node435
+node436[label="Parametro"]
+node435 -> node436
+node437[label="Tipo: string"]
+node436 -> node437
+node438[label="Identificador: cad1"]
+node436 -> node438
+node439[label="Parametro"]
+node435 -> node439
+node440[label="Tipo: string"]
+node439 -> node440
+node441[label="Identificador: cad2"]
+node439 -> node441
+node442[label="Sentencias"]
+node432 -> node442
+node443[label="Declaracion de Arreglo"]
+node444[label="Tipo Arreglo de char"]
+node443 -> node444;
+node445[label="Identificador: cadena1"]
+node443 -> node445;
+node446[label="Expresion"]
+node443 -> node446;
+node447[label="Expresion Acceso"]
+node448[label="Identificador: cad1"]
+node447 -> node448
+node449[label="Accesos"]
+node447 -> node449
+node450[label="Acceso Funcion: tochararray"]
+node449 -> node450
+node446 -> node447;
+node442 -> node443
+node453[label="Declaracion de Arreglo"]
+node454[label="Tipo Arreglo de char"]
+node453 -> node454;
+node455[label="Identificador: cadena2"]
+node453 -> node455;
+node456[label="Expresion"]
+node453 -> node456;
+node457[label="Expresion Acceso"]
+node458[label="Identificador: cad2"]
 node457 -> node458
-node459[label="Primitivo: 20"]
+node459[label="Accesos"]
 node457 -> node459
-node456 -> node457
-node461[label="Primitivo: 9"]
-node456 -> node461
-node455 -> node456
-node463[label="Primitivo: 78"]
-node455 -> node463
-node454 -> node455
-node465[label="Primitivo: 6"]
-node454 -> node465
-node453 -> node454
-node467[label="Primitivo: 7"]
-node453 -> node467
-node452 -> node453
-node469[label="Primitivo: 8"]
-node452 -> node469
-node451 -> node452
-node471[label="Primitivo: 7"]
-node451 -> node471
-node450 -> node451
-node473[label="Operacion: /"]
-node474[label="Operacion: *"]
-node475[label="Operacion: *"]
-node476[label="Operacion: *"]
-node477[label="Primitivo: 7"]
-node476 -> node477
-node478[label="Primitivo: 1"]
-node476 -> node478
+node460[label="Acceso Funcion: tochararray"]
+node459 -> node460
+node456 -> node457;
+node442 -> node453
+node463[label="Declaracion"]
+node464[label="Tipo integer"]
+node463 -> node464;
+node465[label="Identificadores"]
+node463 -> node465;
+node466[label="Identificador: max"]
+node465 -> node466;
+node467[label="Identificador: cont"]
+node465 -> node467;
+node468[label="Identificador: total"]
+node465 -> node468;
+node469[label="Expresion"]
+node463 -> node469;
+node470[label="Primitivo: 0"]
+node469 -> node470;
+node442 -> node463
+node472[label="Sentencia_Si"]
+node473[label="Condicion"]
+node472 -> node473;
+node474[label="Operacion: >"]
+node475[label="Expresion Acceso"]
+node476[label="Identificador: cadena1"]
 node475 -> node476
-node480[label="Primitivo: 2"]
-node475 -> node480
+node477[label="Accesos"]
+node475 -> node477
+node478[label="Acceso Atributo: length"]
+node477 -> node478
 node474 -> node475
-node482[label="Primitivo: 3"]
-node474 -> node482
+node480[label="Expresion Acceso"]
+node481[label="Identificador: cadena2"]
+node480 -> node481
+node482[label="Accesos"]
+node480 -> node482
+node483[label="Acceso Atributo: length"]
+node482 -> node483
+node474 -> node480
 node473 -> node474
-node484[label="Primitivo: 3"]
-node473 -> node484
-node450 -> node473
-node449 -> node450;
-node391 -> node447
-node488[label="Declaracion"]
-node489[label="Identificador: d"]
-node488 -> node489;
-node490[label="Expresion"]
-node488 -> node490;
-node491[label="Operacion: ^^"]
-node492[label="Primitivo: 2"]
+node486[label="Sentencias"]
+node472 -> node486
+node487[label="Asignacion"]
+node488[label="Identificador: max"]
+node487 -> node488;
+node489[label="Expresion Acceso"]
+node490[label="Identificador: cadena1"]
+node489 -> node490
+node491[label="Accesos"]
+node489 -> node491
+node492[label="Acceso Atributo: length"]
 node491 -> node492
-node493[label="Casteo"]
-node494[label="Tipo: integer"]
-node493 -> node494
-node495[label="Operacion: *"]
-node496[label="Operacion: /"]
-node497[label="Primitivo: 20"]
-node496 -> node497
-node498[label="Primitivo: 5"]
-node496 -> node498
+node487 -> node489;
+node486 -> node487
+node495[label="Sentencias_Else"]
+node472 -> node495
+node496[label="Asignacion"]
+node497[label="Identificador: max"]
+node496 -> node497;
+node498[label="Expresion Acceso"]
+node499[label="Identificador: cadena2"]
+node498 -> node499
+node500[label="Accesos"]
+node498 -> node500
+node501[label="Acceso Atributo: length"]
+node500 -> node501
+node496 -> node498;
 node495 -> node496
-node500[label="Primitivo: 2"]
-node495 -> node500
-node493 -> node495
-node491 -> node493
-node490 -> node491;
-node391 -> node488
-node504[label="Imprimir"]
-node505[label="Operacion: +"]
-node506[label="Primitivo: a) "]
+node442 -> node472
+node505[label="Operacion: <"]
+node506[label="Identificador: cont"]
 node505 -> node506
-node507[label="Identificador: a"]
+node507[label="Identificador: max"]
 node505 -> node507
-node504 -> node505
-node391 -> node504
-node510[label="Imprimir"]
-node511[label="Operacion: +"]
-node512[label="Primitivo: b) "]
-node511 -> node512
-node513[label="Identificador: b"]
-node511 -> node513
-node510 -> node511
-node391 -> node510
-node516[label="Imprimir"]
-node517[label="Operacion: +"]
-node518[label="Primitivo: c) "]
-node517 -> node518
-node519[label="Identificador: c"]
-node517 -> node519
+node509[label="Sentencia_While"]
+node510[label="Condicion"];
+node509 -> node510;
+node510 -> node505;
+node511[label="Sentencias"]
+node509 -> node511
+node512[label="Sentencia_Si"]
+node513[label="Condicion"]
+node512 -> node513;
+node514[label="Operacion: <"]
+node515[label="Identificador: cont"]
+node514 -> node515
+node516[label="Expresion Acceso"]
+node517[label="Identificador: cadena1"]
 node516 -> node517
-node391 -> node516
-node522[label="Imprimir"]
-node523[label="Operacion: +"]
-node524[label="Primitivo: d) "]
-node523 -> node524
-node525[label="Identificador: d"]
-node523 -> node525
+node518[label="Accesos"]
+node516 -> node518
+node519[label="Acceso Atributo: length"]
+node518 -> node519
+node514 -> node516
+node513 -> node514
+node522[label="Sentencias"]
+node512 -> node522
+node523[label="Asignacion"]
+node524[label="Identificador: total"]
+node523 -> node524;
+node525[label="Expresion Acceso"]
+node526[label="Identificador: cadena1"]
+node525 -> node526
+node527[label="Accesos"]
+node525 -> node527
+node528[label="Acceso Arreglo posicion:"]
+node529[label="Identificador: cont"]
+node528 -> node529[label="Identificador: cont"]
+
+node527 -> node528
+node523 -> node525;
 node522 -> node523
-node391 -> node522
-node528[label="Sentencia_Si"]
-node529[label="Condicion"]
-node528 -> node529;
-node530[label="Operacion: &&"]
-node531[label="Operacion: &&"]
-node532[label="Operacion: &&"]
-node533[label="Operacion: =="]
-node534[label="Identificador: a"]
-node533 -> node534
-node535[label="Primitivo: 62"]
-node533 -> node535
-node532 -> node533
-node537[label="Operacion: =="]
-node538[label="Identificador: b"]
+node511 -> node512
+node533[label="Sentencia_Si"]
+node534[label="Condicion"]
+node533 -> node534;
+node535[label="Operacion: <"]
+node536[label="Identificador: cont"]
+node535 -> node536
+node537[label="Expresion Acceso"]
+node538[label="Identificador: cadena2"]
 node537 -> node538
-node539[label="Primitivo: 0"]
+node539[label="Accesos"]
 node537 -> node539
-node532 -> node537
-node531 -> node532
-node542[label="Operacion: =="]
-node543[label="Identificador: c"]
-node542 -> node543
-node544[label="Operacion: U"]
-node545[label="Primitivo: 19"]
-node544 -> node545
-node542 -> node544
-node531 -> node542
-node530 -> node531
-node549[label="Operacion: =="]
-node550[label="Identificador: d"]
-node549 -> node550
-node551[label="Primitivo: 256"]
-node549 -> node551
-node530 -> node549
-node529 -> node530
-node554[label="Sentencias"]
-node528 -> node554
-node555[label="Imprimir"]
-node556[label="Primitivo: Operaciones aritmeticas 1 bien :D"]
-node555 -> node556
-node554 -> node555
-node558[label="Asignacion"]
-node559[label="Identificador: punteo"]
-node558 -> node559;
-node560[label="Operacion: +"]
-node561[label="Identificador: punteo"]
-node560 -> node561
-node562[label="Primitivo: 5"]
-node560 -> node562
-node558 -> node560;
-node554 -> node558
-node565[label="Sentencias_Else"]
-node528 -> node565
-node566[label="Imprimir"]
-node567[label="Primitivo: Error en las operaciones basicas :("]
+node540[label="Acceso Atributo: length"]
+node539 -> node540
+node535 -> node537
+node534 -> node535
+node543[label="Sentencias"]
+node533 -> node543
+node544[label="Asignacion"]
+node545[label="Identificador: total"]
+node544 -> node545;
+node546[label="Operacion: -"]
+node547[label="Identificador: total"]
+node546 -> node547
+node548[label="Expresion Acceso"]
+node549[label="Identificador: cadena2"]
+node548 -> node549
+node550[label="Accesos"]
+node548 -> node550
+node551[label="Acceso Arreglo posicion:"]
+node552[label="Identificador: cont"]
+node551 -> node552[label="Identificador: cont"]
+
+node550 -> node551
+node546 -> node548
+node544 -> node546;
+node543 -> node544
+node511 -> node533
+node557[label="Sentencia_Si"]
+node558[label="Condicion"]
+node557 -> node558;
+node559[label="Operacion: !="]
+node560[label="Identificador: total"]
+node559 -> node560
+node561[label="Primitivo: 0"]
+node559 -> node561
+node558 -> node559
+node563[label="Sentencias"]
+node557 -> node563
+  node564[label="Break"];
+node563 -> node564
+node511 -> node557
+node566[label="Aumento"]
+node567[label="Identificador: cont"]
 node566 -> node567
-node565 -> node566
-node391 -> node528
-node1 -> node387
-node571[label="Funcion"]
-node572[label="Tipo: void"]
-node571 -> node572
-node573[label="Identificador: operacionesavanzadas"]
-node571 -> node573
-node574[label="Parametros"]
-node571 -> node574
-node575[label="Sentencias"]
-node571 -> node575
-node576[label="Declaracion"]
-node577[label="Identificador: aritmetica1"]
-node576 -> node577;
-node578[label="Expresion"]
-node576 -> node578;
-node579[label="Primitivo: 2"]
-node578 -> node579;
-node575 -> node576
-node581[label="Declaracion"]
-node582[label="Identificador: aritmetica2"]
-node581 -> node582;
-node583[label="Expresion"]
-node581 -> node583;
-node584[label="Operacion: U"]
-node585[label="Primitivo: 10"]
-node584 -> node585
-node583 -> node584;
-node575 -> node581
-node588[label="Imprimir"]
-node589[label="Primitivo: Operaciones Aritmeticas 2: valor esperado> -20  41, resultado>"]
-node588 -> node589
-node575 -> node588
-node591[label="Declaracion"]
-node592[label="Identificador: aritmetica3"]
-node591 -> node592;
-node593[label="Expresion"]
-node591 -> node593;
-node594[label="Operacion: *"]
-node595[label="Identificador: aritmetica2"]
-node594 -> node595
-node596[label="Identificador: aritmetica1"]
-node594 -> node596
-node593 -> node594;
-node575 -> node591
-node599[label="Imprimir"]
-node600[label="Operacion: +"]
-node601[label="Identificador: aritmetica3"]
-node600 -> node601
-node602[label="Primitivo: "]
-node600 -> node602
-node599 -> node600
-node575 -> node599
-node605[label="Asignacion"]
-node606[label="Identificador: aritmetica1"]
-node605 -> node606;
-node607[label="Casteo"]
-node608[label="Tipo: integer"]
-node607 -> node608
-node609[label="Operacion: -"]
-node610[label="Operacion: +"]
-node611[label="Operacion: -"]
-node612[label="Operacion: +"]
-node613[label="Operacion: +"]
-node614[label="Operacion: /"]
-node615[label="Identificador: aritmetica3"]
-node614 -> node615
-node616[label="Identificador: aritmetica1"]
-node614 -> node616
-node613 -> node614
-node618[label="Operacion: /"]
-node619[label="Operacion: ^^"]
-node620[label="Primitivo: 50"]
-node619 -> node620
-node621[label="Primitivo: 2"]
-node619 -> node621
-node618 -> node619
-node623[label="Primitivo: 50"]
-node618 -> node623
-node613 -> node618
-node612 -> node613
-node626[label="Operacion: *"]
-node627[label="Primitivo: 50"]
-node626 -> node627
-node628[label="Primitivo: 2"]
-node626 -> node628
-node612 -> node626
-node611 -> node612
-node631[label="Primitivo: 100"]
-node611 -> node631
-node610 -> node611
-node633[label="Operacion: /"]
-node634[label="Primitivo: 100"]
-node633 -> node634
-node635[label="Primitivo: 100"]
-node633 -> node635
-node610 -> node633
-node609 -> node610
-node638[label="Primitivo: 0"]
-node609 -> node638
-node607 -> node609
-node605 -> node607;
-node575 -> node605
-node641[label="Imprimir"]
-node642[label="Operacion: +"]
-node643[label="Identificador: aritmetica1"]
-node642 -> node643
-node644[label="Primitivo: "]
-node642 -> node644
-node641 -> node642
-node575 -> node641
-node647[label="Sentencia_Si"]
-node648[label="Condicion"]
-node647 -> node648;
-node649[label="Operacion: &&"]
-node650[label="Operacion: =="]
-node651[label="Identificador: aritmetica3"]
-node650 -> node651
-node652[label="Operacion: U"]
-node653[label="Primitivo: 20"]
-node652 -> node653
-node650 -> node652
-node649 -> node650
-node656[label="Operacion: =="]
-node657[label="Identificador: aritmetica1"]
-node656 -> node657
-node658[label="Primitivo: 41"]
-node656 -> node658
-node649 -> node656
-node648 -> node649
-node661[label="Sentencias"]
-node647 -> node661
-node662[label="Imprimir"]
-node663[label="Primitivo: Operaciones aritmeticas 2 bien :D"]
-node662 -> node663
-node661 -> node662
-node665[label="Asignacion"]
-node666[label="Identificador: punteo"]
-node665 -> node666;
-node667[label="Operacion: +"]
-node668[label="Identificador: punteo"]
-node667 -> node668
-node669[label="Primitivo: 5"]
-node667 -> node669
-node665 -> node667;
-node661 -> node665
-node672[label="Sentencias_Else"]
-node647 -> node672
-node673[label="Imprimir"]
-node674[label="Primitivo: Error Operaciones Aritmeticas :c alv :c"]
-node673 -> node674
-node672 -> node673
-node575 -> node647
-node1 -> node571
-node678[label="Funcion"]
-node679[label="Tipo: void"]
-node678 -> node679
-node680[label="Identificador: logicas"]
-node678 -> node680
-node681[label="Parametros"]
-node678 -> node681
-node682[label="Sentencias"]
-node678 -> node682
-node683[label="Imprimir"]
-node684[label="Primitivo: ==============Logicas1============="]
-node683 -> node684
-node682 -> node683
-node686[label="Sentencia_Si"]
-node687[label="Condicion"]
-node686 -> node687;
-node688[label="Operacion: !"]
-node689[label="Operacion: !"]
-node690[label="Operacion: !"]
-node691[label="Operacion: !"]
-node692[label="Operacion: !"]
-node693[label="Operacion: !"]
-node694[label="Operacion: !"]
-node695[label="Operacion: !"]
-node696[label="Operacion: !"]
-node697[label="Operacion: !"]
-node698[label="Operacion: !"]
-node699[label="Operacion: !"]
-node700[label="Operacion: !"]
-node701[label="Operacion: !"]
-node702[label="Operacion: !"]
-node703[label="Operacion: !"]
-node704[label="Operacion: !"]
-node705[label="Operacion: !"]
-node706[label="Operacion: !"]
-node707[label="Operacion: !"]
-node708[label="Operacion: !"]
-node709[label="Operacion: !"]
-node710[label="Primitivo: true"]
-node709 -> node710
-node708 -> node709
-node707 -> node708
-node706 -> node707
-node705 -> node706
-node704 -> node705
-node703 -> node704
-node702 -> node703
-node701 -> node702
-node700 -> node701
-node699 -> node700
-node698 -> node699
-node697 -> node698
-node696 -> node697
-node695 -> node696
-node694 -> node695
-node693 -> node694
-node692 -> node693
-node691 -> node692
-node690 -> node691
-node689 -> node690
-node688 -> node689
-node687 -> node688
-node733[label="Sentencias"]
-node686 -> node733
-node734[label="Asignacion"]
-node735[label="Identificador: punteo"]
-node734 -> node735;
-node736[label="Operacion: +"]
-node737[label="Identificador: punteo"]
-node736 -> node737
-node738[label="Primitivo: 1"]
-node736 -> node738
-node734 -> node736;
-node733 -> node734
-node741[label="Imprimir"]
-node742[label="Primitivo: Bien primera condicion :)"]
-node741 -> node742
-node733 -> node741
-node744[label="Sentencias_Else"]
-node686 -> node744
-node745[label="Imprimir"]
-node746[label="Primitivo: Perdiste 1 punto :c"]
-node745 -> node746
-node744 -> node745
-node682 -> node686
-node749[label="Sentencia_Si"]
-node750[label="Condicion"]
-node749 -> node750;
-node751[label="Operacion: ||"]
-node752[label="Operacion: ||"]
-node753[label="Operacion: &&"]
-node754[label="Primitivo: true"]
-node753 -> node754
-node755[label="Primitivo: true"]
-node753 -> node755
-node752 -> node753
-node757[label="Operacion: &&"]
-node758[label="Operacion: &&"]
-node759[label="Primitivo: false"]
-node758 -> node759
-node760[label="Primitivo: false"]
-node758 -> node760
-node757 -> node758
-node762[label="Primitivo: false"]
-node757 -> node762
-node752 -> node757
-node751 -> node752
-node765[label="Operacion: !"]
-node766[label="Primitivo: true"]
-node765 -> node766
-node751 -> node765
-node750 -> node751
-node769[label="Sentencias"]
-node749 -> node769
-node770[label="Asignacion"]
-node771[label="Identificador: punteo"]
-node770 -> node771;
-node772[label="Operacion: +"]
-node773[label="Identificador: punteo"]
-node772 -> node773
-node774[label="Primitivo: 1"]
-node772 -> node774
-node770 -> node772;
-node769 -> node770
-node777[label="Imprimir"]
-node778[label="Primitivo: Bien segunda condicion:)"]
-node777 -> node778
-node769 -> node777
-node780[label="Sentencias_Else"]
-node749 -> node780
-node781[label="Imprimir"]
-node782[label="Primitivo: Perdiste 1 punto :c"]
-node781 -> node782
-node780 -> node781
-node682 -> node749
-node785[label="Imprimir"]
-node786[label="Primitivo: ======================================"]
-node785 -> node786
-node682 -> node785
-node788[label="Llamada"]
-node789[label="Identificador: logicas2"]
-node788 -> node789
-node790[label="Expresiones"]
-node788 -> node790
-node682 -> node788
-node1 -> node678
-node793[label="Funcion"]
-node794[label="Tipo: void"]
-node793 -> node794
-node795[label="Identificador: logicas2"]
-node793 -> node795
-node796[label="Parametros"]
-node793 -> node796
-node797[label="Sentencias"]
-node793 -> node797
-node798[label="Declaracion"]
-node799[label="Identificador: n0"]
-node798 -> node799;
-node800[label="Expresion"]
-node798 -> node800;
-node801[label="Primitivo: 16"]
-node800 -> node801;
-node797 -> node798
-node803[label="Imprimir"]
-node804[label="Primitivo: ==============Logicas2============="]
-node803 -> node804
-node797 -> node803
-node806[label="Sentencia_Si"]
-node807[label="Condicion"]
-node806 -> node807;
-node808[label="Operacion: !"]
-node809[label="Operacion: &&"]
-node810[label="Operacion: !"]
-node811[label="Operacion: &&"]
-node812[label="Operacion: =="]
-node813[label="Identificador: n0"]
-node812 -> node813
-node814[label="Primitivo: 16"]
-node812 -> node814
-node811 -> node812
-node816[label="Operacion: =="]
-node817[label="Primitivo: false"]
-node816 -> node817
-node818[label="Primitivo: true"]
-node816 -> node818
-node811 -> node816
-node810 -> node811
-node809 -> node810
-node822[label="Operacion: !"]
-node823[label="Primitivo: true"]
-node822 -> node823
-node809 -> node822
-node808 -> node809
-node807 -> node808
-node827[label="Sentencias"]
-node806 -> node827
-node828[label="Imprimir"]
-node829[label="Primitivo: Not y Ands Correctos"]
-node828 -> node829
-node827 -> node828
-node831[label="Asignacion"]
-node832[label="Identificador: punteo"]
-node831 -> node832;
-node833[label="Operacion: +"]
-node834[label="Identificador: punteo"]
-node833 -> node834
-node835[label="Primitivo: 3"]
-node833 -> node835
-node831 -> node833;
-node827 -> node831
-node838[label="Sentencias_Else"]
-node806 -> node838
-node839[label="Imprimir"]
-node840[label="Primitivo: No funcionan nots y ands :("]
-node839 -> node840
-node838 -> node839
-node797 -> node806
-node843[label="Declaracion"]
-node844[label="Identificador: n1"]
-node843 -> node844;
-node845[label="Expresion"]
-node843 -> node845;
-node846[label="Operacion: /"]
-node847[label="Identificador: n0"]
-node846 -> node847
-node848[label="Primitivo: 16"]
-node846 -> node848
-node845 -> node846;
-node797 -> node843
-node851[label="Sentencia_Si"]
-node852[label="Condicion"]
-node851 -> node852;
-node853[label="Primitivo: true"]
-node852 -> node853
-node854[label="Sentencias"]
-node851 -> node854
-node855[label="Asignacion"]
-node856[label="Identificador: n1"]
-node855 -> node856;
-node857[label="Operacion: +"]
-node858[label="Identificador: n1"]
-node857 -> node858
-node859[label="Primitivo: 1"]
-node857 -> node859
-node855 -> node857;
-node854 -> node855
-node862[label="Sentencias_Else"]
-node851 -> node862
-node863[label="Asignacion"]
-node864[label="Identificador: n1"]
-node863 -> node864;
-node865[label="Operacion: +"]
-node866[label="Identificador: n1"]
-node865 -> node866
-node867[label="Primitivo: 0"]
-node865 -> node867
-node863 -> node865;
-node862 -> node863
-node797 -> node851
-node871[label="Declaracion"]
-node872[label="Identificador: condicion1"]
-node871 -> node872;
-node873[label="Expresion"]
-node871 -> node873;
-node874[label="Operacion: !="]
-node875[label="Identificador: n1"]
-node874 -> node875
-node876[label="Primitivo: 2"]
-node874 -> node876
-node873 -> node874;
-node797 -> node871
-node879[label="Declaracion"]
-node880[label="Identificador: aritmetica1"]
-node879 -> node880;
-node881[label="Expresion"]
-node879 -> node881;
-node882[label="Operacion: /"]
-node883[label="Identificador: n0"]
-node882 -> node883
-node884[label="Primitivo: 16"]
-node882 -> node884
-node881 -> node882;
-node797 -> node879
-node887[label="Sentencia_Si"]
-node888[label="Condicion"]
-node887 -> node888;
-node889[label="Operacion: !"]
-node890[label="Operacion: ||"]
-node891[label="Primitivo: true"]
-node890 -> node891
-node892[label="Primitivo: false"]
-node890 -> node892
-node889 -> node890
-node888 -> node889
-node895[label="Sentencias"]
-node887 -> node895
-node896[label="Asignacion"]
-node897[label="Identificador: aritmetica1"]
-node896 -> node897;
-node898[label="Operacion: +"]
-node899[label="Identificador: aritmetica1"]
-node898 -> node899
-node900[label="Primitivo: 1"]
-node898 -> node900
-node896 -> node898;
-node895 -> node896
-node903[label="Sentencias_Else"]
-node887 -> node903
-node904[label="Asignacion"]
-node905[label="Identificador: aritmetica1"]
-node904 -> node905;
-node906[label="Operacion: +"]
-node907[label="Identificador: aritmetica1"]
-node906 -> node907
-node908[label="Primitivo: 0"]
-node906 -> node908
-node904 -> node906;
-node903 -> node904
-node797 -> node887
-node912[label="Declaracion"]
-node913[label="Identificador: condicion2"]
-node912 -> node913;
-node914[label="Expresion"]
-node912 -> node914;
-node915[label="Operacion: =="]
-node916[label="Identificador: aritmetica1"]
-node915 -> node916
-node917[label="Identificador: n1"]
-node915 -> node917
-node914 -> node915;
-node797 -> node912
-node920[label="Declaracion"]
-node921[label="Identificador: condicion3"]
-node920 -> node921;
-node922[label="Expresion"]
-node920 -> node922;
-node923[label="Operacion: !"]
-node924[label="Primitivo: true"]
-node923 -> node924
-node922 -> node923;
-node797 -> node920
-node927[label="Sentencia_Si"]
-node928[label="Condicion"]
-node927 -> node928;
-node929[label="Operacion: !"]
-node930[label="Operacion: !"]
-node931[label="Operacion: ||"]
-node932[label="Operacion: !"]
-node933[label="Operacion: ||"]
-node934[label="Identificador: condicion1"]
-node933 -> node934
-node935[label="Identificador: condicion2"]
-node933 -> node935
-node932 -> node933
-node931 -> node932
-node938[label="Identificador: condicion3"]
-node931 -> node938
-node930 -> node931
-node929 -> node930
-node928 -> node929
-node942[label="Sentencias"]
-node927 -> node942
-node943[label="Imprimir"]
-node944[label="Primitivo: Nots y Ors correectos"]
-node943 -> node944
-node942 -> node943
-node946[label="Asignacion"]
-node947[label="Identificador: punteo"]
-node946 -> node947;
-node948[label="Operacion: +"]
-node949[label="Identificador: punteo"]
-node948 -> node949
-node950[label="Primitivo: 3"]
-node948 -> node950
-node946 -> node948;
-node942 -> node946
-node953[label="Sentencias_Else"]
-node927 -> node953
-node954[label="Imprimir"]
-node955[label="Primitivo: No Funciona nots y ands :("]
-node954 -> node955
-node953 -> node954
-node797 -> node927
-node958[label="Imprimir"]
-node959[label="Primitivo: ======================================"]
-node958 -> node959
-node797 -> node958
-node1 -> node793
-node962[label="Funcion"]
-node963[label="Tipo: void"]
-node962 -> node963
-node964[label="Identificador: relacionales"]
-node962 -> node964
-node965[label="Parametros"]
-node962 -> node965
-node966[label="Sentencias"]
-node962 -> node966
-node967[label="Declaracion"]
-node968[label="Identificador: n0"]
-node967 -> node968;
-node969[label="Expresion"]
-node967 -> node969;
-node970[label="Primitivo: 34"]
-node969 -> node970;
-node966 -> node967
-node972[label="Declaracion"]
-node973[label="Identificador: n1"]
-node972 -> node973;
-node974[label="Expresion"]
-node972 -> node974;
-node975[label="Primitivo: 16"]
-node974 -> node975;
-node966 -> node972
-node977[label="Llamada"]
-node978[label="Identificador: relaciones1"]
-node977 -> node978
-node979[label="Expresiones"]
-node977 -> node979
-node980[label="Expresion"]
-node979 -> node980
-node981[label="Identificador: n0"]
-node980 -> node981
-node966 -> node977
-node983[label="Llamada"]
-node984[label="Identificador: relaciones2"]
-node983 -> node984
-node985[label="Expresiones"]
-node983 -> node985
-node986[label="Expresion"]
-node985 -> node986
-node987[label="Identificador: n1"]
-node986 -> node987
-node966 -> node983
-node1 -> node962
-node990[label="Funcion"]
-node991[label="Tipo: void"]
-node990 -> node991
-node992[label="Identificador: relaciones1"]
-node990 -> node992
-node993[label="Parametros"]
-node990 -> node993
-node994[label="Parametro"]
-node993 -> node994
-node995[label="Tipo: integer"]
-node994 -> node995
-node996[label="Identificador: salida"]
-node994 -> node996
-node997[label="Sentencias"]
-node990 -> node997
-node998[label="Imprimir"]
-node999[label="Primitivo: ==============relacionales1============="]
-node998 -> node999
-node997 -> node998
-node1001[label="Declaracion"]
-node1002[label="Identificador: n0"]
-node1001 -> node1002;
-node1003[label="Expresion"]
-node1001 -> node1003;
-node1004[label="Operacion: +"]
-node1005[label="Identificador: salida"]
-node1004 -> node1005
-node1006[label="Primitivo: 0"]
-node1004 -> node1006
-node1003 -> node1004;
-node997 -> node1001
-node1009[label="Sentencia_Si"]
-node1010[label="Condicion"]
-node1009 -> node1010;
-node1011[label="Operacion: <"]
-node1012[label="Identificador: n0"]
-node1011 -> node1012
-node1013[label="Primitivo: 34.44"]
-node1011 -> node1013
-node1010 -> node1011
-node1015[label="Sentencias"]
-node1009 -> node1015
-node1016[label="Asignacion"]
-node1017[label="Identificador: salida"]
-node1016 -> node1017;
-node1018[label="Operacion: +"]
-node1019[label="Identificador: salida"]
-node1018 -> node1019
-node1020[label="Primitivo: 15"]
-node1018 -> node1020
-node1016 -> node1018;
-node1015 -> node1016
-node1023[label="Sentencia_Si"]
-node1024[label="Condicion"]
-node1023 -> node1024;
-node1025[label="Operacion: >"]
-node1026[label="Identificador: salida"]
-node1025 -> node1026
-node1027[label="Primitivo: 44"]
-node1025 -> node1027
-node1024 -> node1025
-node1029[label="Sentencias"]
-node1023 -> node1029
-node1030[label="Asignacion"]
-node1031[label="Identificador: salida"]
-node1030 -> node1031;
-node1032[label="Operacion: +"]
-node1033[label="Identificador: salida"]
-node1032 -> node1033
-node1034[label="Primitivo: 1"]
-node1032 -> node1034
-node1030 -> node1032;
-node1029 -> node1030
-node1015 -> node1023
-node1038[label="Sentencias_Else"]
-node1009 -> node1038
-node1039[label="Asignacion"]
-node1040[label="Identificador: salida"]
-node1039 -> node1040;
-node1041[label="Primitivo: 1"]
-node1039 -> node1041;
-node1038 -> node1039
-node997 -> node1009
-node1044[label="Sentencia_Si"]
-node1045[label="Condicion"]
-node1044 -> node1045;
-node1046[label="Operacion: !="]
-node1047[label="Identificador: salida"]
-node1046 -> node1047
-node1048[label="Primitivo: 1"]
-node1046 -> node1048
-node1045 -> node1046
-node1050[label="Sentencias"]
-node1044 -> node1050
-node1051[label="Sentencia_Si"]
-node1052[label="Condicion"]
-node1051 -> node1052;
-node1053[label="Operacion: =="]
-node1054[label="Identificador: salida"]
-node1053 -> node1054
-node1055[label="Primitivo: 50"]
-node1053 -> node1055
-node1052 -> node1053
-node1057[label="Sentencias"]
-node1051 -> node1057
-node1058[label="Imprimir"]
-node1059[label="Primitivo: salida Correcta Relacionales 1!"]
-node1058 -> node1059
-node1057 -> node1058
-node1061[label="Asignacion"]
-node1062[label="Identificador: punteo"]
-node1061 -> node1062;
-node1063[label="Operacion: +"]
-node1064[label="Identificador: punteo"]
-node1063 -> node1064
-node1065[label="Primitivo: 5"]
-node1063 -> node1065
-node1061 -> node1063;
-node1057 -> node1061
-node1068[label="Sentencias_Else"]
-node1051 -> node1068
-node1069[label="Imprimir"]
-node1070[label="Primitivo: salida incorrecta!!"]
-node1069 -> node1070
-node1068 -> node1069
-node1050 -> node1051
-node1073[label="Sentencias_Else"]
-node1044 -> node1073
-node1074[label="Imprimir"]
-node1075[label="Primitivo: salida incorrecta!!"]
-node1074 -> node1075
-node1073 -> node1074
-node997 -> node1044
-node1078[label="Imprimir"]
-node1079[label="Primitivo: ======================================"]
-node1078 -> node1079
-node997 -> node1078
-node1 -> node990
-node1082[label="Funcion"]
-node1083[label="Tipo: void"]
-node1082 -> node1083
-node1084[label="Identificador: relaciones2"]
-node1082 -> node1084
-node1085[label="Parametros"]
-node1082 -> node1085
-node1086[label="Parametro"]
-node1085 -> node1086
-node1087[label="Tipo: integer"]
-node1086 -> node1087
-node1088[label="Identificador: n0"]
-node1086 -> node1088
-node1089[label="Sentencias"]
-node1082 -> node1089
-node1090[label="Imprimir"]
-node1091[label="Primitivo: vas bien, animo :D"]
-node1090 -> node1091
-node1089 -> node1090
-node1093[label="Imprimir"]
-node1094[label="Primitivo: ============Relacionales2============="]
-node1093 -> node1094
-node1089 -> node1093
-node1096[label="Sentencia_Si"]
-node1097[label="Condicion"]
-node1096 -> node1097;
-node1098[label="Operacion: &&"]
-node1099[label="Operacion: >="]
-node1100[label="Operacion: -"]
-node1101[label="Primitivo: 10"]
-node1100 -> node1101
-node1102[label="Primitivo: 15"]
-node1100 -> node1102
-node1099 -> node1100
-node1104[label="Primitivo: 0"]
-node1099 -> node1104
-node1098 -> node1099
-node1106[label="Operacion: =="]
-node1107[label="Primitivo: 44.44"]
-node1106 -> node1107
-node1108[label="Primitivo: 44.44"]
-node1106 -> node1108
-node1098 -> node1106
-node1097 -> node1098
-node1111[label="Sentencias"]
-node1096 -> node1111
-node1112[label="Imprimir"]
-node1113[label="Primitivo: salida incorrecta primer if relacionales2!!"]
-node1112 -> node1113
-node1111 -> node1112
-node1115[label="Sentencias_Else"]
-node1096 -> node1115
-node1116[label="Sentencia_Si"]
-node1117[label="Condicion"]
-node1116 -> node1117;
-node1118[label="Operacion: &&"]
-node1119[label="Operacion: =="]
-node1120[label="Operacion: +"]
-node1121[label="Primitivo: 15"]
-node1120 -> node1121
-node1122[label="Primitivo: 8"]
-node1120 -> node1122
-node1119 -> node1120
-node1124[label="Operacion: -"]
-node1125[label="Operacion: +"]
-node1126[label="Operacion: -"]
-node1127[label="Primitivo: 22"]
-node1126 -> node1127
-node1128[label="Primitivo: 10"]
-node1126 -> node1128
-node1125 -> node1126
-node1130[label="Operacion: *"]
-node1131[label="Primitivo: 5"]
-node1130 -> node1131
-node1132[label="Primitivo: 3"]
-node1130 -> node1132
-node1125 -> node1130
-node1124 -> node1125
-node1135[label="Primitivo: 4"]
-node1124 -> node1135
-node1119 -> node1124
-node1118 -> node1119
-node1138[label="Operacion: >"]
-node1139[label="Operacion: *"]
-node1140[label="Primitivo: 13"]
-node1139 -> node1140
-node1141[label="Primitivo: 0"]
-node1139 -> node1141
-node1138 -> node1139
-node1143[label="Operacion: U"]
-node1144[label="Primitivo: 1"]
-node1143 -> node1144
-node1138 -> node1143
-node1118 -> node1138
-node1117 -> node1118
-node1148[label="Sentencias"]
-node1116 -> node1148
-node1149[label="Sentencia_Si"]
-node1150[label="Condicion"]
-node1149 -> node1150;
-node1151[label="Operacion: !="]
-node1152[label="Primitivo: 10"]
-node1151 -> node1152
-node1153[label="Operacion: -"]
-node1154[label="Primitivo: 11"]
-node1153 -> node1154
-node1155[label="Primitivo: 1.01"]
-node1153 -> node1155
-node1151 -> node1153
-node1150 -> node1151
-node1158[label="Sentencias"]
-node1149 -> node1158
-node1159[label="Imprimir"]
-node1160[label="Primitivo: salida CORRECTA en relacionales2!!"]
-node1159 -> node1160
-node1158 -> node1159
-node1162[label="Asignacion"]
-node1163[label="Identificador: punteo"]
-node1162 -> node1163;
-node1164[label="Operacion: +"]
-node1165[label="Identificador: punteo"]
-node1164 -> node1165
-node1166[label="Primitivo: 5"]
-node1164 -> node1166
-node1162 -> node1164;
-node1158 -> node1162
-node1169[label="Sentencias_Else"]
-node1149 -> node1169
-node1170[label="Imprimir"]
-node1171[label="Primitivo: salida incorrecta segundo if relacionales 2!!"]
-node1170 -> node1171
-node1169 -> node1170
-node1148 -> node1149
-node1174[label="Sentencias_Else"]
-node1116 -> node1174
-node1175[label="Sentencia_Si"]
-node1176[label="Condicion"]
-node1175 -> node1176;
-node1177[label="Operacion: =="]
-node1178[label="Primitivo: 1"]
-node1177 -> node1178
-node1179[label="Primitivo: 1"]
-node1177 -> node1179
-node1176 -> node1177
-node1181[label="Sentencias"]
-node1175 -> node1181
-node1182[label="Imprimir"]
-node1183[label="Primitivo: salida incorrecta relacionales 2 3er if !!"]
-node1182 -> node1183
-node1181 -> node1182
-node1185[label="Sentencias_Else"]
-node1175 -> node1185
-node1186[label="Imprimir"]
-node1187[label="Primitivo: salida incorrecta relacionales 2 Sino3er if !!"]
-node1186 -> node1187
-node1185 -> node1186
-node1174 -> node1175
-node1115 -> node1116
-node1089 -> node1096
-node1192[label="Imprimir"]
-node1193[label="Primitivo: ======================================"]
-node1192 -> node1193
-node1089 -> node1192
-node1195[label="Llamada"]
-node1196[label="Identificador: sentenciasanidadas"]
-node1195 -> node1196
-node1197[label="Expresiones"]
-node1195 -> node1197
-node1089 -> node1195
-node1 -> node1082
-node1200[label="Funcion"]
-node1201[label="Tipo: void"]
-node1200 -> node1201
-node1202[label="Identificador: figura1"]
-node1200 -> node1202
-node1203[label="Parametros"]
-node1200 -> node1203
-node1204[label="Parametro"]
-node1203 -> node1204
-node1205[label="Tipo: integer"]
-node1204 -> node1205
-node1206[label="Identificador: n"]
-node1204 -> node1206
-node1207[label="Sentencias"]
-node1200 -> node1207
-node1208[label="Declaracion"]
-node1209[label="Identificador: stringfigura"]
-node1208 -> node1209;
-node1210[label="Expresion"]
-node1208 -> node1210;
-node1211[label="Primitivo: "]
-node1210 -> node1211;
-node1207 -> node1208
-node1213[label="Declaracion"]
-node1214[label="Identificador: i"]
-node1213 -> node1214;
-node1215[label="Expresion"]
-node1213 -> node1215;
-node1216[label="Operacion: /"]
-node1217[label="Operacion: *"]
-node1218[label="Operacion: U"]
-node1219[label="Primitivo: 3"]
-node1218 -> node1219
-node1217 -> node1218
-node1221[label="Identificador: n"]
-node1217 -> node1221
-node1216 -> node1217
-node1223[label="Primitivo: 2"]
-node1216 -> node1223
-node1215 -> node1216;
-node1207 -> node1213
-node1226[label="Operacion: <"]
-node1227[label="Identificador: i"]
-node1226 -> node1227
-node1228[label="Operacion: +"]
-node1229[label="Identificador: n"]
-node1228 -> node1229
-node1230[label="Primitivo: 1"]
-node1228 -> node1230
-node1226 -> node1228
-node1233[label="Sentencia_While"]
-node1234[label="Condicion"];
-node1233 -> node1234;
-node1234 -> node1226;
-node1235[label="Sentencias"]
-node1233 -> node1235
-node1236[label="Asignacion"]
-node1237[label="Identificador: stringfigura"]
-node1236 -> node1237;
-node1238[label="Primitivo: "]
-node1236 -> node1238;
-node1235 -> node1236
-node1240[label="Declaracion"]
-node1241[label="Identificador: j"]
-node1240 -> node1241;
-node1242[label="Expresion"]
-node1240 -> node1242;
-node1243[label="Operacion: /"]
-node1244[label="Operacion: *"]
-node1245[label="Operacion: U"]
-node1246[label="Primitivo: 3"]
-node1245 -> node1246
-node1244 -> node1245
-node1248[label="Identificador: n"]
-node1244 -> node1248
-node1243 -> node1244
-node1250[label="Primitivo: 2"]
-node1243 -> node1250
-node1242 -> node1243;
-node1235 -> node1240
-node1253[label="Operacion: <"]
-node1254[label="Identificador: j"]
-node1253 -> node1254
-node1255[label="Operacion: +"]
-node1256[label="Operacion: /"]
-node1257[label="Operacion: *"]
-node1258[label="Primitivo: 3"]
-node1257 -> node1258
-node1259[label="Identificador: n"]
-node1257 -> node1259
-node1256 -> node1257
-node1261[label="Primitivo: 2"]
-node1256 -> node1261
-node1255 -> node1256
-node1263[label="Primitivo: 1"]
-node1255 -> node1263
-node1253 -> node1255
-node1266[label="Sentencia_While"]
-node1267[label="Condicion"];
-node1266 -> node1267;
-node1267 -> node1253;
-node1268[label="Sentencias"]
-node1266 -> node1268
-node1269[label="Declaracion"]
-node1270[label="Identificador: absolutoi"]
-node1269 -> node1270;
-node1271[label="Expresion"]
-node1269 -> node1271;
-node1272[label="Identificador: i"]
-node1271 -> node1272;
-node1268 -> node1269
-node1274[label="Declaracion"]
-node1275[label="Identificador: absolutoj"]
-node1274 -> node1275;
-node1276[label="Expresion"]
-node1274 -> node1276;
-node1277[label="Identificador: j"]
-node1276 -> node1277;
-node1268 -> node1274
-node1279[label="Sentencia_Si"]
-node1280[label="Condicion"]
-node1279 -> node1280;
-node1281[label="Operacion: <"]
-node1282[label="Identificador: i"]
-node1281 -> node1282
-node1283[label="Primitivo: 0"]
-node1281 -> node1283
-node1280 -> node1281
-node1285[label="Sentencias"]
-node1279 -> node1285
-node1286[label="Asignacion"]
-node1287[label="Identificador: absolutoi"]
-node1286 -> node1287;
-node1288[label="Operacion: *"]
-node1289[label="Identificador: i"]
-node1288 -> node1289
-node1290[label="Operacion: U"]
-node1291[label="Primitivo: 1"]
-node1290 -> node1291
-node1288 -> node1290
-node1286 -> node1288;
-node1285 -> node1286
-node1268 -> node1279
-node1296[label="Sentencia_Si"]
-node1297[label="Condicion"]
-node1296 -> node1297;
-node1298[label="Operacion: <"]
-node1299[label="Identificador: j"]
-node1298 -> node1299
-node1300[label="Primitivo: 0"]
-node1298 -> node1300
-node1297 -> node1298
-node1302[label="Sentencias"]
-node1296 -> node1302
-node1303[label="Asignacion"]
-node1304[label="Identificador: absolutoj"]
-node1303 -> node1304;
-node1305[label="Operacion: *"]
-node1306[label="Identificador: j"]
-node1305 -> node1306
-node1307[label="Operacion: U"]
-node1308[label="Primitivo: 1"]
-node1307 -> node1308
-node1305 -> node1307
-node1303 -> node1305;
-node1302 -> node1303
-node1268 -> node1296
-node1313[label="Sentencia_Si"]
-node1314[label="Condicion"]
-node1313 -> node1314;
-node1315[label="Operacion: ||"]
-node1316[label="Operacion: ||"]
-node1317[label="Operacion: <"]
-node1318[label="Operacion: +"]
-node1319[label="Identificador: absolutoi"]
-node1318 -> node1319
-node1320[label="Identificador: absolutoj"]
-node1318 -> node1320
-node1317 -> node1318
-node1322[label="Identificador: n"]
-node1317 -> node1322
-node1316 -> node1317
-node1324[label="Operacion: <="]
-node1325[label="Operacion: +"]
-node1326[label="Operacion: *"]
-node1327[label="Operacion: -"]
-node1328[label="Operacion: /"]
-node1329[label="Operacion: U"]
-node1330[label="Identificador: n"]
-node1329 -> node1330
-node1328 -> node1329
-node1332[label="Primitivo: 2"]
-node1328 -> node1332
-node1327 -> node1328
-node1334[label="Identificador: i"]
-node1327 -> node1334
-node1326 -> node1327
-node1336[label="Operacion: -"]
-node1337[label="Operacion: /"]
-node1338[label="Operacion: U"]
-node1339[label="Identificador: n"]
-node1338 -> node1339
-node1337 -> node1338
-node1341[label="Primitivo: 2"]
-node1337 -> node1341
-node1336 -> node1337
-node1343[label="Identificador: i"]
-node1336 -> node1343
-node1326 -> node1336
-node1325 -> node1326
-node1346[label="Operacion: *"]
-node1347[label="Operacion: -"]
-node1348[label="Operacion: /"]
-node1349[label="Identificador: n"]
-node1348 -> node1349
-node1350[label="Primitivo: 2"]
-node1348 -> node1350
-node1347 -> node1348
-node1352[label="Identificador: j"]
-node1347 -> node1352
-node1346 -> node1347
-node1354[label="Operacion: -"]
-node1355[label="Operacion: /"]
-node1356[label="Identificador: n"]
-node1355 -> node1356
-node1357[label="Primitivo: 2"]
-node1355 -> node1357
-node1354 -> node1355
-node1359[label="Identificador: j"]
-node1354 -> node1359
-node1346 -> node1354
-node1325 -> node1346
-node1324 -> node1325
-node1363[label="Operacion: /"]
-node1364[label="Operacion: *"]
-node1365[label="Identificador: n"]
-node1364 -> node1365
-node1366[label="Identificador: n"]
-node1364 -> node1366
-node1363 -> node1364
-node1368[label="Primitivo: 2"]
-node1363 -> node1368
-node1324 -> node1363
-node1316 -> node1324
-node1315 -> node1316
-node1372[label="Operacion: <="]
-node1373[label="Operacion: +"]
-node1374[label="Operacion: *"]
-node1375[label="Operacion: -"]
-node1376[label="Operacion: /"]
-node1377[label="Operacion: U"]
-node1378[label="Identificador: n"]
-node1377 -> node1378
-node1376 -> node1377
-node1380[label="Primitivo: 2"]
-node1376 -> node1380
-node1375 -> node1376
-node1382[label="Identificador: i"]
-node1375 -> node1382
-node1374 -> node1375
-node1384[label="Operacion: -"]
-node1385[label="Operacion: /"]
-node1386[label="Operacion: U"]
-node1387[label="Identificador: n"]
-node1386 -> node1387
-node1385 -> node1386
-node1389[label="Primitivo: 2"]
-node1385 -> node1389
-node1384 -> node1385
-node1391[label="Identificador: i"]
-node1384 -> node1391
-node1374 -> node1384
-node1373 -> node1374
-node1394[label="Operacion: *"]
-node1395[label="Operacion: -"]
-node1396[label="Operacion: /"]
-node1397[label="Operacion: U"]
-node1398[label="Identificador: n"]
-node1397 -> node1398
-node1396 -> node1397
-node1400[label="Primitivo: 2"]
-node1396 -> node1400
-node1395 -> node1396
-node1402[label="Identificador: j"]
-node1395 -> node1402
-node1394 -> node1395
-node1404[label="Operacion: -"]
-node1405[label="Operacion: /"]
-node1406[label="Operacion: U"]
-node1407[label="Identificador: n"]
-node1406 -> node1407
-node1405 -> node1406
-node1409[label="Primitivo: 2"]
-node1405 -> node1409
-node1404 -> node1405
-node1411[label="Identificador: j"]
-node1404 -> node1411
-node1394 -> node1404
-node1373 -> node1394
-node1372 -> node1373
-node1415[label="Operacion: /"]
-node1416[label="Operacion: *"]
-node1417[label="Identificador: n"]
-node1416 -> node1417
-node1418[label="Identificador: n"]
-node1416 -> node1418
-node1415 -> node1416
-node1420[label="Primitivo: 2"]
-node1415 -> node1420
-node1372 -> node1415
-node1315 -> node1372
-node1314 -> node1315
-node1424[label="Sentencias"]
-node1313 -> node1424
-node1425[label="Asignacion"]
-node1426[label="Identificador: stringfigura"]
-node1425 -> node1426;
-node1427[label="Operacion: +"]
-node1428[label="Identificador: stringfigura"]
-node1427 -> node1428
-node1429[label="Primitivo: * "]
-node1427 -> node1429
-node1425 -> node1427;
-node1424 -> node1425
-node1432[label="Sentencias_Else"]
-node1313 -> node1432
-node1433[label="Asignacion"]
-node1434[label="Identificador: stringfigura"]
-node1433 -> node1434;
-node1435[label="Operacion: +"]
-node1436[label="Identificador: stringfigura"]
-node1435 -> node1436
-node1437[label="Primitivo: . "]
-node1435 -> node1437
-node1433 -> node1435;
-node1432 -> node1433
-node1268 -> node1313
-node1441[label="Asignacion"]
-node1442[label="Identificador: j"]
-node1441 -> node1442;
-node1443[label="Operacion: +"]
-node1444[label="Identificador: j"]
-node1443 -> node1444
-node1445[label="Primitivo: 1"]
-node1443 -> node1445
-node1441 -> node1443;
-node1268 -> node1441
-node1235 -> node1266
-node1449[label="Imprimir"]
-node1450[label="Identificador: stringfigura"]
-node1449 -> node1450
-node1235 -> node1449
-node1452[label="Asignacion"]
-node1453[label="Identificador: i"]
-node1452 -> node1453;
-node1454[label="Operacion: +"]
-node1455[label="Identificador: i"]
-node1454 -> node1455
-node1456[label="Primitivo: 1"]
-node1454 -> node1456
-node1452 -> node1454;
-node1235 -> node1452
-node1207 -> node1233
-node1460[label="Imprimir"]
-node1461[label="Primitivo: if la figura es un corazon +10 <3"]
-node1460 -> node1461
-node1207 -> node1460
-node1 -> node1200
-node1464[label="Funcion"]
-node1465[label="Tipo: void"]
-node1464 -> node1465
-node1466[label="Identificador: figura2"]
-node1464 -> node1466
-node1467[label="Parametros"]
-node1464 -> node1467
-node1468[label="Sentencias"]
-node1464 -> node1468
-node1469[label="Declaracion"]
-node1470[label="Identificador: stringfigura"]
-node1469 -> node1470;
-node1471[label="Expresion"]
-node1469 -> node1471;
-node1472[label="Primitivo: "]
-node1471 -> node1472;
-node1468 -> node1469
-node1474[label="Declaracion"]
-node1475[label="Identificador: c"]
-node1474 -> node1475;
-node1476[label="Expresion"]
-node1474 -> node1476;
-node1477[label="Primitivo: * "]
-node1476 -> node1477;
-node1468 -> node1474
-node1479[label="Declaracion"]
-node1480[label="Identificador: b"]
-node1479 -> node1480;
-node1481[label="Expresion"]
-node1479 -> node1481;
-node1482[label="Primitivo:   "]
-node1481 -> node1482;
-node1468 -> node1479
-node1484[label="Declaracion"]
-node1485[label="Identificador: altura"]
-node1484 -> node1485;
-node1486[label="Expresion"]
-node1484 -> node1486;
-node1487[label="Primitivo: 10"]
-node1486 -> node1487;
-node1468 -> node1484
-node1489[label="Declaracion"]
-node1490[label="Identificador: ancho"]
-node1489 -> node1490;
-node1491[label="Expresion"]
-node1489 -> node1491;
-node1492[label="Primitivo: 1"]
-node1491 -> node1492;
-node1468 -> node1489
-node1494[label="Declaracion"]
-node1495[label="Identificador: i"]
-node1494 -> node1495;
-node1496[label="Expresion"]
-node1494 -> node1496;
-node1497[label="Primitivo: 0"]
-node1496 -> node1497;
-node1468 -> node1494
-node1499[label="Operacion: <"]
-node1500[label="Identificador: i"]
-node1499 -> node1500
-node1501[label="Operacion: /"]
-node1502[label="Identificador: altura"]
-node1501 -> node1502
-node1503[label="Primitivo: 4"]
-node1501 -> node1503
-node1499 -> node1501
-node1506[label="Sentencia_While"]
-node1507[label="Condicion"];
-node1506 -> node1507;
-node1507 -> node1499;
-node1508[label="Sentencias"]
-node1506 -> node1508
-node1509[label="Declaracion"]
-node1510[label="Identificador: k"]
-node1509 -> node1510;
-node1511[label="Expresion"]
-node1509 -> node1511;
-node1512[label="Primitivo: 0"]
-node1511 -> node1512;
-node1508 -> node1509
-node1514[label="Declaracion"]
-node1515[label="Identificador: j"]
-node1514 -> node1515;
-node1516[label="Expresion"]
-node1514 -> node1516;
-node1517[label="Primitivo: 0"]
-node1516 -> node1517;
-node1508 -> node1514
-node1519[label="Operacion: <"]
-node1520[label="Identificador: k"]
-node1519 -> node1520
-node1521[label="Operacion: -"]
-node1522[label="Identificador: altura"]
-node1521 -> node1522
-node1523[label="Identificador: i"]
-node1521 -> node1523
-node1519 -> node1521
-node1526[label="Sentencia_While"]
-node1527[label="Condicion"];
-node1526 -> node1527;
-node1527 -> node1519;
-node1528[label="Sentencias"]
-node1526 -> node1528
-node1529[label="Asignacion"]
-node1530[label="Identificador: stringfigura"]
-node1529 -> node1530;
-node1531[label="Operacion: +"]
-node1532[label="Identificador: stringfigura"]
-node1531 -> node1532
-node1533[label="Identificador: b"]
-node1531 -> node1533
-node1529 -> node1531;
-node1528 -> node1529
-node1536[label="Asignacion"]
-node1537[label="Identificador: k"]
-node1536 -> node1537;
-node1538[label="Operacion: +"]
-node1539[label="Identificador: k"]
-node1538 -> node1539
-node1540[label="Primitivo: 1"]
-node1538 -> node1540
-node1536 -> node1538;
-node1528 -> node1536
-node1508 -> node1526
-node1544[label="Operacion: <"]
-node1545[label="Identificador: j"]
-node1544 -> node1545
-node1546[label="Operacion: +"]
-node1547[label="Operacion: *"]
-node1548[label="Identificador: i"]
-node1547 -> node1548
-node1549[label="Primitivo: 2"]
-node1547 -> node1549
-node1546 -> node1547
-node1551[label="Identificador: ancho"]
-node1546 -> node1551
-node1544 -> node1546
-node1554[label="Sentencia_While"]
-node1555[label="Condicion"];
-node1554 -> node1555;
-node1555 -> node1544;
-node1556[label="Sentencias"]
-node1554 -> node1556
-node1557[label="Asignacion"]
-node1558[label="Identificador: stringfigura"]
-node1557 -> node1558;
-node1559[label="Operacion: +"]
-node1560[label="Identificador: stringfigura"]
-node1559 -> node1560
-node1561[label="Identificador: c"]
-node1559 -> node1561
-node1557 -> node1559;
-node1556 -> node1557
-node1564[label="Asignacion"]
-node1565[label="Identificador: j"]
-node1564 -> node1565;
-node1566[label="Operacion: +"]
-node1567[label="Identificador: j"]
-node1566 -> node1567
-node1568[label="Primitivo: 1"]
-node1566 -> node1568
-node1564 -> node1566;
-node1556 -> node1564
-node1508 -> node1554
-node1572[label="Imprimir"]
-node1573[label="Identificador: stringfigura"]
-node1572 -> node1573
-node1508 -> node1572
-node1575[label="Asignacion"]
-node1576[label="Identificador: stringfigura"]
-node1575 -> node1576;
-node1577[label="Primitivo: "]
-node1575 -> node1577;
-node1508 -> node1575
-node1579[label="Asignacion"]
-node1580[label="Identificador: i"]
-node1579 -> node1580;
-node1581[label="Operacion: +"]
-node1582[label="Identificador: i"]
-node1581 -> node1582
-node1583[label="Primitivo: 1"]
-node1581 -> node1583
-node1579 -> node1581;
-node1508 -> node1579
-node1468 -> node1506
-node1587[label="Asignacion"]
-node1588[label="Identificador: stringfigura"]
-node1587 -> node1588;
-node1589[label="Primitivo: "]
-node1587 -> node1589;
-node1468 -> node1587
-node1591[label="Asignacion"]
-node1592[label="Identificador: i"]
-node1591 -> node1592;
-node1593[label="Primitivo: 0"]
-node1591 -> node1593;
-node1468 -> node1591
-node1595[label="Operacion: <"]
-node1596[label="Identificador: i"]
-node1595 -> node1596
-node1597[label="Operacion: /"]
-node1598[label="Identificador: altura"]
-node1597 -> node1598
-node1599[label="Primitivo: 4"]
-node1597 -> node1599
-node1595 -> node1597
-node1602[label="Sentencia_While"]
-node1603[label="Condicion"];
-node1602 -> node1603;
-node1603 -> node1595;
-node1604[label="Sentencias"]
-node1602 -> node1604
-node1605[label="Declaracion"]
-node1606[label="Identificador: k"]
-node1605 -> node1606;
-node1607[label="Expresion"]
-node1605 -> node1607;
-node1608[label="Primitivo: 0"]
-node1607 -> node1608;
-node1604 -> node1605
-node1610[label="Declaracion"]
-node1611[label="Identificador: j"]
-node1610 -> node1611;
-node1612[label="Expresion"]
-node1610 -> node1612;
-node1613[label="Primitivo: 0"]
-node1612 -> node1613;
-node1604 -> node1610
-node1615[label="Operacion: <"]
-node1616[label="Identificador: k"]
-node1615 -> node1616
-node1617[label="Operacion: -"]
-node1618[label="Operacion: -"]
-node1619[label="Identificador: altura"]
-node1618 -> node1619
-node1620[label="Identificador: i"]
-node1618 -> node1620
-node1617 -> node1618
-node1622[label="Primitivo: 2"]
-node1617 -> node1622
-node1615 -> node1617
-node1625[label="Sentencia_While"]
-node1626[label="Condicion"];
-node1625 -> node1626;
-node1626 -> node1615;
-node1627[label="Sentencias"]
-node1625 -> node1627
-node1628[label="Asignacion"]
-node1629[label="Identificador: stringfigura"]
-node1628 -> node1629;
-node1630[label="Operacion: +"]
-node1631[label="Identificador: stringfigura"]
-node1630 -> node1631
-node1632[label="Identificador: b"]
-node1630 -> node1632
-node1628 -> node1630;
-node1627 -> node1628
-node1635[label="Asignacion"]
-node1636[label="Identificador: k"]
-node1635 -> node1636;
-node1637[label="Operacion: +"]
-node1638[label="Identificador: k"]
-node1637 -> node1638
-node1639[label="Primitivo: 1"]
-node1637 -> node1639
-node1635 -> node1637;
-node1627 -> node1635
-node1604 -> node1625
-node1643[label="Operacion: <"]
-node1644[label="Identificador: j"]
-node1643 -> node1644
-node1645[label="Operacion: +"]
-node1646[label="Operacion: *"]
-node1647[label="Identificador: i"]
-node1646 -> node1647
-node1648[label="Primitivo: 2"]
-node1646 -> node1648
-node1645 -> node1646
-node1650[label="Primitivo: 5"]
-node1645 -> node1650
-node1643 -> node1645
-node1653[label="Sentencia_While"]
-node1654[label="Condicion"];
-node1653 -> node1654;
-node1654 -> node1643;
-node1655[label="Sentencias"]
-node1653 -> node1655
-node1656[label="Asignacion"]
-node1657[label="Identificador: stringfigura"]
-node1656 -> node1657;
-node1658[label="Operacion: +"]
-node1659[label="Identificador: stringfigura"]
-node1658 -> node1659
-node1660[label="Identificador: c"]
-node1658 -> node1660
-node1656 -> node1658;
-node1655 -> node1656
-node1663[label="Asignacion"]
-node1664[label="Identificador: j"]
-node1663 -> node1664;
-node1665[label="Operacion: +"]
-node1666[label="Identificador: j"]
-node1665 -> node1666
-node1667[label="Primitivo: 1"]
-node1665 -> node1667
-node1663 -> node1665;
-node1655 -> node1663
-node1604 -> node1653
-node1671[label="Imprimir"]
-node1672[label="Identificador: stringfigura"]
-node1671 -> node1672
-node1604 -> node1671
-node1674[label="Asignacion"]
-node1675[label="Identificador: stringfigura"]
-node1674 -> node1675;
-node1676[label="Primitivo: "]
-node1674 -> node1676;
-node1604 -> node1674
-node1678[label="Asignacion"]
-node1679[label="Identificador: i"]
-node1678 -> node1679;
-node1680[label="Operacion: +"]
-node1681[label="Identificador: i"]
-node1680 -> node1681
-node1682[label="Primitivo: 1"]
-node1680 -> node1682
-node1678 -> node1680;
-node1604 -> node1678
-node1468 -> node1602
-node1686[label="Asignacion"]
-node1687[label="Identificador: stringfigura"]
-node1686 -> node1687;
-node1688[label="Primitivo: "]
-node1686 -> node1688;
-node1468 -> node1686
-node1690[label="Asignacion"]
-node1691[label="Identificador: i"]
-node1690 -> node1691;
-node1692[label="Primitivo: 0"]
-node1690 -> node1692;
-node1468 -> node1690
-node1694[label="Operacion: <"]
-node1695[label="Identificador: i"]
-node1694 -> node1695
-node1696[label="Operacion: /"]
-node1697[label="Identificador: altura"]
-node1696 -> node1697
-node1698[label="Primitivo: 4"]
-node1696 -> node1698
-node1694 -> node1696
-node1701[label="Sentencia_While"]
-node1702[label="Condicion"];
-node1701 -> node1702;
-node1702 -> node1694;
-node1703[label="Sentencias"]
-node1701 -> node1703
-node1704[label="Declaracion"]
-node1705[label="Identificador: k"]
-node1704 -> node1705;
-node1706[label="Expresion"]
-node1704 -> node1706;
-node1707[label="Primitivo: 0"]
-node1706 -> node1707;
-node1703 -> node1704
-node1709[label="Declaracion"]
-node1710[label="Identificador: j"]
-node1709 -> node1710;
-node1711[label="Expresion"]
-node1709 -> node1711;
-node1712[label="Primitivo: 0"]
-node1711 -> node1712;
-node1703 -> node1709
-node1714[label="Operacion: <"]
-node1715[label="Identificador: k"]
-node1714 -> node1715
-node1716[label="Operacion: -"]
-node1717[label="Operacion: -"]
-node1718[label="Identificador: altura"]
-node1717 -> node1718
-node1719[label="Identificador: i"]
-node1717 -> node1719
-node1716 -> node1717
-node1721[label="Primitivo: 4"]
-node1716 -> node1721
-node1714 -> node1716
-node1724[label="Sentencia_While"]
-node1725[label="Condicion"];
-node1724 -> node1725;
-node1725 -> node1714;
-node1726[label="Sentencias"]
-node1724 -> node1726
-node1727[label="Asignacion"]
-node1728[label="Identificador: stringfigura"]
-node1727 -> node1728;
-node1729[label="Operacion: +"]
-node1730[label="Identificador: stringfigura"]
-node1729 -> node1730
-node1731[label="Identificador: b"]
-node1729 -> node1731
-node1727 -> node1729;
-node1726 -> node1727
-node1734[label="Asignacion"]
-node1735[label="Identificador: k"]
-node1734 -> node1735;
-node1736[label="Operacion: +"]
-node1737[label="Identificador: k"]
-node1736 -> node1737
-node1738[label="Primitivo: 1"]
-node1736 -> node1738
-node1734 -> node1736;
-node1726 -> node1734
-node1703 -> node1724
-node1742[label="Operacion: <"]
-node1743[label="Identificador: j"]
-node1742 -> node1743
-node1744[label="Operacion: +"]
-node1745[label="Operacion: *"]
-node1746[label="Identificador: i"]
-node1745 -> node1746
-node1747[label="Primitivo: 2"]
-node1745 -> node1747
-node1744 -> node1745
-node1749[label="Primitivo: 9"]
-node1744 -> node1749
-node1742 -> node1744
-node1752[label="Sentencia_While"]
-node1753[label="Condicion"];
-node1752 -> node1753;
-node1753 -> node1742;
-node1754[label="Sentencias"]
-node1752 -> node1754
-node1755[label="Asignacion"]
-node1756[label="Identificador: stringfigura"]
-node1755 -> node1756;
-node1757[label="Operacion: +"]
-node1758[label="Identificador: stringfigura"]
-node1757 -> node1758
-node1759[label="Identificador: c"]
-node1757 -> node1759
-node1755 -> node1757;
-node1754 -> node1755
-node1762[label="Asignacion"]
-node1763[label="Identificador: j"]
-node1762 -> node1763;
-node1764[label="Operacion: +"]
-node1765[label="Identificador: j"]
-node1764 -> node1765
-node1766[label="Primitivo: 1"]
-node1764 -> node1766
-node1762 -> node1764;
-node1754 -> node1762
-node1703 -> node1752
-node1770[label="Imprimir"]
-node1771[label="Identificador: stringfigura"]
-node1770 -> node1771
-node1703 -> node1770
-node1773[label="Asignacion"]
-node1774[label="Identificador: stringfigura"]
-node1773 -> node1774;
-node1775[label="Primitivo: "]
-node1773 -> node1775;
-node1703 -> node1773
-node1777[label="Asignacion"]
-node1778[label="Identificador: i"]
-node1777 -> node1778;
-node1779[label="Operacion: +"]
-node1780[label="Identificador: i"]
-node1779 -> node1780
-node1781[label="Primitivo: 1"]
-node1779 -> node1781
-node1777 -> node1779;
-node1703 -> node1777
-node1468 -> node1701
-node1785[label="Asignacion"]
-node1786[label="Identificador: stringfigura"]
-node1785 -> node1786;
-node1787[label="Primitivo: "]
-node1785 -> node1787;
-node1468 -> node1785
-node1789[label="Asignacion"]
-node1790[label="Identificador: i"]
-node1789 -> node1790;
-node1791[label="Primitivo: 0"]
-node1789 -> node1791;
-node1468 -> node1789
-node1793[label="Operacion: <"]
-node1794[label="Identificador: i"]
-node1793 -> node1794
-node1795[label="Operacion: /"]
-node1796[label="Identificador: altura"]
-node1795 -> node1796
-node1797[label="Primitivo: 4"]
-node1795 -> node1797
-node1793 -> node1795
-node1800[label="Sentencia_While"]
-node1801[label="Condicion"];
-node1800 -> node1801;
-node1801 -> node1793;
-node1802[label="Sentencias"]
-node1800 -> node1802
-node1803[label="Declaracion"]
-node1804[label="Identificador: k"]
-node1803 -> node1804;
-node1805[label="Expresion"]
-node1803 -> node1805;
-node1806[label="Primitivo: 0"]
-node1805 -> node1806;
-node1802 -> node1803
-node1808[label="Operacion: <"]
-node1809[label="Identificador: k"]
-node1808 -> node1809
-node1810[label="Operacion: -"]
-node1811[label="Operacion: -"]
-node1812[label="Identificador: altura"]
-node1811 -> node1812
-node1813[label="Identificador: i"]
-node1811 -> node1813
-node1810 -> node1811
-node1815[label="Primitivo: 6"]
-node1810 -> node1815
-node1808 -> node1810
-node1818[label="Sentencia_While"]
-node1819[label="Condicion"];
-node1818 -> node1819;
-node1819 -> node1808;
-node1820[label="Sentencias"]
-node1818 -> node1820
-node1821[label="Asignacion"]
-node1822[label="Identificador: stringfigura"]
-node1821 -> node1822;
-node1823[label="Operacion: +"]
-node1824[label="Identificador: stringfigura"]
-node1823 -> node1824
-node1825[label="Identificador: b"]
-node1823 -> node1825
-node1821 -> node1823;
-node1820 -> node1821
-node1828[label="Asignacion"]
-node1829[label="Identificador: k"]
-node1828 -> node1829;
-node1830[label="Operacion: +"]
-node1831[label="Identificador: k"]
-node1830 -> node1831
-node1832[label="Primitivo: 1"]
-node1830 -> node1832
-node1828 -> node1830;
-node1820 -> node1828
-node1802 -> node1818
-node1836[label="Declaracion"]
-node1837[label="Identificador: j"]
-node1836 -> node1837;
-node1838[label="Expresion"]
-node1836 -> node1838;
-node1839[label="Primitivo: 0"]
-node1838 -> node1839;
-node1802 -> node1836
-node1841[label="Operacion: <"]
-node1842[label="Identificador: j"]
-node1841 -> node1842
-node1843[label="Operacion: +"]
-node1844[label="Operacion: *"]
-node1845[label="Identificador: i"]
-node1844 -> node1845
-node1846[label="Primitivo: 2"]
-node1844 -> node1846
-node1843 -> node1844
-node1848[label="Primitivo: 13"]
-node1843 -> node1848
-node1841 -> node1843
-node1851[label="Sentencia_While"]
-node1852[label="Condicion"];
-node1851 -> node1852;
-node1852 -> node1841;
-node1853[label="Sentencias"]
-node1851 -> node1853
-node1854[label="Asignacion"]
-node1855[label="Identificador: stringfigura"]
-node1854 -> node1855;
-node1856[label="Operacion: +"]
-node1857[label="Identificador: stringfigura"]
-node1856 -> node1857
-node1858[label="Identificador: c"]
-node1856 -> node1858
-node1854 -> node1856;
-node1853 -> node1854
-node1861[label="Asignacion"]
-node1862[label="Identificador: j"]
-node1861 -> node1862;
-node1863[label="Operacion: +"]
-node1864[label="Identificador: j"]
-node1863 -> node1864
-node1865[label="Primitivo: 1"]
-node1863 -> node1865
-node1861 -> node1863;
-node1853 -> node1861
-node1802 -> node1851
-node1869[label="Imprimir"]
-node1870[label="Identificador: stringfigura"]
-node1869 -> node1870
-node1802 -> node1869
-node1872[label="Asignacion"]
-node1873[label="Identificador: stringfigura"]
-node1872 -> node1873;
-node1874[label="Primitivo: "]
-node1872 -> node1874;
-node1802 -> node1872
-node1876[label="Asignacion"]
-node1877[label="Identificador: i"]
-node1876 -> node1877;
-node1878[label="Operacion: +"]
-node1879[label="Identificador: i"]
-node1878 -> node1879
-node1880[label="Primitivo: 1"]
-node1878 -> node1880
-node1876 -> node1878;
-node1802 -> node1876
-node1468 -> node1800
-node1884[label="Asignacion"]
-node1885[label="Identificador: stringfigura"]
-node1884 -> node1885;
-node1886[label="Primitivo: "]
-node1884 -> node1886;
-node1468 -> node1884
-node1888[label="Asignacion"]
-node1889[label="Identificador: i"]
-node1888 -> node1889;
-node1890[label="Primitivo: 0"]
-node1888 -> node1890;
-node1468 -> node1888
-node1892[label="Operacion: <"]
-node1893[label="Identificador: i"]
-node1892 -> node1893
-node1894[label="Operacion: /"]
-node1895[label="Identificador: altura"]
-node1894 -> node1895
-node1896[label="Primitivo: 4"]
-node1894 -> node1896
-node1892 -> node1894
-node1899[label="Sentencia_While"]
-node1900[label="Condicion"];
-node1899 -> node1900;
-node1900 -> node1892;
-node1901[label="Sentencias"]
-node1899 -> node1901
-node1902[label="Declaracion"]
-node1903[label="Identificador: k"]
-node1902 -> node1903;
-node1904[label="Expresion"]
-node1902 -> node1904;
-node1905[label="Primitivo: 0"]
-node1904 -> node1905;
-node1901 -> node1902
-node1907[label="Declaracion"]
-node1908[label="Identificador: j"]
-node1907 -> node1908;
-node1909[label="Expresion"]
-node1907 -> node1909;
-node1910[label="Primitivo: 0"]
-node1909 -> node1910;
-node1901 -> node1907
-node1912[label="Operacion: <"]
-node1913[label="Identificador: k"]
-node1912 -> node1913
-node1914[label="Operacion: -"]
-node1915[label="Identificador: altura"]
-node1914 -> node1915
-node1916[label="Primitivo: 2"]
-node1914 -> node1916
-node1912 -> node1914
-node1919[label="Sentencia_While"]
-node1920[label="Condicion"];
-node1919 -> node1920;
-node1920 -> node1912;
-node1921[label="Sentencias"]
-node1919 -> node1921
-node1922[label="Asignacion"]
-node1923[label="Identificador: stringfigura"]
-node1922 -> node1923;
-node1924[label="Operacion: +"]
-node1925[label="Identificador: stringfigura"]
-node1924 -> node1925
-node1926[label="Identificador: b"]
-node1924 -> node1926
-node1922 -> node1924;
-node1921 -> node1922
-node1929[label="Asignacion"]
-node1930[label="Identificador: k"]
-node1929 -> node1930;
-node1931[label="Operacion: +"]
-node1932[label="Identificador: k"]
-node1931 -> node1932
-node1933[label="Primitivo: 1"]
-node1931 -> node1933
-node1929 -> node1931;
-node1921 -> node1929
-node1901 -> node1919
-node1937[label="Operacion: <"]
-node1938[label="Identificador: j"]
-node1937 -> node1938
-node1939[label="Primitivo: 5"]
-node1937 -> node1939
-node1941[label="Sentencia_While"]
-node1942[label="Condicion"];
-node1941 -> node1942;
-node1942 -> node1937;
-node1943[label="Sentencias"]
-node1941 -> node1943
-node1944[label="Asignacion"]
-node1945[label="Identificador: stringfigura"]
-node1944 -> node1945;
-node1946[label="Operacion: +"]
-node1947[label="Identificador: stringfigura"]
-node1946 -> node1947
-node1948[label="Identificador: c"]
-node1946 -> node1948
-node1944 -> node1946;
-node1943 -> node1944
-node1951[label="Asignacion"]
-node1952[label="Identificador: j"]
-node1951 -> node1952;
-node1953[label="Operacion: +"]
-node1954[label="Identificador: j"]
-node1953 -> node1954
-node1955[label="Primitivo: 1"]
-node1953 -> node1955
-node1951 -> node1953;
-node1943 -> node1951
-node1901 -> node1941
-node1959[label="Imprimir"]
-node1960[label="Identificador: stringfigura"]
-node1959 -> node1960
-node1901 -> node1959
-node1962[label="Asignacion"]
-node1963[label="Identificador: stringfigura"]
-node1962 -> node1963;
-node1964[label="Primitivo: "]
-node1962 -> node1964;
-node1901 -> node1962
-node1966[label="Asignacion"]
-node1967[label="Identificador: i"]
-node1966 -> node1967;
-node1968[label="Operacion: +"]
-node1969[label="Identificador: i"]
-node1968 -> node1969
-node1970[label="Primitivo: 1"]
-node1968 -> node1970
-node1966 -> node1968;
-node1901 -> node1966
-node1468 -> node1899
-node1974[label="Imprimir"]
-node1975[label="Primitivo: if la figura es un Arbol +10 <3"]
-node1974 -> node1975
-node1468 -> node1974
-node1 -> node1464
-node1978[label="Funcion"]
-node1979[label="Tipo: void"]
-node1978 -> node1979
-node1980[label="Identificador: sentenciasanidadas"]
-node1978 -> node1980
-node1981[label="Parametros"]
-node1978 -> node1981
-node1982[label="Sentencias"]
-node1978 -> node1982
-node1983[label="Declaracion"]
-node1984[label="Identificador: numero1"]
-node1983 -> node1984;
-node1985[label="Expresion"]
-node1983 -> node1985;
-node1986[label="Primitivo: 0"]
-node1985 -> node1986;
-node1982 -> node1983
-node1988[label="Operacion: <"]
-node1989[label="Identificador: numero1"]
-node1988 -> node1989
-node1990[label="Primitivo: 5"]
-node1988 -> node1990
-node1992[label="Sentencia_Do_While"]
-node1993[label="Condicion"]
-node1992 -> node1993;
-node1993 -> node1988;
-node1994[label="Sentencias"]
-node1992 -> node1994;
-node1995[label="Sentencia_Switch"]
-node1996[label="Condicion"]
-node1995 -> node1996
-node1997[label="Identificador: numero1"]
-node1996 -> node1997
-node1998[label="Casos"]
-node1995 -> node1998
-node1999[label="Caso"]
-node1998 -> node1999;
-node2000[label="Primitivo: 0"]
-node2001[label="Comparar"]
-node1999 -> node2001
-node2001 -> node2000
-node2002[label="Sentencias"]
-node1999 -> node2002
-node2004[label="Llamada"]
-node2005[label="Identificador: figura0"]
-node2004 -> node2005
-node2006[label="Expresiones"]
-node2004 -> node2006
-node2007[label="Expresion"]
-node2006 -> node2007
-node2008[label="Primitivo: 8"]
-node2007 -> node2008
-node2002 -> node2004
-  node2010[label="Break"];
-node2002 -> node2010
-node2011[label="Caso"]
-node1998 -> node2011;
-node2012[label="Primitivo: 1"]
-node2013[label="Comparar"]
-node2011 -> node2013
-node2013 -> node2012
-node2014[label="Sentencias"]
-node2011 -> node2014
-node2016[label="Llamada"]
-node2017[label="Identificador: figura1"]
-node2016 -> node2017
-node2018[label="Expresiones"]
-node2016 -> node2018
-node2019[label="Expresion"]
-node2018 -> node2019
-node2020[label="Primitivo: 10"]
-node2019 -> node2020
-node2014 -> node2016
-  node2022[label="Break"];
-node2014 -> node2022
-node2023[label="Caso"]
-node1998 -> node2023;
-node2024[label="Primitivo: 2"]
-node2025[label="Comparar"]
-node2023 -> node2025
-node2025 -> node2024
-node2026[label="Sentencias"]
-node2023 -> node2026
-node2028[label="Llamada"]
-node2029[label="Identificador: figura2"]
-node2028 -> node2029
-node2030[label="Expresiones"]
-node2028 -> node2030
-node2026 -> node2028
-  node2032[label="Break"];
-node2026 -> node2032
-node2033[label="Caso_Defecto"]
-node1998 -> node2033;
-node2034[label="Sentencias"]
-node2033 -> node2034;
-node2035[label="Imprimir"]
-node2036[label="Primitivo: Esto se va a print 2 veces :3"]
-node2035 -> node2036
-node2034 -> node2035;
-node1994 -> node1995;
-node2039[label="Asignacion"]
-node2040[label="Identificador: numero1"]
-node2039 -> node2040;
-node2041[label="Operacion: +"]
-node2042[label="Identificador: numero1"]
-node2041 -> node2042
-node2043[label="Primitivo: 1"]
-node2041 -> node2043
-node2039 -> node2041;
-node1994 -> node2039;
-node1982 -> node1992
-node1 -> node1978
-node2048[label="Funcion"]
-node2049[label="Tipo: void"]
-node2048 -> node2049
-node2050[label="Identificador: figura0"]
-node2048 -> node2050
-node2051[label="Parametros"]
-node2048 -> node2051
-node2052[label="Parametro"]
-node2051 -> node2052
-node2053[label="Tipo: integer"]
-node2052 -> node2053
-node2054[label="Identificador: numero"]
-node2052 -> node2054
-node2055[label="Sentencias"]
-node2048 -> node2055
-node2056[label="Declaracion"]
-node2057[label="Identificador: i"]
-node2056 -> node2057;
-node2058[label="Expresion"]
-node2056 -> node2058;
-node2059[label="Primitivo: 0"]
-node2058 -> node2059;
-node2055 -> node2056
-node2061[label="Operacion: <"]
-node2062[label="Identificador: i"]
-node2061 -> node2062
-node2063[label="Identificador: numero"]
-node2061 -> node2063
-node2065[label="Sentencia_While"]
-node2066[label="Condicion"];
-node2065 -> node2066;
-node2066 -> node2061;
-node2067[label="Sentencias"]
-node2065 -> node2067
-node2068[label="Declaracion"]
-node2069[label="Identificador: j"]
-node2068 -> node2069;
-node2070[label="Expresion"]
-node2068 -> node2070;
-node2071[label="Primitivo: 0"]
-node2070 -> node2071;
-node2067 -> node2068
-node2073[label="Declaracion"]
-node2074[label="Identificador: numeromostrar"]
-node2073 -> node2074;
-node2075[label="Expresion"]
-node2073 -> node2075;
-node2076[label="Primitivo: 1"]
-node2075 -> node2076;
-node2067 -> node2073
-node2078[label="Declaracion"]
-node2079[label="Identificador: unafila"]
-node2078 -> node2079;
-node2080[label="Expresion"]
-node2078 -> node2080;
-node2081[label="Primitivo: "]
-node2080 -> node2081;
-node2067 -> node2078
-node2083[label="Operacion: <="]
-node2084[label="Identificador: j"]
-node2083 -> node2084
-node2085[label="Identificador: i"]
-node2083 -> node2085
-node2087[label="Sentencia_While"]
-node2088[label="Condicion"];
-node2087 -> node2088;
-node2088 -> node2083;
-node2089[label="Sentencias"]
-node2087 -> node2089
-node2090[label="Asignacion"]
-node2091[label="Identificador: unafila"]
-node2090 -> node2091;
-node2092[label="Operacion: +"]
-node2093[label="Operacion: +"]
-node2094[label="Identificador: unafila"]
-node2093 -> node2094
-node2095[label="Primitivo:  "]
-node2093 -> node2095
-node2092 -> node2093
-node2097[label="Identificador: numeromostrar"]
-node2092 -> node2097
-node2090 -> node2092;
-node2089 -> node2090
-node2100[label="Asignacion"]
-node2101[label="Identificador: numeromostrar"]
-node2100 -> node2101;
-node2102[label="Operacion: +"]
-node2103[label="Identificador: numeromostrar"]
-node2102 -> node2103
-node2104[label="Primitivo: 1"]
-node2102 -> node2104
-node2100 -> node2102;
-node2089 -> node2100
-node2107[label="Asignacion"]
-node2108[label="Identificador: j"]
-node2107 -> node2108;
-node2109[label="Operacion: +"]
-node2110[label="Identificador: j"]
-node2109 -> node2110
-node2111[label="Primitivo: 1"]
-node2109 -> node2111
-node2107 -> node2109;
-node2089 -> node2107
-node2067 -> node2087
-node2115[label="Imprimir"]
-node2116[label="Identificador: unafila"]
-node2115 -> node2116
-node2067 -> node2115
-node2118[label="Asignacion"]
-node2119[label="Identificador: i"]
-node2118 -> node2119;
-node2120[label="Operacion: +"]
-node2121[label="Identificador: i"]
-node2120 -> node2121
-node2122[label="Primitivo: 1"]
-node2120 -> node2122
-node2118 -> node2120;
-node2067 -> node2118
-node2055 -> node2065
-node1 -> node2048
+node511 -> node566
+node442 -> node509
+node570[label="Operacion: >"]
+node571[label="Identificador: total"]
+node570 -> node571
+node572[label="Primitivo: 0"]
+node570 -> node572
+node569[label="Return"];
+node569 -> node570;
+node442 -> node569
+node1 -> node432
 }

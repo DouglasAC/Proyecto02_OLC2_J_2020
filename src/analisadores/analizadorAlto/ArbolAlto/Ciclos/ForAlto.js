@@ -142,7 +142,7 @@ class ForAlto {
         if (this.condicion != null) {
             let nodoCondicion = "node" + numero++;
             cuerpo += nodoCondicion + "[label=\"Condicion_For\"]\n"
-            cuerpo += nodo + " --> " + nodoCondicion + "\n";
+            cuerpo += nodo + " -> " + nodoCondicion + "\n";
             let nodoIni = this.condicion.generarCuerpo(numero);
             numero = nodoIni.numero;
             cuerpo += nodoIni.cuerpo;
@@ -151,7 +151,7 @@ class ForAlto {
         if (this.final != null) {
             let nodoCondicion = "node" + numero++;
             cuerpo += nodoCondicion + "[label=\"Final_For\"]\n"
-            cuerpo += nodo + " --> " + nodoCondicion + "\n";
+            cuerpo += nodo + " -> " + nodoCondicion + "\n";
             let nodoIni = this.final.generarCuerpo(numero);
             numero = nodoIni.numero;
             cuerpo += nodoIni.cuerpo;
