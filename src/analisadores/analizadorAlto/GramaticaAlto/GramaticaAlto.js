@@ -219,16 +219,16 @@ case 100:
  this.$ = new DefinirEstructura($$[$0-4], $$[$0-1], _$[$0-5].first_line, _$[$0-5].first_column); 
 break;
 case 103:
- this.$ = new Atributo([$$[$0-1]], $$[$0], null); 
+ this.$ = new Atributo([$$[$0-1].toLocaleLowerCase()], $$[$0], null); 
 break;
 case 104:
- this.$ = new Atributo([$$[$0-3]], $$[$0-2], $$[$0]); 
+ this.$ = new Atributo([$$[$0-3].toLocaleLowerCase()], $$[$0-2], $$[$0]); 
 break;
 case 105:
- this.$ = new Atributo(["Tarry", $$[$0-2]], $$[$0], null); 
+ this.$ = new Atributo(["Tarry", $$[$0-2].toLocaleLowerCase()], $$[$0], null); 
 break;
 case 106:
- this.$ = new Atributo(["Tarry", $$[$0-4]], $$[$0-2], $$[$0]); 
+ this.$ = new Atributo(["Tarry", $$[$0-4].toLocaleLowerCase()], $$[$0-2], $$[$0]); 
 break;
 case 107:
  this.$ =  new ForAlto($$[$0-8], $$[$0-6], $$[$0-4], $$[$0-1], _$[$0-10].first_line, _$[$0-10].first_column); 
